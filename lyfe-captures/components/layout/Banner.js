@@ -15,11 +15,16 @@ const Banner = (props) => {
           <Image src={logoPic} alt="Lyfe Captures" />
         </a>
       </Link>
-      <Link href="/cart">
-        <a>
-          <Image src={cartPic} alt="CART" />
-        </a>
-      </Link>
+      <div className="promotion-text">
+        <p>{DUMMY_TEXT}</p>
+      </div>
+      <div className="cart-icon">
+        <Link href="/cart">
+          <a>
+            <Image src={cartPic} alt="CART" />
+          </a>
+        </Link>
+      </div>
     </Fragment>
   );
 };

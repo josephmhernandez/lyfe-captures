@@ -1,6 +1,7 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import Banner from '../components/layout/Banner'
+import MapsLandingPage from '../components/product/maps/MapsLandingPage'
 import styles from '../styles/Home.module.css'
 
 export default function Home() {
@@ -15,6 +16,9 @@ export default function Home() {
       <main >
         <Banner/>
       </main>
+      <div>
+        <MapsLandingPage/>
+      </div>
 
       <footer className={styles.footer}>
         <a
