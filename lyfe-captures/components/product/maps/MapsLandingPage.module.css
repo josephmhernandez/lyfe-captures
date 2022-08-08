@@ -1,0 +1,21 @@
+.mapsLandingPage {
+  width: 100%;
+  height: 100%;
+  /* object-fit: contain; */
+  border-radius: 8px;
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.mapsLandingPage h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.mapsLandingPage p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+}
