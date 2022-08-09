@@ -5,19 +5,20 @@ import cartPic from "../../public/cart-icon-small.png";
 import classes from "./NavigationBar.module.css";
 //Navigation Bar
 
-const Banner = (props) => {
+const NavigationBar = (props) => {
   const DUMMY_TEXT = "UP TO 30% OFF CUSTOM MAP PRINTS WITH CODE 'SUMMER'";
   return (
-    // Promotion text
-    // Logo Link
-    <div className={classes.topnav}>
-      <nav className={classes.topnav}>
-        <Link href="/" LyfeCaptures>
-          LyfeCaptures
-        </Link>
+    <div className={classes.navBar}>
+      <nav>
+        <div className={classes.topnav}>
+          <Link className={classes.topnav} href="/">
+            LyfeCaptures
+          </Link>
+        </div>
+
         <div className={classes.cartNav}>
           <Link href="/cart">
-            <a>
+            <a className={classes.cartNav}>
               <Image src={cartPic} alt="CART" />
             </a>
           </Link>
@@ -28,4 +29,4 @@ const Banner = (props) => {
   );
 };
 
-export default Banner;
+export default NavigationBar;

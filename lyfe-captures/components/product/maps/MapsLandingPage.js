@@ -15,10 +15,13 @@ const MapsLandingPage = () => {
   return (
     <div>
       <ShopNowBanner to="/maps" src={shopNowImage} alt="" />
-      <ProductPicture src={mapProdPic} />
       <div className={classes.mapsLandingPage}>
         <h1>{DUMMY_TITLE}</h1>
         <p>{DUMMY_DESCRIPTION}</p>
+      </div>
+      <div>
+          <ProductPicture src={mapProdPic} />
+
       </div>
       <Link href="/maps">
         <a>
