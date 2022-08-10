@@ -11,7 +11,7 @@ export default function Home() {
       <Head>
         <title>Lyfe Captures</title>
         <meta name="description" content="Create a personalized gift worth giving. Capture memories and moments forever." />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/play-button.ico" />
       </Head>
       <Layout>
         <MapsLandingPage/>
