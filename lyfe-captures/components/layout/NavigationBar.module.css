@@ -1,83 +1,62 @@
 /* The navbar container */
-/* .topnav {
-
-  background-color: black;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
-
-}
- */
 
 .navBar nav {
   display: block;
-  box-shadow: 0px 155px 2px 1px rgba(0, 0, 0, 0.45);
 }
 
-.topnav {
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.45);
   background-color: white;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
-/* Navbar links */
-.topnav a {
+.logo a {
   float: left;
   color: #8657c7;
-  text-align: center;
-  padding: 8px 0px;
   font-family: "Great-Vibes";
-  font-size: 7rem;
-  padding-left: 2%;
+  font-size: 4rem;
+  padding-left: 3%;
 }
 
-/* Links - change color on hover */
-.topnav a:hover {
-  opacity: 95%;
+.navbar a {
+  align-items: center;
+  align-content: center;
+  color: #8657c7;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+}
+
+.navbar li {
+  display: inline-block;
+  padding: 0 25px;
 }
 
 /* cart icon - right justified, size the cart*/
-.cartNav a {
+.cartnav a {
   float: right;
   color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  padding: 50px;
-  font-size: 20px;
-  padding-right: 2%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
+  padding-right: 4%;
+  font-size: 2rem;
 }
 
-.cartNav img {
+.cartnav img {
   max-height: 50px;
-  height: auto;
-  left: 10000px;
-  right: 100px;
-  float:right;
-  /* transform: scale(1.05); */
+  float: right;
 }
 
-.cartNav a:hover {
+.cartnav a:hover {
   transform: scale(1.15);
 }
-
-/* .cartNav img:hover {
-  transform: scaleX(-1);
-} */
-
-/* .column {
-  float: left;
-  width: 33.33%;
-  padding: 15px;
-}
-
-.promotionText {
-  font-size: 20px;
-  font-weight: 700;
-  color: #000000;
-  text-align: center;
-  padding: 0px;
-} */
 
 @font-face {
   font-family: "Great-Vibes";
@@ -85,3 +64,5 @@
   font-weight: 100;
   font-style: normal;
 }
+
+

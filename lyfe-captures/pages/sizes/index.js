@@ -1,13 +1,12 @@
 import Layout from "../../components/layout/Layout";
 
-const CartPage = () => {
+const Sizes = () => {
   return (
     <Layout>
       <div>
-        <p>chart is empty :/</p>
+        <h1>Sizes</h1>
       </div>
     </Layout>
   );
 };
-
-export default CartPage;
+export default Sizes;

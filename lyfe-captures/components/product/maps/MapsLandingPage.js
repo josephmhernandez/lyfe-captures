@@ -18,16 +18,14 @@ const MapsLandingPage = () => {
 
   return (
     <div>
-      <ShopNowBanner to="/maps" src={shopNowImage} alt="" />
-      <div className={classes.container}>
-        <div className={classes.container}>
-          <Image
-            layout="intrinsic"
-            src={mapProdPic}
-            alt="Map"
-          />
+      <div className={classes.box}>
+        <ShopNowBanner to="/maps" src={shopNowImage} alt="" />
+      </div>
+      <div className={classes.grid}>
+        <div className={classes.mapsImage}>
+          <Image layout="intrinsic" src={mapProdPic} alt="Map" />
         </div>
-        <div>
+        <div className={classes.mapsLandingPage}>
           <h1>{DUMMY_TITLE}</h1>
           <p>{DUMMY_DESCRIPTION}</p>
           <Link href="/maps">
