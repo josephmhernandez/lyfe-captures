@@ -1,13 +1,12 @@
 import Layout from "../../components/layout/Layout";
 
-const CartPage = () => {
+const Faqs = () => {
   return (
     <Layout>
       <div>
-        <p>chart is empty :/</p>
+        <h1>Faqs</h1>
       </div>
     </Layout>
   );
 };
-
-export default CartPage;
+export default Faqs;
