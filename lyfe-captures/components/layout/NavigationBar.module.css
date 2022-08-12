@@ -6,7 +6,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 3fr 1fr;
   grid-gap: 0px;
   justify-content: center;
   align-content: center;
@@ -25,11 +25,20 @@
   padding-left: 3%;
 }
 
+.navbar {
+  display: fixed;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+}
+
 .navbar a {
   align-items: center;
   align-content: center;
   color: #8657c7;
-  font-size: 17px;
+  font-size: 1.5rem;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
 }
 
 .navbar a:hover {
@@ -46,7 +55,6 @@
   float: right;
   color: #f2f2f2;
   padding-right: 4%;
-  font-size: 2rem;
 }
 
 .cartnav img {
@@ -65,4 +73,7 @@
   font-style: normal;
 }
 
-
+/* @font-face {
+  font-family: "Source Sans Pro", sans-serif;
+  src: url("https://fonts.google.com/specimen/Source+Sans+Pro");
+} */

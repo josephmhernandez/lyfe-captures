@@ -3,7 +3,6 @@ import Image from "next/image";
 import cartPic from "../../public/cart-icon-small.png";
 import classes from "./NavigationBar.module.css";
 
-
 const NavigationBar = (props) => {
   const DUMMY_TEXT = "UP TO 30% OFF CUSTOM MAP PRINTS WITH CODE 'SUMMER'";
   return (
@@ -18,10 +17,16 @@ const NavigationBar = (props) => {
               <Link href="/aboutus">About Us</Link>
             </li>
             <li>
+              <Link href="/maps"> Create Now </Link>
+            </li>
+            <li>
               <Link href="/sizes">Sizes</Link>
             </li>
             <li>
               <Link href="/faqs">FAQs</Link>
+            </li>
+            <li>
+              <Link href="/contactus">Contact Us</Link>
             </li>
           </ul>
         </div>
@@ -33,7 +38,6 @@ const NavigationBar = (props) => {
           </Link>
         </div>
       </nav>
-      {props.children}
     </div>
   );
 };
