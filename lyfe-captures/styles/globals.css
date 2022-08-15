@@ -24,3 +24,11 @@ a {
     background: white;
   }
 }
+
+
+:root {
+  --purple-dark-color: #8657c7;
+  --purple-light-color: #B483CD;
+  --primary-font: "Source Sans Pro", sans-serif;
+}
+

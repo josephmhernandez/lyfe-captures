@@ -9,7 +9,7 @@ const Layout = (props) => {
     <Fragment>
       <NavigationBar />
       <main>{props.children}</main>
-      {!props.hideFooter && <Footer />}
+      <Footer />
     </Fragment>
   );
 };
