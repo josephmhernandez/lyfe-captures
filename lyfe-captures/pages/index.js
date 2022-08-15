@@ -7,7 +7,7 @@ import styles from "../styles/Home.module.css";
 export default function Home() {
   return (
     <Fragment>
-      <Head>
+      {/* <Head>
         <title>Lyfe Captures</title>
         <meta
           name="description"
@@ -20,7 +20,8 @@ export default function Home() {
           rel="stylesheet"
         />
         <link rel="icon" href="/play-button.ico" />
-      </Head>
+      </Head> */}
+      
 
       <MapsLandingPage />
     </Fragment>
