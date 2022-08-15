@@ -1,10 +1,10 @@
 .container {
-  background-color: var(--purple-light-color);
+  background-color: var(--purple-dark-color);
   width: 100%;
 
   font-family: var(--primary-font);
   font-weight: 400;
-  color: black;
+  color: white;
   font-size: 1.5rem;
 }
 
