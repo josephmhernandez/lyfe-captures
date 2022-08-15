@@ -3,7 +3,10 @@ import Layout from "../components/layout/Layout";
 import { Fragment } from "react";
 import Head from "next/head";
 
+
 function MyApp({ Component, pageProps }) {
+
+
   return (
     <Fragment>
       <Head>
@@ -12,12 +15,6 @@ function MyApp({ Component, pageProps }) {
         <meta
           name="description"
           content="Create a personalized gift worth giving. Capture memories and moments forever."
-        />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
-          rel="stylesheet"
         />
       </Head>
       <Layout>
