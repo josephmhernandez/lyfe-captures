@@ -19,6 +19,21 @@ const CreateMap = (props) => {
 
 //   const accordionRef = useRef<AccordionRefObject>(null);
 
+
+/*
+
+
+
+CREATE STYLE FOR ACCORDION : 
+https://paljs.com/ui/components/accordion/
+
+^ CREATE A STYLE OBJECT FROM THIS WEBPAGE AND THEN ADD IT TO THE 
+ACCORDION COMPONENT 
+
+
+*/ 
+
+
   return (
     <div className={classes.container}>
       <div className={classes.wrapper}>
