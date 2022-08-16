@@ -1,0 +1,22 @@
+.container {
+  width: "100px";
+  /* margin-bottom: "15px";
+  line-height: "150px"; */
+  /* border: "1px solid rgba(255, 255, 255, .5)"; */
+  font-family: var(--primary-font);
+  font-weight: 400;
+  font-size: x-large;
+}
+
+.container button {
+  position: "relative";
+  text-align: "left";
+  padding: "4px";
+  border: "none";
+  background: "transparent";
+  outline: "none";
+  cursor: "pointer";
+  color: black;
+  font-weight: 400;
+  font-size: x-large;
+}
