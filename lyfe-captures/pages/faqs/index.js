@@ -1,9 +1,9 @@
 import Layout from "../../components/layout/Layout";
-
+import { Accordion, AccordionItem } from "@paljs/ui";
 const Faqs = () => {
   return (
     <div>
-      <h1>Faqs</h1>
+      <p>FAQs</p>
     </div>
   );
 };
