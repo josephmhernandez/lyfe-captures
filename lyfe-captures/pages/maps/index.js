@@ -10,7 +10,6 @@ const mapDimension = {width: 700, height: 700}
 const MapPage = () => {
   return (
     <div >
-      <h1>Map Page</h1>
       <CreateMap/>
       {/* <CreateMap
         decimalLatitude={mapCenter.lat}
