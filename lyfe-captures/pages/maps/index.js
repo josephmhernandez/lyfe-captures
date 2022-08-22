@@ -11,12 +11,6 @@ const MapPage = () => {
   return (
     <div >
       <CreateMap/>
-      {/* <CreateMap
-        decimalLatitude={mapCenter.lat}
-        decimalLongitude={mapCenter.lng}
-        width={mapDimension.width}
-        height={mapDimension.height}
-      /> */}
     </div>
   );
 };
