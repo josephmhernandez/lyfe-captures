@@ -5,3 +5,10 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
+
+module.exports = {
+  publicRuntimeConfig: {
+    // Will be available on both server and client
+    primaryColor: "#8657c7",
+  },
+} 
