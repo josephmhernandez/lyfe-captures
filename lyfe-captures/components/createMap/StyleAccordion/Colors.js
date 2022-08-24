@@ -22,7 +22,7 @@ const Colors = () => {
     <div className={classes.container}>
       {colorStyles.map((color) => {
         return (
-          <ActionIcon onClick={colorChange} size={iconSize} value={color}>
+          <ActionIcon key={color} onClick={colorChange} size={iconSize} value={color}>
             {/* <div className="hover:cursor-pointer flex justify-center items-center"> */}
             <div className={classes.color}>
               <Image
