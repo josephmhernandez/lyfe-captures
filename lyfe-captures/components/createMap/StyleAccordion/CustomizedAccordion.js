@@ -9,6 +9,7 @@ import Location from "./Location";
 import Orientation from "./Orientation";
 import Colors from "./Colors";
 import Pin from "./Pin";
+import Text from "./Text";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -113,12 +114,7 @@ const CustomizedAccordions = () => {
           <Typography>Text</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
+         <Text/> 
         </AccordionDetails>
       </Accordion>
     </div>
