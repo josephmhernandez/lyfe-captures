@@ -83,23 +83,6 @@ const CustomizedAccordions = () => {
         </AccordionDetails>
       </Accordion>
       <Accordion
-        expanded={expanded === "panel3"}
-        onChange={handleChange("panel3")}
-      >
-        <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
-          <Typography>Size</Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <Typography>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            malesuada lacus ex, sit amet blandit leo lobortis eget. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada
-            lacus ex, sit amet blandit leo lobortis eget.
-          </Typography>
-        </AccordionDetails>
-      </Accordion>
-
-      <Accordion
         expanded={expanded === "panel4"}
         onChange={handleChange("panel4")}
       >
@@ -110,16 +93,15 @@ const CustomizedAccordions = () => {
           <Colors />
         </AccordionDetails>
       </Accordion>
-
       <Accordion
         expanded={expanded === "panel5"}
         onChange={handleChange("panel5")}
       >
         <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
-          <Typography>Pin</Typography>
+          <Typography>Add Pin</Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Pin/>
+          <Pin />
         </AccordionDetails>
       </Accordion>
 
