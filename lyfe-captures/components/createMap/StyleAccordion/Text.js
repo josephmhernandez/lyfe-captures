@@ -34,12 +34,16 @@ const Text = () => {
       <ThemeProvider theme={theme}>
         <TextField label="Primary Text" color="primary" />
         <TextField label="Secondary Text" color="primary" />
-        {showAddBtn && <BootstrapButton
-          onClick={handleAddLngLat}
-        >{`Add Lng-Lat`}</BootstrapButton>}
-        {showRemoveBtn && <BootstrapButton
-          onClick={handleRemoveLngLat}
-        >{`Remove Lng - Lat`}</BootstrapButton>}
+        {showAddBtn && (
+          <BootstrapButton
+            onClick={handleAddLngLat}
+          >{`Add Lng-Lat`}</BootstrapButton>
+        )}
+        {showRemoveBtn && (
+          <BootstrapButton
+            onClick={handleRemoveLngLat}
+          >{`Remove Lng-Lat`}</BootstrapButton>
+        )}
       </ThemeProvider>
     </div>
   );
