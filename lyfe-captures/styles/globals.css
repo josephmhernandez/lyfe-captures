@@ -30,5 +30,11 @@ a {
   --purple-dark-color: #8657c7;
   --purple-light-color: #B483CD;
   --primary-font: "Source Sans Pro", sans-serif;
+  --card-overlay-multiplier: 16; 
+  --map-multiplier: 15; 
+  --map-width: 24px;
+  --map-height: 32px;
+  --poster-width: 24px;
+  --poster-height: 36px;
 }
 

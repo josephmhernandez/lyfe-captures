@@ -11,7 +11,7 @@ const Map = () => {
         zoom={14}
         scrollWheelZoom={false}
         // 24 x 36
-        style={{ height: "540px", width: "360px" }}
+        style={{ height: "calc(var(--map-height) * var(--map-multiplier)", width: "calc(var(--map-width) * var(--map-multiplier)" }}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
