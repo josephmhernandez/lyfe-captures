@@ -4,6 +4,7 @@ import classes from "./Text.module.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import getConfig from "next/config";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 const { publicRuntimeConfig } = getConfig();
 const theme = createTheme({
   palette: {
@@ -13,7 +14,11 @@ const theme = createTheme({
   },
 });
 
+import { mapActions } from "../../../store/map-slice";
+
 const Text = () => {
+  const dispatch = useDispatch();
+
   const [showAddBtn, setShowAddBtn] = useState(true);
   const [showRemoveBtn, setShowRemoveBtn] = useState(false);
   const handlePrimaryTextChange = (event) => {};
@@ -23,6 +28,7 @@ const Text = () => {
   const handleAddLngLat = (event) => {
     setShowAddBtn(false);
     setShowRemoveBtn(true);
+    dispatch(mapActions.addCordinateText());
   };
 
   const handleRemoveLngLat = (event) => {

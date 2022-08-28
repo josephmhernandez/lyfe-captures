@@ -2,13 +2,14 @@ import "../styles/globals.css";
 import Layout from "../components/layout/Layout";
 import { Fragment } from "react";
 import Head from "next/head";
-
+import { Provider } from "react-redux";
+import store from '../store/index'; 
 
 function MyApp({ Component, pageProps }) {
 
 
   return (
-    <Fragment>
+    <Provider store={store}>
       <Head>
         <title>Lyfe Captures</title>
         <link rel="icon" href="/play-button.ico" />
@@ -20,7 +21,7 @@ function MyApp({ Component, pageProps }) {
       <Layout>
         <Component {...pageProps} />
       </Layout>
-    </Fragment>
+    </Provider>
   );
 }
 
