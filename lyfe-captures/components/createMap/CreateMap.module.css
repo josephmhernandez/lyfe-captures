@@ -17,37 +17,19 @@
   border-radius: 8px 0 0 8px;
 }
 
-/* .accordion {
-  display: block;
-  box-shadow: rgb(26, 31, 51) 0px 0.5rem 1rem 0px;
-  border-radius: 0.25rem;
-  margin-bottom: 3.5rem;
-  border-top-left-radius: 0.25rem;
-  border-top-right-radius: 0.25rem;
-  font-size: 0.9375rem;
-  font-weight: 400;
-  line-height: 1.25rem;
-} */
 
 .accordionBox {
-  /* display: flex; */
-
   width: 350px;
   height: 700px;
   border-right: 3px solid var(--purple-dark-color);
   border-top: 3px solid var(--purple-dark-color);
-  /* border-left: 3px solid var(--purple-dark-color); */
   border-bottom: 3px solid var(--purple-dark-color);
   border-radius: 0 8px 8px 0;
   overflow: hidden;
 }
 
 .accordion header {
-  /* display: flexbox; */
   padding: 1.25rem;
-  /* width: 100%; */
-  /* overflow: hidden; */
-
   border-bottom: 1px solid var(--purple-dark-color);
   color: rgb(0, 0, 0);
   font-family: var(--primary-font);
@@ -58,34 +40,80 @@
   justify-content: right;
 }
 
-/* .accordion expanded {
-  max-height: 1500px;
-  transition: all 0.5s cubic-bezier(1, 0.15, 1, 1) 0s;
-  flex: 1 1 0%;
-  overflow: auto;
-  padding: 1.25rem;
-  position: relative;
-}
-
-.accordion collapsed {
-  overflow: hidden;
-  max-height: 0px;
-  transition: all 0.5s cubic-bezier(0, 1, 0.3, 1) -100ms;
-} */
 
 .accordion svg {
   fill: black;
   width: 20%;
   height: 20%;
-  /* vertical-align: top; */
-  /* align-self: center; */
-  /* justify-content: center; */
-  /* position: right; */
-  /* align-self: right; */
-  /* justify-content: right; */
-  /* align-content: center; */
 }
 
-/* .accordion button {
-  width: 100%;
-} */
+
+.homeMap {
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+  position: relative; 
+  top: calc(((var(--card-overlay-multiplier) * var(--poster-width)) - (var(--map-multiplier) * var(--map-width))) / 2); 
+  left: calc(((var(--card-overlay-multiplier) * var(--poster-width)) - (var(--map-multiplier) * var(--map-width))) / 2);
+}
+
+.textMap {
+  position: relative;
+  top: calc(2*((var(--card-overlay-multiplier) * var(--poster-width)) - (var(--map-multiplier) * var(--map-width))) / 2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* gap: 1px 0px; */
+  /* margin: 10px; */
+  /* margin-bottom: 10px; */
+}
+
+.textPrimary {
+  position: relative;
+  font-family: "Semplicita";
+  font-size: 1.5rem;
+  color: rgb(0, 0, 0);
+  padding: -1.5rem;
+}
+
+.textSecondary {
+  position: relative;
+  top: -.25rem;
+  font-family: "Semplicita";
+  font-size: .75rem;
+
+  color: rgb(0, 0, 0);
+}
+
+.textCoordinates {
+  position: relative;
+  top: -.25rem;
+  font-family: "Semplicita";
+  font-size: .5rem;
+  color: rgb(0, 0, 0);
+}
+
+
+.paper {
+  width: calc(var(--card-overlay-multiplier) * var(--poster-width));
+  height: calc(var(--card-overlay-multiplier) * var(--poster-height));
+  /* padding: */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* display: flex; */
+  /* align-items: center; */
+  /* padding-top: 20px; */
+
+
+  flex-direction: column;
+  border: 3px solid var(--purple-dark-color);
+  position: relative;
+}
+
+@font-face {
+  font-family: "Semplicita";
+  src: url("../../public/fonts/Semplicita\ Modern\ Medium.otf");
+  font-weight: 100;
+  font-style: normal;
+}
