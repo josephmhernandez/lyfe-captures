@@ -8,8 +8,9 @@ const mapSlice = createSlice({
     location: "Washington, DC",
     orientation: "portrait",
     color: "",
-    primaryText: "",
-    secondaryText: "",
+    textPrimary: "",
+    textSecondary: "",
+    textCoordinates: "",
     addLngLat: false,
   },
   reducers: {
@@ -17,12 +18,11 @@ const mapSlice = createSlice({
       state.pinList.push(action.payload);
 
       //Get map and add pin to the map.
-      //Need references to all pins so we can get their locations and change sizes of pins. 
+      //Need references to all pins so we can get their locations and change sizes of pins.
     },
     removePin: (state, action) => {
-        //Get pin id and remove it from list. also remove it from map. 
-
-    }, 
+      //Get pin id and remove it from list. also remove it from map.
+    },
     changePinSize: (state, action) => {
       state.sizePin = action.payload;
 
@@ -38,26 +38,31 @@ const mapSlice = createSlice({
 
       // Get map. convert location to lng lat. update map.
     },
-    addPrimaryText: (state, action) => {
-      state.primaryText = action.payload;
+    setTextPrimary: (state, action) => {
+      state.textPrimary = action.payload;
 
       //Add priamry text to the map.
     },
-    addSecondaryText: (state, action) => {
-      state.secondaryText = action.payload;
+    setTextSecondary: (state, action) => {
+      state.textSecondary = action.payload;
 
       //Add secondary text to the map.
     },
-    addCordinateText: (state, action) => {
-      state.addLngLat = action.payload;
+    addTextCoordinate: (state, action) => {
+      //   state.addLngLat = action.payload;
+      const tempCoordinates = `N40 23'37.234" W111 54'54.73"`;
 
-      console.log('in provdier'); 
+      state.textCoordinates = tempCoordinates;
       //Add cordinate text to the map.
+    },
+    removeTextCoordinate: (state, action) => {
+      state.textCoordinates = "";
+
+      //Remove cordinate text from the map.
     },
   },
 });
 
-
 export const mapActions = mapSlice.actions;
 
-export default mapSlice; 
+export default mapSlice;

@@ -21,25 +21,38 @@ const Text = () => {
 
   const [showAddBtn, setShowAddBtn] = useState(true);
   const [showRemoveBtn, setShowRemoveBtn] = useState(false);
-  const handlePrimaryTextChange = (event) => {};
+  const handlePrimaryTextChange = (event) => {
+    dispatch(mapActions.setTextPrimary(event.target.value));
+  }
 
-  const handleSecondaryTextChange = (event) => {};
+  const handleSecondaryTextChange = (event) => {
+    dispatch(mapActions.setTextSecondary(event.target.value));
+  };
 
   const handleAddLngLat = (event) => {
     setShowAddBtn(false);
     setShowRemoveBtn(true);
-    dispatch(mapActions.addCordinateText());
+    dispatch(mapActions.addTextCoordinate());
   };
 
   const handleRemoveLngLat = (event) => {
     setShowAddBtn(true);
     setShowRemoveBtn(false);
+    dispatch(mapActions.removeTextCoordinate());
   };
   return (
     <div className={classes.container}>
       <ThemeProvider theme={theme}>
-        <TextField label="Primary Text" color="primary" />
-        <TextField label="Secondary Text" color="primary" />
+        <TextField
+          onChange={handlePrimaryTextChange}
+          label="Primary Text"
+          color="primary"
+        />
+        <TextField
+          onChange={handleSecondaryTextChange}
+          label="Secondary Text"
+          color="primary"
+        />
         {showAddBtn && (
           <BootstrapButton
             onClick={handleAddLngLat}

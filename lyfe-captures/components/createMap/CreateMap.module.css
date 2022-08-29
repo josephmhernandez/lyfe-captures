@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   padding-bottom: 5%;
-  padding-top: 5%
+  padding-top: 5%;
 }
 
 .wrapper {
@@ -16,7 +16,6 @@
   border: 3px solid var(--purple-dark-color);
   border-radius: 8px 0 0 8px;
 }
-
 
 .accordionBox {
   width: 350px;
@@ -40,74 +39,76 @@
   justify-content: right;
 }
 
-
 .accordion svg {
   fill: black;
   width: 20%;
   height: 20%;
 }
 
-
 .homeMap {
   /* position: absolute;
   top: 0;
   left: 0; */
-  position: relative; 
-  top: calc(((var(--card-overlay-multiplier) * var(--poster-width)) - (var(--map-multiplier) * var(--map-width))) / 2); 
-  left: calc(((var(--card-overlay-multiplier) * var(--poster-width)) - (var(--map-multiplier) * var(--map-width))) / 2);
+  position: relative;
+  top: calc(
+    (
+        (var(--card-overlay-multiplier) * var(--poster-width)) -
+          (var(--map-multiplier) * var(--map-width))
+      ) / 2
+  );
+  left: calc(
+    (
+        (var(--card-overlay-multiplier) * var(--poster-width)) -
+          (var(--map-multiplier) * var(--map-width))
+      ) / 2
+  );
 }
 
 .textMap {
   position: relative;
-  top: calc(2*((var(--card-overlay-multiplier) * var(--poster-width)) - (var(--map-multiplier) * var(--map-width))) / 2);
+  top: calc(
+    (
+        (var(--card-overlay-multiplier) * var(--poster-width)) -
+          (var(--map-multiplier) * var(--map-width))
+      ) / 2
+  );
+  height: calc(
+    var(--card-overlay-multiplier) * var(--poster-height) -
+      var(--map-multiplier) * var(--map-height) -
+      (
+        (var(--card-overlay-multiplier) * var(--poster-width)) -
+          (var(--map-multiplier) * var(--map-width))
+      ) / 2
+  );
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* gap: 1px 0px; */
-  /* margin: 10px; */
-  /* margin-bottom: 10px; */
 }
 
 .textPrimary {
-  position: relative;
   font-family: "Semplicita";
   font-size: 1.5rem;
   color: rgb(0, 0, 0);
-  padding: -1.5rem;
 }
 
 .textSecondary {
-  position: relative;
-  top: -.25rem;
   font-family: "Semplicita";
-  font-size: .75rem;
-
+  font-size: 0.75rem;
   color: rgb(0, 0, 0);
 }
 
 .textCoordinates {
-  position: relative;
-  top: -.25rem;
   font-family: "Semplicita";
-  font-size: .5rem;
+  font-size: 0.5rem;
   color: rgb(0, 0, 0);
 }
-
 
 .paper {
   width: calc(var(--card-overlay-multiplier) * var(--poster-width));
   height: calc(var(--card-overlay-multiplier) * var(--poster-height));
-  /* padding: */
-  /* display: flex; */
-  /* justify-content: center; */
-  /* display: flex; */
-  /* align-items: center; */
-  /* padding-top: 20px; */
-
-
   flex-direction: column;
-  border: 3px solid var(--purple-dark-color);
+  border: 3px solid black;
   position: relative;
 }
 
