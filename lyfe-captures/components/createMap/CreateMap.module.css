@@ -15,6 +15,10 @@
   height: 700px;
   border: 3px solid var(--purple-dark-color);
   border-radius: 8px 0 0 8px;
+  background-color: rgb(
+    var(--purple-dark-color-rgb),
+    var(--create-map-opacity)
+  );
 }
 
 .accordionBox {
@@ -25,6 +29,10 @@
   border-bottom: 3px solid var(--purple-dark-color);
   border-radius: 0 8px 8px 0;
   overflow: hidden;
+  background-color: rgb(
+    var(--purple-dark-color-rgb),
+    var(--create-map-opacity)
+  );
 }
 
 .accordion header {
@@ -109,6 +117,7 @@
   height: calc(var(--card-overlay-multiplier) * var(--poster-height));
   flex-direction: column;
   border: 3px solid black;
+  border-radius: 0px;
   position: relative;
 }
 

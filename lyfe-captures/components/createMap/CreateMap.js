@@ -1,3 +1,4 @@
+import { Card, Paper } from "@mui/material";
 import dynamic from "next/dynamic";
 import CardOverlay from "./CardOverlay";
 import classes from "./CreateMap.module.css";
@@ -11,7 +12,7 @@ const CreateMap = (props) => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.wrapper}>
+      <Paper elevation={24} className={classes.wrapper}>
         <CardOverlay>
           <MapWithNoSSR
             center={DEFAULT_CENTER}
@@ -32,10 +33,10 @@ const CreateMap = (props) => {
             )}
           </MapWithNoSSR>
         </CardOverlay>
-      </div>
-      <div className={classes.accordionBox}>
+      </Paper>
+      <Paper elevation={24} className={classes.accordionBox}>
         <CustomizedAccordions />
-      </div>
+      </Paper>
     </div>
   );
 };
