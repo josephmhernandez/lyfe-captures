@@ -11,6 +11,7 @@ import Colors from "./Colors";
 import Pin from "./Pin";
 import Text from "./Text";
 import Search from "./Search";
+import classes from "./CustomizedAccordion.module.css";
 
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
@@ -66,10 +67,14 @@ const CustomizedAccordions = () => {
         expanded={expanded === "panel1"}
         onChange={handleChange("panel1")}
       >
-        <AccordionSummary aria-controls="panel1d-content" id="panel1d-header">
-          <Typography>Location</Typography>
+        <AccordionSummary
+          className={classes.eachAccordion}
+          aria-controls="panel1d-content"
+          id="panel1d-header"
+        >
+          <Typography className={classes.text}>Location</Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails className={classes.eachAccordion}>
           <Search />
         </AccordionDetails>
       </Accordion>
@@ -77,10 +82,14 @@ const CustomizedAccordions = () => {
         expanded={expanded === "panel2"}
         onChange={handleChange("panel2")}
       >
-        <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
-          <Typography>Orientation</Typography>
+        <AccordionSummary
+          className={classes.eachAccordion}
+          aria-controls="panel2d-content"
+          id="panel2d-header"
+        >
+          <Typography className={classes.text}>Orientation</Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails className={classes.eachAccordion}>
           <Orientation />
         </AccordionDetails>
       </Accordion>
@@ -88,10 +97,14 @@ const CustomizedAccordions = () => {
         expanded={expanded === "panel4"}
         onChange={handleChange("panel4")}
       >
-        <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
-          <Typography>Color</Typography>
+        <AccordionSummary
+          className={classes.eachAccordion}
+          aria-controls="panel4d-content"
+          id="panel4d-header"
+        >
+          <Typography className={classes.text}>Color</Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails className={classes.eachAccordion}>
           <Colors />
         </AccordionDetails>
       </Accordion>
@@ -99,10 +112,14 @@ const CustomizedAccordions = () => {
         expanded={expanded === "panel5"}
         onChange={handleChange("panel5")}
       >
-        <AccordionSummary aria-controls="panel5d-content" id="panel5d-header">
-          <Typography>Add Pin</Typography>
+        <AccordionSummary
+          className={classes.eachAccordion}
+          aria-controls="panel5d-content"
+          id="panel5d-header"
+        >
+          <Typography className={classes.text}>Add Pin</Typography>
         </AccordionSummary>
-        <AccordionDetails>
+        <AccordionDetails className={classes.eachAccordion}>
           <Pin />
         </AccordionDetails>
       </Accordion>
@@ -111,11 +128,15 @@ const CustomizedAccordions = () => {
         expanded={expanded === "panel6"}
         onChange={handleChange("panel6")}
       >
-        <AccordionSummary aria-controls="panel6d-content" id="panel6d-header">
-          <Typography>Text</Typography>
+        <AccordionSummary
+          className={classes.eachAccordion}
+          aria-controls="panel6d-content"
+          id="panel6d-header"
+        >
+          <Typography className={classes.text}>Text</Typography>
         </AccordionSummary>
-        <AccordionDetails>
-         <Text/> 
+        <AccordionDetails className={classes.eachAccordion}>
+          <Text />
         </AccordionDetails>
       </Accordion>
     </div>

@@ -28,6 +28,7 @@ a {
 
 :root {
   --purple-dark-color: #8657c7;
+  --purple-dark-color-rgb: 134, 87, 199;
   --purple-light-color: #B483CD;
   --primary-font: "Source Sans Pro", sans-serif;
   --card-overlay-multiplier: 16; 
@@ -36,5 +37,9 @@ a {
   --map-height: 32px;
   --poster-width: 24px;
   --poster-height: 36px;
+  --create-map-opacity: .15;
+  --accordion-font-weight: 500; 
+  --accordion-title-font-size: x-large;
+  --accordion-sub-font-size: large;
 }
 

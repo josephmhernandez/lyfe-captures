@@ -22,6 +22,13 @@ const theme = createTheme({
       main: publicRuntimeConfig.primaryColor,
     },
   },
+  typography: {
+    allVariants: {
+      fontFamily: "var(--primary-font)",
+      fontWeight: "var(--accordion-font-weight)",
+      fontSize: "var(--accordion-sub-font-size)",
+    },
+  },
 });
 
 const Orientation = () => {
