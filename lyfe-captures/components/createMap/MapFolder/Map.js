@@ -2,8 +2,9 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
+import { PropaneSharp } from "@mui/icons-material";
 
-const Map = () => {
+const Map = (props) => {
   return (
     <div>
       <MapContainer
@@ -11,7 +12,7 @@ const Map = () => {
         zoom={14}
         scrollWheelZoom={false}
         // 24 x 36
-        style={{ height: "calc(var(--map-height) * var(--map-multiplier)", width: "calc(var(--map-width) * var(--map-multiplier)" }}
+        style={props.style}
       >
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

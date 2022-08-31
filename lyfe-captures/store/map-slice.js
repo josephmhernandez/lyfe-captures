@@ -25,13 +25,12 @@ const mapSlice = createSlice({
     },
     changePinSize: (state, action) => {
       state.sizePin = action.payload;
-
       // Change all pin sizes
     },
-    changeOreintation: (state, action) => {
-      state.orientation = action.payload;
-
+    changeOrientation: (state, action) => {
       //Get map and change orientation of the map.
+      state.orientation = action.payload;
+      console.log(action.payload);
     },
     changeLocation: (state, action) => {
       state.location = action.payload;
