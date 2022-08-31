@@ -53,45 +53,21 @@
   height: 20%;
 }
 
-.homeMap {
-  /* position: absolute;
-  top: 0;
-  left: 0; */
+.paper {
+  display:flex; 
+  flex-direction: column;
+  border: 3px solid black;
+  border-radius: 0px;
   position: relative;
-  top: calc(
-    (
-        (var(--card-overlay-multiplier) * var(--poster-width)) -
-          (var(--map-multiplier) * var(--map-width))
-      ) / 2
-  );
-  left: calc(
-    (
-        (var(--card-overlay-multiplier) * var(--poster-width)) -
-          (var(--map-multiplier) * var(--map-width))
-      ) / 2
-  );
+  align-items: center;
 }
 
 .textMap {
-  position: relative;
-  top: calc(
-    (
-        (var(--card-overlay-multiplier) * var(--poster-width)) -
-          (var(--map-multiplier) * var(--map-width))
-      ) / 2
-  );
-  height: calc(
-    var(--card-overlay-multiplier) * var(--poster-height) -
-      var(--map-multiplier) * var(--map-height) -
-      (
-        (var(--card-overlay-multiplier) * var(--poster-width)) -
-          (var(--map-multiplier) * var(--map-width))
-      ) / 2
-  );
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .textPrimary {
@@ -112,14 +88,6 @@
   color: rgb(0, 0, 0);
 }
 
-.paper {
-  width: calc(var(--card-overlay-multiplier) * var(--poster-width));
-  height: calc(var(--card-overlay-multiplier) * var(--poster-height));
-  flex-direction: column;
-  border: 3px solid black;
-  border-radius: 0px;
-  position: relative;
-}
 
 @font-face {
   font-family: "Semplicita";
