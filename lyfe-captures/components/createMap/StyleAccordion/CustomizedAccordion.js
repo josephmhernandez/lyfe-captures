@@ -12,7 +12,7 @@ import Pin from "./Pin";
 import Text from "./Text";
 import Search from "./Search";
 import classes from "./CustomizedAccordion.module.css";
-
+import { useSelector } from "react-redux";
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
@@ -55,6 +55,8 @@ const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
 }));
 
 const CustomizedAccordions = () => {
+  const textPrimary = useSelector((state) => state.map.textPrimary);
+  const textSecondary = useSelector((state) => state.map.textSecondary); 
   const [expanded, setExpanded] = React.useState("panel1");
 
   const handleChange = (panel) => (event, newExpanded) => {
@@ -136,7 +138,7 @@ const CustomizedAccordions = () => {
           <Typography className={classes.text}>Text</Typography>
         </AccordionSummary>
         <AccordionDetails className={classes.eachAccordion}>
-          <Text />
+          <Text defaultPrimaryText={textPrimary} defaultSecondaryText={textSecondary} />
         </AccordionDetails>
       </Accordion>
     </div>
