@@ -6,6 +6,7 @@ const mapSlice = createSlice({
     sizePin: 40,
     pinList: [],
     location: "Washington, DC",
+    lngLat: [40.907132, -77.036546],
     orientation: "portrait",
     color: "",
     textPrimary: "",
@@ -30,12 +31,23 @@ const mapSlice = createSlice({
     changeOrientation: (state, action) => {
       //Get map and change orientation of the map.
       state.orientation = action.payload;
-      console.log(action.payload);
+    },
+    changeMapCenter: (state, action) => {
+      const data = JSON.parse(action.payload);
+      if (data.lng !== undefined && data.lat !== undefined) {
+        state.lngLat = [data.lat, data.lng];
+      }
     },
     changeLocation: (state, action) => {
-      state.location = action.payload;
+      // On location search we want to search api for location and update lngLat
+      // when
+      const { place_id, structured_formatting } = action.payload;
 
-      // Get map. convert location to lng lat. update map.
+      state.textPrimary = structured_formatting.main_text;
+      state.textSecondary = structured_formatting.secondary_text;
+
+      // Search place_id and get coordinates
+      state.location = action.payload;
     },
     setTextPrimary: (state, action) => {
       state.textPrimary = action.payload;
@@ -58,6 +70,24 @@ const mapSlice = createSlice({
       state.textCoordinates = "";
 
       //Remove cordinate text from the map.
+    },
+    setAddLngLatFlag: (state, action) => {
+      state.addLngLat = action.payload;
+    },
+    removeAllText: (state, action) => {
+      // Remove all text from the map.
+
+      state.textPrimary = "";
+      state.textSecondary = "";
+      state.textCoordinates = "";
+      state.addLngLat = false;
+    },
+    updateAddLngLatValue: (state, action) => {
+      // I dont think this should be inside slice  needs to be a js function outside this.
+      // TO DO: update the add lng-lat position
+      // pin list empty: lng-lat is the center of the map
+      // pin list not empty && pin is visible on the map:
+      // - lng-lat is location of first pin in the list
     },
   },
 });

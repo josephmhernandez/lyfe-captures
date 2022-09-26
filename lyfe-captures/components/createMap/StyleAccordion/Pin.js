@@ -58,7 +58,6 @@ const Pin = () => {
 
   const handlePinSliderChange = (event, newValue) => {
     setSizePin(newValue);
-    console.log(newValue);
   };
 
   return (
