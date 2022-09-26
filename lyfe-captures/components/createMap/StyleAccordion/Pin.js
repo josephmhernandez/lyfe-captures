@@ -62,37 +62,38 @@ const Pin = () => {
 
   return (
     <div>
-      <div className={classes.container}>
-        <FormControl sx={{ m: 1, minWidth: 80 }}>
-          <InputLabel id="demo-simple-select-autowidth-label">
-            Select Pin
-          </InputLabel>
-          <Select
-            labelId="demo-simple-select-autowidth-label"
-            id="demo-simple-select-autowidth"
-            value={selectedPin}
-            onChange={handleChange}
-            autoWidth
-            label="Select-Pin"
-            variant="standard"
-          >
-            {pinList.map((pin) => {
-              return (
-                <MenuItem key={pin.value} value={pin.value}>
-                  <Image
-                    src={pin.image}
-                    alt={pin.value}
-                    width={40}
-                    height={40}
-                  />
-                </MenuItem>
-              );
-            })}
-          </Select>
-        </FormControl>
-        <BootstrapButton variant="contained">Add Pin</BootstrapButton>
-      </div>
       <ThemeProvider theme={theme}>
+        <div className={classes.container}>
+          <FormControl sx={{ m: 1, minWidth: 80 }}>
+            <InputLabel id="demo-simple-select-autowidth-label">
+              Select Pin
+            </InputLabel>
+            <Select
+              labelId="demo-simple-select-autowidth-label"
+              id="demo-simple-select-autowidth"
+              value={selectedPin}
+              onChange={handleChange}
+              autoWidth
+              label="Select-Pin"
+              variant="standard"
+            >
+              {pinList.map((pin) => {
+                return (
+                  <MenuItem className={classes.item} key={pin.value} value={pin.value} selected>
+                    <Image
+                      src={pin.image}
+                      alt={pin.value}
+                      width={40}
+                      height={40}
+                    />
+                  </MenuItem>
+                );
+              })}
+            </Select>
+          </FormControl>
+          <BootstrapButton variant="contained">Add Pin</BootstrapButton>
+        </div>
+
         <div className={classes.sliderContainer}>
           <Image src={circlePinPath} width={20} height={20} />
           <Slider

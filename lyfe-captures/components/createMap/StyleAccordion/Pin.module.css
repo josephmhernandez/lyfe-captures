@@ -14,3 +14,10 @@
   align-items: center;
   gap: 25px;
 }
+
+.item {
+  background-color: rgb(
+    var(--purple-dark-color-rgb),
+    var(--create-map-opacity)
+  );
+}
