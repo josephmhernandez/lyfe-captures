@@ -64,12 +64,14 @@ const Text = (props) => {
           label="Primary Text"
           color="primary"
           value={textPrimary}
+          inputProps={{ maxLength: process.env.MAX_CHARS_PRIMARY }}
         />
         <TextField
           onChange={handleSecondaryTextChange}
           label="Secondary Text"
           color="primary"
           value={textSecondary}
+          inputProps={{ maxLength: process.env.MAX_CHARS_SECONDARY }}
         />
         {showAddBtn && (
           <BootstrapButton

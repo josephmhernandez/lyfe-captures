@@ -50,7 +50,6 @@ const Search = (props) => {
     dispatch(mapActions.changeLocation(locationObj));
 
     const { place_id } = locationObj;
-    const getLngLatURL = `https://maps.googleapis.com/maps/api/place/details/json?placeid=${place_id}&key=${process.env.GOOGLE_API_KEY}`;
 
     fetchLngLat({ placeId: place_id }, (results) => {
       if (results[0]) {

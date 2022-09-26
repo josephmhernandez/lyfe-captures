@@ -43,20 +43,47 @@ const mapSlice = createSlice({
       // when
       const { place_id, structured_formatting } = action.payload;
 
-      state.textPrimary = structured_formatting.main_text;
-      state.textSecondary = structured_formatting.secondary_text;
+      console.log(structured_formatting); 
+      if (structured_formatting.main_text.length > process.env.MAX_CHARS_PRIMARY) {
+        state.textPrimary = structured_formatting.main_text.slice(
+          0,
+          process.env.MAX_CHARS_PRIMARY
+        );
+      } else {
+        state.textPrimary = structured_formatting.main_text;
+      }
+
+      if (structured_formatting.secondary_text.length > process.env.MAX_CHARS_SECONDARY) {
+        state.textSecondary = action.payload.slice(
+          0,
+          process.env.MAX_CHARS_SECONDARY
+        );
+      } else {
+        state.textSecondary = structured_formatting.secondary_text;
+      }
 
       // Search place_id and get coordinates
-      state.location = action.payload;
+      state.location = action.place_id;
     },
     setTextPrimary: (state, action) => {
-      state.textPrimary = action.payload;
-
-      //Add priamry text to the map.
+      if (action.payload.length > process.env.MAX_CHARS_PRIMARY) {
+        state.textPrimary = action.payload.slice(
+          0,
+          process.env.MAX_CHARS_PRIMARY
+        );
+      } else {
+        state.textPrimary = action.payload;
+      }
     },
     setTextSecondary: (state, action) => {
-      state.textSecondary = action.payload;
-
+      if (action.payload.length > process.env.MAX_CHARS_SECONDARY) {
+        state.textSecondary = action.payload.slice(
+          0,
+          process.env.MAX_CHARS_SECONDARY
+        );
+      } else {
+        state.textSecondary = action.payload;
+      }
       //Add secondary text to the map.
     },
     addTextCoordinate: (state, action) => {
