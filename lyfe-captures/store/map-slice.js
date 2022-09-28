@@ -1,4 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuid } from "uuid";
+import { useMap } from "react-leaflet";
 
 const mapSlice = createSlice({
   name: "map",
@@ -43,8 +45,10 @@ const mapSlice = createSlice({
       // when
       const { place_id, structured_formatting } = action.payload;
 
-      console.log(structured_formatting); 
-      if (structured_formatting.main_text.length > process.env.MAX_CHARS_PRIMARY) {
+      console.log(structured_formatting);
+      if (
+        structured_formatting.main_text.length > process.env.MAX_CHARS_PRIMARY
+      ) {
         state.textPrimary = structured_formatting.main_text.slice(
           0,
           process.env.MAX_CHARS_PRIMARY
@@ -53,7 +57,10 @@ const mapSlice = createSlice({
         state.textPrimary = structured_formatting.main_text;
       }
 
-      if (structured_formatting.secondary_text.length > process.env.MAX_CHARS_SECONDARY) {
+      if (
+        structured_formatting.secondary_text.length >
+        process.env.MAX_CHARS_SECONDARY
+      ) {
         state.textSecondary = action.payload.slice(
           0,
           process.env.MAX_CHARS_SECONDARY
@@ -108,6 +115,32 @@ const mapSlice = createSlice({
       state.textSecondary = "";
       state.textCoordinates = "";
       state.addLngLat = false;
+    },
+    addPinToMap: (state, action) => {
+      // Add pin to the map. Call pin to center if the pin is already in pinlist.
+
+      // Pin size.
+      // Pin style.
+      // Pin location.
+      console.log(action.payload);
+      const size = action.payload.size;
+      const style = action.payload.style;
+      const unique_id = uuid();
+
+      const pinList = state.pinList;
+      console.log(pinList);
+
+      if (pinList.length >= process.env.MAX_PINS) {
+        // Add pin to map.
+        pinList.shift();
+      }
+
+      // const map = useMap();
+      // const center = map.getCenter();
+      // const center = [40.907132, -77.036546];
+
+      pinList[pinList.length] = { id: unique_id, size: size, style: style };
+      state.pinList = pinList;
     },
     updateAddLngLatValue: (state, action) => {
       // I dont think this should be inside slice  needs to be a js function outside this.

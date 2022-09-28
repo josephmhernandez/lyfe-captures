@@ -17,5 +17,7 @@ module.exports = {
 
     MAX_CHARS_PRIMARY: process.env.MAX_CHARS_PRIMARY,
     MAX_CHARS_SECONDARY: process.env.MAX_CHARS_SECONDARY,
+
+    MAX_PINS: process.env.MAX_PINS,
   }
 } 

@@ -1,6 +1,6 @@
 import { Card, Paper } from "@mui/material";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CardOverlay from "./CardOverlay";
 import classes from "./CreateMap.module.css";
@@ -94,21 +94,21 @@ const CreateMap = (props) => {
     <div className={classes.container}>
       <Paper elevation={24} className={classes.wrapper}>
         <CardOverlay>
-          <MapWithNoSSR center={defaultCenter} zoom={12} style={mapStyle}>
-            {({ TileLayer, Marker, Popup }) => (
+          <Suspense fallback={<div>Loading...</div>}>
+            <MapWithNoSSR center={defaultCenter} zoom={12} style={mapStyle}>
+              {/* {({ TileLayer, Marker, Popup }) => (
               <>
                 <TileLayer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                   attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 />
-                <Marker position={defaultCenter}>
-                  <Popup>
-                    A pretty CSS3 popup. <br /> Easily customizable.
-                  </Popup>
+                <Marker position={defaultCenter} draggable={true} animate={true}>
+                  <Popup>Hey ! you found me</Popup>
                 </Marker>
               </>
-            )}
-          </MapWithNoSSR>
+            )} */}
+            </MapWithNoSSR>
+          </Suspense>
         </CardOverlay>
       </Paper>
       <Paper elevation={24} className={classes.accordionBox}>
