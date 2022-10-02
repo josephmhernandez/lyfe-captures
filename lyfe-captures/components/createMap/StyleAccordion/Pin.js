@@ -5,7 +5,7 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Image from "next/image";
 
-import { pinList } from "./PinList";
+import { PinListConstants } from "./PinList";
 import classes from "./Pin.module.css";
 import { Button, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
@@ -88,7 +88,7 @@ const Pin = () => {
               label="Select-Pin"
               variant="standard"
             >
-              {pinList.map((pin) => {
+              {PinListConstants.map((pin) => {
                 return (
                   <MenuItem className={classes.item} key={pin.value} value={pin.value} selected>
                     <Image

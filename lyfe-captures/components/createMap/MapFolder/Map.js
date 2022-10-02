@@ -1,21 +1,16 @@
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
 import { PropaneSharp } from "@mui/icons-material";
+import { useSelector } from "react-redux";
+import MapPins from "./MapPins";
 
 const Map = (props) => {
   // const { center, zoom } = props;
-  const [mapCenter, setCenter] = useState(props.center);
-  const pinList = useSelector((state) => state.map.pinList);
+  // const [mapCenter, setCenter] = useState(props.center);
 
-
-  // const getMapViewCenter = () => {
-  //   const map = useMap();
-  //   const center = map.getCenter();
-
-  //   return center;
-  // }
+  // const pins = useSelector((state) => state.map.pinList);
 
   return (
     <div>
@@ -30,14 +25,7 @@ const Map = (props) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        {pinList.map((pin) => (
-            <Marker
-              key={pin.id}
-              position={props.center}
-              draggable={true}
-              animate={true}
-            ></Marker>
-        ))}
+       <MapPins/> 
       </MapContainer>
     </div>
   );

@@ -94,9 +94,8 @@ const CreateMap = (props) => {
     <div className={classes.container}>
       <Paper elevation={24} className={classes.wrapper}>
         <CardOverlay>
-          <Suspense fallback={<div>Loading...</div>}>
-            <MapWithNoSSR center={defaultCenter} zoom={12} style={mapStyle}>
-              {/* {({ TileLayer, Marker, Popup }) => (
+          <MapWithNoSSR center={defaultCenter} zoom={12} style={mapStyle}>
+            {/* {({ TileLayer, Marker, Popup }) => (
               <>
                 <TileLayer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -107,8 +106,7 @@ const CreateMap = (props) => {
                 </Marker>
               </>
             )} */}
-            </MapWithNoSSR>
-          </Suspense>
+          </MapWithNoSSR>
         </CardOverlay>
       </Paper>
       <Paper elevation={24} className={classes.accordionBox}>
