@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { v4 as uuid } from "uuid";
 
 const mapSlice = createSlice({
   name: "map",
@@ -13,6 +14,7 @@ const mapSlice = createSlice({
     textSecondary: "",
     textCoordinates: "",
     addLngLat: false,
+    viewCenter: {"lat": 40.907132, "lng": -77.036546},
   },
   reducers: {
     addPin: (state, action) => {
@@ -43,8 +45,9 @@ const mapSlice = createSlice({
       // when
       const { place_id, structured_formatting } = action.payload;
 
-      console.log(structured_formatting); 
-      if (structured_formatting.main_text.length > process.env.MAX_CHARS_PRIMARY) {
+      if (
+        structured_formatting.main_text.length > process.env.MAX_CHARS_PRIMARY
+      ) {
         state.textPrimary = structured_formatting.main_text.slice(
           0,
           process.env.MAX_CHARS_PRIMARY
@@ -53,7 +56,10 @@ const mapSlice = createSlice({
         state.textPrimary = structured_formatting.main_text;
       }
 
-      if (structured_formatting.secondary_text.length > process.env.MAX_CHARS_SECONDARY) {
+      if (
+        structured_formatting.secondary_text.length >
+        process.env.MAX_CHARS_SECONDARY
+      ) {
         state.textSecondary = action.payload.slice(
           0,
           process.env.MAX_CHARS_SECONDARY
@@ -109,12 +115,55 @@ const mapSlice = createSlice({
       state.textCoordinates = "";
       state.addLngLat = false;
     },
+    addPinToMap: (state, action) => {
+      // Add pin to the map. Call pin to center if the pin is already in pinlist.
+
+      // Pin size.
+      // Pin style.
+      // Pin location.
+      const size = action.payload.size;
+      const style = action.payload.style;
+      const position = [40.907132, -77.036546]; // Change this position to the state of the center of the map... 
+      const unique_id = uuid();
+
+      const pinList = state.pinList;
+
+      if (pinList.length >= process.env.MAX_PINS) {
+        // Add pin to map.
+        pinList.shift();
+        if(pinList.length == 0) {
+          pinList = []
+        }
+      }
+
+      // const map = useMap();
+      // const center = map.getCenter();
+      // const center = [40.907132, -77.036546];
+
+      pinList[pinList.length] = { id: unique_id, size: size, style: style, position: position };
+      console.log('pinList after it is added ' + JSON.stringify(pinList));
+      state.pinList = pinList;
+    },
     updateAddLngLatValue: (state, action) => {
       // I dont think this should be inside slice  needs to be a js function outside this.
       // TO DO: update the add lng-lat position
       // pin list empty: lng-lat is the center of the map
       // pin list not empty && pin is visible on the map:
       // - lng-lat is location of first pin in the list
+    },
+    setPinLngLat: (state, action) => {
+      console.log("setPinLngLat payload");
+      console.log(action.payload);
+      const unique_id = action.payload.id;
+      const position = action.payload.position; 
+
+      const pinList = state.pinList;
+
+      const i = pinList.findIndex(obj => obj.id === unique_id);
+      console.log('found ? ' + i);
+      pinList[i].position = position;
+
+      state.pinList = pinList;
     },
   },
 });

@@ -5,14 +5,16 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Image from "next/image";
 
-import { pinList } from "./PinList";
+import { PinListConstants } from "./PinList";
 import classes from "./Pin.module.css";
 import { Button, TextField } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Slider from "@mui/material/Slider";
+import { useDispatch } from "react-redux";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import getConfig from "next/config";
+import { mapActions } from "../../../store/map-slice";
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -50,7 +52,8 @@ const circlePinPath = "/pins/circle-pin-square-black-white.png";
 const startPinSize = 40;
 
 const Pin = () => {
-  const [selectedPin, setSelectedPin] = React.useState("");
+  const dispatch = useDispatch(); 
+  const [selectedPin, setSelectedPin] = React.useState("heart-white-black");
   const [sizePin, setSizePin] = React.useState(startPinSize);
   const handleChange = (event) => {
     setSelectedPin(event.target.value);
@@ -59,6 +62,14 @@ const Pin = () => {
   const handlePinSliderChange = (event, newValue) => {
     setSizePin(newValue);
   };
+
+  const handleAddPin = (event) => {
+    const pinSpecs = {
+      style: selectedPin,
+      size: sizePin,
+    }
+    dispatch(mapActions.addPinToMap(pinSpecs));
+  }
 
   return (
     <div>
@@ -77,7 +88,7 @@ const Pin = () => {
               label="Select-Pin"
               variant="standard"
             >
-              {pinList.map((pin) => {
+              {PinListConstants.map((pin) => {
                 return (
                   <MenuItem className={classes.item} key={pin.value} value={pin.value} selected>
                     <Image
@@ -91,7 +102,7 @@ const Pin = () => {
               })}
             </Select>
           </FormControl>
-          <BootstrapButton variant="contained">Add Pin</BootstrapButton>
+          <BootstrapButton variant="contained" onClick={handleAddPin}>Add Pin</BootstrapButton>
         </div>
 
         <div className={classes.sliderContainer}>

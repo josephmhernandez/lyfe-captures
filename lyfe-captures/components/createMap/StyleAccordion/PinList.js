@@ -1,4 +1,4 @@
-export const pinList = [
+export const PinListConstants = [
     {
       image: "/pins/heart-pin-square-white-black.png",
       value: "heart-white-black",
