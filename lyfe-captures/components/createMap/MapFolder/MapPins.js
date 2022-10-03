@@ -19,6 +19,8 @@ const MapPins = () => {
             uid={pin.id}
             viewCenter={viewCenter}
             position={pin.position}
+            size={pin.size}
+            style={pin.style}
             draggable={true}
             animate={true}
           ></DraggableMarker>
