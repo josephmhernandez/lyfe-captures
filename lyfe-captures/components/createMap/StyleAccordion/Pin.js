@@ -106,18 +106,18 @@ const Pin = () => {
         </div>
 
         <div className={classes.sliderContainer}>
-          <Image src={circlePinPath} width={20} height={20} />
+          <Image src={circlePinPath} width={30} height={30} />
           <Slider
             defaultValue={startPinSize}
-            min={30}
-            max={300}
-            step={10}
+            min={20}
+            max={90}
+            step={5}
             aria-label="pin-size"
             value={sizePin}
             onChange={handlePinSliderChange}
             color="secondary"
           />
-          <Image src={circlePinPath} width={60} height={60} />
+          <Image src={circlePinPath} width={100} height={100} />
         </div>
       </ThemeProvider>
     </div>

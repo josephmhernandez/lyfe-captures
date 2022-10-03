@@ -2,8 +2,10 @@ import { useRef, useMemo, Fragment } from "react";
 import { Marker } from "react-leaflet";
 import { useDispatch } from "react-redux";
 import { mapActions } from "../../../store/map-slice";
+import { PinListConstants } from "../StyleAccordion/PinList";
+const L = require("leaflet");
 
-const DraggableMarker = ({ position, uid, draggable, viewCenter }) => {
+const DraggableMarker = ({ position, uid, draggable, style, size }) => {
   const dispatch = useDispatch();
   const markerRef = useRef(null);
 
@@ -21,6 +23,15 @@ const DraggableMarker = ({ position, uid, draggable, viewCenter }) => {
     },
   }));
 
+  // search pinListConstants for the image location that matches the style
+  const obj = PinListConstants.find((o) => o.value === style);
+  const imageLocation = obj.image;
+
+  const myIcon = L.icon({
+    iconUrl: imageLocation,
+    iconSize: [size, size],
+  });
+  
   return (
     <Fragment>
       <Marker
@@ -28,6 +39,7 @@ const DraggableMarker = ({ position, uid, draggable, viewCenter }) => {
         eventHandlers={eventHandlers}
         position={position}
         ref={markerRef}
+        icon={myIcon}
       ></Marker>
     </Fragment>
   );
