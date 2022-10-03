@@ -1,20 +1,21 @@
+import { QrCodeScannerOutlined } from "@mui/icons-material";
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 
 const mapSlice = createSlice({
   name: "map",
   initialState: {
-    sizePin: 40,
+    sizePin: process.env.INITIAL_PIN_SIZE,
     pinList: [],
-    location: "Washington, DC",
-    lngLat: [40.907132, -77.036546],
+    location: process.env.MAP_LOCATION,
+    lngLat: [process.env.MAP_LOCATION_LAT, process.env.MAP_LOCATION_LNG],
     orientation: "portrait",
     color: "",
     textPrimary: "",
     textSecondary: "",
     textCoordinates: "",
     addLngLat: false,
-    viewCenter: {"lat": 40.907132, "lng": -77.036546},
+    zoom: process.env.MAP_ZOOM,
   },
   reducers: {
     addPin: (state, action) => {
@@ -35,9 +36,15 @@ const mapSlice = createSlice({
       state.orientation = action.payload;
     },
     changeMapCenter: (state, action) => {
-      const data = JSON.parse(action.payload);
+      // Input payload: {lat: 40.907132, lng: -77.036546}
+      // const data = JSON.parse(action.payload);
+      const data = action.payload;
       if (data.lng !== undefined && data.lat !== undefined) {
         state.lngLat = [data.lat, data.lng];
+      }
+
+      if (data.zoom !== undefined) {
+        state.zoom = data.zoom;
       }
     },
     changeLocation: (state, action) => {
@@ -123,7 +130,7 @@ const mapSlice = createSlice({
       // Pin location.
       const size = action.payload.size;
       const style = action.payload.style;
-      const position = [40.907132, -77.036546]; // Change this position to the state of the center of the map... 
+      const position = state.lngLat; // Change this position to the state of the center of the map...
       const unique_id = uuid();
 
       const pinList = state.pinList;
@@ -131,8 +138,8 @@ const mapSlice = createSlice({
       if (pinList.length >= process.env.MAX_PINS) {
         // Add pin to map.
         pinList.shift();
-        if(pinList.length == 0) {
-          pinList = []
+        if (pinList.length == 0) {
+          pinList = [];
         }
       }
 
@@ -140,8 +147,12 @@ const mapSlice = createSlice({
       // const center = map.getCenter();
       // const center = [40.907132, -77.036546];
 
-      pinList[pinList.length] = { id: unique_id, size: size, style: style, position: position };
-      console.log('pinList after it is added ' + JSON.stringify(pinList));
+      pinList[pinList.length] = {
+        id: unique_id,
+        size: size,
+        style: style,
+        position: position,
+      };
       state.pinList = pinList;
     },
     updateAddLngLatValue: (state, action) => {
@@ -152,15 +163,12 @@ const mapSlice = createSlice({
       // - lng-lat is location of first pin in the list
     },
     setPinLngLat: (state, action) => {
-      console.log("setPinLngLat payload");
-      console.log(action.payload);
       const unique_id = action.payload.id;
-      const position = action.payload.position; 
+      const position = action.payload.position;
 
       const pinList = state.pinList;
 
-      const i = pinList.findIndex(obj => obj.id === unique_id);
-      console.log('found ? ' + i);
+      const i = pinList.findIndex((obj) => obj.id === unique_id);
       pinList[i].position = position;
 
       state.pinList = pinList;
