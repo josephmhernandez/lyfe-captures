@@ -14,6 +14,7 @@ const CreateMap = (props) => {
   const primaryText = useSelector((state) => state.map.textPrimary);
   const secondaryText = useSelector((state) => state.map.textSecondary);
   const addLngLat = useSelector((state) => state.map.addLngLat);
+  const zoom = useSelector((state) => state.map.zoom);
 
   const optionObj = MapConstants.poster_size[SIZE_OPTION];
   const height = optionObj.portrait.map_height * optionObj.poster_multiplier;
@@ -94,7 +95,7 @@ const CreateMap = (props) => {
     <div className={classes.container}>
       <Paper elevation={24} className={classes.wrapper}>
         <CardOverlay>
-          <MapWithNoSSR center={defaultCenter} zoom={12} style={mapStyle}>
+          <MapWithNoSSR center={defaultCenter} zoom={zoom} style={mapStyle}>
             {/* {({ TileLayer, Marker, Popup }) => (
               <>
                 <TileLayer

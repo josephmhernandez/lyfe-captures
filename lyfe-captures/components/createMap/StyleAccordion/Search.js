@@ -54,6 +54,7 @@ const Search = (props) => {
     fetchLngLat({ placeId: place_id }, (results) => {
       if (results[0]) {
         const location = JSON.stringify(results[0].geometry.location);
+        location = JSON.parse(location); 
         dispatch(mapActions.changeMapCenter(location));
       }
     });
