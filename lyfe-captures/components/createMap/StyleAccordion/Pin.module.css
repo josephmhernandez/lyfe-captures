@@ -21,3 +21,8 @@
     var(--create-map-opacity)
   );
 }
+
+.removePins {
+  display: flex;
+  justify-content: center;
+}

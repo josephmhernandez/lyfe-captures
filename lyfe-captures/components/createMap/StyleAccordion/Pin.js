@@ -52,7 +52,7 @@ const circlePinPath = "/pins/circle-pin-square-black-white.png";
 const startPinSize = 40;
 
 const Pin = () => {
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
   const [selectedPin, setSelectedPin] = React.useState("heart-white-black");
   const [sizePin, setSizePin] = React.useState(startPinSize);
   const handleChange = (event) => {
@@ -67,9 +67,14 @@ const Pin = () => {
     const pinSpecs = {
       style: selectedPin,
       size: sizePin,
-    }
+    };
     dispatch(mapActions.addPinToMap(pinSpecs));
-  }
+  };
+
+  const handleRemovePins = (event) => {
+    event.preventDefault();
+    dispatch(mapActions.removePinsFromMap());
+  };
 
   return (
     <div>
@@ -90,7 +95,12 @@ const Pin = () => {
             >
               {PinListConstants.map((pin) => {
                 return (
-                  <MenuItem className={classes.item} key={pin.value} value={pin.value} selected>
+                  <MenuItem
+                    className={classes.item}
+                    key={pin.value}
+                    value={pin.value}
+                    selected
+                  >
                     <Image
                       src={pin.image}
                       alt={pin.value}
@@ -102,7 +112,9 @@ const Pin = () => {
               })}
             </Select>
           </FormControl>
-          <BootstrapButton variant="contained" onClick={handleAddPin}>Add Pin</BootstrapButton>
+          <BootstrapButton variant="contained" onClick={handleAddPin}>
+            Add Pin
+          </BootstrapButton>
         </div>
 
         <div className={classes.sliderContainer}>
@@ -118,6 +130,11 @@ const Pin = () => {
             color="secondary"
           />
           <Image src={circlePinPath} width={100} height={100} />
+        </div>
+        <div className={classes.removePins}>
+          <BootstrapButton variant="contained" onClick={handleRemovePins}>
+            Remove Pins
+          </BootstrapButton>
         </div>
       </ThemeProvider>
     </div>
