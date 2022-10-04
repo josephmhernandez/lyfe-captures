@@ -173,6 +173,10 @@ const mapSlice = createSlice({
 
       state.pinList = pinList;
     },
+    removePinsFromMap: (state, action) => {
+      // Remove all pins from the map.
+      state.pinList = [];
+    },
   },
 });
 
