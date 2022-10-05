@@ -8,6 +8,9 @@ import classes from "./CreateMap.module.css";
 import CustomizedAccordions from "./StyleAccordion/CustomizedAccordion";
 const SIZE_OPTION = "_24_36";
 import { MapConstants } from "./MapFolder/MapConstants";
+
+import { AddToCartButton, BuyNowButton } from "../ui/CustomButtons";
+
 const CreateMap = (props) => {
   const orientation = useSelector((state) => state.map.orientation);
   const defaultCenter = useSelector((state) => state.map.lngLat);
@@ -87,6 +90,16 @@ const CreateMap = (props) => {
     }
   }, [orientation, defaultCenter, addLngLat, primaryText, secondaryText]);
 
+  const handleAddToCart = (event) => {
+    event.preventDefault();
+    console.log("handleAddToCart");
+  };
+
+  const handleBuyNow = (event) => {
+    event.preventDefault();
+    console.log("handleBuyNow");
+  };
+
   const MapWithNoSSR = dynamic(() => import("./MapFolder/Map"), {
     ssr: false,
   });
@@ -112,6 +125,16 @@ const CreateMap = (props) => {
       </Paper>
       <Paper elevation={24} className={classes.accordionBox}>
         <CustomizedAccordions />
+        <div className={classes.actionBtns}>
+          <BuyNowButton onClick={handleBuyNow}>
+            Buy Now
+          </BuyNowButton>
+          <AddToCartButton
+            onClick={handleAddToCart}
+          >
+            Add To Cart
+          </AddToCartButton>
+        </div>
       </Paper>
     </div>
   );

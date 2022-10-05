@@ -35,5 +35,8 @@ a {
   --accordion-font-weight: 500; 
   --accordion-title-font-size: x-large;
   --accordion-sub-font-size: large;
+
+  --buy-now-btn-color: #23d160; 
+  --buy-now-btn-hover-color: #1fbb56; 
 }
 

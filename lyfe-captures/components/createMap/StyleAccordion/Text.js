@@ -5,7 +5,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import getConfig from "next/config";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-const DEFAULT_TEXT = "jjjjjj";
+
 const { publicRuntimeConfig } = getConfig();
 const theme = createTheme({
   palette: {
