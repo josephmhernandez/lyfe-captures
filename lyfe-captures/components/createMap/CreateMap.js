@@ -1,13 +1,14 @@
 import { Card, Paper } from "@mui/material";
 import dynamic from "next/dynamic";
 import { Suspense, useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CardOverlay from "./CardOverlay";
 import classes from "./CreateMap.module.css";
 // const DEFAULT_CENTER = [38.907132, -77.036546];
 import CustomizedAccordions from "./StyleAccordion/CustomizedAccordion";
 const SIZE_OPTION = "_24_36";
 import { MapConstants } from "./MapFolder/MapConstants";
+import { mapActions } from "../../store/map-slice";
 
 import { AddToCartButton, BuyNowButton } from "../ui/CustomButtons";
 
@@ -26,6 +27,8 @@ const CreateMap = (props) => {
     width: width.toString() + "px",
     height: height.toString() + "px",
   });
+
+  const dispatch = useDispatch(); 
 
   useEffect(() => {
     if (orientation === "portrait") {
@@ -93,11 +96,15 @@ const CreateMap = (props) => {
   const handleAddToCart = (event) => {
     event.preventDefault();
     console.log("handleAddToCart");
+    dispatch(mapActions.addMapToCart({}));
   };
 
   const handleBuyNow = (event) => {
     event.preventDefault();
     console.log("handleBuyNow");
+    dispatch(mapActions.addMapToCart({}));
+
+    // Move to checkout page. TO DO
   };
 
   const MapWithNoSSR = dynamic(() => import("./MapFolder/Map"), {

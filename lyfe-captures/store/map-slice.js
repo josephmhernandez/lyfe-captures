@@ -1,4 +1,4 @@
-import { QrCodeScannerOutlined } from "@mui/icons-material";
+
 import { createSlice } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 
@@ -16,6 +16,8 @@ const mapSlice = createSlice({
     textCoordinates: "",
     addLngLat: false,
     zoom: process.env.MAP_ZOOM,
+    cart: [],
+    bbox: [],
   },
   reducers: {
     addPin: (state, action) => {
@@ -46,6 +48,11 @@ const mapSlice = createSlice({
       if (data.zoom !== undefined) {
         state.zoom = data.zoom;
       }
+
+      if (data.bbox !== undefined) {
+        state.bbox = data.bbox;
+      }
+
     },
     changeLocation: (state, action) => {
       // On location search we want to search api for location and update lngLat
@@ -172,6 +179,26 @@ const mapSlice = createSlice({
       pinList[i].position = position;
 
       state.pinList = pinList;
+    },
+    addMapToCart: (state, action) => {
+      // const mapObj = action.payload;
+      let mapObj = {}; 
+      mapObj.pinList = state.pinList;
+      mapObj.location = state.location;
+      mapObj.center = state.lngLat; 
+      mapObj.zoom = state.zoom;
+      mapObj.orientation = state.orientation;
+      mapObj.textPrimary = state.textPrimary;
+      mapObj.textSecondary = state.textSecondary;
+      mapObj.textCoordinates = state.textCoordinates;
+      mapObj.color = state.color; 
+      mapObj.bbox = state.bbox;
+      mapObj.id = uuid();
+      
+      console.log(mapObj); 
+
+      state.cart.push(mapObj);
+
     },
     removePinsFromMap: (state, action) => {
       // Remove all pins from the map.

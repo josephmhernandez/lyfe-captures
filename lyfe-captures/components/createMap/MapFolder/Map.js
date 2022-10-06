@@ -1,31 +1,54 @@
-import { MapContainer, TileLayer, Marker, Popup, useMap, useMapEvents } from "react-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMap,
+  useMapEvents,
+} from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-import { PropaneSharp } from "@mui/icons-material";
+
 import { useDispatch, useSelector } from "react-redux";
 import MapPins from "./MapPins";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { mapActions } from "../../../store/map-slice";
 
-
-const MapFunctionality= () => {
-  const dispatch = useDispatch(); 
-
+const MapFunctionality = () => {
+  const dispatch = useDispatch();
+  const bbox = useSelector((state) => state.map.bbox);
   const map = useMapEvents({
     moveend: () => {
+      const bbox_new = JSON.stringify(map.getBounds());
       const payload = {
         lat: map.getCenter().lat,
         lng: map.getCenter().lng,
         zoom: map.getZoom(),
+        bbox: bbox_new,
       };
-      dispatch(mapActions.changeMapCenter(payload)); 
+      dispatch(mapActions.changeMapCenter(payload));
+    },
+  });
+
+  useEffect(() => {
+    if (bbox != JSON.stringify(map.getBounds())) {
+      const bbox_new = JSON.stringify(map.getBounds());
+      const payload = {
+        lat: map.getCenter().lat,
+        lng: map.getCenter().lng,
+        zoom: map.getZoom(),
+        bbox: bbox_new,
+      };
+      dispatch(mapActions.changeMapCenter(payload));
     }
-  })
 
-  return null; 
-}
+    const timer = setTimeout(() => {}, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
+  return null;
+};
 
 const Map = (props) => {
 
@@ -42,8 +65,8 @@ const Map = (props) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-       <MapPins/> 
-       <MapFunctionality/>
+        <MapPins />
+        <MapFunctionality />
       </MapContainer>
     </div>
   );
