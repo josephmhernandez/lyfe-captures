@@ -19,6 +19,7 @@
     "@paljs/ui": "^1.1.1",
     "@reduxjs/toolkit": "^1.8.5",
     "autosuggest-highlight": "^3.3.4",
+    "dms-conversion": "^3.1.1",
     "dotenv": "^16.0.2",
     "leaflet": "^1.8.0",
     "leaflet-defaulticon-compatibility": "^0.1.1",
