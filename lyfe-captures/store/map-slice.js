@@ -1,6 +1,6 @@
-
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
+import L from 'leaflet'; 
 
 const mapSlice = createSlice({
   name: "map",
@@ -20,15 +20,6 @@ const mapSlice = createSlice({
     bbox: [],
   },
   reducers: {
-    addPin: (state, action) => {
-      state.pinList.push(action.payload);
-
-      //Get map and add pin to the map.
-      //Need references to all pins so we can get their locations and change sizes of pins.
-    },
-    removePin: (state, action) => {
-      //Get pin id and remove it from list. also remove it from map.
-    },
     changePinSize: (state, action) => {
       state.sizePin = action.payload;
       // Change all pin sizes
@@ -52,7 +43,6 @@ const mapSlice = createSlice({
       if (data.bbox !== undefined) {
         state.bbox = data.bbox;
       }
-
     },
     changeLocation: (state, action) => {
       // On location search we want to search api for location and update lngLat
@@ -108,33 +98,53 @@ const mapSlice = createSlice({
     },
     addTextCoordinate: (state, action) => {
       //   state.addLngLat = action.payload;
-      const tempCoordinates = `N40 23'37.234" W111 54'54.73"`;
+      const tempCoordinates = `N40 23'37.234" W111 54'54.73 template"`;
 
-      state.textCoordinates = tempCoordinates;
+      // If pin in bbox. use pin coordinates
+      const pin_list = state.pinList;
+      if (pin_list.length > 0) {
+        const pin = current(state.pinList[0]); 
+        if (mapContains(state.bbox, pin.position)) {
+          const new_text_coordinates =
+            convertToDms(pin.position.lat, false) + " " + convertToDms(pin.position.lng, true);
+          return {
+            ...state,
+            textCoordinates: new_text_coordinates,
+          }
+        }
+      }
+
+      // Use center of map 
       //Add cordinate text to the map.
+      const [lat, lng] = state.lngLat;
+      const new_text_coordinates = convertToDms(lat, false) + " " + convertToDms(lng, true);
+      return {
+        ...state,
+        textCoordinates: new_text_coordinates,
+      }
     },
     removeTextCoordinate: (state, action) => {
-      state.textCoordinates = "";
-
       //Remove cordinate text from the map.
+      state.textCoordinates = "";
     },
     setAddLngLatFlag: (state, action) => {
-      state.addLngLat = action.payload;
+      return {
+        ...state, 
+        addLngLat: action.payload,
+      }
     },
     removeAllText: (state, action) => {
       // Remove all text from the map.
-
-      state.textPrimary = "";
-      state.textSecondary = "";
-      state.textCoordinates = "";
-      state.addLngLat = false;
+      return {
+        ...state,
+        textPrimary: "",
+        textSecondary: "",
+        textCoordinates: "",
+        addLngLat: false,
+      }
     },
-    addPinToMap: (state, action) => {
+    addPinToMap: (state, action) =>  {
       // Add pin to the map. Call pin to center if the pin is already in pinlist.
-
-      // Pin size.
-      // Pin style.
-      // Pin location.
       const size = action.payload.size;
       const style = action.payload.style;
       const position = state.lngLat; // Change this position to the state of the center of the map...
@@ -158,9 +168,13 @@ const mapSlice = createSlice({
         id: unique_id,
         size: size,
         style: style,
-        position: position,
+        position: {
+          lat: position[0],
+          lng: position[1],
+        },
       };
-      state.pinList = pinList;
+
+      state.pinList = pinList; 
     },
     updateAddLngLatValue: (state, action) => {
       // I dont think this should be inside slice  needs to be a js function outside this.
@@ -182,27 +196,47 @@ const mapSlice = createSlice({
     },
     addMapToCart: (state, action) => {
       // const mapObj = action.payload;
-      let mapObj = {}; 
+
+      // Make sure if coordinates are added that we recaclulatd them 
+
+      let mapObj = {};
       mapObj.pinList = state.pinList;
       mapObj.location = state.location;
-      mapObj.center = state.lngLat; 
+      mapObj.center = state.lngLat;
       mapObj.zoom = state.zoom;
       mapObj.orientation = state.orientation;
       mapObj.textPrimary = state.textPrimary;
       mapObj.textSecondary = state.textSecondary;
       mapObj.textCoordinates = state.textCoordinates;
-      mapObj.color = state.color; 
+      mapObj.color = state.color;
       mapObj.bbox = state.bbox;
       mapObj.id = uuid();
+
+      if(mapObj.textCoordinates !== "") {
+        if(mapContains(mapObj.bbox, mapObj.pinList[0].position)) {
+          const new_text_coordinates = convertToDms(mapObj.pinList[0].position.lat, false) + " " + convertToDms(mapObj.pinList[0].position.lng, true);
+          mapObj.textCoordinates = new_text_coordinates;
+        }
+        else {
+          const [lat, lng] = mapObj.center;
+          const new_text_coordinates = convertToDms(lat, false) + " " + convertToDms(lng, true);
+          mapObj.textCoordinates = new_text_coordinates;
+        }
+      }
+
       
-      console.log(mapObj); 
+
+      console.log(mapObj);
 
       state.cart.push(mapObj);
 
     },
     removePinsFromMap: (state, action) => {
       // Remove all pins from the map.
-      state.pinList = [];
+      return {
+        ...state,
+        pinList: [],
+      }
     },
   },
 });
@@ -210,3 +244,35 @@ const mapSlice = createSlice({
 export const mapActions = mapSlice.actions;
 
 export default mapSlice;
+
+function mapContains(bbox_raw, pos) {
+  if (pos === undefined) {
+    return false;
+  }
+  const bbox = JSON.parse(bbox_raw);
+  var bounds = new L.LatLngBounds(
+    new L.LatLng(bbox['_northEast'].lat, bbox['_northEast'].lng),
+    new L.LatLng(bbox['_southWest'].lat, bbox['_southWest'].lng));
+   
+   return bounds.contains(new L.LatLng(pos.lat, pos.lng))
+}
+
+/**
+ * Converts decimal degrees to degrees minutes seconds.
+ *
+ * @param dd the decimal degrees value.
+ * @param isLng specifies whether the decimal degrees value is a longitude.
+ * @return degrees minutes seconds string in the format N 49°15'51.35"
+ */
+function convertToDms(dd, isLng) {
+  var dir = dd < 0 ? (isLng ? "W" : "S") : isLng ? "E" : "N";
+
+  var absDd = Math.abs(dd);
+  var deg = absDd | 0;
+  var frac = absDd - deg;
+  var min = (frac * 60) | 0;
+  var sec = frac * 3600 - min * 60;
+  // Round it to 2 decimal points.
+  sec = Math.round(sec * 100) / 100;
+  return dir + " " + deg + "°" + min + "'" + sec + '"';
+}
