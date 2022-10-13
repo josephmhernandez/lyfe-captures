@@ -17,7 +17,7 @@ const CheckoutForm = (props) => {
   console.log(props, "inside checkout form!!");
 
   const commerce = new Commerce(process.env.CHEC_PK);
-  const { register, handleSubmit, errors, control, reset } = useForm();
+  const { register, handleSubmit, formState: {errors}, control, reset } = useForm();
 
   const router = useRouter();
 
