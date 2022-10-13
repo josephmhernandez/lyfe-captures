@@ -4,6 +4,7 @@
 export const MapConstants = {
   poster_size: {
     _24_36: {
+      variant_size: "24 x 36 IN.",
       full_width: 24,
       full_height: 36,
       poster_multiplier: 16,

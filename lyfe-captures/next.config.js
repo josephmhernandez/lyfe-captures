@@ -14,6 +14,7 @@ module.exports = {
   reactStrictMode: true,
   env: {
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
+    CHEC_PK: process.env.CHEC_PK,
 
     MAX_CHARS_PRIMARY: process.env.MAX_CHARS_PRIMARY,
     MAX_CHARS_SECONDARY: process.env.MAX_CHARS_SECONDARY,

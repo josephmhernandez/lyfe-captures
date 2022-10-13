@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <Head>
-        <title>Lyfe Captures</title>
+        <title>Lyfe Captures wtf</title>
         <link rel="icon" href="/play-button.ico" />
         <meta
           name="description"
