@@ -53,7 +53,7 @@ const ProductCard = (props) => {
                     fluid
                     placeholder='Select Size'
                     selection
-                    options={sizes}
+                    options={sizes || []}
                 />
                 <Button fluid className='add-button' onClick={handleButtonAddCart}>
                     Add to Cart

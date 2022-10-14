@@ -17,8 +17,6 @@ import CheckoutItems from "./CheckoutItems";
 import Link from "next/link";
 
 const CheckoutContainer = (props) => {
-  // console.log(props, 'Checking prop being sent from Private Route!!!!!!')
-  console.log("CheckoutContainer props", props);
   const commerce = new Commerce(process.env.CHEC_PK);
 
   const [liveObject, setLiveObject] = useState();
@@ -132,7 +130,6 @@ const CheckoutContainer = (props) => {
     }
   };
 
-  console.log('here 1 '); 
   return (
     <Grid columns={2} centered padded>
       <Grid.Row className="checkout-row">
@@ -170,8 +167,9 @@ const CheckoutContainer = (props) => {
               placeholder="Select Shipping Method"
               fluid
               selection
+              value={shipOption}
               onChange={handleDropDownShipping}
-              options={shippingOptions}
+              options={shippingOptions || []}
             />
 
             {!shipOption && <p>Select Country for Shipping Options</p>}

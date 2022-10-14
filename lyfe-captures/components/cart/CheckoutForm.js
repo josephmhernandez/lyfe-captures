@@ -14,10 +14,16 @@ import { mexico } from "../../utils/North America/mexico";
 import { countries } from "../../utils/Countries";
 
 const CheckoutForm = (props) => {
-  console.log(props, "inside checkout form!!");
+  //   console.log(props, "inside checkout form!!");
 
   const commerce = new Commerce(process.env.CHEC_PK);
-  const { register, handleSubmit, formState: {errors}, control, reset } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    reset,
+  } = useForm();
 
   const router = useRouter();
 
@@ -98,6 +104,8 @@ const CheckoutForm = (props) => {
             Parses the data properly to match the shape for capture
         *** */
 
+    console.log("made it to onSubmit");
+    console.log(data, "data from checkout form");
     setProcessing(true);
 
     let final = {};
@@ -223,13 +231,13 @@ const CheckoutForm = (props) => {
           name="firstname"
           control={control}
           rules={{ required: "Please enter Firstname" }}
-          error={errors?.firstname && errors?.firstname.message}
           render={({ field }) => (
             <Form.Input
               {...field}
               label="First Name"
               placeholder="John"
               fluid
+              error={errors?.firstname && errors?.firstname.message}
             />
           )}
         />
@@ -237,12 +245,12 @@ const CheckoutForm = (props) => {
           control={control}
           name="lastname"
           rules={{ required: "Please enter Lastname" }}
-          error={errors?.lastname && errors?.lastname.message}
           render={({ field }) => (
             <Form.Input
               {...field}
               label="Last name"
               placeholder="Smith"
+              error={errors?.lastname && errors?.lastname.message}
               fluid
             />
           )}
@@ -252,13 +260,13 @@ const CheckoutForm = (props) => {
           name="email"
           control={control}
           rules={{ required: "Please enter email" }}
-          error={errors?.email && errors?.email.message}
           render={({ field }) => (
             <Form.Input
               {...field}
               label="Email"
               placeholder="xyz@example.com"
               fluid
+              error={errors?.email && errors?.email.message}
               type="email"
             />
           )}
@@ -270,11 +278,11 @@ const CheckoutForm = (props) => {
           name="street"
           control={control}
           rules={{ required: "Please enter address" }}
-          error={errors?.street && errors?.street.message}
           render={({ field }) => (
             <Form.Input
               {...field}
               label="Address"
+              error={errors?.street && errors?.street.message}
               placeholder="122 Example St"
             />
           )}
@@ -282,17 +290,14 @@ const CheckoutForm = (props) => {
         <Controller
           width={6}
           name="country"
-          options={countries}
-          as={Form.Select}
           control={control}
           rules={{ required: "Please select country" }}
-          error={errors?.country && errors?.country.message}
           render={({ field }) => (
             <Form.Select
               {...field}
               label="Select Country"
               placeholder="Select Country"
-              options={countries}
+              options={countries || []}
               onChange={(e, { value }) => {
                 setShipCountry(value);
                 props.setShipOption(false);
@@ -301,6 +306,7 @@ const CheckoutForm = (props) => {
                 });
                 return value;
               }}
+              error={errors?.country && errors?.country.message}
             />
           )}
         />
@@ -311,9 +317,13 @@ const CheckoutForm = (props) => {
           name="town_city"
           control={control}
           rules={{ required: "Please enter Town/City" }}
-          error={errors?.town_city && errors?.town_city.message}
           render={({ field }) => (
-            <Form.Input {...field} label="Town/City" placeholder="Las Vegas" />
+            <Form.Input
+              {...field}
+              error={errors?.town_city && errors?.town_city.message}
+              label="Town/City"
+              placeholder="Las Vegas"
+            />
           )}
         />
         <Controller
@@ -322,16 +332,15 @@ const CheckoutForm = (props) => {
           options={getCountryInfoShipping()}
           control={control}
           rules={{ required: "Must Select Country First" }}
-          error={errors?.county_state && errors?.county_state.message}
           render={({ field }) => (
             <Form.Select
               {...field}
               label="County/State/Province/Territory"
+              error={errors?.county_state && errors?.county_state.message}
               placeholder="Search ..."
-              options={getCountryInfoShipping()}
+              options={getCountryInfoShipping() || []}
               fluid
-              search
-              // onChange={(e, {value}) => {return value;} }
+              //   onChange={(e, {value}) => value  }
             />
           )}
         />
@@ -340,19 +349,18 @@ const CheckoutForm = (props) => {
           name="postal_zip_code"
           label="Zip/Postal"
           placeholder="00000"
-          as={Form.Input}
           control={control}
           max="99999"
           rules={{
             required: "Please enter zip",
             // max: 99999
           }}
-          error={errors?.postal_zip_code && errors?.postal_zip_code.message}
           render={({ field }) => (
             <Form.Input
               {...field}
               label="Zip/Postal"
               placeholder="00000"
+              error={errors?.postal_zip_code && errors?.postal_zip_code.message}
               max="99999"
             />
           )}
@@ -361,20 +369,6 @@ const CheckoutForm = (props) => {
 
       <h1>Payment Info</h1>
       <Form.Group className="payment-radio">
-        <input
-          name="gateway"
-          type="radio"
-          value="test_gateway"
-          {...register("gateway", { required: "Please select Payment Type" })}
-          onChange={(e) => {
-            reset({
-              number: 4242424242424242,
-              cvc: 123,
-              postal_billing_zip_code: 90210,
-            });
-          }}
-        />
-        <label htmlFor="test_gateway">Test Gateway</label>
         <input
           name="gateway"
           type="radio"
@@ -389,8 +383,21 @@ const CheckoutForm = (props) => {
           }}
         />
         <label htmlFor="stripe">Credit Card</label>
+        <input
+          name="gateway"
+          type="radio"
+          value="test_gateway"
+          {...register("gateway", { required: "Please select Payment Type" })}
+          onChange={(e) => {
+            reset({
+              number: 4242424242424242,
+              cvc: 123,
+              postal_billing_zip_code: 90210,
+            });
+          }}
+        />
+        <label htmlFor="test_gateway">Test Gateway</label>
       </Form.Group>
-
       {errors?.gateway && (
         <Label className="payment-type-error" basic pointing>
           {errors?.gateway.message}
@@ -403,11 +410,12 @@ const CheckoutForm = (props) => {
           type="number"
           control={control}
           rules={{ required: "Please enter Card Number" }}
-          error={errors?.number && errors?.number.message}
+          defaultValue={""}
           render={({ field }) => (
             <Form.Input
               {...field}
               label="Credit Card Number"
+              error={errors?.number && errors?.number.message}
               placeholder="0000111100001111"
             />
           )}
@@ -416,16 +424,17 @@ const CheckoutForm = (props) => {
           name="postal_billing_zip_code"
           control={control}
           rules={{ required: "Please enter Billing zip" }}
-          error={
-            errors?.postal_billing_zip_code &&
-            errors?.postal_billing_zip_code.message
-          }
+          defaultValue={""}
           render={({ field }) => (
             <Form.Input
               {...field}
               label="Billing Zip"
               placeholder="Enter Billing Zip Code"
               max="99999"
+              error={
+                errors?.postal_billing_zip_code &&
+                errors?.postal_billing_zip_code.message
+              }
             />
           )}
         />
@@ -438,18 +447,17 @@ const CheckoutForm = (props) => {
           fluid
           options={monthOptions}
           label="Month"
-          as={Form.Select}
           control={control}
           rules={{ required: "Must Select Expiration Month" }}
-          error={errors?.expiry_month && errors?.expiry_month.message}
           render={({ field }) => (
             <Form.Select
               {...field}
               label="Month"
               placeholder="Month"
-              options={monthOptions}
+              options={monthOptions || []}
               fluid
-              onChange={(e) => e[1].value}
+              error={errors?.expiry_month && errors?.expiry_month.message}
+              onChange={(e, { value }) => value}
             />
           )}
         />
@@ -459,19 +467,18 @@ const CheckoutForm = (props) => {
           fluid
           options={yearOptions}
           label="Year"
-          as={Form.Select}
           control={control}
           rules={{ required: "Must Select Expiration Year" }}
-          error={errors?.expiry_year && errors?.expiry_year.message}
-          onChange={(e) => e[1].value}
+          onChange={(e, { value }) => value}
           render={({ field }) => (
             <Form.Select
               {...field}
               label="Year"
               placeholder="Year"
-              options={yearOptions}
+              options={yearOptions || []}
               fluid
-              onChange={(e) => e[1].value}
+              error={errors?.expiry_year && errors?.expiry_year.message}
+              onChange={(e, { value }) => value}
             />
           )}
         />
@@ -480,12 +487,16 @@ const CheckoutForm = (props) => {
           name="cvc"
           label="CVC"
           placeholder="123"
-          as={Form.Input}
+          defaultValue={""}
           control={control}
           rules={{ required: "Please enter CVC" }}
-          error={errors?.cvc && errors?.cvc.message}
           render={({ field }) => (
-            <Form.Input {...field} label="CVC" placeholder="123" />
+            <Form.Input
+              {...field}
+              error={errors?.cvc && errors?.cvc.message}
+              label="CVC"
+              placeholder="123"
+            />
           )}
         />
       </Form.Group>
@@ -499,43 +510,32 @@ const CheckoutForm = (props) => {
         <>
           <Form.Group widths="equal">
             <Controller
-              width={10}
               name="billing_name"
-              label="Billing Name"
-              placeholder="John Smith"
-              as={Form.Input}
               control={control}
               rules={{ required: "Please enter Billing Name" }}
-              error={errors?.billing_name && errors?.billing_name.message}
               render={({ field }) => (
                 <Form.Input
+                  width={10}
                   {...field}
+                  error={errors?.billing_name && errors?.billing_name.message}
                   label="Billing Name"
                   placeholder="John Smith"
                 />
               )}
             />
             <Controller
-              width={6}
               name="billing_country"
-              label="Select Country"
-              options={countries}
-              as={Form.Select}
               control={control}
               rules={{ required: "Please select country" }}
-              error={errors?.billing_country && errors?.billing_country.message}
-              onChange={(e) => {
-                setBillingShipCountry(e[1].value);
-                reset({
-                  billing_county_state: "",
-                });
-                return e[1].value;
-              }}
               render={({ field }) => (
                 <Form.Select
                   {...field}
+                  width={6}
+                  error={
+                    errors?.billing_country && errors?.billing_country.message
+                  }
                   label="Select Country"
-                  options={countries}
+                  options={countries || []}
                   placeholder="Select Country"
                   onChange={(e, { value }) => {
                     setBillingShipCountry(value);
@@ -550,77 +550,73 @@ const CheckoutForm = (props) => {
           </Form.Group>
           <Form.Group>
             <Controller
-              width={4}
               name="billing_street"
-              label="Address"
-              placeholder="122 Example St"
-              as={Form.Input}
               control={control}
               rules={{ required: "Please enter Street Address" }}
-              error={errors?.billing_street && errors?.billing_street.message}
               render={({ field }) => (
                 <Form.Input
                   {...field}
+                  error={
+                    errors?.billing_street && errors?.billing_street.message
+                  }
+                  width={4}
                   label="Address"
                   placeholder="122 Example St"
                 />
               )}
             />
             <Controller
-              width={3}
               name="billing_town_city"
               control={control}
               rules={{ required: "Please enter City/Town" }}
-              error={
-                errors?.billing_town_city && errors?.billing_town_city.message
-              }
               render={({ field }) => (
-                <Form.Input {...field} label="City" placeholder="Las Vegas" />
-              )}
-            />
-            <Controller
-              width={6}
-              label="County/State/Province/Territory"
-              placeholder="Search State"
-              name="billing_county_state"
-              search
-              selection
-              fluid
-              options={getCountryInfoBilling()}
-              as={Form.Select}
-              control={control}
-              rules={{ required: "Must Select Country First" }}
-              error={
-                errors?.billing_county_state &&
-                errors?.billing_county_state.message
-              }
-              onChange={(e) => e[1].value}
-              render={({ field }) => (
-                <Form.Select
+                <Form.Input
                   {...field}
-                  label="County/State/Province/Territory"
-                  placeholder="Search State"
-                  options={getCountryInfoBilling()}
-                  fluid
-                  search
-                  selection
-                  onChange={(e, { value }) => {
-                    return value;
-                  }}
+                  error={
+                    errors?.billing_town_city &&
+                    errors?.billing_town_city.message
+                  }
+                  label="City"
+                  width={3}
+                  placeholder="Las Vegas"
                 />
               )}
             />
             <Controller
-              width={3}
+              name="billing_county_state"
+              control={control}
+              rules={{ required: "Must Select Country First" }}
+              render={({ field }) => (
+                <Form.Select
+                  {...field}
+                  width={6}
+                  label="County/State/Province/Territory"
+                  placeholder="Search State"
+                  options={getCountryInfoBilling() || []}
+                  fluid
+                  error={
+                    errors?.billing_county_state &&
+                    errors?.billing_county_state.message
+                  }
+                  //   onChange={(e, { value }) => value}
+                />
+              )}
+            />
+            <Controller
               name="billing_postal_zip_code"
               control={control}
               rules={{ required: "Please enter Billing Zipcode" }}
-              error={
-                errors?.billing_postal_zip_code &&
-                errors?.billing_postal_zip_code.message
-              }
               render={({ field }) => (
-                <Form.Input {...field} label="Zip" placeholder="00000" />
+                <Form.Input
+                  {...field}
+                  error={
+                    errors?.billing_postal_zip_code &&
+                    errors?.billing_postal_zip_code.message
+                  }
+                  width={3}
+                  label="Zip"
+                  placeholder="00000"
+                />
               )}
             />
           </Form.Group>

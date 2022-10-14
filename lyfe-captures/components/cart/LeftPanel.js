@@ -5,7 +5,6 @@ import leftImage from '../../public/images/img/seities_apparel_logo_small.png'
 
 import 'semantic-ui-css/semantic.min.css';
 const LeftPanel = () => {
-    console.log('herer');
     return (
         <>
             <Menu vertical size='massive'>
