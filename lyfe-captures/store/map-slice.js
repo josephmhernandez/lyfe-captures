@@ -1,6 +1,6 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
-import L from 'leaflet'; 
+// import L from 'leaflet'; 
 
 const mapSlice = createSlice({
   name: "map",
@@ -105,12 +105,16 @@ const mapSlice = createSlice({
       if (pin_list.length > 0) {
         const pin = current(state.pinList[0]); 
         if (mapContains(state.bbox, pin.position)) {
+          console.log('map contains pin');
           const new_text_coordinates =
             convertToDms(pin.position.lat, false) + " " + convertToDms(pin.position.lng, true);
           return {
             ...state,
             textCoordinates: new_text_coordinates,
           }
+        }
+        else {
+          console.log('map doesnt contain pin');
         }
       }
 

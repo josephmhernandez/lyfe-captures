@@ -7,10 +7,15 @@ import classes from "./CreateMap.module.css";
 // const DEFAULT_CENTER = [38.907132, -77.036546];
 import CustomizedAccordions from "./StyleAccordion/CustomizedAccordion";
 const SIZE_OPTION = "_24_36";
+const MATERIAL_OPTION = "POSTER"; 
 import { MapConstants } from "./MapFolder/MapConstants";
 import { mapActions } from "../../store/map-slice";
 
 import { AddToCartButton, BuyNowButton } from "../ui/CustomButtons";
+import { useRouter } from "next/router";
+import Commerce from "@chec/commerce.js";
+
+const commerce = new Commerce(process.env.CHEC_PK);
 
 const CreateMap = (props) => {
   const orientation = useSelector((state) => state.map.orientation);
@@ -19,6 +24,9 @@ const CreateMap = (props) => {
   const secondaryText = useSelector((state) => state.map.textSecondary);
   const addLngLat = useSelector((state) => state.map.addLngLat);
   const zoom = useSelector((state) => state.map.zoom);
+  const router = useRouter(); 
+  const color = useSelector((state) => state.map.color);
+  const sizeOption = SIZE_OPTION; 
 
   const optionObj = MapConstants.poster_size[SIZE_OPTION];
   const height = optionObj.portrait.map_height * optionObj.poster_multiplier;
@@ -97,14 +105,37 @@ const CreateMap = (props) => {
     event.preventDefault();
     console.log("handleAddToCart");
     dispatch(mapActions.addMapToCart({}));
+
+    commerce.products
+      .list()
+      .then((res) => {
+
+        let prod = res.data.find((p) => p.name === "Personalized Map");
+        // get prod id
+        let prodId = prod.id;
+        let variantInfo = {
+          Size: MapConstants.poster_size[SIZE_OPTION].variant_size,
+          Material: MATERIAL_OPTION,
+        }
+
+        // add to prod cart 
+        commerce.cart.add(prodId, 1).then((res) => {
+          console.log("res", res);
+          router.push("/cart");
+        }).catch((err) => {
+          console.log("err", err);
+        });
+        // redirect to cart page
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleBuyNow = (event) => {
     event.preventDefault();
     console.log("handleBuyNow");
     dispatch(mapActions.addMapToCart({}));
-
-    // Move to checkout page. TO DO
+    // commerce.
+    router.push("/cart");
   };
 
   const MapWithNoSSR = dynamic(() => import("./MapFolder/Map"), {
