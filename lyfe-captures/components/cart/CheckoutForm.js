@@ -237,10 +237,12 @@ const CheckoutForm = (props) => {
               label="First Name"
               placeholder="John"
               fluid
+              ref={null}
               error={errors?.firstname && errors?.firstname.message}
             />
           )}
         />
+
         <Controller
           control={control}
           name="lastname"
@@ -252,9 +254,11 @@ const CheckoutForm = (props) => {
               placeholder="Smith"
               error={errors?.lastname && errors?.lastname.message}
               fluid
+              ref={null}
             />
           )}
         />
+
         <Controller
           fluid
           name="email"
@@ -267,11 +271,13 @@ const CheckoutForm = (props) => {
               placeholder="xyz@example.com"
               fluid
               error={errors?.email && errors?.email.message}
+              ref={null}
               type="email"
             />
           )}
         />
       </Form.Group>
+
       <Form.Group>
         <Controller
           width={10}
@@ -283,10 +289,12 @@ const CheckoutForm = (props) => {
               {...field}
               label="Address"
               error={errors?.street && errors?.street.message}
+              ref={null}
               placeholder="122 Example St"
             />
           )}
         />
+
         <Controller
           width={6}
           name="country"
@@ -306,6 +314,7 @@ const CheckoutForm = (props) => {
                 });
                 return value;
               }}
+              ref={null}
               error={errors?.country && errors?.country.message}
             />
           )}
@@ -322,6 +331,7 @@ const CheckoutForm = (props) => {
               {...field}
               error={errors?.town_city && errors?.town_city.message}
               label="Town/City"
+              ref={null}
               placeholder="Las Vegas"
             />
           )}
@@ -339,6 +349,7 @@ const CheckoutForm = (props) => {
               error={errors?.county_state && errors?.county_state.message}
               placeholder="Search ..."
               options={getCountryInfoShipping() || []}
+              ref={null}
               fluid
               //   onChange={(e, {value}) => value  }
             />
@@ -361,6 +372,7 @@ const CheckoutForm = (props) => {
               label="Zip/Postal"
               placeholder="00000"
               error={errors?.postal_zip_code && errors?.postal_zip_code.message}
+              ref={null}
               max="99999"
             />
           )}
@@ -416,6 +428,7 @@ const CheckoutForm = (props) => {
               {...field}
               label="Credit Card Number"
               error={errors?.number && errors?.number.message}
+              ref={null}
               placeholder="0000111100001111"
             />
           )}
@@ -435,6 +448,7 @@ const CheckoutForm = (props) => {
                 errors?.postal_billing_zip_code &&
                 errors?.postal_billing_zip_code.message
               }
+              ref={null}
             />
           )}
         />
@@ -457,6 +471,7 @@ const CheckoutForm = (props) => {
               options={monthOptions || []}
               fluid
               error={errors?.expiry_month && errors?.expiry_month.message}
+              ref={null}
               onChange={(e, { value }) => value}
             />
           )}
@@ -478,6 +493,7 @@ const CheckoutForm = (props) => {
               options={yearOptions || []}
               fluid
               error={errors?.expiry_year && errors?.expiry_year.message}
+              ref={null}
               onChange={(e, { value }) => value}
             />
           )}
@@ -495,6 +511,7 @@ const CheckoutForm = (props) => {
               {...field}
               error={errors?.cvc && errors?.cvc.message}
               label="CVC"
+              ref={null}
               placeholder="123"
             />
           )}
@@ -519,6 +536,7 @@ const CheckoutForm = (props) => {
                   {...field}
                   error={errors?.billing_name && errors?.billing_name.message}
                   label="Billing Name"
+                  ref={null}
                   placeholder="John Smith"
                 />
               )}
@@ -536,6 +554,7 @@ const CheckoutForm = (props) => {
                   }
                   label="Select Country"
                   options={countries || []}
+                  ref={null}
                   placeholder="Select Country"
                   onChange={(e, { value }) => {
                     setBillingShipCountry(value);
@@ -561,6 +580,7 @@ const CheckoutForm = (props) => {
                   }
                   width={4}
                   label="Address"
+                  ref={null}
                   placeholder="122 Example St"
                 />
               )}
@@ -578,10 +598,12 @@ const CheckoutForm = (props) => {
                   }
                   label="City"
                   width={3}
+                  ref={null}
                   placeholder="Las Vegas"
                 />
               )}
             />
+
             <Controller
               name="billing_county_state"
               control={control}
@@ -593,6 +615,7 @@ const CheckoutForm = (props) => {
                   label="County/State/Province/Territory"
                   placeholder="Search State"
                   options={getCountryInfoBilling() || []}
+                  ref={null}
                   fluid
                   error={
                     errors?.billing_county_state &&
@@ -602,6 +625,7 @@ const CheckoutForm = (props) => {
                 />
               )}
             />
+
             <Controller
               name="billing_postal_zip_code"
               control={control}
@@ -615,6 +639,7 @@ const CheckoutForm = (props) => {
                   }
                   width={3}
                   label="Zip"
+                  ref={null}
                   placeholder="00000"
                 />
               )}
@@ -622,6 +647,7 @@ const CheckoutForm = (props) => {
           </Form.Group>
         </>
       )}
+
       <Form.Button color="green" size="huge">
         Complete Checkout and Pay
       </Form.Button>
