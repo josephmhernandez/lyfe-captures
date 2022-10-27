@@ -4,15 +4,12 @@ import Image from "next/image";
 import { ActionIcon, Radio } from "@mantine/core";
 import classes from './Colors.module.css';
 import { ReactComponent as WhiteBlackIcon } from "/Users/joseph/Documents/workspace/lyfe-captures/lyfe-captures/public/whiteBlackSquareIcon.svg";
-
+import {ColorIconPathMap} from '../MapFolder/MapConstants';
 const Colors = () => {
   const [color, setColor] = React.useState("white-black"); // default color
   const iconSize = 50;
 
-  const iconPathMap = {
-    "white-black": "/whiteBlackSquareIcon.svg",
-    "black-white": "/blackWhiteSquareIcon.svg",
-  };
+  const iconPathMap = ColorIconPathMap;
 
   const colorStyles = ["white-black", "black-white"];
 
