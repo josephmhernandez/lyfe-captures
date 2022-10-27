@@ -1,0 +1,30 @@
+.itemCart {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+
+.itemCart img {
+  height: 100px;
+  width: 100px;
+}
+
+.productNamePicture {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: 100%;
+}
+
+.productNameDescription h3 {
+  margin: 0rem;
+}
+
+.productNameDescription p {
+  font-weight: 300;
+  font-size: 1rem;
+  opacity: 50%;
+}
