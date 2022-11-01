@@ -7,6 +7,16 @@ const ItemCartModal = (props) => {
   let total_price = props.item.quantity * props.item.unitPrice;
   let total_price_formatted = "$ " + total_price.toFixed(2);
 
+  let errorMessage = ""; 
+
+  if(props.item.quantity < 1) {
+    errorMessage = "Map will be deleted on Update"; 
+  }
+
+  if(props.item.quantity >= 100) {
+    errorMessage = "If you you need to order more than " + process.env.CART_ITEM_MAX_QUANTITY + " email us at " + process.env.EMAIL_SUPPORT; 
+  }
+
   return (
     <React.Fragment>
       <div className={classes.itemBlock}>
@@ -19,6 +29,7 @@ const ItemCartModal = (props) => {
         <div className={classes.itemBlockQuantity}>
           <button
             onClick={() => {
+              console.log(props.item); 
               props.handleAddQuantity(props.item);
             }}
             className="positive ui button"
@@ -32,6 +43,7 @@ const ItemCartModal = (props) => {
           >
             -
           </button>
+          {errorMessage && <p>{errorMessage}</p>}
         </div>
 
         <p>{total_price_formatted}</p>

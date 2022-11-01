@@ -1,5 +1,4 @@
-
-import React from "react";
+import React, { useEffect } from "react";
 import classes from "./CartModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { mapActions } from "../../store/map-slice";
@@ -14,7 +13,6 @@ const CartModal = (props) => {
 
   //Actions to do on close of modal
   const itemsInCart = cart.length > 0;
-  let total_price_unique_map = 0;
 
   const handleGoToCheckout = () => {
     router.push("/cart");
@@ -25,13 +23,34 @@ const CartModal = (props) => {
   };
 
   const handleAddQuantity = (item) => {
+    console.log(item); 
+    if(item.quantity >= process.env.CART_ITEM_MAX_QUANTITY) {
+      return; 
+    }
     dispatch(mapActions.editQuantityCart({ id: item.id, addValue: 1 }));
   };
 
   const handleSubQuantity = (item) => {
+    if(item.quantity < 1) {
+      return; 
+    }
     dispatch(mapActions.editQuantityCart({ id: item.id, addValue: -1 }));
   };
 
+  const getTotalPrice = (cart) => {
+    let total_price = 0;
+    cart.forEach((item) => {
+      total_price += item.unitPrice * item.quantity;
+    });
+    return total_price;
+  };
+
+  useEffect(() => {
+    // console.log("cart", cart);
+    total_price = getTotalPrice(cart);
+  }, [cart]);
+
+  let total_price = getTotalPrice(cart);
   return (
     <React.Fragment>
       {!itemsInCart && <p>no items :(</p>}
@@ -54,23 +73,23 @@ const CartModal = (props) => {
                 handleAddQuantity={handleAddQuantity}
                 handleSubQuantity={handleSubQuantity}
               />
-              <div className={classes.cartFooter}>
-                <p>Total: $20.00</p>
-              </div>
-              <div className={classes.cartFooterButtons}>
-                <button
-                  onClick={handleGoToCheckout}
-                  // onClick={props.handleOpenCartModal(false)}
-                  className="ui green button"
-                >
-                  Update Cart & Checkout
-                </button>
-                <button onClick={handleEmptyCart} className="ui red button">
-                  Empty Cart
-                </button>
-              </div>
             </React.Fragment>
           ))}
+          <div className={classes.cartFooter}>
+            <p>{"$ " + total_price.toFixed(2)}</p>
+          </div>
+          <div className={classes.cartFooterButtons}>
+            <button
+              onClick={handleGoToCheckout}
+              // onClick={props.handleOpenCartModal(false)}
+              className="ui green button"
+            >
+              Update Cart & Checkout
+            </button>
+            <button onClick={handleEmptyCart} className="ui red button">
+              Empty Cart
+            </button>
+          </div>
         </React.Fragment>
       )}
     </React.Fragment>
