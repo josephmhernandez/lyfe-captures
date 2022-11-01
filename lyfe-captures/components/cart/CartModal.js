@@ -1,57 +1,76 @@
-import { Modal, Header, Button } from "semantic-ui-react";
-import React, { useState, useEffect } from "react";
-import Commerce from "@chec/commerce.js";
-import classes from "./CartModal.module.css";
-import { useSelector } from "react-redux";
 
-import { ColorIconPathMap } from "../createMap/MapFolder/MapConstants";
+import React from "react";
+import classes from "./CartModal.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { mapActions } from "../../store/map-slice";
+import { useRouter } from "next/router";
+import ItemCartModal from "./ItemCartModal";
 
 const CartModal = (props) => {
-  // Map Slice functions
-  // Commerce cart
-
   // Display everything here and then onClose of Modal we will add the quantities that have changed.
-  const commerce = new Commerce(process.env.CHEC_PK);
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.map.cart);
+  const router = useRouter();
 
   //Actions to do on close of modal
-  const [cartActions, setCartActions] = useState([]);
-  const [price, setPrice] = useState(0);
-  const [quantity, setQuantity] = useState({});
-  const itemsInCart = true;
+  const itemsInCart = cart.length > 0;
+  let total_price_unique_map = 0;
+
+  const handleGoToCheckout = () => {
+    router.push("/cart");
+    console.log("to do handle go to checkout");
+  };
+  const handleEmptyCart = () => {
+    console.log("to do handle empty cart");
+  };
+
+  const handleAddQuantity = (item) => {
+    dispatch(mapActions.editQuantityCart({ id: item.id, addValue: 1 }));
+  };
+
+  const handleSubQuantity = (item) => {
+    dispatch(mapActions.editQuantityCart({ id: item.id, addValue: -1 }));
+  };
 
   return (
     <React.Fragment>
       {!itemsInCart && <p>no items :(</p>}
       {itemsInCart && (
         <React.Fragment>
-          <Header>Current Cart</Header>
-          <Modal.Content>
-            {/* Description        Quantity   Price  */}
-            <div className={classes.cartTitle}>
-              <p>Description</p>
-              <p>Quantity</p>
-              <p>Price</p>
-            </div>
-            {/* /* For each cart items and for unique, renderModalItem after ModalItem Quantity of item. New Map State ,Image */}
-            <p> Personalized Map</p>
-            {/* Then for each unique map Render the Item Block  */}
-            <div className={classes.itemBlock}>
-              {/* picture, description, qunatity Price*/}
-              <div className={classes.itemBlockDescription}>
-                <img src={ColorIconPathMap["white-black"]} />
-                <p> Map near seattle washington</p>
+          {/* Description        Quantity   Price  */}
+          <div className={classes.cartTitle}>
+            <p>Description</p>
+            <p>Quantity</p>
+            <p>Price</p>
+          </div>
+          {/* /* For each cart items and for unique, renderModalItem after ModalItem Quantity of item. New Map State ,Image */}
+          <p> Personalized Map</p>
+          {/* Then for each unique map Render the Item Block  */}
+
+          {cart.map((item) => (
+            <React.Fragment>
+              <ItemCartModal
+                item={item}
+                handleAddQuantity={handleAddQuantity}
+                handleSubQuantity={handleSubQuantity}
+              />
+              <div className={classes.cartFooter}>
+                <p>Total: $20.00</p>
               </div>
-              <div className={classes.itemBlockQuantity}>
-                <button class="positive ui button">+</button>
-                <p>3</p>
-                <button class="negative ui button">-</button>
+              <div className={classes.cartFooterButtons}>
+                <button
+                  onClick={handleGoToCheckout}
+                  // onClick={props.handleOpenCartModal(false)}
+                  className="ui green button"
+                >
+                  Update Cart & Checkout
+                </button>
+                <button onClick={handleEmptyCart} className="ui red button">
+                  Empty Cart
+                </button>
               </div>
-              <p>$ 20.00</p>
-            </div>
-            <div className={classes.cartFooter}>
-              <p>Total: $20.00</p>
-            </div>
-          </Modal.Content>
+            </React.Fragment>
+          ))}
         </React.Fragment>
       )}
     </React.Fragment>

@@ -1,10 +1,9 @@
-import { Card, Paper } from "@mui/material";
+import { Paper } from "@mui/material";
 import dynamic from "next/dynamic";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardOverlay from "./CardOverlay";
 import classes from "./CreateMap.module.css";
-// const DEFAULT_CENTER = [38.907132, -77.036546];
 import CustomizedAccordions from "./StyleAccordion/CustomizedAccordion";
 const SIZE_OPTION = "_24_36";
 const MATERIAL_OPTION = "POSTER"; 
@@ -14,6 +13,7 @@ import { mapActions } from "../../store/map-slice";
 import { AddToCartButton, BuyNowButton } from "../ui/CustomButtons";
 import { useRouter } from "next/router";
 import Commerce from "@chec/commerce.js";
+import { getPrice } from "../cart/cartFunctionality";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -101,16 +101,22 @@ const CreateMap = (props) => {
     }
   }, [orientation, defaultCenter, addLngLat, primaryText, secondaryText]);
 
-  const handleAddToCart = (event) => {
+  const handleAddToCart = async (event) => {
+
+    let productName = "Personalized Map";
+
     event.preventDefault();
-    console.log("handleAddToCart");
-    dispatch(mapActions.addMapToCart({}));
+    await getPrice(productName).then((res) => {
+      console.log("res unit price", res);
+      dispatch(mapActions.addMapToCart({name: productName, unitPrice: res}));
+    }).catch(console.error); 
+    
 
     commerce.products
       .list()
       .then((res) => {
 
-        let prod = res.data.find((p) => p.name === "Personalized Map");
+        let prod = res.data.find((p) => p.name === productName);
         // get prod id
         let prodId = prod.id;
         let variantInfo = {
@@ -121,21 +127,15 @@ const CreateMap = (props) => {
         // add to prod cart 
         commerce.cart.add(prodId, 1).then((res) => {
           console.log("res", res);
-          router.push("/cart");
+
+          // TO DO Cart animation 
+          router.push("/edit-cart");
         }).catch((err) => {
           console.log("err", err);
         });
         // redirect to cart page
       })
       .catch((err) => console.log(err));
-  };
-
-  const handleBuyNow = (event) => {
-    event.preventDefault();
-    console.log("handleBuyNow");
-    dispatch(mapActions.addMapToCart({}));
-    // commerce.
-    router.push("/cart");
   };
 
   const MapWithNoSSR = dynamic(() => import("./MapFolder/Map"), {
@@ -164,9 +164,9 @@ const CreateMap = (props) => {
       <Paper elevation={24} className={classes.accordionBox}>
         <CustomizedAccordions />
         <div className={classes.actionBtns}>
-          <BuyNowButton onClick={handleBuyNow}>
+          {/* <BuyNowButton onClick={handleBuyNow}>
             Buy Now
-          </BuyNowButton>
+          </BuyNowButton> */}
           <AddToCartButton
             onClick={handleAddToCart}
           >

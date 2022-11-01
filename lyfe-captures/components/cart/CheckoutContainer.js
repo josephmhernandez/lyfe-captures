@@ -8,15 +8,11 @@ import {
   Dropdown,
   Input,
   Button,
-  Modal,
 } from "semantic-ui-react";
 import Commerce from "@chec/commerce.js";
-
-// Component Imports
+import Link from "next/link";
 import CheckoutForm from "./CheckoutForm";
 import CheckoutItems from "./CheckoutItems";
-import Link from "next/link";
-import CartModal from "./CartModal";
 
 const CheckoutContainer = (props) => {
   const commerce = new Commerce(process.env.CHEC_PK);
@@ -32,8 +28,6 @@ const CheckoutContainer = (props) => {
 
   useEffect(() => {
     /* *** Getting Checkout Token - Set Live Object in State *** */
-
-    // let cartId = props.match.params.id
     let cartId = props.cart.id;
     commerce.checkout
       .generateToken(cartId, { type: "cart" })
@@ -76,11 +70,6 @@ const CheckoutContainer = (props) => {
         .catch((err) => console.log(err));
     }
   };
-
-  // const handleReturnCart = (e) => {
-  //   /* *** Make Sure user is returned to modal with Cart Info *** */
-  //   props.setOpenCartModal(true);
-  // };
 
   const handleDropDownShipping = (e, { value, options }) => {
     /* 
@@ -156,20 +145,9 @@ const CheckoutContainer = (props) => {
                 Current Cart
               </Header>
 
-              <Modal
-                onClose={() => setOpenCartModal(false)}
-                onOpen={() => setOpenCartModal(true)}
-                open={openCartModal}
-                trigger={
-                  <Header textAlign="center">
-                    <Link href="/cart">Edit Cart</Link>
-                  </Header>
-                }
-              >
-                <CartModal>
-
-                </CartModal>
-              </Modal>
+              <Header textAlign="center">
+                <Link href="/edit-cart">Edit Cart</Link>
+              </Header>
 
               {liveObject &&
                 liveObject.line_items.map((item) => (
