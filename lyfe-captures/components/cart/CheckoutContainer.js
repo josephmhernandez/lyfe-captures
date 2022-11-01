@@ -10,11 +10,9 @@ import {
   Button,
 } from "semantic-ui-react";
 import Commerce from "@chec/commerce.js";
-
-// Component Imports
+import Link from "next/link";
 import CheckoutForm from "./CheckoutForm";
 import CheckoutItems from "./CheckoutItems";
-import Link from "next/link";
 
 const CheckoutContainer = (props) => {
   const commerce = new Commerce(process.env.CHEC_PK);
@@ -26,11 +24,10 @@ const CheckoutContainer = (props) => {
   const [discountCode, setDiscountCode] = useState();
   const [noDiscountCode, setNoDiscountCode] = useState();
   const [invalidDiscountCode, setInvalidDiscountCode] = useState();
+  const [openCartModal, setOpenCartModal] = useState(false);
 
   useEffect(() => {
     /* *** Getting Checkout Token - Set Live Object in State *** */
-
-    // let cartId = props.match.params.id
     let cartId = props.cart.id;
     commerce.checkout
       .generateToken(cartId, { type: "cart" })
@@ -72,11 +69,6 @@ const CheckoutContainer = (props) => {
         })
         .catch((err) => console.log(err));
     }
-  };
-
-  const handleReturnCart = (e) => {
-    /* *** Make Sure user is returned to modal with Cart Info *** */
-    props.setModalOpen(true);
   };
 
   const handleDropDownShipping = (e, { value, options }) => {
@@ -131,79 +123,82 @@ const CheckoutContainer = (props) => {
   };
 
   return (
-    <Grid columns={2} centered padded>
-      <Grid.Row className="checkout-row">
-        <Grid.Column width={8}>
-          {liveObject && tokenId && (
-            <CheckoutForm
-              liveObject={liveObject}
-              tokenId={tokenId}
-              shipOption={shipOption}
-              getShippingOptions={getShippingOptions}
-              setShipOption={setShipOption}
-              setReceipt={props.setReceipt}
-            />
-          )}
-        </Grid.Column>
-
-        <Grid.Column width={6}>
-          <Segment padded>
-            <Header textAlign="center" size="huge">
-              Current Cart
-            </Header>
-            <Header onClick={handleReturnCart} textAlign="center">
-              <Link href="/cart">Return to Cart</Link>
-            </Header>
-
-            {liveObject &&
-              liveObject.line_items.map((item) => (
-                <Container className="item-data-container" key={item.id}>
-                  <CheckoutItems item={item} />
-                </Container>
-              ))}
-            <Divider horizontal>Shipping Options</Divider>
-
-            <Dropdown
-              placeholder="Select Shipping Method"
-              fluid
-              selection
-              value={shipOption}
-              onChange={handleDropDownShipping}
-              options={shippingOptions || []}
-            />
-
-            {!shipOption && <p>Select Country for Shipping Options</p>}
-            <Divider horizontal>Discount Code</Divider>
-
-            <form className="discount-code" onSubmit={handleDiscountClick}>
-              <Input onChange={handleDiscountCode} />
-              <Button color="black">Apply</Button>
-            </form>
-            {noDiscountCode && <p>No Discount Code Entered</p>}
-            {invalidDiscountCode && <p>Invalid Code!</p>}
-            <Divider horizontal>Cart Totals</Divider>
-
-            {liveObject && (
-              <>
-                {shipOption && (
-                  <Header color="olive" textAlign="center">
-                    (Shipping) + {liveObject.shipping.price.formatted}
-                  </Header>
-                )}
-                {liveObject.discount.length !== 0 && (
-                  <Header color="olive" textAlign="center">
-                    (LUCKY) - {liveObject.discount.amount_saved.formatted}
-                  </Header>
-                )}
-                <Header textAlign="center" size="large">
-                  {liveObject.total.formatted_with_symbol}
-                </Header>
-              </>
+    <React.Fragment>
+      <Grid columns={2} centered padded>
+        <Grid.Row className="checkout-row">
+          <Grid.Column width={8}>
+            {liveObject && tokenId && (
+              <CheckoutForm
+                liveObject={liveObject}
+                tokenId={tokenId}
+                shipOption={shipOption}
+                getShippingOptions={getShippingOptions}
+                setShipOption={setShipOption}
+                setReceipt={props.setReceipt}
+              />
             )}
-          </Segment>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid>
+          </Grid.Column>
+
+          <Grid.Column width={6}>
+            <Segment padded>
+              <Header textAlign="center" size="huge">
+                Current Cart
+              </Header>
+
+              <Header textAlign="center">
+                <Link href="/edit-cart">Edit Cart</Link>
+              </Header>
+
+              {liveObject &&
+                liveObject.line_items.map((item) => (
+                  <Container className="item-data-container" key={item.id}>
+                    <CheckoutItems item={item} />
+                  </Container>
+                ))}
+              <Divider horizontal>Shipping Options</Divider>
+
+              <Dropdown
+                placeholder="Select Shipping Method"
+                fluid
+                selection
+                value={shipOption}
+                onChange={handleDropDownShipping}
+                options={shippingOptions || []}
+              />
+
+              {!shipOption && <p>Select Country for Shipping Options</p>}
+              <Divider horizontal>Discount Code</Divider>
+
+              <form className="discount-code" onSubmit={handleDiscountClick}>
+                <Input onChange={handleDiscountCode} />
+                <Button color="black">Apply</Button>
+              </form>
+              {noDiscountCode && <p>No Discount Code Entered</p>}
+              {invalidDiscountCode && <p>Invalid Code!</p>}
+              <Divider horizontal>Cart Totals</Divider>
+
+              {liveObject && (
+                <>
+                  {shipOption && (
+                    <Header color="olive" textAlign="center">
+                      (Shipping) + {liveObject.shipping.price.formatted}
+                    </Header>
+                  )}
+                  {liveObject.discount.length !== 0 && (
+                    <Header color="olive" textAlign="center">
+                      (LUCKY) - {liveObject.discount.amount_saved.formatted}
+                    </Header>
+                  )}
+                  <Header textAlign="center" size="large">
+                    {liveObject.total.formatted_with_symbol}
+                  </Header>
+                </>
+              )}
+            </Segment>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </React.Fragment>
   );
 };
 

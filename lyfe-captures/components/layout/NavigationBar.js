@@ -31,7 +31,7 @@ const NavigationBar = (props) => {
           </ul>
         </div>
         <div className={classes.cartnav}>
-          <Link href="/cart">
+          <Link href="/edit-cart">
             <a>
               <Image src={cartPic} alt="CART" />
             </a>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Commerce from "@chec/commerce.js";
 import "semantic-ui-css/semantic.min.css";
-import EmptyCart from '../../components/cart/EmptyCart';
+import EmptyCart from "../../components/cart/EmptyCart";
 import Checkout from "../../components/cart/Checkout";
 import CheckoutContainer from "../../components/cart/CheckoutContainer";
 
@@ -20,17 +20,23 @@ function CartPage() {
   }, [receipt]);
 
   const addToCart = (productId, quantity) => {
-    console.log('add to cart clicked'); 
-  }
+    console.log("add to cart clicked");
+  };
 
   let cartHasItems = cart.total_items > 0;
 
-  
   return (
     <div>
-      {!cartHasItems && <EmptyCart />}
+      {cartHasItems ? (
+        <CheckoutContainer
+          addToCart={addToCart}
+          setCheckout={setCheckout}
+          cart={cart}
+        />
+      ) : (
+        <EmptyCart />
+      )}
       {/* {cartHasItems && <Checkout cart={cart}/> } */}
-      {cartHasItems && <CheckoutContainer addToCart={addToCart} setCheckout={setCheckout} cart={cart} /> }
     </div>
   );
 }

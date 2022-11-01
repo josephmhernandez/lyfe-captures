@@ -19,3 +19,9 @@ export const MapConstants = {
     },
   },
 };
+
+
+export const ColorIconPathMap = {
+  "white-black": "/whiteBlackSquareIcon.svg",
+  "black-white": "/blackWhiteSquareIcon.svg",
+}
