@@ -1,3 +1,5 @@
+// Only place in the application where we update commercejs cart. Experiencing bugs. 
+
 import Commerce from "@chec/commerce.js";
 
 const commerce = new Commerce(process.env.CHEC_PK);

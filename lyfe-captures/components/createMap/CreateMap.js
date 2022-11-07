@@ -5,9 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import CardOverlay from "./CardOverlay";
 import classes from "./CreateMap.module.css";
 import CustomizedAccordions from "./StyleAccordion/CustomizedAccordion";
-const SIZE_OPTION = "_24_36";
-const MATERIAL_OPTION = "POSTER"; 
-import { MapConstants } from "./MapFolder/MapConstants";
+import { MapConstants, SIZE_OPTION, MATERIAL_OPTION } from "./MapFolder/MapConstants";
 import { mapActions } from "../../store/map-slice";
 
 import { AddToCartButton, BuyNowButton } from "../ui/CustomButtons";
@@ -106,10 +104,7 @@ const CreateMap = (props) => {
     let productName = "Personalized Map";
 
     event.preventDefault();
-    await getPrice(productName).then((res) => {
-      console.log("res unit price", res);
-      dispatch(mapActions.addMapToCart({name: productName, unitPrice: res}));
-    }).catch(console.error); 
+    
     
 
     commerce.products
@@ -128,8 +123,14 @@ const CreateMap = (props) => {
         commerce.cart.add(prodId, 1).then((res) => {
           console.log("res", res);
 
+          getPrice(productName).then((res) => {
+            console.log("res unit price", res);
+            dispatch(mapActions.addMapToCart({name: productName, unitPrice: res}));
+          }).catch(console.error); 
+
           // TO DO Cart animation 
-          router.push("/edit-cart");
+          // router.push("/edit-cart");
+          router.push("/cart");
         }).catch((err) => {
           console.log("err", err);
         });
