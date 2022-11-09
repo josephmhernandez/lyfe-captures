@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import {
   Grid,
   Header,
@@ -11,6 +11,7 @@ import {
 } from "semantic-ui-react";
 import Commerce from "@chec/commerce.js";
 import Link from "next/link";
+import CartModal from "./CartModal";
 import CheckoutForm from "./CheckoutForm";
 import CheckoutItems from "./CheckoutItems";
 
@@ -25,6 +26,7 @@ const CheckoutContainer = (props) => {
   const [noDiscountCode, setNoDiscountCode] = useState();
   const [invalidDiscountCode, setInvalidDiscountCode] = useState();
   const [openCartModal, setOpenCartModal] = useState(false);
+  const [showEditCart, setShowEditCart] = useState(false);
 
   useEffect(() => {
     /* *** Getting Checkout Token - Set Live Object in State *** */
@@ -41,7 +43,8 @@ const CheckoutContainer = (props) => {
       });
 
     props.setCheckout(true);
-  }, []);
+    console.log(tokenId, "token id");
+  }, [showEditCart]);
 
   const getShippingOptions = (countrySymbol) => {
     /* 
@@ -127,7 +130,18 @@ const CheckoutContainer = (props) => {
       <Grid columns={2} centered padded>
         <Grid.Row className="checkout-row">
           <Grid.Column width={8}>
-            {liveObject && tokenId && (
+            {showEditCart && (
+              <Fragment>
+                <CartModal
+                  token={tokenId}
+                  handleCloseCart={
+                    setShowEditCart
+                  }
+                />
+              </Fragment>
+            )}
+
+            {!showEditCart && liveObject && tokenId && (
               <CheckoutForm
                 liveObject={liveObject}
                 tokenId={tokenId}
@@ -146,7 +160,13 @@ const CheckoutContainer = (props) => {
               </Header>
 
               <Header textAlign="center">
-                <Link href="/edit-cart">Edit Cart</Link>
+                <a
+                  onClick={() => {
+                    setShowEditCart(true);
+                  }}
+                >
+                  Edit Cart
+                </a>
               </Header>
 
               {liveObject &&

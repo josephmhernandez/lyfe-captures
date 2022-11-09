@@ -51,6 +51,7 @@ const mapSlice = createSlice({
       const { place_id, structured_formatting } = action.payload;
 
       if (
+        structured_formatting.main_text && 
         structured_formatting.main_text.length > process.env.MAX_CHARS_PRIMARY
       ) {
         state.textPrimary = structured_formatting.main_text.slice(
@@ -61,7 +62,7 @@ const mapSlice = createSlice({
         state.textPrimary = structured_formatting.main_text;
       }
 
-      if (
+      if ( structured_formatting.secondary_text && 
         structured_formatting.secondary_text.length >
         process.env.MAX_CHARS_SECONDARY
       ) {
@@ -216,11 +217,12 @@ const mapSlice = createSlice({
       mapObj.quantity = 1;
       mapObj.description = "";
       mapObj.id = uuid();
-      mapObj.name = action.payload.name; // This is the name of the product
+      mapObj.name = action.payload.name; // This is the official name of the product
       mapObj.unitPrice = action.payload.unitPrice;
-      // Make sure if coordinates are added that we recaclulatd them
+      mapObj.lineItemId = action.payload.lineItemId;
+      // Make sure if coordinates are added that we recaclulate them
       if (mapObj.textCoordinates !== "") {
-        if (mapContains(mapObj.bbox, mapObj.pinList[0].position)) {
+        if (mapContains(mapObj.bbox, mapObj.pinList[0]?.position)) {
           const new_text_coordinates =
             convertToDms(mapObj.pinList[0].position.lat, false) +
             " " +
@@ -238,6 +240,13 @@ const mapSlice = createSlice({
       mapObj.description = getMapDescriptionText(mapObj);
 
       state.cart.push(mapObj);
+    },
+    removeFromCart: (state, action) => {
+      const id = action.payload.id;
+      const cart = state.cart;
+      const i = cart.findIndex((obj) => obj.id === id);
+      cart.splice(i, 1);
+      state.cart = cart;
     },
     removePinsFromMap: (state, action) => {
       // Remove all pins from the map.

@@ -25,3 +25,6 @@ export const ColorIconPathMap = {
   "white-black": "/whiteBlackSquareIcon.svg",
   "black-white": "/blackWhiteSquareIcon.svg",
 }
+
+export const SIZE_OPTION = "_24_36";
+export const MATERIAL_OPTION = "POSTER"; 

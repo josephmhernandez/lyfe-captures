@@ -3,7 +3,18 @@ import classes from "./CartModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { mapActions } from "../../store/map-slice";
 import { useRouter } from "next/router";
+import Commerce from "@chec/commerce.js";
 import ItemCartModal from "./ItemCartModal";
+import { ProductNames } from "./productConstants";
+import { MapConstants, SIZE_OPTION, MATERIAL_OPTION } from "../createMap/MapFolder/MapConstants";
+import { getCart, getProductId, updateQuantityById } from "./cartFunctionality";
+
+
+// async function getCartCommerce() {
+//   const commerce = new Commerce(process.env.CHEC_PK);
+//   const cart = await commerce.cart.retrieve();
+//   return cart;
+// }
 
 const CartModal = (props) => {
   // Display everything here and then onClose of Modal we will add the quantities that have changed.
@@ -13,26 +24,71 @@ const CartModal = (props) => {
 
   //Actions to do on close of modal
   const itemsInCart = cart.length > 0;
+  const commerce = new Commerce(process.env.CHEC_PK);
 
-  const handleGoToCheckout = () => {
-    router.push("/cart");
-    console.log("to do handle go to checkout");
+  const handleGoToCheckout = async () => {
+    // Update Cart in commerce
+    // cartDict[prod_name] = quantity
+    let cartDict = {};
+    // for product names
+    // iterate through cart and add to cartDict
+
+    for (const item of cart) {
+      console.log('item', item); 
+      if (item.quantity >= 0) {
+        cartDict[item.name] = (cartDict[item.name] || 0) + item.quantity;
+      }
+      if (item.quantity == 0) {
+        // Remove cart item
+        dispatch(mapActions.removeFromCart({ id: item.id }));
+      }
+    }
+
+    // Iterate through cart from api and get get the product name to line item map.      
+    // name_to_item[prod_name] = line_item_id
+    let name_to_item = {};
+    let ecom_cart = await getCart(); 
+    console.log('ecom_cart', ecom_cart.line_items); 
+    for (const item of ecom_cart.line_items) {
+      name_to_item[item.name] = item.id;
+    }
+    console.log('name_to_item', name_to_item);
+
+    // Iterate over prod names in Cart Dict and update the quantity of the product. 
+
+
+    // Update Cart in commerce
+    for (const name in cartDict) {
+      console.log('update quant by item id', name, cartDict[name]);
+      updateQuantityById(name_to_item[name], cartDict[name]); 
+    }
+
+      // props.setdispaly cart htinky 
+
+
+    // Go to checkout
+    console.log("go to checkout checking ....");
+    props.handleCloseCart(false); 
   };
   const handleEmptyCart = () => {
+    // To Do: Empty cart in commerce
+
+    // Go to checkout
+    props.handleCloseCart(false); 
     console.log("to do handle empty cart");
   };
 
   const handleAddQuantity = (item) => {
-    console.log(item); 
-    if(item.quantity >= process.env.CART_ITEM_MAX_QUANTITY) {
-      return; 
+    console.log(item);
+    if (item.quantity >= process.env.CART_ITEM_MAX_QUANTITY) {
+      return;
     }
     dispatch(mapActions.editQuantityCart({ id: item.id, addValue: 1 }));
   };
 
   const handleSubQuantity = (item) => {
-    if(item.quantity < 1) {
-      return; 
+    if (item.quantity < 1) {
+      return;
     }
     dispatch(mapActions.editQuantityCart({ id: item.id, addValue: -1 }));
   };
@@ -79,15 +135,14 @@ const CartModal = (props) => {
             <p>{"$ " + total_price.toFixed(2)}</p>
           </div>
           <div className={classes.cartFooterButtons}>
-            <button
-              onClick={handleGoToCheckout}
-              // onClick={props.handleOpenCartModal(false)}
-              className="ui green button"
-            >
+            <button onClick={handleGoToCheckout} className="ui green button">
               Update Cart & Checkout
             </button>
             <button onClick={handleEmptyCart} className="ui red button">
               Empty Cart
+            </button>
+            <button onClick={props.handleCloseCart} className="ui button">
+              Cancel
             </button>
           </div>
         </React.Fragment>
