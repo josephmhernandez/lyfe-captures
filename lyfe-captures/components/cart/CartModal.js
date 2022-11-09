@@ -7,6 +7,15 @@ import Commerce from "@chec/commerce.js";
 import ItemCartModal from "./ItemCartModal";
 import { ProductNames } from "./productConstants";
 import { MapConstants, SIZE_OPTION, MATERIAL_OPTION } from "../createMap/MapFolder/MapConstants";
+import { getCart, getProductId, updateQuantityById } from "./cartFunctionality";
+
+
+// async function getCartCommerce() {
+//   const commerce = new Commerce(process.env.CHEC_PK);
+//   const cart = await commerce.cart.retrieve();
+//   return cart;
+// }
+
 const CartModal = (props) => {
   // Display everything here and then onClose of Modal we will add the quantities that have changed.
   const dispatch = useDispatch();
@@ -17,8 +26,9 @@ const CartModal = (props) => {
   const itemsInCart = cart.length > 0;
   const commerce = new Commerce(process.env.CHEC_PK);
 
-  const handleGoToCheckout = () => {
+  const handleGoToCheckout = async () => {
     // Update Cart in commerce
+    // cartDict[prod_name] = quantity
     let cartDict = {};
     // for product names
     // iterate through cart and add to cartDict
@@ -34,36 +44,27 @@ const CartModal = (props) => {
       }
     }
 
-    // Update Cart in commerce
-    for (const key in cartDict) {
-      commerce.products
-        .list()
-        .then((res) => {
-          let prod = res.data.find((p) => p.name === key);
-          // get prod id
-          let prodId = prod.id;
-          let variantInfo = {
-            Size: MapConstants.poster_size[SIZE_OPTION].variant_size,
-            Material: MATERIAL_OPTION,
-          };
-
-          console.log('cartDict', cartDict);
-          console.log('key', key);
-          console.log('val', cartDict[key]); 
-
-          commerce.cart
-            .update(prodId, cartDict[key])
-            .then((res) => {
-              console.log("res", res);
-            })
-            .catch((err) => {
-              console.log("err", err);
-            });
-        })
-        .catch((err) => {
-          console.log("err", err);
-        });
+    // Iterate through cart from api and get get the product name to line item map.      
+    // name_to_item[prod_name] = line_item_id
+    let name_to_item = {};
+    let ecom_cart = await getCart(); 
+    console.log('ecom_cart', ecom_cart.line_items); 
+    for (const item of ecom_cart.line_items) {
+      name_to_item[item.name] = item.id;
     }
+    console.log('name_to_item', name_to_item);
+
+    // Iterate over prod names in Cart Dict and update the quantity of the product. 
+
+
+    // Update Cart in commerce
+    for (const name in cartDict) {
+      console.log('update quant by item id', name, cartDict[name]);
+      updateQuantityById(name_to_item[name], cartDict[name]); 
+    }
+
+      // props.setdispaly cart htinky 
+
 
     // Go to checkout
     console.log("go to checkout checking ....");

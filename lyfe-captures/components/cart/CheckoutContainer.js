@@ -44,7 +44,7 @@ const CheckoutContainer = (props) => {
 
     props.setCheckout(true);
     console.log(tokenId, "token id");
-  }, []);
+  }, [showEditCart]);
 
   const getShippingOptions = (countrySymbol) => {
     /* 

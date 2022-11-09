@@ -5,13 +5,17 @@ import { useDispatch, useSelector } from "react-redux";
 import CardOverlay from "./CardOverlay";
 import classes from "./CreateMap.module.css";
 import CustomizedAccordions from "./StyleAccordion/CustomizedAccordion";
-import { MapConstants, SIZE_OPTION, MATERIAL_OPTION } from "./MapFolder/MapConstants";
+import {
+  MapConstants,
+  SIZE_OPTION,
+  MATERIAL_OPTION,
+} from "./MapFolder/MapConstants";
 import { mapActions } from "../../store/map-slice";
 
 import { AddToCartButton, BuyNowButton } from "../ui/CustomButtons";
 import { useRouter } from "next/router";
 import Commerce from "@chec/commerce.js";
-import { getPrice } from "../cart/cartFunctionality";
+import { getPrice, addToCart } from "../cart/cartFunctionality";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -22,9 +26,9 @@ const CreateMap = (props) => {
   const secondaryText = useSelector((state) => state.map.textSecondary);
   const addLngLat = useSelector((state) => state.map.addLngLat);
   const zoom = useSelector((state) => state.map.zoom);
-  const router = useRouter(); 
+  const router = useRouter();
   const color = useSelector((state) => state.map.color);
-  const sizeOption = SIZE_OPTION; 
+  const sizeOption = SIZE_OPTION;
 
   const optionObj = MapConstants.poster_size[SIZE_OPTION];
   const height = optionObj.portrait.map_height * optionObj.poster_multiplier;
@@ -34,7 +38,7 @@ const CreateMap = (props) => {
     height: height.toString() + "px",
   });
 
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (orientation === "portrait") {
@@ -100,43 +104,56 @@ const CreateMap = (props) => {
   }, [orientation, defaultCenter, addLngLat, primaryText, secondaryText]);
 
   const handleAddToCart = async (event) => {
-
     let productName = "Personalized Map";
 
     event.preventDefault();
-    
-    
 
-    commerce.products
-      .list()
-      .then((res) => {
+    let lineItemId = await addToCart(productName, 1);
+    let price = await getPrice(productName);
+    let variantInfo = {
+      Size: MapConstants.poster_size[SIZE_OPTION].variant_size,
+      Material: MATERIAL_OPTION,
+    };
 
-        let prod = res.data.find((p) => p.name === productName);
-        // get prod id
-        let prodId = prod.id;
-        let variantInfo = {
-          Size: MapConstants.poster_size[SIZE_OPTION].variant_size,
-          Material: MATERIAL_OPTION,
-        }
-
-        // add to prod cart 
-        commerce.cart.add(prodId, 1).then((res) => {
-          console.log("res", res);
-
-          getPrice(productName).then((res) => {
-            console.log("res unit price", res);
-            dispatch(mapActions.addMapToCart({name: productName, unitPrice: res}));
-          }).catch(console.error); 
-
-          // TO DO Cart animation 
-          // router.push("/edit-cart");
-          router.push("/cart");
-        }).catch((err) => {
-          console.log("err", err);
-        });
-        // redirect to cart page
+    dispatch(
+      mapActions.addMapToCart({
+        name: productName,
+        unitPrice: price,
+        lineItemId: lineItemId.line_items,
       })
-      .catch((err) => console.log(err));
+    );
+    router.push("/cart");
+
+    // commerce.products
+    //   .list()
+    //   .then((res) => {
+
+    //     let prod = res.data.find((p) => p.name === productName);
+    //     // get prod id
+    //     let prodId = prod.id;
+    //     let variantInfo = {
+    //       Size: MapConstants.poster_size[SIZE_OPTION].variant_size,
+    //       Material: MATERIAL_OPTION,
+    //     }
+
+    //     // add to prod cart
+    //     commerce.cart.add(prodId, 1).then((res) => {
+    //       console.log("res", res);
+
+    //       getPrice(productName).then((res) => {
+    //         console.log("res unit price", res);
+    //         dispatch(mapActions.addMapToCart({name: productName, unitPrice: res}));
+    //       }).catch(console.error);
+
+    //       // TO DO Cart animation
+    //       // router.push("/edit-cart");
+    //       router.push("/cart");
+    //     }).catch((err) => {
+    //       console.log("err", err);
+    //     });
+    //     // redirect to cart page
+    //   })
+    //   .catch((err) => console.log(err));
   };
 
   const MapWithNoSSR = dynamic(() => import("./MapFolder/Map"), {
@@ -168,9 +185,7 @@ const CreateMap = (props) => {
           {/* <BuyNowButton onClick={handleBuyNow}>
             Buy Now
           </BuyNowButton> */}
-          <AddToCartButton
-            onClick={handleAddToCart}
-          >
+          <AddToCartButton onClick={handleAddToCart}>
             Add To Cart
           </AddToCartButton>
         </div>

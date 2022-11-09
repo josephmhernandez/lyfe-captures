@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
 import { useDispatch } from "react-redux";
+import { getCart } from "../../components/cart/cartFunctionality";
 
 function CheckoutPage() {
   const commerce = new Commerce(process.env.CHEC_PK);
@@ -20,9 +21,9 @@ function CheckoutPage() {
   const [receipt, setReceipt] = useState();
 
   useEffect(() => {
-    commerce.cart.retrieve().then((res) => {
+    getCart().then((cart) => {
       // console.log(res, 'response from app useEffect')
-      dispatch(cartActions.setCart(res));
+      dispatch(cartActions.setCart(cart));
     });
   }, [receipt]);
 
