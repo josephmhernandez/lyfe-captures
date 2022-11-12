@@ -6,6 +6,7 @@ const CheckoutItems = (props) => {
   const quantity = "todo x1";
   const description_map_s_bought = "description_map_s_bought";
 
+  console.log('in checkoutitems'); 
   return (
     <>
       <div className={classes.itemCart}>

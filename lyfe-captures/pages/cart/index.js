@@ -12,12 +12,15 @@ function CartPage() {
   const [checkout, setCheckout] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [receipt, setReceipt] = useState();
-
+  const [checkNoItems, setCheckNoItems] = useState(false);
   useEffect(() => {
+    setCheckNoItems(false); 
+    console.log('retireving cart');
     commerce.cart.retrieve().then((res) => {
       setCart(res);
     });
-  }, [receipt]);
+
+  }, [receipt, checkNoItems]);
 
   const addToCart = (productId, quantity) => {
     console.log("add to cart clicked");
@@ -32,6 +35,7 @@ function CartPage() {
           addToCart={addToCart}
           setCheckout={setCheckout}
           cart={cart}
+          checkEmpty={setCheckNoItems}
         />
       ) : (
         <EmptyCart />

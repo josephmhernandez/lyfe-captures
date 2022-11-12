@@ -1,3 +1,6 @@
+// I don't think i use this... 
+
+
 import React, { useEffect, useState } from "react";
 import Commerce from "@chec/commerce.js";
 import { Grid } from "semantic-ui-react";
