@@ -5,7 +5,6 @@ import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
-import Location from "./Location";
 import Orientation from "./Orientation";
 import Colors from "./Colors";
 import Pin from "./Pin";

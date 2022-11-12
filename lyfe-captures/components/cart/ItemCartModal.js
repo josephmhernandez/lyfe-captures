@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import classes from "./CartModal.module.css";
 import { ColorIconPathMap } from "../createMap/MapFolder/MapConstants";
-import Commerce from "@chec/commerce.js";
-import { getPrice } from "./cartFunctionality";
+
 const ItemCartModal = (props) => {
   let total_price = props.item.quantity * props.item.unitPrice;
   let total_price_formatted = "$ " + total_price.toFixed(2);

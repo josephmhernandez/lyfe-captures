@@ -2,7 +2,7 @@ import { useRef, useMemo, Fragment } from "react";
 import { Marker } from "react-leaflet";
 import { useDispatch } from "react-redux";
 import { mapActions } from "../../../store/map-slice";
-import { PinListConstants } from "../StyleAccordion/PinList";
+import { PinListConstants } from "../StyleAccordion/PinListConstants";
 const L = require("leaflet");
 
 const DraggableMarker = ({ position, uid, draggable, style, size }) => {

@@ -1,7 +1,6 @@
 import {
   RadioGroup,
   FormControl,
-  FormLabel,
   FormControlLabel,
   Radio,
 } from "@mui/material";
@@ -12,7 +11,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import getConfig from "next/config";
 import { useDispatch } from "react-redux";
 import { mapActions } from "../../../store/map-slice";
-import { useState } from "react";
 const { publicRuntimeConfig } = getConfig();
 
 const theme = createTheme({

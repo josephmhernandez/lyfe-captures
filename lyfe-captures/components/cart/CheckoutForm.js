@@ -14,8 +14,6 @@ import { mexico } from "../../utils/North America/mexico";
 import { countries } from "../../utils/Countries";
 
 const CheckoutForm = (props) => {
-  //   console.log(props, "inside checkout form!!");
-
   const commerce = new Commerce(process.env.CHEC_PK);
   const {
     register,
@@ -167,7 +165,7 @@ const CheckoutForm = (props) => {
             commerce.checkout
               .capture(props.tokenId, final)
               .then((res) => {
-                // console.log(res, 'res from CAPTURING CHECKOUT!!!')
+                console.log(res, 'res from CAPTURING CHECKOUT!!!')
                 props.setReceipt(res);
                 localStorage.removeItem("cart-id");
                 router.replace(`/order-complete/${props.tokenId}/${res.id}`);
@@ -201,7 +199,7 @@ const CheckoutForm = (props) => {
         commerce.checkout
           .capture(props.tokenId, final)
           .then((res) => {
-            // console.log(res, 'res from CAPTURING CHECKOUT!!!')
+            console.log(res, 'res from CAPTURING CHECKOUT!!!')
             props.setReceipt(res);
             localStorage.removeItem("cart-id");
             router.replace(`/order-complete/${props.tokenId}/${res.id}`);

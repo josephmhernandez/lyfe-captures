@@ -1,4 +1,4 @@
-// Only place in the application where we update commercejs cart. Experiencing bugs.
+// Make this the only place where we update the commerce cart. 
 
 import Commerce from "@chec/commerce.js";
 
@@ -86,9 +86,4 @@ export async function emptyCart() {
   });
   console.log('stataus', status);
   return status;
-  // status = await commerce.cart.empty().catch((err) => {
-  //   console.log(err);
-  //   status = "error emptying cart";
-  // });
-  // return status;
 }

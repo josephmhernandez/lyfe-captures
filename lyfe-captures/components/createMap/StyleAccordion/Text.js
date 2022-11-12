@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import classes from "./Text.module.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import getConfig from "next/config";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 const { publicRuntimeConfig } = getConfig();
