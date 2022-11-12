@@ -1,8 +1,7 @@
-import { Card, collapseClasses, Paper, Typography } from "@mui/material";
+import { Paper, Typography } from "@mui/material";
 import classes from "./CreateMap.module.css";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { LocalConvenienceStoreOutlined } from "@mui/icons-material";
 
 import { MapConstants } from "./MapFolder/MapConstants";
 const SIZE_OPTION = "_24_36";

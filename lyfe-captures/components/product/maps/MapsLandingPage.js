@@ -12,10 +12,6 @@ const MapsLandingPage = () => {
   const shopNowBanner = "";
   const altText = "";
 
-  //Two columns here
-  // first column: picture of map
-  // second column: title, description, and button
-
   return (
     <div>
       <div className={classes.box}>

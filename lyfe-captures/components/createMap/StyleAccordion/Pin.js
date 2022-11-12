@@ -5,9 +5,9 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import Image from "next/image";
 
-import { PinListConstants } from "./PinList";
+import { PinListConstants } from "./PinListConstants";
 import classes from "./Pin.module.css";
-import { Button, TextField } from "@mui/material";
+import { Button } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Slider from "@mui/material/Slider";
 import { useDispatch } from "react-redux";

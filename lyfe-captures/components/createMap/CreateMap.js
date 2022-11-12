@@ -123,37 +123,6 @@ const CreateMap = (props) => {
       })
     );
     router.push("/cart");
-
-    // commerce.products
-    //   .list()
-    //   .then((res) => {
-
-    //     let prod = res.data.find((p) => p.name === productName);
-    //     // get prod id
-    //     let prodId = prod.id;
-    //     let variantInfo = {
-    //       Size: MapConstants.poster_size[SIZE_OPTION].variant_size,
-    //       Material: MATERIAL_OPTION,
-    //     }
-
-    //     // add to prod cart
-    //     commerce.cart.add(prodId, 1).then((res) => {
-    //       console.log("res", res);
-
-    //       getPrice(productName).then((res) => {
-    //         console.log("res unit price", res);
-    //         dispatch(mapActions.addMapToCart({name: productName, unitPrice: res}));
-    //       }).catch(console.error);
-
-    //       // TO DO Cart animation
-    //       // router.push("/edit-cart");
-    //       router.push("/cart");
-    //     }).catch((err) => {
-    //       console.log("err", err);
-    //     });
-    //     // redirect to cart page
-    //   })
-    //   .catch((err) => console.log(err));
   };
 
   const MapWithNoSSR = dynamic(() => import("./MapFolder/Map"), {
