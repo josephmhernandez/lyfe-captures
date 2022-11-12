@@ -31,19 +31,23 @@ const CheckoutContainer = (props) => {
   useEffect(() => {
     /* *** Getting Checkout Token - Set Live Object in State *** */
     let cartId = props.cart.id;
+    console.log('cartId is:', cartId);
     commerce.checkout
       .generateToken(cartId, { type: "cart" })
       .then((res) => {
-        console.log(res, "response from generating checkout Token");
         setTokenId(res.id);
         setLiveObject(res);
+        console.log('live object is:', res);
       })
       .catch((err) => {
+        // better handlinging .. .
+        // props.setCheckout(false); 
+        props.checkEmpty(true); 
+        console.log('this is the errorr.....'); 
         console.log(err);
       });
 
     props.setCheckout(true);
-    console.log(tokenId, "token id");
   }, [showEditCart]);
 
   const getShippingOptions = (countrySymbol) => {
@@ -134,9 +138,8 @@ const CheckoutContainer = (props) => {
               <Fragment>
                 <CartModal
                   token={tokenId}
-                  handleCloseCart={
-                    setShowEditCart
-                  }
+                  handleCloseCart={setShowEditCart}
+                  handleSetLiveObject={setLiveObject}
                 />
               </Fragment>
             )}
@@ -168,7 +171,6 @@ const CheckoutContainer = (props) => {
                   Edit Cart
                 </a>
               </Header>
-
               {liveObject &&
                 liveObject.line_items.map((item) => (
                   <Container className="item-data-container" key={item.id}>

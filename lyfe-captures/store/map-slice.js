@@ -248,6 +248,9 @@ const mapSlice = createSlice({
       cart.splice(i, 1);
       state.cart = cart;
     },
+    emptyCart: (state, action) => {
+      state.cart = [];
+    },
     removePinsFromMap: (state, action) => {
       // Remove all pins from the map.
       return {

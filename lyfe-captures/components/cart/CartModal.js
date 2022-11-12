@@ -6,9 +6,18 @@ import { useRouter } from "next/router";
 import Commerce from "@chec/commerce.js";
 import ItemCartModal from "./ItemCartModal";
 import { ProductNames } from "./productConstants";
-import { MapConstants, SIZE_OPTION, MATERIAL_OPTION } from "../createMap/MapFolder/MapConstants";
-import { getCart, getProductId, updateQuantityById } from "./cartFunctionality";
-
+import {
+  MapConstants,
+  SIZE_OPTION,
+  MATERIAL_OPTION,
+} from "../createMap/MapFolder/MapConstants";
+import {
+  emptyCart,
+  getCart,
+  getLiveObject,
+  getProductId,
+  updateQuantityById,
+} from "./cartFunctionality";
 
 // async function getCartCommerce() {
 //   const commerce = new Commerce(process.env.CHEC_PK);
@@ -22,9 +31,7 @@ const CartModal = (props) => {
   const cart = useSelector((state) => state.map.cart);
   const router = useRouter();
 
-  //Actions to do on close of modal
   const itemsInCart = cart.length > 0;
-  const commerce = new Commerce(process.env.CHEC_PK);
 
   const handleGoToCheckout = async () => {
     // Update Cart in commerce
@@ -34,7 +41,7 @@ const CartModal = (props) => {
     // iterate through cart and add to cartDict
 
     for (const item of cart) {
-      console.log('item', item); 
+      console.log("item", item);
       if (item.quantity >= 0) {
         cartDict[item.name] = (cartDict[item.name] || 0) + item.quantity;
       }
@@ -44,38 +51,49 @@ const CartModal = (props) => {
       }
     }
 
-    // Iterate through cart from api and get get the product name to line item map.      
+    // Iterate through cart from api and get get the product name to line item map.
     // name_to_item[prod_name] = line_item_id
     let name_to_item = {};
-    let ecom_cart = await getCart(); 
-    console.log('ecom_cart', ecom_cart.line_items); 
+    let ecom_cart = await getCart();
+    console.log("ecom_cart", ecom_cart.line_items);
     for (const item of ecom_cart.line_items) {
       name_to_item[item.name] = item.id;
     }
-    console.log('name_to_item', name_to_item);
-
-    // Iterate over prod names in Cart Dict and update the quantity of the product. 
-
+    // Iterate over prod names in Cart Dict and update the quantity of the product.
 
     // Update Cart in commerce
     for (const name in cartDict) {
-      console.log('update quant by item id', name, cartDict[name]);
-      updateQuantityById(name_to_item[name], cartDict[name]); 
+      updateQuantityById(name_to_item[name], cartDict[name]);
     }
-
-      // props.setdispaly cart htinky 
-
-
+    // Update live Object
+    let liveObject = await getLiveObject(props.token);
+    props.handleSetLiveObject(liveObject);
     // Go to checkout
-    console.log("go to checkout checking ....");
-    props.handleCloseCart(false); 
+    props.handleCloseCart(false);
   };
-  const handleEmptyCart = () => {
-    // To Do: Empty cart in commerce
+  
+  // const handleEmptyCart = async () => {
+  //   // To Do: Empty cart in commerce
+  //   // Go to checkout
+    
+  //   // Empty Cart in commerce
+  //   let end = await emptyCart();
+  //   console.log(end); 
 
-    // Go to checkout
-    props.handleCloseCart(false); 
-    console.log("to do handle empty cart");
+
+  //   // Empty Cart in redux store
+  //   // dispatch(mapActions.emptyCart());
+  //   console.log('before get cart');
+  //   let liveObject = await getLiveObject(props.token);
+  //   props.handleSetLiveObject(liveObject);
+  //   props.handleCloseCart(false);
+  // };
+
+  const handleCancelChanges = async () => {
+    // Cancel quantity changes...
+    props.handleCloseCart(false);
+    let liveObject = await getLiveObject(props.token);
+    props.handleSetLiveObject(liveObject);
   };
 
   const handleAddQuantity = (item) => {
@@ -138,10 +156,10 @@ const CartModal = (props) => {
             <button onClick={handleGoToCheckout} className="ui green button">
               Update Cart & Checkout
             </button>
-            <button onClick={handleEmptyCart} className="ui red button">
+            {/* <button onClick={handleEmptyCart} className="ui red button">
               Empty Cart
-            </button>
-            <button onClick={props.handleCloseCart} className="ui button">
+            </button> */}
+            <button onClick={handleCancelChanges} className="ui button">
               Cancel
             </button>
           </div>

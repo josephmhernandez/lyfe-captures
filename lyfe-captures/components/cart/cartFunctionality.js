@@ -33,7 +33,7 @@ export async function addToCart(prodName, prodQty) {
     status = "error adding to ecommercejs cart";
   });
 
-  return lineItem; 
+  return lineItem;
 }
 
 export async function getProductId(prodName) {
@@ -54,22 +54,41 @@ export async function updateQuantityById(itemId, prodQty) {
   return status;
 }
 
-// Not sure if I use this function.     
-export async function updateQuantityByName(prodName, prodQty) {
-  let status = "";
-  let prodId = await getProductId(prodName);
-
-  await commerce.cart.update(prodId, { quantity: prodQty }).catch((err) => {
-    console.log(err);
-    status = "error updating quantity";
-  });
-  return status;
-}
-
 export async function getCart() {
+  console.log('error getting cart'); 
   let cart = commerce.cart.retrieve().catch((err) => {
+    console.log('error getting cart'); 
     console.log(err);
-    return undefined; 
+    return undefined;
   });
   return cart;
+}
+
+export async function getLiveObject(checkout_id) {
+  console.log('here'); 
+  let liveObject = await commerce.checkout
+    .getLive(checkout_id)
+    .then((res) => {
+      return res;
+    })
+    .catch((err) => {
+      console.log(err);
+      return null;
+    });
+
+  return liveObject;
+}
+
+export async function emptyCart() {
+  let status = "";
+  status = await commerce.cart.empty().catch((err) => {
+    console.log(err);
+  });
+  console.log('stataus', status);
+  return status;
+  // status = await commerce.cart.empty().catch((err) => {
+  //   console.log(err);
+  //   status = "error emptying cart";
+  // });
+  // return status;
 }
