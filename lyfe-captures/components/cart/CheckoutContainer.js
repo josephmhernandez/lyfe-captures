@@ -10,7 +10,6 @@ import {
   Button,
 } from "semantic-ui-react";
 import Commerce from "@chec/commerce.js";
-import Link from "next/link";
 import CartModal from "./CartModal";
 import CheckoutForm from "./CheckoutForm";
 import CheckoutItems from "./CheckoutItems";
@@ -25,7 +24,6 @@ const CheckoutContainer = (props) => {
   const [discountCode, setDiscountCode] = useState();
   const [noDiscountCode, setNoDiscountCode] = useState();
   const [invalidDiscountCode, setInvalidDiscountCode] = useState();
-  const [openCartModal, setOpenCartModal] = useState(false);
   const [showEditCart, setShowEditCart] = useState(false);
 
   useEffect(() => {

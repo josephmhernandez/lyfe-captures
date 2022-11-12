@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Commerce from "@chec/commerce.js";
 import "semantic-ui-css/semantic.min.css";
 import EmptyCart from "../../components/cart/EmptyCart";
-import Checkout from "../../components/cart/Checkout";
 import CheckoutContainer from "../../components/cart/CheckoutContainer";
 
 function CartPage() {
@@ -10,16 +9,14 @@ function CartPage() {
 
   const [cart, setCart] = useState({});
   const [checkout, setCheckout] = useState(false);
-  const [modalOpen, setModalOpen] = useState(false);
   const [receipt, setReceipt] = useState();
   const [checkNoItems, setCheckNoItems] = useState(false);
   useEffect(() => {
-    setCheckNoItems(false); 
-    console.log('retireving cart');
+    setCheckNoItems(false);
+    console.log("retireving cart");
     commerce.cart.retrieve().then((res) => {
       setCart(res);
     });
-
   }, [receipt, checkNoItems]);
 
   const addToCart = (productId, quantity) => {
@@ -40,7 +37,6 @@ function CartPage() {
       ) : (
         <EmptyCart />
       )}
-      {/* {cartHasItems && <Checkout cart={cart}/> } */}
     </div>
   );
 }

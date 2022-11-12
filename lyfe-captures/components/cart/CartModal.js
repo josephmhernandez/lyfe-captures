@@ -3,27 +3,19 @@ import classes from "./CartModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { mapActions } from "../../store/map-slice";
 import { useRouter } from "next/router";
-import Commerce from "@chec/commerce.js";
 import ItemCartModal from "./ItemCartModal";
-import { ProductNames } from "./productConstants";
+import { ProductNames } from "./ProductConstants";
 import {
   MapConstants,
   SIZE_OPTION,
   MATERIAL_OPTION,
 } from "../createMap/MapFolder/MapConstants";
 import {
-  emptyCart,
   getCart,
   getLiveObject,
-  getProductId,
   updateQuantityById,
 } from "./cartFunctionality";
 
-// async function getCartCommerce() {
-//   const commerce = new Commerce(process.env.CHEC_PK);
-//   const cart = await commerce.cart.retrieve();
-//   return cart;
-// }
 
 const CartModal = (props) => {
   // Display everything here and then onClose of Modal we will add the quantities that have changed.
@@ -35,7 +27,6 @@ const CartModal = (props) => {
 
   const handleGoToCheckout = async () => {
     // Update Cart in commerce
-    // cartDict[prod_name] = quantity
     let cartDict = {};
     // for product names
     // iterate through cart and add to cartDict
@@ -120,7 +111,6 @@ const CartModal = (props) => {
   };
 
   useEffect(() => {
-    // console.log("cart", cart);
     total_price = getTotalPrice(cart);
   }, [cart]);
 
