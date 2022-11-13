@@ -83,15 +83,17 @@ const CheckoutContainer = (props) => {
         Updates Live Object in state 
         */
 
+    console.log("in dropdown shipping option left");
+    console.log(value);
     commerce.checkout
       .checkShippingOption(tokenId, {
         id: value,
         country: options[0].key,
       })
       .then((res) => {
-        // console.log(res, 'res from checking discount code')
+        console.log(res, "res from checking discount code");
         setShipOption(value);
-        setLiveObject(res.live);
+        setLiveObject(res);
       })
       .catch((err) => console.log(err));
   };
@@ -118,7 +120,7 @@ const CheckoutContainer = (props) => {
             setInvalidDiscountCode(true);
           } else {
             setInvalidDiscountCode(false);
-            setLiveObject(res.live);
+            setLiveObject(res);
             setDiscountCode(null);
           }
 
@@ -142,7 +144,9 @@ const CheckoutContainer = (props) => {
                 />
               </Fragment>
             )}
-
+            {console.log("showEditCart is:", !showEditCart)}
+            {console.log("token id is:", tokenId)}
+            {console.log("live object is:", liveObject)}
             {!showEditCart && liveObject && tokenId && (
               <CheckoutForm
                 liveObject={liveObject}
@@ -189,7 +193,7 @@ const CheckoutContainer = (props) => {
                 options={shippingOptions || []}
               />
 
-              {!shipOption && <p>Select Country for Shipping Options</p>}
+              {!shipOption && <p className={classes.errorMsg}>"Select Country" in Customer Info for Shipping Options</p>}
               <Divider horizontal>Discount Code</Divider>
 
               <form className="discount-code" onSubmit={handleDiscountClick}>
