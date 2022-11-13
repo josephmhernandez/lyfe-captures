@@ -13,6 +13,7 @@ import Commerce from "@chec/commerce.js";
 import CartModal from "./CartModal";
 import CheckoutForm from "./CheckoutForm";
 import CheckoutItems from "./CheckoutItems";
+import classes from "./CheckoutContainer.module.css";
 
 const CheckoutContainer = (props) => {
   const commerce = new Commerce(process.env.CHEC_PK);
@@ -29,19 +30,19 @@ const CheckoutContainer = (props) => {
   useEffect(() => {
     /* *** Getting Checkout Token - Set Live Object in State *** */
     let cartId = props.cart.id;
-    console.log('cartId is:', cartId);
+    console.log("cartId is:", cartId);
     commerce.checkout
       .generateToken(cartId, { type: "cart" })
       .then((res) => {
         setTokenId(res.id);
         setLiveObject(res);
-        console.log('live object is:', res);
+        console.log("live object is:", res);
       })
       .catch((err) => {
         // better handlinging .. .
-        // props.setCheckout(false); 
-        props.checkEmpty(true); 
-        console.log('this is the errorr.....'); 
+        // props.setCheckout(false);
+        props.checkEmpty(true);
+        console.log("this is the errorr.....");
         console.log(err);
       });
 
@@ -161,13 +162,15 @@ const CheckoutContainer = (props) => {
               </Header>
 
               <Header textAlign="center">
-                <a
-                  onClick={() => {
-                    setShowEditCart(true);
-                  }}
-                >
-                  Edit Cart
-                </a>
+                <div className={classes.editCart}>
+                  <a
+                    onClick={() => {
+                      setShowEditCart(true);
+                    }}
+                  >
+                    Edit Cart
+                  </a>
+                </div>
               </Header>
               {liveObject &&
                 liveObject.line_items.map((item) => (
