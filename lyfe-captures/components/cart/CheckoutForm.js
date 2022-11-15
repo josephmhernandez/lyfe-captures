@@ -107,7 +107,7 @@ const CheckoutForm = (props) => {
     console.log("made it to onSubmit");
     console.log(data, "data from checkout form");
     setProcessing(true);
-
+    console.log('processing...');
     let final = {};
 
     final.line_items = lineItems;
@@ -140,6 +140,10 @@ const CheckoutForm = (props) => {
         postal_zip_code: data.billing_postal_zip_code,
         country: data.billing_country,
       };
+    }
+    else {
+      // Billing and shipping addresses are the same. 
+      final.billing = {...final.shipping}
     }
 
     if (data.gateway === "stripe") {
@@ -197,18 +201,26 @@ const CheckoutForm = (props) => {
         },
       };
 
+
+
       if (props.shipOption) {
+        console.log('checking out in test-gateway', final);
+
         commerce.checkout
           .capture(props.tokenId, final)
           .then((res) => {
             console.log(res, "res from CAPTURING CHECKOUT!!!");
             props.setReceipt(res);
+            // Remove cart from cache... 
+            // To Do: put other stuff in cache earlier and remove it here.
             localStorage.removeItem("cart-id");
             router.replace(`/order-complete/${props.tokenId}/${res.id}`);
             setProcessing(false);
           })
           .catch((err) => {
-            window.alert(err.data.error.message);
+            console.log(err); 
+            console.log('here....');
+            window.alert(err?.data?.error?.message);
             setProcessing(false);
           });
       } else {
@@ -391,8 +403,6 @@ const CheckoutForm = (props) => {
 
       <h1>Payment Info</h1>
       <Form.Group className="payment-radio">
-        {/* <Form.Radio */}
-        
         <input
           name="gateway"
           type="radio"
@@ -421,6 +431,16 @@ const CheckoutForm = (props) => {
             setValue("gateway", e.target.value);
             reset((formValues) => ({
               ...formValues,
+              firstname: "Testy",
+              lastname: "McTesterson",
+              email: "TestyMcTest@gmail.com",
+              street: "123 Test St",
+              town_city: "Testville",
+              county_state: "TX",
+              postal_zip_code: "76034",
+              country: "US",
+              expiry_year: '23', 
+              expiry_month: '01',
               number: 4242424242424242,
               cvc: 123,
               postal_billing_zip_code: 90210,

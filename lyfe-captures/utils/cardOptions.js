@@ -63,16 +63,6 @@ export const monthOptions = [
 
 export const yearOptions = [
     {   
-        key: '20', 
-        text: '20', 
-        value: '20' 
-    },
-    {   
-        key: '21', 
-        text: '21', 
-        value: '21' 
-    },
-    {   
         key: '22', 
         text: '22', 
         value: '22' 
@@ -96,5 +86,10 @@ export const yearOptions = [
         key: '26', 
         text: '26', 
         value: '26' 
+    },
+    {
+        key: '27',
+        text: '27',
+        value: '27'
     },
 ]

@@ -33,6 +33,7 @@ function CartPage() {
           setCheckout={setCheckout}
           cart={cart}
           checkEmpty={setCheckNoItems}
+          setReceipt={setReceipt}
         />
       ) : (
         <EmptyCart />

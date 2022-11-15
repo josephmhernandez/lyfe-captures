@@ -30,19 +30,17 @@ const CheckoutContainer = (props) => {
   useEffect(() => {
     /* *** Getting Checkout Token - Set Live Object in State *** */
     let cartId = props.cart.id;
-    console.log("cartId is:", cartId);
     commerce.checkout
       .generateToken(cartId, { type: "cart" })
       .then((res) => {
         setTokenId(res.id);
         setLiveObject(res);
-        console.log("live object is:", res);
       })
       .catch((err) => {
         // better handlinging .. .
         // props.setCheckout(false);
+        // Handle this on certain status code to do this. I think it is 422 is what we want. 
         props.checkEmpty(true);
-        console.log("this is the errorr.....");
         console.log(err);
       });
 
@@ -144,9 +142,6 @@ const CheckoutContainer = (props) => {
                 />
               </Fragment>
             )}
-            {console.log("showEditCart is:", !showEditCart)}
-            {console.log("token id is:", tokenId)}
-            {console.log("live object is:", liveObject)}
             {!showEditCart && liveObject && tokenId && (
               <CheckoutForm
                 liveObject={liveObject}
