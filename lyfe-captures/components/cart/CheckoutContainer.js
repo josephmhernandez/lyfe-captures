@@ -30,19 +30,17 @@ const CheckoutContainer = (props) => {
   useEffect(() => {
     /* *** Getting Checkout Token - Set Live Object in State *** */
     let cartId = props.cart.id;
-    console.log("cartId is:", cartId);
     commerce.checkout
       .generateToken(cartId, { type: "cart" })
       .then((res) => {
         setTokenId(res.id);
         setLiveObject(res);
-        console.log("live object is:", res);
       })
       .catch((err) => {
         // better handlinging .. .
         // props.setCheckout(false);
+        // Handle this on certain status code to do this. I think it is 422 is what we want. 
         props.checkEmpty(true);
-        console.log("this is the errorr.....");
         console.log(err);
       });
 
@@ -83,15 +81,17 @@ const CheckoutContainer = (props) => {
         Updates Live Object in state 
         */
 
+    console.log("in dropdown shipping option left");
+    console.log(value);
     commerce.checkout
       .checkShippingOption(tokenId, {
         id: value,
         country: options[0].key,
       })
       .then((res) => {
-        // console.log(res, 'res from checking discount code')
+        console.log(res, "res from checking discount code");
         setShipOption(value);
-        setLiveObject(res.live);
+        setLiveObject(res);
       })
       .catch((err) => console.log(err));
   };
@@ -118,7 +118,7 @@ const CheckoutContainer = (props) => {
             setInvalidDiscountCode(true);
           } else {
             setInvalidDiscountCode(false);
-            setLiveObject(res.live);
+            setLiveObject(res);
             setDiscountCode(null);
           }
 
@@ -142,7 +142,6 @@ const CheckoutContainer = (props) => {
                 />
               </Fragment>
             )}
-
             {!showEditCart && liveObject && tokenId && (
               <CheckoutForm
                 liveObject={liveObject}
@@ -189,7 +188,7 @@ const CheckoutContainer = (props) => {
                 options={shippingOptions || []}
               />
 
-              {!shipOption && <p>Select Country for Shipping Options</p>}
+              {!shipOption && <p className={classes.errorMsg}>"Select Country" in Customer Info for Shipping Options</p>}
               <Divider horizontal>Discount Code</Divider>
 
               <form className="discount-code" onSubmit={handleDiscountClick}>

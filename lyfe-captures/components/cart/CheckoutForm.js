@@ -21,6 +21,8 @@ const CheckoutForm = (props) => {
     formState: { errors },
     control,
     reset,
+    setValue,
+    getValues,
   } = useForm();
 
   const router = useRouter();
@@ -105,7 +107,7 @@ const CheckoutForm = (props) => {
     console.log("made it to onSubmit");
     console.log(data, "data from checkout form");
     setProcessing(true);
-
+    console.log('processing...');
     let final = {};
 
     final.line_items = lineItems;
@@ -139,6 +141,10 @@ const CheckoutForm = (props) => {
         country: data.billing_country,
       };
     }
+    else {
+      // Billing and shipping addresses are the same. 
+      final.billing = {...final.shipping}
+    }
 
     if (data.gateway === "stripe") {
       let stripInfo = {
@@ -165,7 +171,7 @@ const CheckoutForm = (props) => {
             commerce.checkout
               .capture(props.tokenId, final)
               .then((res) => {
-                console.log(res, 'res from CAPTURING CHECKOUT!!!')
+                console.log(res, "res from CAPTURING CHECKOUT!!!");
                 props.setReceipt(res);
                 localStorage.removeItem("cart-id");
                 router.replace(`/order-complete/${props.tokenId}/${res.id}`);
@@ -195,18 +201,26 @@ const CheckoutForm = (props) => {
         },
       };
 
+
+
       if (props.shipOption) {
+        console.log('checking out in test-gateway', final);
+
         commerce.checkout
           .capture(props.tokenId, final)
           .then((res) => {
-            console.log(res, 'res from CAPTURING CHECKOUT!!!')
+            console.log(res, "res from CAPTURING CHECKOUT!!!");
             props.setReceipt(res);
+            // Remove cart from cache... 
+            // To Do: put other stuff in cache earlier and remove it here.
             localStorage.removeItem("cart-id");
             router.replace(`/order-complete/${props.tokenId}/${res.id}`);
             setProcessing(false);
           })
           .catch((err) => {
-            window.alert(err.data.error.message);
+            console.log(err); 
+            console.log('here....');
+            window.alert(err?.data?.error?.message);
             setProcessing(false);
           });
       } else {
@@ -228,6 +242,7 @@ const CheckoutForm = (props) => {
           id="customer"
           name="firstname"
           control={control}
+          defaultValue={""}
           rules={{ required: "Please enter Firstname" }}
           render={({ field }) => (
             <Form.Input
@@ -244,6 +259,7 @@ const CheckoutForm = (props) => {
         <Controller
           control={control}
           name="lastname"
+          defaultValue={""}
           rules={{ required: "Please enter Lastname" }}
           render={({ field }) => (
             <Form.Input
@@ -262,6 +278,7 @@ const CheckoutForm = (props) => {
           name="email"
           control={control}
           rules={{ required: "Please enter email" }}
+          defaultValue={""}
           render={({ field }) => (
             <Form.Input
               {...field}
@@ -282,6 +299,7 @@ const CheckoutForm = (props) => {
           name="street"
           control={control}
           rules={{ required: "Please enter address" }}
+          defaultValue={""}
           render={({ field }) => (
             <Form.Input
               {...field}
@@ -305,11 +323,13 @@ const CheckoutForm = (props) => {
               placeholder="Select Country"
               options={countries || []}
               onChange={(e, { value }) => {
+                setValue("country", value);
                 setShipCountry(value);
                 props.setShipOption(false);
-                reset({
+                reset((formValues) => ({
+                  ...formValues,
                   county_state: "",
-                });
+                }));
                 return value;
               }}
               ref={null}
@@ -324,6 +344,7 @@ const CheckoutForm = (props) => {
           name="town_city"
           control={control}
           rules={{ required: "Please enter Town/City" }}
+          defaultValue={""}
           render={({ field }) => (
             <Form.Input
               {...field}
@@ -349,7 +370,9 @@ const CheckoutForm = (props) => {
               options={getCountryInfoShipping() || []}
               ref={null}
               fluid
-              //   onChange={(e, {value}) => value  }
+              onChange={(e, { value }) => {
+                setValue("county_state", value);
+              }}
             />
           )}
         />
@@ -358,6 +381,7 @@ const CheckoutForm = (props) => {
           name="postal_zip_code"
           label="Zip/Postal"
           placeholder="00000"
+          defaultValue={""}
           control={control}
           max="99999"
           rules={{
@@ -383,13 +407,17 @@ const CheckoutForm = (props) => {
           name="gateway"
           type="radio"
           value="stripe"
+          checked={getValues("gateway") === 'stripe'}
           {...register("gateway", { required: "Please select Payment Type" })}
           onChange={(e) => {
-            reset({
+            console.log('target', e.target.value);
+            setValue("gateway", e.target.value);
+            reset((formValues) => ({
+              ...formValues,
               number: "",
               cvc: "",
               postal_billing_zip_code: "",
-            });
+            }));
           }}
         />
         <label htmlFor="stripe">Credit Card</label>
@@ -397,19 +425,32 @@ const CheckoutForm = (props) => {
           name="gateway"
           type="radio"
           value="test_gateway"
+          checked={getValues("gateway") === 'test_gateway'}
           {...register("gateway", { required: "Please select Payment Type" })}
           onChange={(e) => {
-            reset({
+            setValue("gateway", e.target.value);
+            reset((formValues) => ({
+              ...formValues,
+              firstname: "Testy",
+              lastname: "McTesterson",
+              email: "TestyMcTest@gmail.com",
+              street: "123 Test St",
+              town_city: "Testville",
+              county_state: "TX",
+              postal_zip_code: "76034",
+              country: "US",
+              expiry_year: '23', 
+              expiry_month: '01',
               number: 4242424242424242,
               cvc: 123,
               postal_billing_zip_code: 90210,
-            });
+            }));
           }}
         />
         <label htmlFor="test_gateway">Test Gateway</label>
       </Form.Group>
       {errors?.gateway && (
-        <Label className="payment-type-error" basic pointing>
+        <Label className="payment-type-error" basic color='red' pointing>
           {errors?.gateway.message}
         </Label>
       )}
@@ -470,7 +511,9 @@ const CheckoutForm = (props) => {
               fluid
               error={errors?.expiry_month && errors?.expiry_month.message}
               ref={null}
-              onChange={(e, { value }) => value}
+              onChange={(e, { value }) => {
+                setValue("expiry_month", value);
+              }}
             />
           )}
         />
@@ -492,7 +535,9 @@ const CheckoutForm = (props) => {
               fluid
               error={errors?.expiry_year && errors?.expiry_year.message}
               ref={null}
-              onChange={(e, { value }) => value}
+              onChange={(e, { value }) => {
+                setValue("expiry_year", value);
+              }}
             />
           )}
         />
@@ -528,6 +573,7 @@ const CheckoutForm = (props) => {
               name="billing_name"
               control={control}
               rules={{ required: "Please enter Billing Name" }}
+              defaultValue={""}
               render={({ field }) => (
                 <Form.Input
                   width={10}
@@ -556,9 +602,11 @@ const CheckoutForm = (props) => {
                   placeholder="Select Country"
                   onChange={(e, { value }) => {
                     setBillingShipCountry(value);
-                    reset({
+                    setValue("billing_country", value);
+                    reset((formValues) => ({
+                      ...formValues,
                       billing_county_state: "",
-                    });
+                    }));
                     return value;
                   }}
                 />
@@ -570,6 +618,7 @@ const CheckoutForm = (props) => {
               name="billing_street"
               control={control}
               rules={{ required: "Please enter Street Address" }}
+              defaultValue={""}
               render={({ field }) => (
                 <Form.Input
                   {...field}
@@ -587,6 +636,7 @@ const CheckoutForm = (props) => {
               name="billing_town_city"
               control={control}
               rules={{ required: "Please enter City/Town" }}
+              defaultValue={""}
               render={({ field }) => (
                 <Form.Input
                   {...field}
@@ -619,7 +669,9 @@ const CheckoutForm = (props) => {
                     errors?.billing_county_state &&
                     errors?.billing_county_state.message
                   }
-                  //   onChange={(e, { value }) => value}
+                  onChange={(e, { value }) => {
+                    setValue("billing_county_state", value);
+                  }}
                 />
               )}
             />
@@ -628,6 +680,7 @@ const CheckoutForm = (props) => {
               name="billing_postal_zip_code"
               control={control}
               rules={{ required: "Please enter Billing Zipcode" }}
+              defaultValue={""}
               render={({ field }) => (
                 <Form.Input
                   {...field}
@@ -646,7 +699,7 @@ const CheckoutForm = (props) => {
         </>
       )}
 
-      <Form.Button color="green" size="huge">
+      <Form.Button type='submit' color="green" size="huge">
         Complete Checkout and Pay
       </Form.Button>
     </Form>

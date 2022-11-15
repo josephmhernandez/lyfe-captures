@@ -13,7 +13,6 @@ function CartPage() {
   const [checkNoItems, setCheckNoItems] = useState(false);
   useEffect(() => {
     setCheckNoItems(false);
-    console.log("retireving cart");
     commerce.cart.retrieve().then((res) => {
       setCart(res);
     });
@@ -33,6 +32,7 @@ function CartPage() {
           setCheckout={setCheckout}
           cart={cart}
           checkEmpty={setCheckNoItems}
+          setReceipt={setReceipt}
         />
       ) : (
         <EmptyCart />
