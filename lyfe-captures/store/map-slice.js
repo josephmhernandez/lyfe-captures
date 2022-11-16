@@ -263,29 +263,10 @@ const mapSlice = createSlice({
         pinList: [],
       };
     },
-    editQuantityCart: (state, action) => {
-      // Add quantity to the cart. Cart Modal update quantity.
-      console.log("editqunatity", action.payload);
-      const id = action.payload.id;
-      const addValue = action.payload.addValue;
-
-      const curr_cart = state.cart;
-      const product_index = curr_cart.findIndex((x) => x.id == id);
-
-      if (product_index > -1) {
-        let new_quantitiy = curr_cart[product_index].quantity + addValue;
-        return {
-          ...state,
-          cart: [
-            ...state.cart.slice(0, product_index),
-            Object.assign({}, state.cart[product_index], {
-              quantity: new_quantitiy,
-            }),
-            ...state.cart.slice(product_index + 1),
-          ],
-        };
-      } else {
-        console.log("Product not found in cart negative prod index: id: ", id);
+    updateCart: (state, action) => {
+      return {
+        ...state,
+        cart: action.payload,
       }
     },
   },
