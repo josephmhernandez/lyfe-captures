@@ -264,9 +264,10 @@ const mapSlice = createSlice({
       };
     },
     updateCart: (state, action) => {
+      console.log(action.payload); 
       return {
         ...state,
-        cart: action.payload,
+        cart: action.payload.cart,
       }
     },
   },

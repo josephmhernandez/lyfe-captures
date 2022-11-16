@@ -34,7 +34,6 @@ const CartModal = (props) => {
     // iterate through cart and add to cartDict
     const tCart = tempCart;
     for (const item of tCart) {
-      console.log("item", item);
       if (item.quantity >= 0) {
         cartDict[item.name] = (cartDict[item.name] || 0) + item.quantity;
       }
@@ -126,9 +125,15 @@ const CartModal = (props) => {
 
   const getTotalPrice = (cart_arr) => {
     let total_price = 0;
-    cart_arr.forEach((item) => {
-      total_price += item.unitPrice * item.quantity;
-    });
+    try {
+      cart_arr.forEach((item) => {
+        total_price += item.unitPrice * item.quantity;
+      });
+    }
+    catch (err) {
+      console.log("Error in getTotalPrice: ", err);
+    }
+
     return total_price;
   };
 
