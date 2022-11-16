@@ -66,7 +66,7 @@ const mapSlice = createSlice({
         structured_formatting.secondary_text.length >
         process.env.MAX_CHARS_SECONDARY
       ) {
-        state.textSecondary = action.payload.slice(
+        state.textSecondary = structured_formatting.secondary_text.slice(
           0,
           process.env.MAX_CHARS_SECONDARY
         );
