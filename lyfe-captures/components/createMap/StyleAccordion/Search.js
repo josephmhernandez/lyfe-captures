@@ -39,6 +39,7 @@ const Search = (props) => {
     if (locationObj === null) {
       return;
     }
+
     dispatch(mapActions.changeLocation(locationObj));
 
     const { place_id } = locationObj;
@@ -125,6 +126,7 @@ const Search = (props) => {
         includeInputInList
         filterSelectedOptions
         value={value}
+        disableClearable
         onChange={(event, newValue) => {
           setOptions(newValue ? [newValue, ...options] : options);
           setValue(newValue);
@@ -132,7 +134,7 @@ const Search = (props) => {
           // this.props.onSearch(newValue);
 
           // Call API here and then we can pass center to props.onSearch() <- name that something like on center change....
-          // newValue.place_id <- path
+          // newValue.place_id <- path 
           handleOnSearch(newValue);
         }}
         onInputChange={(event, newInputValue) => {
@@ -169,7 +171,6 @@ const Search = (props) => {
                       {part.text}
                     </span>
                   ))}
-
                   <Typography variant="body2" color="text.secondary">
                     {option.structured_formatting.secondary_text}
                   </Typography>

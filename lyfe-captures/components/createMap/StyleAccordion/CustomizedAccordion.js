@@ -16,7 +16,7 @@ const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
   borderTop: `0px solid var(--purple-dark-color)`,
-  "&:not(:first-child)": {
+  "&:not(:first-of-type)": {
     borderTop: `1px solid var(--purple-dark-color)`,
   },
 

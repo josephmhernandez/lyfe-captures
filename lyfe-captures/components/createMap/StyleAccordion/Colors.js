@@ -18,13 +18,11 @@ const Colors = () => {
       {colorStyles.map((color) => {
         return (
           <ActionIcon key={color} onClick={colorChange} size={iconSize} value={color}>
-            <div className={classes.color}>
               <Image
                 src={iconPathMap[color]}
                 layout='fill'
                 v={color}
               />
-            </div>
           </ActionIcon>
         );
       })}
