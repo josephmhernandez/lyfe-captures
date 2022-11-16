@@ -51,7 +51,7 @@ const mapSlice = createSlice({
       const { place_id, structured_formatting } = action.payload;
 
       if (
-        structured_formatting.main_text && 
+        structured_formatting.main_text &&
         structured_formatting.main_text.length > process.env.MAX_CHARS_PRIMARY
       ) {
         state.textPrimary = structured_formatting.main_text.slice(
@@ -59,19 +59,24 @@ const mapSlice = createSlice({
           process.env.MAX_CHARS_PRIMARY
         );
       } else {
-        state.textPrimary = structured_formatting.main_text;
+        state.textPrimary = structured_formatting.main_text
+          ? structured_formatting.main_text
+          : "";
       }
 
-      if ( structured_formatting.secondary_text && 
+      if (
+        structured_formatting.secondary_text &&
         structured_formatting.secondary_text.length >
-        process.env.MAX_CHARS_SECONDARY
+          process.env.MAX_CHARS_SECONDARY
       ) {
         state.textSecondary = structured_formatting.secondary_text.slice(
           0,
           process.env.MAX_CHARS_SECONDARY
         );
       } else {
-        state.textSecondary = structured_formatting.secondary_text;
+        state.textSecondary = structured_formatting.secondary_text
+          ? structured_formatting.secondary_text
+          : "";
       }
 
       // Search place_id and get coordinates
