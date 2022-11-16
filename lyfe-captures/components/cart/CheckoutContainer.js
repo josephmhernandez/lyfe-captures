@@ -80,16 +80,13 @@ const CheckoutContainer = (props) => {
         Applies shipping option to Cart Total
         Updates Live Object in state 
         */
-
-    console.log("in dropdown shipping option left");
-    console.log(value);
     commerce.checkout
       .checkShippingOption(tokenId, {
         id: value,
         country: options[0].key,
       })
       .then((res) => {
-        console.log(res, "res from checking discount code");
+        // console.log(res, "res from checking discount code");
         setShipOption(value);
         setLiveObject(res);
       })

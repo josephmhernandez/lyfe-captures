@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./CartModal.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { mapActions } from "../../store/map-slice";
@@ -16,23 +16,24 @@ import {
   updateQuantityById,
 } from "./cartFunctionality";
 
-
 const CartModal = (props) => {
   // Display everything here and then onClose of Modal we will add the quantities that have changed.
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.map.cart);
+  // Edit temproary Cart before we update the cart in the redux store.
+  const [tempCart, setTempCart] = useState(cart);
   const router = useRouter();
 
   const itemsInCart = cart.length > 0;
 
   const handleGoToCheckout = async () => {
-    // Update Cart in commerce
+    // We want this to call redux cart. Only method to call dispatch
+    // Update Cart in commerce & update redux cart
     let cartDict = {};
     // for product names
     // iterate through cart and add to cartDict
-
-    for (const item of cart) {
-      console.log("item", item);
+    const tCart = tempCart;
+    for (const item of tCart) {
       if (item.quantity >= 0) {
         cartDict[item.name] = (cartDict[item.name] || 0) + item.quantity;
       }
@@ -59,18 +60,20 @@ const CartModal = (props) => {
     // Update live Object
     let liveObject = await getLiveObject(props.token);
     props.handleSetLiveObject(liveObject);
+
+    // Update Cart in redux
+    dispatch(mapActions.updateCart({ cart: tCart }));
     // Go to checkout
     props.handleCloseCart(false);
   };
-  
+
   // const handleEmptyCart = async () => {
   //   // To Do: Empty cart in commerce
   //   // Go to checkout
-    
+
   //   // Empty Cart in commerce
   //   let end = await emptyCart();
-  //   console.log(end); 
-
+  //   console.log(end);
 
   //   // Empty Cart in redux store
   //   // dispatch(mapActions.emptyCart());
@@ -87,34 +90,58 @@ const CartModal = (props) => {
     props.handleSetLiveObject(liveObject);
   };
 
+  const editQuantityCart = (id, addValue) => {
+    // Add quantity to the cart. Cart Modal update quantity.
+    let curr_cart = tempCart;
+
+    const product_index = curr_cart.findIndex((x) => x.id == id);
+    if (product_index > -1) {
+      let new_quantitiy = curr_cart[product_index].quantity + addValue;
+      setTempCart([
+        ...curr_cart.slice(0, product_index),
+        Object.assign({}, curr_cart[product_index], {
+          quantity: new_quantitiy,
+        }),
+        ...curr_cart.slice(product_index + 1),
+      ]);
+    } else {
+      console.log("Product not found in cart negative prod index: id: ", id);
+    }
+  };
+
   const handleAddQuantity = (item) => {
-    console.log(item);
     if (item.quantity >= process.env.CART_ITEM_MAX_QUANTITY) {
       return;
     }
-    dispatch(mapActions.editQuantityCart({ id: item.id, addValue: 1 }));
+    editQuantityCart(item.id, 1);
   };
 
   const handleSubQuantity = (item) => {
     if (item.quantity < 1) {
       return;
     }
-    dispatch(mapActions.editQuantityCart({ id: item.id, addValue: -1 }));
+    editQuantityCart(item.id, -1);
   };
 
-  const getTotalPrice = (cart) => {
+  const getTotalPrice = (cart_arr) => {
     let total_price = 0;
-    cart.forEach((item) => {
-      total_price += item.unitPrice * item.quantity;
-    });
+    try {
+      cart_arr.forEach((item) => {
+        total_price += item.unitPrice * item.quantity;
+      });
+    }
+    catch (err) {
+      console.log("Error in getTotalPrice: ", err);
+    }
+
     return total_price;
   };
 
   useEffect(() => {
-    total_price = getTotalPrice(cart);
-  }, [cart]);
+    total_price = getTotalPrice(tempCart);
+  }, [tempCart]);
 
-  let total_price = getTotalPrice(cart);
+  let total_price = getTotalPrice(tempCart);
   return (
     <React.Fragment>
       {!itemsInCart && <p>no items :(</p>}
@@ -130,9 +157,10 @@ const CartModal = (props) => {
           <p> Personalized Map</p>
           {/* Then for each unique map Render the Item Block  */}
 
-          {cart.map((item) => (
+          {tempCart.map((item) => (
             <React.Fragment>
               <ItemCartModal
+                key={item.id}
                 item={item}
                 handleAddQuantity={handleAddQuantity}
                 handleSubQuantity={handleSubQuantity}

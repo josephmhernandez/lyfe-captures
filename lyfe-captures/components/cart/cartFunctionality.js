@@ -15,8 +15,6 @@ export async function getPrice(prodName) {
     .list()
     .then((res) => {
       let prod = res.data.find((p) => p.name === prodName);
-      console.log("prod", prod);
-      console.log("prod.price", prod.price.raw);
       return prod.price.raw;
     })
     .catch((err) => console.log(err));
@@ -46,7 +44,6 @@ export async function getProductId(prodName) {
 
 export async function updateQuantityById(itemId, prodQty) {
   let status = "";
-  console.log("updateQuantityById", itemId, prodQty);
   await commerce.cart.update(itemId, { quantity: prodQty }).catch((err) => {
     console.log(err);
     status = "error updating quantity";
@@ -84,6 +81,5 @@ export async function emptyCart() {
   status = await commerce.cart.empty().catch((err) => {
     console.log(err);
   });
-  console.log('stataus', status);
   return status;
 }
