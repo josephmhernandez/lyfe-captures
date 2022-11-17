@@ -64,13 +64,13 @@ const CheckoutForm = (props) => {
   const getCountryInfoShipping = () => {
     /* *** Gives user proper options based on Shipping Country *** */
 
-    if (shipCountry === "MX") {
-      return mexico;
-    }
+    // if (shipCountry === "MX") {
+    //   return mexico;
+    // }
 
-    if (shipCountry === "CA") {
-      return canada;
-    }
+    // if (shipCountry === "CA") {
+    //   return canada;
+    // }
 
     if (shipCountry === "US") {
       return stateOptions;
@@ -80,13 +80,13 @@ const CheckoutForm = (props) => {
   const getCountryInfoBilling = () => {
     /* *** Gives user proper options based on Shipping Country *** */
 
-    if (billingShipCountry === "MX") {
-      return mexico;
-    }
+    // if (billingShipCountry === "MX") {
+    //   return mexico;
+    // }
 
-    if (billingShipCountry === "CA") {
-      return canada;
-    }
+    // if (billingShipCountry === "CA") {
+    //   return canada;
+    // }
 
     if (billingShipCountry === "US") {
       return stateOptions;
@@ -436,9 +436,9 @@ const CheckoutForm = (props) => {
               email: "TestyMcTest@gmail.com",
               street: "123 Test St",
               town_city: "Testville",
-              county_state: "TX",
+              // county_state: "TX",
               postal_zip_code: "76034",
-              country: "US",
+              // country: "US",
               expiry_year: '23', 
               expiry_month: '01',
               number: 4242424242424242,

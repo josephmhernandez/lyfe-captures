@@ -5,18 +5,18 @@ export const stateOptions = [
         text: "Alabama",
         value: "AL"
     },
-    {
+    // {
         
-        key: "Alaska",
-        text: "Alaska",
-        value: "AK"
-    },
-    {
+    //     key: "Alaska",
+    //     text: "Alaska",
+    //     value: "AK"
+    // },
+    // {
         
-        key: "American Samoa",
-        text: "American Samoa",
-        value: "AS"
-    },
+    //     key: "American Samoa",
+    //     text: "American Samoa",
+    //     value: "AS"
+    // },
     {
         
         key: "Arizona",
@@ -59,12 +59,12 @@ export const stateOptions = [
         text: "District Of Columbia",
         value: "DC"
     },
-    {
+    // {
         
-        key: "Federated States Of Micronesia",
-        text: "Federated States Of Micronesia",
-        value: "FM"
-    },
+    //     key: "Federated States Of Micronesia",
+    //     text: "Federated States Of Micronesia",
+    //     value: "FM"
+    // },
     {
         
         key: "Florida",
@@ -77,18 +77,18 @@ export const stateOptions = [
         text: "Georgia",
         value: "GA"
     },
-    {
+    // {
         
-        key: "Guam",
-        text: "Guam",
-        value: "GU"
-    },
-    {
+    //     key: "Guam",
+    //     text: "Guam",
+    //     value: "GU"
+    // },
+    // {
         
-        key: "Hawaii",
-        text: "Hawaii",
-        value: "HI"
-    },
+    //     key: "Hawaii",
+    //     text: "Hawaii",
+    //     value: "HI"
+    // },
     {
         
         key: "Idaho",
@@ -137,12 +137,12 @@ export const stateOptions = [
         text: "Maine",
         value: "ME"
     },
-    {
+    // {
         
-        key: "Marshall Islands",
-        text: "Marshall Islands",
-        value: "MH"
-    },
+    //     key: "Marshall Islands",
+    //     text: "Marshall Islands",
+    //     value: "MH"
+    // },
     {
         
         key: "Maryland",
@@ -257,24 +257,24 @@ export const stateOptions = [
         text: "Oregon",
         value: "OR"
     },
-    {
+    // {
         
-        key: "Palau",
-        text: "Palau",
-        value: "PW"
-    },
+    //     key: "Palau",
+    //     text: "Palau",
+    //     value: "PW"
+    // },
     {
         
         key: "Pennsylvania",
         text: "Pennsylvania",
         value: "PA"
     },
-    {
+    // {
         
-        key: "Puerto Rico",
-        text: "Puerto Rico",
-        value: "PR"
-    },
+    //     key: "Puerto Rico",
+    //     text: "Puerto Rico",
+    //     value: "PR"
+    // },
     {
         
         key: "Rhode Island",
@@ -317,12 +317,12 @@ export const stateOptions = [
         text: "Vermont",
         value: "VT"
     },
-    {
+    // {
         
-        key: "Virgin Islands",
-        text: "Virgin Islands",
-        value: "VI"
-    },
+    //     key: "Virgin Islands",
+    //     text: "Virgin Islands",
+    //     value: "VI"
+    // },
     {
         
         key: "Virginia",
