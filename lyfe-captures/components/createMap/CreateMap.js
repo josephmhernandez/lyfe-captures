@@ -11,9 +11,7 @@ import {
   MATERIAL_OPTION,
 } from "./MapFolder/MapConstants";
 import { mapActions } from "../../store/map-slice";
-import loader from '../ui/Loader'
-// import "../../styles/nprogress.css";
-import NextNProgress from 'nextjs-progressbar'; 
+import NextNProgress from "nextjs-progressbar";
 import { AddToCartButton, BuyNowButton } from "../ui/CustomButtons";
 import { useRouter } from "next/router";
 import Commerce from "@chec/commerce.js";
@@ -46,7 +44,6 @@ const CreateMap = (props) => {
   useEffect(() => {
     if (orientation === "portrait") {
       // Map Size.
-
       const optionObj = MapConstants.poster_size[SIZE_OPTION];
       const height =
         optionObj.portrait.map_height * optionObj.poster_multiplier;
@@ -104,7 +101,13 @@ const CreateMap = (props) => {
         });
       }
     }
-  }, [orientation, defaultCenter, addLngLat, primaryText, secondaryText, loading]);
+  }, [
+    orientation,
+    defaultCenter,
+    addLngLat,
+    primaryText,
+    secondaryText,
+  ]);
 
   const handleAddToCart = async (event) => {
     setLoading(true);
@@ -134,8 +137,8 @@ const CreateMap = (props) => {
     ssr: false,
   });
 
-  if(loading) {
-    return <NextNProgress />;
+  if (loading) {
+    return <p> loading... </p>
   }
 
   return (

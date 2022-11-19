@@ -127,7 +127,6 @@ const CheckoutContainer = (props) => {
     }
   };
 
-  // if (loading) return <p> loading...</p>
   return (
     <React.Fragment>
       <Grid columns={2} centered padded>

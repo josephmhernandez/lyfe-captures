@@ -1,12 +1,9 @@
 import "../styles/globals.css";
 import Layout from "../components/layout/Layout";
-import { Fragment, useEffect } from "react";
+import { useEffect } from "react";
 import Head from "next/head";
 import { Provider } from "react-redux";
 import store from "../store/index";
-import NextNProgress from 'nextjs-progressbar'; 
-import loader from "../components/ui/Loader";
-import NProgress from "nprogress";
 import nProgress from "nprogress"; 
 import Router from 'next/router'; 
 import "../styles/nprogress.css";
@@ -37,10 +34,6 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
       <Layout>
-        {/* <NextNProgress /> */}
-        {/* <NextNProgress transformCSS={() => {
-          return <style> {loader} </style>;
-        }} />  */}
         <Component {...pageProps} />
       </Layout>
     </Provider>

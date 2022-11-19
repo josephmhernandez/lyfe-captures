@@ -14,7 +14,6 @@ function CartPage() {
   const [loading, setLoading] = useState(false); 
   useEffect(() => {
     setLoading(true); 
-    console.log('getting cart');
     setCheckNoItems(false);
     commerce.cart.retrieve().then((res) => {
       setCart(res);
