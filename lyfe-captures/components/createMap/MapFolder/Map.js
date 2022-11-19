@@ -51,7 +51,7 @@ const MapFunctionality = () => {
 };
 
 const Map = (props) => {
-
+  let bounds = new L.LatLngBounds(new L.LatLng(-89.98155760646617, -180), new L.LatLng(89.99346179538875, 180));
   return (
     <div>
       <MapContainer
@@ -59,6 +59,10 @@ const Map = (props) => {
         zoom={props.zoom}
         scrollWheelZoom={false}
         // 24 x 36
+        minZoom={process.env.MIN_MAP_ZOOM}
+        maxZoom={process.env.MAX_MAP_ZOOM}
+        maxBounds={bounds}
+        maxBoundsViscosity={1.0}
         style={props.style}
       >
         <TileLayer

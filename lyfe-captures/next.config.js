@@ -26,6 +26,8 @@ module.exports = {
     MAP_LOCATION_LNG: process.env.MAP_LOCATION_LNG,
     INITIAL_PIN_SIZE: process.env.INITIAL_PIN_SIZE,
     MAP_LOCATION: process.env.MAP_LOCATION,
+    MAX_MAP_ZOOM: process.env.MAX_MAP_ZOOM,
+    MIN_MAP_ZOOM: process.env.MIN_MAP_ZOOM,
 
     CART_ITEM_MAX_QUANTITY: process.env.CART_ITEM_MAX_QUANTITY,
     EMAIL_SUPPORT: process.env.EMAIL_SUPPORT,
