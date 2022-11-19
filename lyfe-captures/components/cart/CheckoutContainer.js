@@ -186,14 +186,16 @@ const CheckoutContainer = (props) => {
               />
 
               {!shipOption && <p className={classes.errorMsg}>"Select Country" in Customer Info for Shipping Options</p>}
-              <Divider horizontal>Discount Code</Divider>
+              
+              {/* TO DO: implement discount code */}
+              {/* <Divider horizontal>Discount Code</Divider>
 
               <form className="discount-code" onSubmit={handleDiscountClick}>
                 <Input onChange={handleDiscountCode} />
                 <Button color="black">Apply</Button>
-              </form>
-              {noDiscountCode && <p>No Discount Code Entered</p>}
-              {invalidDiscountCode && <p>Invalid Code!</p>}
+              </form> */}
+              {/* {noDiscountCode && <p>No Discount Code Entered</p>}
+              {invalidDiscountCode && <p>Invalid Code!</p>} */}
               <Divider horizontal>Cart Totals</Divider>
 
               {liveObject && (

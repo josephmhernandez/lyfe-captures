@@ -8,10 +8,10 @@ const CheckoutItems = (props) => {
   const total_price = `${props.item.line_total.formatted_with_symbol}`;
   const quantity = `x${props.item.quantity}`;
   const cart = useSelector((state) => state.map.cart);
-  // const description_map_s_bought = ""; //lookUpDescriptions();
 
   function lookUpDescriptions() {
     // Return descirption + color + quantity
+    // To Do: Search actual product for product ID's and return the description. (when we get more products)
     let description_list = [];
     try {
       for (const item of cart) {
