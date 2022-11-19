@@ -58,11 +58,11 @@ const Map = (props) => {
         center={props.center}
         zoom={props.zoom}
         scrollWheelZoom={false}
-        // 24 x 36
         minZoom={process.env.MIN_MAP_ZOOM}
         maxZoom={process.env.MAX_MAP_ZOOM}
         maxBounds={bounds}
         maxBoundsViscosity={1.0}
+        // 24 x 36
         style={props.style}
       >
         <TileLayer
