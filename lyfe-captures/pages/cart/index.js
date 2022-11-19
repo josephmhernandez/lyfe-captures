@@ -11,10 +11,13 @@ function CartPage() {
   const [checkout, setCheckout] = useState(false);
   const [receipt, setReceipt] = useState();
   const [checkNoItems, setCheckNoItems] = useState(false);
+  const [loading, setLoading] = useState(false); 
   useEffect(() => {
+    setLoading(true); 
     setCheckNoItems(false);
     commerce.cart.retrieve().then((res) => {
       setCart(res);
+      setLoading(false);
     });
   }, [receipt, checkNoItems]);
 
@@ -23,6 +26,8 @@ function CartPage() {
   };
 
   let cartHasItems = cart.total_items > 0;
+
+  if (loading) return <p> loading... </p>
 
   return (
     <div>
