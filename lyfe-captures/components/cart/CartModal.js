@@ -23,10 +23,11 @@ const CartModal = (props) => {
   // Edit temproary Cart before we update the cart in the redux store.
   const [tempCart, setTempCart] = useState(cart);
   const router = useRouter();
-
+  const [loading, setLoading] = useState(false);
   const itemsInCart = cart.length > 0;
 
   const handleGoToCheckout = async () => {
+    setLoading(true); 
     // We want this to call redux cart. Only method to call dispatch
     // Update Cart in commerce & update redux cart
     let cartDict = {};
@@ -65,6 +66,7 @@ const CartModal = (props) => {
     dispatch(mapActions.updateCart({ cart: tCart }));
     // Go to checkout
     props.handleCloseCart(false);
+    setLoading(false); 
   };
 
   // const handleEmptyCart = async () => {
@@ -138,10 +140,13 @@ const CartModal = (props) => {
   };
 
   useEffect(() => {
+
     total_price = getTotalPrice(tempCart);
   }, [tempCart]);
 
   let total_price = getTotalPrice(tempCart);
+
+  if (loading) return <p> loading... </p> 
   return (
     <React.Fragment>
       {!itemsInCart && <p>no items :(</p>}
@@ -172,7 +177,7 @@ const CartModal = (props) => {
           </div>
           <div className={classes.cartFooterButtons}>
             <button onClick={handleGoToCheckout} className="ui green button">
-              Update Cart & Checkout
+              Update Cart
             </button>
             {/* <button onClick={handleEmptyCart} className="ui red button">
               Empty Cart

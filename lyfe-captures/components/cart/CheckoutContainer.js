@@ -26,8 +26,9 @@ const CheckoutContainer = (props) => {
   const [noDiscountCode, setNoDiscountCode] = useState();
   const [invalidDiscountCode, setInvalidDiscountCode] = useState();
   const [showEditCart, setShowEditCart] = useState(false);
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
+    setLoading(true);
     /* *** Getting Checkout Token - Set Live Object in State *** */
     let cartId = props.cart.id;
     commerce.checkout
@@ -35,11 +36,12 @@ const CheckoutContainer = (props) => {
       .then((res) => {
         setTokenId(res.id);
         setLiveObject(res);
+        setLoading(false);
       })
       .catch((err) => {
         // better handlinging .. .
         // props.setCheckout(false);
-        // Handle this on certain status code to do this. I think it is 422 is what we want. 
+        // Handle this on certain status code to do this. I think it is 422 is what we want.
         props.checkEmpty(true);
         console.log(err);
       });
@@ -125,6 +127,7 @@ const CheckoutContainer = (props) => {
     }
   };
 
+  // if (loading) return <p> loading...</p>
   return (
     <React.Fragment>
       <Grid columns={2} centered padded>
@@ -156,7 +159,6 @@ const CheckoutContainer = (props) => {
               <Header textAlign="center" size="huge">
                 Current Cart
               </Header>
-
               <Header textAlign="center">
                 <div className={classes.editCart}>
                   <a
@@ -168,14 +170,19 @@ const CheckoutContainer = (props) => {
                   </a>
                 </div>
               </Header>
-              {liveObject &&
-                liveObject.line_items.map((item) => (
-                  <Container className="item-data-container" key={item.id}>
-                    <CheckoutItems item={item} />
-                  </Container>
-                ))}
+              {loading ? (
+                <p> loading...</p>
+              ) : (
+                <div>
+                  {liveObject &&
+                    liveObject.line_items.map((item) => (
+                      <Container className="item-data-container" key={item.id}>
+                        <CheckoutItems item={item} />
+                      </Container>
+                    ))}
+                </div>
+              )}
               <Divider horizontal>Shipping Options</Divider>
-
               <Dropdown
                 placeholder="Select Shipping Method"
                 fluid
@@ -184,9 +191,11 @@ const CheckoutContainer = (props) => {
                 onChange={handleDropDownShipping}
                 options={shippingOptions || []}
               />
-
-              {!shipOption && <p className={classes.errorMsg}>"Select Country" in Customer Info for Shipping Options</p>}
-              
+              {!shipOption && (
+                <p className={classes.errorMsg}>
+                  "Select Country" in Customer Info for Shipping Options
+                </p>
+              )}
               {/* TO DO: implement discount code */}
               {/* <Divider horizontal>Discount Code</Divider>
 
@@ -197,7 +206,6 @@ const CheckoutContainer = (props) => {
               {/* {noDiscountCode && <p>No Discount Code Entered</p>}
               {invalidDiscountCode && <p>Invalid Code!</p>} */}
               <Divider horizontal>Cart Totals</Divider>
-
               {liveObject && (
                 <>
                   {shipOption && (

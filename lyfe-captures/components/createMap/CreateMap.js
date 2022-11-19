@@ -11,7 +11,9 @@ import {
   MATERIAL_OPTION,
 } from "./MapFolder/MapConstants";
 import { mapActions } from "../../store/map-slice";
-
+import loader from '../ui/Loader'
+// import "../../styles/nprogress.css";
+import NextNProgress from 'nextjs-progressbar'; 
 import { AddToCartButton, BuyNowButton } from "../ui/CustomButtons";
 import { useRouter } from "next/router";
 import Commerce from "@chec/commerce.js";
@@ -28,6 +30,7 @@ const CreateMap = (props) => {
   const zoom = useSelector((state) => state.map.zoom);
   const router = useRouter();
   const color = useSelector((state) => state.map.color);
+  const [loading, setLoading] = useState(false);
   const sizeOption = SIZE_OPTION;
 
   const optionObj = MapConstants.poster_size[SIZE_OPTION];
@@ -101,9 +104,10 @@ const CreateMap = (props) => {
         });
       }
     }
-  }, [orientation, defaultCenter, addLngLat, primaryText, secondaryText]);
+  }, [orientation, defaultCenter, addLngLat, primaryText, secondaryText, loading]);
 
   const handleAddToCart = async (event) => {
+    setLoading(true);
     let productName = "Personalized Map";
 
     event.preventDefault();
@@ -123,11 +127,16 @@ const CreateMap = (props) => {
       })
     );
     router.push("/cart");
+    setLoading(false);
   };
 
   const MapWithNoSSR = dynamic(() => import("./MapFolder/Map"), {
     ssr: false,
   });
+
+  if(loading) {
+    return <NextNProgress />;
+  }
 
   return (
     <div className={classes.container}>

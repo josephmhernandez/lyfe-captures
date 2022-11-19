@@ -52,7 +52,6 @@ export async function updateQuantityById(itemId, prodQty) {
 }
 
 export async function getCart() {
-  console.log('error getting cart'); 
   let cart = commerce.cart.retrieve().catch((err) => {
     console.log('error getting cart'); 
     console.log(err);
