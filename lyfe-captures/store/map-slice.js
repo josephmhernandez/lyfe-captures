@@ -2,6 +2,7 @@ import { createSlice, current } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 // import L from 'leaflet';
 import { getPrice } from "../components/cart/cartFunctionality";
+
 const mapSlice = createSlice({
   name: "map",
   initialState: {
@@ -10,7 +11,7 @@ const mapSlice = createSlice({
     location: process.env.MAP_LOCATION,
     lngLat: [process.env.MAP_LOCATION_LAT, process.env.MAP_LOCATION_LNG],
     orientation: "portrait",
-    color: "",
+    tileLayer: "",
     textPrimary: "",
     textSecondary: "",
     textCoordinates: "",
@@ -81,6 +82,14 @@ const mapSlice = createSlice({
 
       // Search place_id and get coordinates
       state.location = action.place_id;
+    },
+    setTileLayer: (state, action) => {
+      let tileLayer = action.payload.tileLayer;
+      console.log(tileLayer); 
+      return {
+        ...state,
+        tileLayer: tileLayer,
+      }
     },
     setTextPrimary: (state, action) => {
       if (action.payload.length > process.env.MAX_CHARS_PRIMARY) {

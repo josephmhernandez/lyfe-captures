@@ -20,10 +20,19 @@ export const MapConstants = {
   },
 };
 
+// Background color for the map first. ColorIconPathMap
+export const MapStyleDict = {
+  "white-transit": {
+    id: "white-transit",
+    iconImg: "/whiteBlackSquareIcon.svg",
+    url: "t-white-url",
+  },
+  "black-transit": {
+    id: "black-transit",
+    iconImg: "/blackWhiteSquareIcon.svg",
+    url: "t-black-url",
+  },
 
-export const ColorIconPathMap = {
-  "white-black": "/whiteBlackSquareIcon.svg",
-  "black-white": "/blackWhiteSquareIcon.svg",
 }
 
 export const SIZE_OPTION = "_24_36";

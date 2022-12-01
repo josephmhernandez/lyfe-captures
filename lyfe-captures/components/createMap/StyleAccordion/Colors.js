@@ -1,34 +1,39 @@
 import React, { Fragment } from "react";
 import Image from "next/image";
 import { ActionIcon, Radio } from "@mantine/core";
-import classes from './Colors.module.css';
-import {ColorIconPathMap} from '../MapFolder/MapConstants';
+import classes from "./Colors.module.css";
+import { MapStyleDict } from "../MapFolder/MapConstants";
+import { useDispatch } from "react-redux";
+import { mapActions } from "../../../store/map-slice";
 const Colors = () => {
-  const [color, setColor] = React.useState("white-black"); // default color
+  const dispatch = useDispatch();
   const iconSize = 50;
 
-  const iconPathMap = ColorIconPathMap;
+  const colorChange = (event) => {
+    //dispatch to change map style
+    let color = event.target.attributes.value; 
+    dispatch(mapActions.setTileLayer({tileLayer: color.value})); 
+  };
 
-  const colorStyles = ["white-black", "black-white"];
-
-  const colorChange = (event) => {};
-
+  let MapStyleList = [];
+  for (var key in MapStyleDict) {
+    MapStyleList.push(MapStyleDict[key]);
+  }
   return (
     <div className={classes.container}>
-      {colorStyles.map((color) => {
+      {MapStyleList.map((style) => {
         return (
-          <ActionIcon key={color} onClick={colorChange} size={iconSize} value={color}>
+          <ActionIcon title={style.id} key={style.iconImg} onClick={colorChange} size={iconSize} value={style.id}>
               <Image
-                src={iconPathMap[color]}
+                src={style.iconImg}
                 layout='fill'
-                v={color}
+                value={style.id}
               />
           </ActionIcon>
         );
       })}
     </div>
   );
-
 };
 
 export default Colors;

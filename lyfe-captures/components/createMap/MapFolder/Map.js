@@ -15,6 +15,8 @@ import MapPins from "./MapPins";
 import { useEffect, useMemo } from "react";
 import { mapActions } from "../../../store/map-slice";
 
+
+
 const MapFunctionality = () => {
   const dispatch = useDispatch();
   const bbox = useSelector((state) => state.map.bbox);
@@ -51,7 +53,14 @@ const MapFunctionality = () => {
 };
 
 const Map = (props) => {
+  const tileLayer = useSelector((state) => state.map.tileLayer);
   let bounds = new L.LatLngBounds(new L.LatLng(-89.98155760646617, -180), new L.LatLng(89.99346179538875, 180));
+  let url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+  // Map from tileLayer to api url. (open map tiles) 
+  if(tileLayer == "OpenStreetMap"){
+    
+  }
+  
   return (
     <div>
       <MapContainer
