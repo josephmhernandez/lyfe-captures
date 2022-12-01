@@ -25,15 +25,16 @@ export const MapStyleDict = {
   "white-transit": {
     id: "white-transit",
     iconImg: "/whiteBlackSquareIcon.svg",
-    url: "t-white-url",
+    url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
   },
   "black-transit": {
     id: "black-transit",
     iconImg: "/blackWhiteSquareIcon.svg",
-    url: "t-black-url",
+    url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
   },
 
 }
 
 export const SIZE_OPTION = "_24_36";
 export const MATERIAL_OPTION = "POSTER"; 
+export const DEFAULT_TILE_LAYER = "white-transit";
