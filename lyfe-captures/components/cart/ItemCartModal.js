@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./CartModal.module.css";
-import { MapStyleDict } from "../createMap/MapFolder/MapConstants";
+import { MapStyleDict, DEFAULT_TILE_LAYER } from "../createMap/MapFolder/MapConstants";
 
 const ItemCartModal = (props) => {
   let total_price = props.item.quantity * props.item.unitPrice;
@@ -16,13 +16,22 @@ const ItemCartModal = (props) => {
     errorMessage = "If you you need to order more than " + process.env.CART_ITEM_MAX_QUANTITY + " email us at " + process.env.EMAIL_SUPPORT; 
   }
 
+  // Need to get the specific map style 
+  console.log('props', props);
+  const tileLayer = props.item.tileLayer;
+  let iconImagePath = MapStyleDict[tileLayer].iconImg;
+  if(iconImagePath === undefined) {
+    console.log('cannot find image icon for tileLayer: ', tileLayer);
+    iconImagePath = MapStyleDict[DEFAULT_TILE_LAYER].iconImg;
+  }
+
   return (
     <React.Fragment>
       <div className={classes.itemBlock}>
         {/* picture, description, qunatity Price*/}
         <div className={classes.itemBlockDescription}>
           {/* to do load this based on color available.  */}
-          <img src={MapStyleDict["white-transit"].iconImg} />
+          <img src={iconImagePath} />
           <p>{props.item.description}</p>
         </div>
         <div className={classes.itemBlockQuantity}>
