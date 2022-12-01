@@ -9,13 +9,14 @@ import {
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-
+import { MapStyleDict, DEFAULT_TILE_LAYER } from "../MapFolder/MapConstants";
 import { useDispatch, useSelector } from "react-redux";
 import MapPins from "./MapPins";
 import { useEffect, useMemo } from "react";
 import { mapActions } from "../../../store/map-slice";
+import { ExpandCircleDown } from "@mui/icons-material";
 
-const MapFunctionality = () => {
+const MapFunctionality = () =>   {
   const dispatch = useDispatch();
   const bbox = useSelector((state) => state.map.bbox);
   const map = useMapEvents({
@@ -51,7 +52,23 @@ const MapFunctionality = () => {
 };
 
 const Map = (props) => {
-  let bounds = new L.LatLngBounds(new L.LatLng(-89.98155760646617, -180), new L.LatLng(89.99346179538875, 180));
+  const tileLayer = useSelector((state) => state.map.tileLayer);
+  let bounds = new L.LatLngBounds(
+    new L.LatLng(-89.98155760646617, -180),
+    new L.LatLng(89.99346179538875, 180)
+  );
+
+
+  let url = "";
+  // Map from tileLayer to api url. (open map tiles)
+  if (tileLayer in MapStyleDict) {
+    url = MapStyleDict[tileLayer].url;
+  }
+  else {
+    console.log("Error: " + tileLayer + " not found in MapStyleDict");
+    url = MapStyleDict[DEFAULT_TILE_LAYER].url;
+  }
+
   return (
     <div>
       <MapContainer
@@ -66,7 +83,7 @@ const Map = (props) => {
         style={props.style}
       >
         <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url={url}
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
         <MapPins />

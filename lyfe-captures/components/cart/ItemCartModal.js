@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./CartModal.module.css";
-import { ColorIconPathMap } from "../createMap/MapFolder/MapConstants";
+import { MapStyleDict } from "../createMap/MapFolder/MapConstants";
 
 const ItemCartModal = (props) => {
   let total_price = props.item.quantity * props.item.unitPrice;
@@ -22,7 +22,7 @@ const ItemCartModal = (props) => {
         {/* picture, description, qunatity Price*/}
         <div className={classes.itemBlockDescription}>
           {/* to do load this based on color available.  */}
-          <img src={ColorIconPathMap["white-black"]} />
+          <img src={MapStyleDict["white-transit"].iconImg} />
           <p>{props.item.description}</p>
         </div>
         <div className={classes.itemBlockQuantity}>
