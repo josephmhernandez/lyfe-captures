@@ -11,7 +11,7 @@ const mapSlice = createSlice({
     location: process.env.MAP_LOCATION,
     lngLat: [process.env.MAP_LOCATION_LAT, process.env.MAP_LOCATION_LNG],
     orientation: "portrait",
-    tileLayer: "",
+    tileLayer: "white-transit",
     textPrimary: "",
     textSecondary: "",
     textCoordinates: "",

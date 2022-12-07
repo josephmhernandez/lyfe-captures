@@ -5,7 +5,7 @@ import { useForm, Controller } from "react-hook-form";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import qs from "qs";
 import { useRouter } from "next/router";
-
+import { useSelector } from "react-redux";
 // Import Selections
 import { monthOptions, yearOptions } from "../../utils/cardOptions";
 import { stateOptions } from "../../utils/stateOptions";
@@ -14,6 +14,8 @@ import { mexico } from "../../utils/North America/mexico";
 import { countries } from "../../utils/Countries";
 
 const CheckoutForm = (props) => {
+  const map_specifcations_cart = useSelector((state) => state.map.cart);
+
   const commerce = new Commerce(process.env.CHEC_PK);
   const {
     register,
@@ -110,6 +112,11 @@ const CheckoutForm = (props) => {
     console.log('processing...');
     let final = {};
 
+
+    final.extra_fields = {
+      "extr_bO6J5aM925EjpK": JSON.stringify(map_specifcations_cart),
+    }
+
     final.line_items = lineItems;
 
     final.fulfillment = {
@@ -174,6 +181,7 @@ const CheckoutForm = (props) => {
                 console.log(res, "res from CAPTURING CHECKOUT!!!");
                 props.setReceipt(res);
                 localStorage.removeItem("cart-id");
+                // Remove local storage carts things.... Need cart_react_id. 
                 router.replace(`/order-complete/${props.tokenId}/${res.id}`);
                 setProcessing(false);
               })
