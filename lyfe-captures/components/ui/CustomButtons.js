@@ -54,3 +54,21 @@ export const BuyNowButton = styled(Button)({
     boxShadow: "none",
   },
 });
+
+export const CreateNowButton = styled(Button)({
+  boxShadow: "none",
+  textTransform: "none",
+  fontSize: 24,
+  padding: "6px 12px",
+  border: "1px solid",
+  lineHeight: 2.5,
+  backgroundColor: "var(--purple-dark-color)",
+  borderColor: "var(--purple-dark-color)",
+  fontFamily: "var(--font-family-primary)",
+  color: "white",
+  "&:hover": {
+    backgroundColor: "var(--purple-light-color)",
+    borderColor: "var(--purple-dark-color)",
+    boxShadow: "none",
+  },
+}); 
