@@ -13,9 +13,9 @@ const Footer = () => {
             <span>
               <Image src="/amex.svg" alt="amex" width={50} height={50} />
             </span>
-            <span>
+            {/* <span>
               <Image src="/paypal.svg" alt="paypal" width={50} height={50} />
-            </span>
+            </span> */}
             <span>
               <Image src="/visa.svg" alt="visa" width={50} height={50} />
             </span>
@@ -34,15 +34,15 @@ const Footer = () => {
           <span>
             <Link href="/faqs">Questions</Link>
           </span>
-          <span>
+          {/* <span>
             <Link href="/delivery">Delivery/Returns</Link>
-          </span>
-          <span>
+          </span> */}
+          {/* <span>
             <Link href="/privacy-policy">Privacy Policy</Link>
-          </span>
-          <span>
+          </span> */}
+          {/* <span>
             <Link href="/terms-of-service">Terms of Service</Link>
-          </span>
+          </span> */}
         </div>
         <div>
           <h2>Contact Us</h2>
