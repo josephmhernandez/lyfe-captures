@@ -1,4 +1,4 @@
-const DUMMY_PROMO_TEXT = "Fall deal get 15% off Custom Maps + FREE shipping";
+const DUMMY_PROMO_TEXT = "Winter Sale - Get 10% off at checkout!";
 import classes from "./PromoBanner.module.css";
 
 const PromoBanner = () => {
