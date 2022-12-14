@@ -4,12 +4,11 @@ import cartPic from "../../public/cart-icon-small.png";
 import classes from "./NavigationBar.module.css";
 
 const NavigationBar = (props) => {
-  const DUMMY_TEXT = "UP TO 30% OFF CUSTOM MAP PRINTS WITH CODE 'SUMMER'";
   return (
     <div>
       <nav className={classes.grid}>
         <div className={classes.logo}>
-          <Link href="/">LyfeCaptures</Link>
+          <Link href="/">MapYourMemory</Link>
         </div>
         <div className={classes.navbar}>
           <ul>

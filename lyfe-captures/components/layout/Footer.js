@@ -6,8 +6,8 @@ const Footer = () => {
     <footer className={classes.container}>
       <div className={classes.grid}>
         <div className={classes.centerElements}>
-          <h3>LyfeCaptures</h3>
-          <p>2022, LyfeCaptures</p>
+          <h3>MapYourMemory</h3>
+          <p>2022, LyfeCaptures LLC</p>
 
           <div className={classes.iconsPaymentMethod}>
             <span>

@@ -6,7 +6,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-columns: 2fr 3fr 2fr;
   grid-gap: 0px;
   justify-content: center;
   align-content: center;
@@ -21,7 +21,7 @@
   float: left;
   color: #8657c7;
   font-family: "Great-Vibes";
-  font-size: 4rem;
+  font-size:4rem;
   padding-left: 3%;
 }
 
