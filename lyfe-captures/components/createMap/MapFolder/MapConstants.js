@@ -1,13 +1,13 @@
 // Map constant for mapping sizes
 
-// Stick to rules: 5 inches of space for lettering. 1/2 inch margins around map. 
+// Stick to rules: 5 inches of space for lettering. 1/2 inch margins around map.
 export const MapConstants = {
   poster_size: {
     _24_36: {
       variant_size: "24 x 36 IN.",
       full_width: 24,
       full_height: 36,
-      poster_multiplier: 16,
+      poster_multiplier: 23,
       portrait: {
         map_width: 23,
         map_height: 31,
@@ -32,9 +32,8 @@ export const MapStyleDict = {
     iconImg: "/blackWhiteSquareIcon.svg",
     url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
   },
-
-}
+};
 
 export const SIZE_OPTION = "_24_36";
-export const MATERIAL_OPTION = "POSTER"; 
+export const MATERIAL_OPTION = "POSTER";
 export const DEFAULT_TILE_LAYER = "white-transit";
