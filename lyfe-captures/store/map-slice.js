@@ -2,6 +2,7 @@ import { createSlice, current } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 // import L from 'leaflet';
 import { getPrice } from "../components/cart/cartFunctionality";
+import { MapConstants } from "../components/createMap/MapFolder/MapConstants";
 
 const mapSlice = createSlice({
   name: "map",
@@ -17,6 +18,7 @@ const mapSlice = createSlice({
     textCoordinates: "",
     addLngLat: false,
     size: "_24_36",
+    styling: "basic",
     zoom: process.env.MAP_ZOOM,
     cart: [],
     bbox: [],
@@ -85,11 +87,11 @@ const mapSlice = createSlice({
     },
     setTileLayer: (state, action) => {
       let tileLayer = action.payload.tileLayer;
-      console.log(tileLayer); 
+      console.log(tileLayer);
       return {
         ...state,
         tileLayer: tileLayer,
-      }
+      };
     },
     setTextPrimary: (state, action) => {
       if (action.payload.length > process.env.MAX_CHARS_PRIMARY) {
@@ -226,6 +228,8 @@ const mapSlice = createSlice({
       mapObj.textPrimary = state.textPrimary;
       mapObj.textSecondary = state.textSecondary;
       mapObj.textCoordinates = state.textCoordinates;
+      mapObj.styling = state.styling;
+      mapObj.size = state.size;
       mapObj.tileLayer = state.tileLayer;
       mapObj.bbox = state.bbox;
       mapObj.quantity = 1;
@@ -234,6 +238,7 @@ const mapSlice = createSlice({
       mapObj.name = action.payload.name; // This is the official name of the product
       mapObj.unitPrice = action.payload.unitPrice;
       mapObj.lineItemId = action.payload.lineItemId;
+
       // Make sure if coordinates are added that we recaclulate them
       if (mapObj.textCoordinates !== "") {
         if (mapContains(mapObj.bbox, mapObj.pinList[0]?.position)) {
@@ -250,7 +255,10 @@ const mapSlice = createSlice({
         }
       }
 
-      console.log(mapObj);
+      // Capture data about the map. For re-creation.
+      mapObj.styling_specs =
+        MapConstants["poster_size"][mapObj.size]["styling"][mapObj.styling];
+
       mapObj.description = getMapDescriptionText(mapObj);
 
       state.cart.push(mapObj);
@@ -273,11 +281,11 @@ const mapSlice = createSlice({
       };
     },
     updateCart: (state, action) => {
-      console.log(action.payload); 
+      console.log(action.payload);
       return {
         ...state,
         cart: action.payload.cart,
-      }
+      };
     },
   },
 });

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 import { MapConstants } from "./MapFolder/MapConstants";
 const SIZE_OPTION = "_24_36";
+const STYLING_OPTION = "basic";
 
 const CardOverlay = (props) => {
   const textPrimary = useSelector((state) => state.map.textPrimary);
@@ -18,34 +19,60 @@ const CardOverlay = (props) => {
     height: "calc(var(--card-overlay-multiplier) * var(--poster-height))",
     width: "calc(var(--card-overlay-multiplier) * var(--poster-width))",
   });
-
+  const [styling, setStyling] = useState(STYLING_OPTION);
+  const [mapSizeOption, setMapSizeOption] = useState(SIZE_OPTION);
   const padding =
-    (100 * 0.5) / MapConstants.poster_size[SIZE_OPTION].full_width;
+    (100 * 0.5) / MapConstants.poster_size[mapSizeOption].full_width;
   const stylePadding = padding.toString() + "%";
 
   const [mapPaddingStyle, setMapPaddingStyle] = useState({
     paddingTop: stylePadding,
   });
+
   const styleTextPrimary = {
-    position: "relative",
-    fontFamily: "Semplicita",
-    fontSize: "1.5rem",
-    color: "black",
-    padding: "-1.5rem",
+    fontFamily:
+      MapConstants.poster_size[mapSizeOption]["styling"][styling].primary_font,
+    fontSize:
+      MapConstants.poster_size[mapSizeOption]["styling"][styling]
+        .primary_font_size,
+    color:
+      MapConstants.poster_size[mapSizeOption]["styling"][styling]
+        .primary_font_color,
   };
-  const styleTextSecondary = {};
-  const styleTextCoordinates = {};
+  const styleTextSecondary = {
+    fontFamily:
+      MapConstants.poster_size[mapSizeOption]["styling"][styling]
+        .secondary_font,
+    fontSize:
+      MapConstants.poster_size[mapSizeOption]["styling"][styling]
+        .secondary_font_size,
+    color:
+      MapConstants.poster_size[mapSizeOption]["styling"][styling]
+        .secondary_font_color,
+  };
+
+  const styleTextCoordinates = {
+    fontFamily:
+      MapConstants.poster_size[mapSizeOption]["styling"][styling]
+        .coordinate_font,
+    fontSize:
+      MapConstants.poster_size[mapSizeOption]["styling"][styling]
+        .coordinate_font_size,
+    color:
+      MapConstants.poster_size[mapSizeOption]["styling"][styling]
+        .coordinate_font_color,
+  };
 
   useEffect(() => {
     if (orientation === "portrait") {
       // Calculate the padding (1/2 inch) between poster edge and map.
       const padding =
-        (100 * 0.5) / MapConstants.poster_size[SIZE_OPTION].full_width;
+        (100 * 0.5) / MapConstants.poster_size[mapSizeOption].full_width;
       const stylePadding = padding.toString() + "%";
       setMapPaddingStyle({ paddingTop: stylePadding });
 
       // Calculate Paper size. Portrait.
-      const optionObj = MapConstants.poster_size[SIZE_OPTION];
+      const optionObj = MapConstants.poster_size[mapSizeOption];
       const height = optionObj.full_height * optionObj.poster_multiplier;
       const width = optionObj.full_width * optionObj.poster_multiplier;
       const style = {
@@ -57,12 +84,12 @@ const CardOverlay = (props) => {
       // Landscape Mode
       // Calculate the padding difference between map to paper.  (1/2 in real life)
       const padding =
-        (100 * 0.5) / MapConstants.poster_size[SIZE_OPTION].full_height;
+        (100 * 0.5) / MapConstants.poster_size[mapSizeOption].full_height;
       const stylePadding = padding.toString() + "%";
       setMapPaddingStyle({ paddingTop: stylePadding });
 
       // Calculate the size of the landscape Paper.
-      const optionObj = MapConstants.poster_size[SIZE_OPTION];
+      const optionObj = MapConstants.poster_size[mapSizeOption];
       const height = optionObj.full_height * optionObj.poster_multiplier;
       const width = optionObj.full_width * optionObj.poster_multiplier;
       // Flip the width and height for landscape.
@@ -97,15 +124,13 @@ const CardOverlay = (props) => {
       <div style={mapPaddingStyle}>{props.children}</div>
       <div className={classes.textMap}>
         {showTextPrimary && (
-          <Typography className={classes.textPrimary}>{textPrimary}</Typography>
+          <Typography style={styleTextPrimary}>{textPrimary}</Typography>
         )}
         {showTextSecondary && (
-          <Typography className={classes.textSecondary}>
-            {textSecondary}
-          </Typography>
+          <Typography style={styleTextSecondary}>{textSecondary}</Typography>
         )}
         {showTextCoordinates && (
-          <Typography className={classes.textCoordinates}>
+          <Typography style={styleTextCoordinates}>
             {textCoordinates}
           </Typography>
         )}

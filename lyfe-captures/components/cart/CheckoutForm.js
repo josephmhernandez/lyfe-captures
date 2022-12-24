@@ -14,6 +14,7 @@ import { mexico } from "../../utils/North America/mexico";
 import { countries } from "../../utils/Countries";
 
 const CheckoutForm = (props) => {
+  // Map specifications that are passed to the extra field to be published to commercejs
   const map_specifcations_cart = useSelector((state) => state.map.cart);
 
   const commerce = new Commerce(process.env.CHEC_PK);
@@ -109,13 +110,12 @@ const CheckoutForm = (props) => {
     console.log("made it to onSubmit");
     console.log(data, "data from checkout form");
     setProcessing(true);
-    console.log('processing...');
+    console.log("processing...");
     let final = {};
 
-
     final.extra_fields = {
-      "extr_bO6J5aM925EjpK": JSON.stringify(map_specifcations_cart),
-    }
+      extr_bO6J5aM925EjpK: JSON.stringify(map_specifcations_cart),
+    };
 
     final.line_items = lineItems;
 
@@ -147,10 +147,9 @@ const CheckoutForm = (props) => {
         postal_zip_code: data.billing_postal_zip_code,
         country: data.billing_country,
       };
-    }
-    else {
-      // Billing and shipping addresses are the same. 
-      final.billing = {...final.shipping}
+    } else {
+      // Billing and shipping addresses are the same.
+      final.billing = { ...final.shipping };
     }
 
     if (data.gateway === "stripe") {
@@ -181,7 +180,7 @@ const CheckoutForm = (props) => {
                 console.log(res, "res from CAPTURING CHECKOUT!!!");
                 props.setReceipt(res);
                 localStorage.removeItem("cart-id");
-                // Remove local storage carts things.... Need cart_react_id. 
+                // Remove local storage carts things.... Need cart_react_id.
                 router.replace(`/order-complete/${props.tokenId}/${res.id}`);
                 setProcessing(false);
               })
@@ -209,25 +208,23 @@ const CheckoutForm = (props) => {
         },
       };
 
-
-
       if (props.shipOption) {
-        console.log('checking out in test-gateway', final);
+        console.log("checking out in test-gateway", final);
 
         commerce.checkout
           .capture(props.tokenId, final)
           .then((res) => {
             console.log(res, "res from CAPTURING CHECKOUT!!!");
             props.setReceipt(res);
-            // Remove cart from cache... 
+            // Remove cart from cache...
             // To Do: put other stuff in cache earlier and remove it here.
             localStorage.removeItem("cart-id");
             router.replace(`/order-complete/${props.tokenId}/${res.id}`);
             setProcessing(false);
           })
           .catch((err) => {
-            console.log(err); 
-            console.log('here....');
+            console.log(err);
+            console.log("here....");
             window.alert(err?.data?.error?.message);
             setProcessing(false);
           });
@@ -415,10 +412,10 @@ const CheckoutForm = (props) => {
           name="gateway"
           type="radio"
           value="stripe"
-          checked={getValues("gateway") === 'stripe'}
+          checked={getValues("gateway") === "stripe"}
           {...register("gateway", { required: "Please select Payment Type" })}
           onChange={(e) => {
-            console.log('target', e.target.value);
+            console.log("target", e.target.value);
             setValue("gateway", e.target.value);
             reset((formValues) => ({
               ...formValues,
@@ -433,7 +430,7 @@ const CheckoutForm = (props) => {
           name="gateway"
           type="radio"
           value="test_gateway"
-          checked={getValues("gateway") === 'test_gateway'}
+          checked={getValues("gateway") === "test_gateway"}
           {...register("gateway", { required: "Please select Payment Type" })}
           onChange={(e) => {
             setValue("gateway", e.target.value);
@@ -447,8 +444,8 @@ const CheckoutForm = (props) => {
               // county_state: "TX",
               postal_zip_code: "76034",
               // country: "US",
-              expiry_year: '23', 
-              expiry_month: '01',
+              expiry_year: "23",
+              expiry_month: "01",
               number: 4242424242424242,
               cvc: 123,
               postal_billing_zip_code: 90210,
@@ -458,7 +455,7 @@ const CheckoutForm = (props) => {
         <label htmlFor="test_gateway">Test Gateway</label>
       </Form.Group>
       {errors?.gateway && (
-        <Label className="payment-type-error" basic color='red' pointing>
+        <Label className="payment-type-error" basic color="red" pointing>
           {errors?.gateway.message}
         </Label>
       )}
@@ -707,7 +704,7 @@ const CheckoutForm = (props) => {
         </>
       )}
 
-      <Form.Button type='submit' color="green" size="huge">
+      <Form.Button type="submit" color="green" size="huge">
         Complete Checkout and Pay
       </Form.Button>
     </Form>
