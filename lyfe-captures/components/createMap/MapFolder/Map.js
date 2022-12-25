@@ -16,7 +16,7 @@ import { useEffect, useMemo } from "react";
 import { mapActions } from "../../../store/map-slice";
 import { ExpandCircleDown } from "@mui/icons-material";
 
-const MapFunctionality = () =>   {
+const MapFunctionality = () => {
   const dispatch = useDispatch();
   const bbox = useSelector((state) => state.map.bbox);
   const map = useMapEvents({
@@ -51,6 +51,35 @@ const MapFunctionality = () =>   {
   return null;
 };
 
+const MapTileLayer = (props) => {
+  const map = useMap();
+  const tileLayer = useSelector((state) => state.map.tileLayer);
+  // let bounds = new L.LatLngBounds(
+  //   new L.LatLng(-89.98155760646617 / 2, -180 / 2),
+  //   new L.LatLng(89.99346179538875 / 2, 180 / 2)
+  // );
+
+  console.log(map.getBounds());
+
+  let url = "";
+  // Map from tileLayer to api url. (open map tiles)
+  if (tileLayer in MapStyleDict) {
+    url = MapStyleDict[tileLayer].url;
+  } else {
+    console.log("Error: " + tileLayer + " not found in MapStyleDict");
+    url = MapStyleDict[DEFAULT_TILE_LAYER].url;
+  }
+
+  return (
+    <TileLayer
+      tileSize={128}
+      url={url}
+      zoomOffset={1}
+      attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    />
+  );
+};
+
 const Map = (props) => {
   const tileLayer = useSelector((state) => state.map.tileLayer);
   let bounds = new L.LatLngBounds(
@@ -58,13 +87,11 @@ const Map = (props) => {
     new L.LatLng(89.99346179538875, 180)
   );
 
-
   let url = "";
   // Map from tileLayer to api url. (open map tiles)
   if (tileLayer in MapStyleDict) {
     url = MapStyleDict[tileLayer].url;
-  }
-  else {
+  } else {
     console.log("Error: " + tileLayer + " not found in MapStyleDict");
     url = MapStyleDict[DEFAULT_TILE_LAYER].url;
   }
@@ -80,12 +107,10 @@ const Map = (props) => {
         maxBounds={bounds}
         maxBoundsViscosity={1.0}
         // 24 x 36
+
         style={props.style}
       >
-        <TileLayer
-          url={url}
-          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        />
+        <MapTileLayer />
         <MapPins />
         <MapFunctionality />
       </MapContainer>

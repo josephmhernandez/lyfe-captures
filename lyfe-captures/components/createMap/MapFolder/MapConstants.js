@@ -46,7 +46,7 @@ export const MapStyleDict = {
   "white-transit": {
     id: "white-transit",
     iconImg: "/whiteBlackSquareIcon.svg",
-    url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+    url: "https://api.maptiler.com/maps/voyager/{z}/{x}/{y}.png?key=PmIF6Ez34ROeDo7jJGuD#",
   },
   "black-transit": {
     id: "black-transit",
