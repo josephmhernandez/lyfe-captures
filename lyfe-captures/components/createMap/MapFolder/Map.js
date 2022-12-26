@@ -9,7 +9,11 @@ import {
 import "leaflet/dist/leaflet.css";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
 import "leaflet-defaulticon-compatibility";
-import { MapStyleDict, DEFAULT_TILE_LAYER } from "../MapFolder/MapConstants";
+import {
+  MapStyleDict,
+  DEFAULT_TILE_LAYER,
+  MapConstants,
+} from "../MapFolder/MapConstants";
 import { useDispatch, useSelector } from "react-redux";
 import MapPins from "./MapPins";
 import { useEffect, useMemo } from "react";
@@ -52,14 +56,10 @@ const MapFunctionality = () => {
 };
 
 const MapTileLayer = (props) => {
-  const map = useMap();
   const tileLayer = useSelector((state) => state.map.tileLayer);
-  // let bounds = new L.LatLngBounds(
-  //   new L.LatLng(-89.98155760646617 / 2, -180 / 2),
-  //   new L.LatLng(89.99346179538875 / 2, 180 / 2)
-  // );
+  const tileZoomOffset = useSelector((state) => state.map.tileZoomOffset);
 
-  console.log(map.getBounds());
+  let tileSize = 256 / (2 * tileZoomOffset);
 
   let url = "";
   // Map from tileLayer to api url. (open map tiles)
@@ -72,9 +72,9 @@ const MapTileLayer = (props) => {
 
   return (
     <TileLayer
-      tileSize={128}
+      tileSize={tileSize}
       url={url}
-      zoomOffset={1}
+      zoomOffset={Number(tileZoomOffset)}
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     />
   );

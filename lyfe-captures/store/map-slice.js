@@ -20,6 +20,7 @@ const mapSlice = createSlice({
     size: "_24_36",
     styling: "basic",
     zoom: process.env.MAP_ZOOM,
+    tileZoomOffset: process.env.TILE_ZOOM_OFFSET,
     cart: [],
     bbox: [],
   },
@@ -232,6 +233,7 @@ const mapSlice = createSlice({
       mapObj.size = state.size;
       mapObj.tileLayer = state.tileLayer;
       mapObj.bbox = state.bbox;
+      mapObj.tileZoomOffset = state.tileZoomOffset;
       mapObj.quantity = 1;
       mapObj.description = "";
       mapObj.id = uuid();
