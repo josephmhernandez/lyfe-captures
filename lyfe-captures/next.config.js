@@ -28,6 +28,7 @@ module.exports = {
     MAP_LOCATION: process.env.MAP_LOCATION,
     MAX_MAP_ZOOM: process.env.MAX_MAP_ZOOM,
     MIN_MAP_ZOOM: process.env.MIN_MAP_ZOOM,
+    TILE_ZOOM_OFFSET: process.env.TILE_ZOOM_OFFSET,
 
     CART_ITEM_MAX_QUANTITY: process.env.CART_ITEM_MAX_QUANTITY,
     EMAIL_SUPPORT: process.env.EMAIL_SUPPORT,
