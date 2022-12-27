@@ -67,14 +67,14 @@ const MapTileLayer = (props) => {
     url = MapStyleDict[tileLayer].url;
   } else {
     console.log("Error: " + tileLayer + " not found in MapStyleDict");
-    url = MapStyleDict[DEFAULT_TILE_LAYER].url;
+    url = MapStyleDict["black-transit"].url;
   }
 
   return (
     <TileLayer
-      tileSize={tileSize}
+      // tileSize={tileSize}
       url={url}
-      zoomOffset={Number(tileZoomOffset)}
+      // zoomOffset={Number(tileZoomOffset)}
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     />
   );
