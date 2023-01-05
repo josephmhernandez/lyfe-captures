@@ -35,7 +35,13 @@ export const MapConstants = {
           coordinate_font: "Semplicita",
           coordinate_font_color: "#000000",
           // coordinate_text_block: x, //writen out in pixels through browswer inspector. (helps with printing process. Nothing on front end)
-        }, // 103/3 =
+          borders: [
+            {
+              border_inches: 0.5,
+              color: "#FFFFFF",
+            },
+          ],
+        },
       },
     },
   },

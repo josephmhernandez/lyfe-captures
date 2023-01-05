@@ -261,6 +261,39 @@ const mapSlice = createSlice({
       mapObj.styling_specs =
         MapConstants["poster_size"][mapObj.size]["styling"][mapObj.styling];
 
+      // TO DO: Test this :)
+      if (
+        mapObj.textPrimary != "" ||
+        mapObj.textSecondary != "" ||
+        mapObj.textCoordinates != ""
+      ) {
+        // has text
+        mapObj.mapDimensionsIn = {
+          ...MapConstants["poster_size"][mapObj.size][state.orientation],
+          map_pixel_multiplier:
+            MapConstants["poster_size"][mapObj.size]["poster_multiplier"],
+        };
+      } else {
+        if (mapObj.orientation === "landscape") {
+          console.log("landscape no text");
+          mapObj.mapDimensionsIn = {
+            map_width: MapConstants["poster_size"][mapObj.size].full_height - 1,
+            map_height: MapConstants["poster_size"][mapObj.size].full_width - 1,
+            map_pixel_multiplier:
+              MapConstants["poster_size"][mapObj.size]["poster_multiplier"],
+          };
+        } else {
+          console.log("portrait no text");
+          mapObj.mapDimensionsIn = {
+            map_width: MapConstants["poster_size"][mapObj.size].full_width - 1,
+            map_height:
+              MapConstants["poster_size"][mapObj.size].full_height - 1,
+            map_pixel_multiplier:
+              MapConstants["poster_size"][mapObj.size]["poster_multiplier"],
+          };
+        }
+      }
+
       mapObj.description = getMapDescriptionText(mapObj);
 
       state.cart.push(mapObj);
