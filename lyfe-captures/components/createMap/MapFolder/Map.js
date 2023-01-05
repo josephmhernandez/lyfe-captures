@@ -72,9 +72,9 @@ const MapTileLayer = (props) => {
 
   return (
     <TileLayer
-      // tileSize={tileSize}
+      tileSize={tileSize}
       url={url}
-      // zoomOffset={Number(tileZoomOffset)}
+      zoomOffset={Number(tileZoomOffset)}
       attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     />
   );

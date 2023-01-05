@@ -25,8 +25,6 @@ const MapPins = () => {
             style={pin.style}
             draggable={true}
             animate={true}
-            iconSize={pin.size}
-            iconAchor={(pin.size / 2, pin.size)}
           ></DraggableMarker>
         );
       })}

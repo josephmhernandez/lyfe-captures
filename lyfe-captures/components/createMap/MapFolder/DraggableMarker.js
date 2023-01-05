@@ -29,6 +29,7 @@ const DraggableMarker = ({ position, uid, draggable, style, size }) => {
 
   const myIcon = L.icon({
     iconUrl: imageLocation,
+    // Stops the icon from being moved when zoom is changed
     iconSize: [size, size],
     iconAnchor: [size / 2, size],
   });
