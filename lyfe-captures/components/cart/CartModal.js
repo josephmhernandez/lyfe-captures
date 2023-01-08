@@ -11,15 +11,19 @@ import {
   MATERIAL_OPTION,
 } from "../createMap/MapFolder/MapConstants";
 import {
-  getCart,
-  getLiveObject,
-  updateQuantityById,
+  getCartEcommerceJs,
+  getLiveObjectEcommerceJs,
+  updateQuantityByIdEcommerceJs,
+  getMapObjLocalStorage,
+  removeMapObjFromLocalStorage,
+  updateEntireMapObjLocalStorage,
+  updateMapObjLocalStorage,
 } from "./cartFunctionality";
 
 const CartModal = (props) => {
   // Display everything here and then onClose of Modal we will add the quantities that have changed.
   const dispatch = useDispatch();
-  const cart = useSelector((state) => state.map.cart);
+  let cart = getMapObjLocalStorage();
   // Edit temproary Cart before we update the cart in the redux store.
   const [tempCart, setTempCart] = useState(cart);
   const router = useRouter();
@@ -34,20 +38,23 @@ const CartModal = (props) => {
     // for product names
     // iterate through cart and add to cartDict
     const tCart = tempCart;
+    console.log("cart before update", tCart);
     for (const item of tCart) {
       if (item.quantity >= 0) {
         cartDict[item.name] = (cartDict[item.name] || 0) + item.quantity;
       }
       if (item.quantity == 0) {
         // Remove cart item
-        dispatch(mapActions.removeFromCart({ id: item.id }));
+        console.log("calling localstorage remove", item.id);
+        removeMapObjFromLocalStorage(item.id);
+        // dispatch(mapActions.removeFromCart({ id: item.id }));
       }
     }
 
     // Iterate through cart from api and get get the product name to line item map.
     // name_to_item[prod_name] = line_item_id
     let name_to_item = {};
-    let ecom_cart = await getCart();
+    let ecom_cart = await getCartEcommerceJs();
     console.log("ecom_cart", ecom_cart.line_items);
     for (const item of ecom_cart.line_items) {
       name_to_item[item.name] = item.id;
@@ -56,14 +63,23 @@ const CartModal = (props) => {
 
     // Update Cart in commerce
     for (const name in cartDict) {
-      updateQuantityById(name_to_item[name], cartDict[name]);
+      updateQuantityByIdEcommerceJs(name_to_item[name], cartDict[name]);
     }
     // Update live Object
-    let liveObject = await getLiveObject(props.token);
+    let liveObject = await getLiveObjectEcommerceJs(props.token);
     props.handleSetLiveObject(liveObject);
 
-    // Update Cart in redux
-    dispatch(mapActions.updateCart({ cart: tCart }));
+    // Update Map Obj in Local Storage
+    for (const item of tCart) {
+      if (item.quantity > 0) {
+        updateMapObjLocalStorage(item.id, item.quantity);
+      }
+    }
+
+    // dispatch(mapActions.updateCart({ cart: tCart }));
+    // Might not need this.
+    // updateEntireMapObjLocalStorage(tCart);
+
     // Go to checkout
     props.handleCloseCart(false);
     setLoading(false);
@@ -88,7 +104,7 @@ const CartModal = (props) => {
   const handleCancelChanges = async () => {
     // Cancel quantity changes...
     props.handleCloseCart(false);
-    let liveObject = await getLiveObject(props.token);
+    let liveObject = await getLiveObjectEcommerceJs(props.token);
     props.handleSetLiveObject(liveObject);
   };
 

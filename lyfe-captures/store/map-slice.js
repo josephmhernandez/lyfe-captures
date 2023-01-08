@@ -1,9 +1,9 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 // import L from 'leaflet';
-import { getPrice } from "../components/cart/cartFunctionality";
+import { getPriceEcommerceJs } from "../components/cart/cartFunctionality";
 import { MapConstants } from "../components/createMap/MapFolder/MapConstants";
-
+import { addToMapObjLocalStorage } from "../components/cart/cartFunctionality";
 const mapSlice = createSlice({
   name: "map",
   initialState: {
@@ -21,7 +21,7 @@ const mapSlice = createSlice({
     styling: "basic",
     zoom: process.env.MAP_ZOOM,
     tileZoomOffset: process.env.TILE_ZOOM_OFFSET,
-    cart: [],
+    // cart: [],
     bbox: [],
   },
   reducers: {
@@ -124,7 +124,6 @@ const mapSlice = createSlice({
       if (pin_list.length > 0) {
         const pin = current(state.pinList[0]);
         if (mapContains(state.bbox, pin.position)) {
-          console.log("map contains pin");
           const new_text_coordinates =
             convertToDms(pin.position.lat, false) +
             " " +
@@ -220,6 +219,7 @@ const mapSlice = createSlice({
       state.pinList = pinList;
     },
     addMapToCart: (state, action) => {
+      // only function in redux slice that calls cartFunctionality.
       let mapObj = {};
       mapObj.pinList = state.pinList;
       mapObj.location = state.location;
@@ -275,7 +275,6 @@ const mapSlice = createSlice({
         };
       } else {
         if (mapObj.orientation === "landscape") {
-          console.log("landscape no text");
           mapObj.mapDimensionsIn = {
             map_width: MapConstants["poster_size"][mapObj.size].full_height - 1,
             map_height: MapConstants["poster_size"][mapObj.size].full_width - 1,
@@ -283,7 +282,6 @@ const mapSlice = createSlice({
               MapConstants["poster_size"][mapObj.size]["poster_multiplier"],
           };
         } else {
-          console.log("portrait no text");
           mapObj.mapDimensionsIn = {
             map_width: MapConstants["poster_size"][mapObj.size].full_width - 1,
             map_height:
@@ -296,30 +294,14 @@ const mapSlice = createSlice({
 
       mapObj.description = getMapDescriptionText(mapObj);
 
-      state.cart.push(mapObj);
-    },
-    removeFromCart: (state, action) => {
-      const id = action.payload.id;
-      const cart = state.cart;
-      const i = cart.findIndex((obj) => obj.id === id);
-      cart.splice(i, 1);
-      state.cart = cart;
-    },
-    emptyCart: (state, action) => {
-      state.cart = [];
+      // call local storage to update cart.
+      addToMapObjLocalStorage(mapObj);
     },
     removePinsFromMap: (state, action) => {
       // Remove all pins from the map.
       return {
         ...state,
         pinList: [],
-      };
-    },
-    updateCart: (state, action) => {
-      console.log(action.payload);
-      return {
-        ...state,
-        cart: action.payload.cart,
       };
     },
   },
