@@ -50,15 +50,19 @@ const OrderCompleteId = () => {
               <p>An order summary is available below</p>
             </li>
           </ul>
-          {/* Size 3680 × 5520 = */}
-          <Image src={img} width={460} height={690} />
+          {/* Size 3680 × 5520 */}
+          <Image src={img} width={263} height={394} />
         </div>
       </div>
-      <div>
+      <div className={classes.sampleReview}>
         <h1>Sample Review</h1>
       </div>
-      <div>
-        {loading} ? <p>Loading...</p> : <p>"orderSummary"</p>
+      <div className={classes.sampleReview}>
+        <h1>Order Summary</h1>
+        <div>
+          {loading && <p>Loading...</p>}
+          {!loading && <p>Order Summary</p>}
+        </div>
       </div>
     </div>
   );
