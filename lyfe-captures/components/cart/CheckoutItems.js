@@ -2,12 +2,13 @@ import React from "react";
 import classes from "./CheckoutItems.module.css";
 import { useSelector } from "react-redux";
 import { ConstructionOutlined } from "@mui/icons-material";
-
+import { getMapObjLocalStorage } from "./cartFunctionality";
+import { current } from "@reduxjs/toolkit";
 const CheckoutItems = (props) => {
   const item = props.item;
   const total_price = `${props.item.line_total.formatted_with_symbol}`;
   const quantity = `x${props.item.quantity}`;
-  const cart = useSelector((state) => state.map.cart);
+  let cart = getMapObjLocalStorage();
 
   function lookUpDescriptions() {
     // Return descirption + color + quantity

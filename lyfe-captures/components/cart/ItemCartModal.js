@@ -1,27 +1,33 @@
 import React from "react";
 import classes from "./CartModal.module.css";
-import { MapStyleDict, DEFAULT_TILE_LAYER } from "../createMap/MapFolder/MapConstants";
+import {
+  MapStyleDict,
+  DEFAULT_TILE_LAYER,
+} from "../createMap/MapFolder/MapConstants";
 
 const ItemCartModal = (props) => {
   let total_price = props.item.quantity * props.item.unitPrice;
   let total_price_formatted = "$ " + total_price.toFixed(2);
 
-  let errorMessage = ""; 
+  let errorMessage = "";
 
-  if(props.item.quantity < 1) {
-    errorMessage = "Map will be deleted on Update"; 
+  if (props.item.quantity < 1) {
+    errorMessage = "Map will be deleted on Update";
   }
 
-  if(props.item.quantity >= 100) {
-    errorMessage = "If you you need to order more than " + process.env.CART_ITEM_MAX_QUANTITY + " email us at " + process.env.EMAIL_SUPPORT; 
+  if (props.item.quantity >= 100) {
+    errorMessage =
+      "If you you need to order more than " +
+      process.env.CART_ITEM_MAX_QUANTITY +
+      " email us at " +
+      process.env.EMAIL_SUPPORT;
   }
 
-  // Need to get the specific map style 
-  console.log('props', props);
+  // Need to get the specific map style
   const tileLayer = props.item.tileLayer;
   let iconImagePath = MapStyleDict[tileLayer].iconImg;
-  if(iconImagePath === undefined) {
-    console.log('cannot find image icon for tileLayer: ', tileLayer);
+  if (iconImagePath === undefined) {
+    console.log("cannot find image icon for tileLayer: ", tileLayer);
     iconImagePath = MapStyleDict[DEFAULT_TILE_LAYER].iconImg;
   }
 
@@ -37,7 +43,6 @@ const ItemCartModal = (props) => {
         <div className={classes.itemBlockQuantity}>
           <button
             onClick={() => {
-              console.log(props.item); 
               props.handleAddQuantity(props.item);
             }}
             className="positive ui button"

@@ -61,7 +61,6 @@ const CheckoutContainer = (props) => {
           country: countrySymbol,
         })
         .then((res) => {
-          // console.log(res, 'res from getting Shipping options by country')
           let shippingOptionsArray = res.map((option) => {
             let shInfo = {};
 
@@ -88,7 +87,6 @@ const CheckoutContainer = (props) => {
         country: options[0].key,
       })
       .then((res) => {
-        // console.log(res, "res from checking discount code");
         setShipOption(value);
         setLiveObject(res);
       })
@@ -112,7 +110,6 @@ const CheckoutContainer = (props) => {
       commerce.checkout
         .checkDiscount(tokenId, { code: discountCode })
         .then((res) => {
-          // console.log(res, 'res from checking discount code')
           if (!res.valid) {
             setInvalidDiscountCode(true);
           } else {

@@ -15,7 +15,10 @@ import NextNProgress from "nextjs-progressbar";
 import { AddToCartButton, BuyNowButton } from "../ui/CustomButtons";
 import { useRouter } from "next/router";
 import Commerce from "@chec/commerce.js";
-import { getPrice, addToCart } from "../cart/cartFunctionality";
+import {
+  getPriceEcommerceJs,
+  addToCartEcommerceJs,
+} from "../cart/cartFunctionality";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -101,13 +104,7 @@ const CreateMap = (props) => {
         });
       }
     }
-  }, [
-    orientation,
-    defaultCenter,
-    addLngLat,
-    primaryText,
-    secondaryText,
-  ]);
+  }, [orientation, defaultCenter, addLngLat, primaryText, secondaryText]);
 
   const handleAddToCart = async (event) => {
     setLoading(true);
@@ -115,8 +112,8 @@ const CreateMap = (props) => {
 
     event.preventDefault();
 
-    let lineItemId = await addToCart(productName, 1);
-    let price = await getPrice(productName);
+    let lineItemId = await addToCartEcommerceJs(productName, 1);
+    let price = await getPriceEcommerceJs(productName);
     let variantInfo = {
       Size: MapConstants.poster_size[SIZE_OPTION].variant_size,
       Material: MATERIAL_OPTION,
@@ -138,7 +135,7 @@ const CreateMap = (props) => {
   });
 
   if (loading) {
-    return <p> loading... </p>
+    return <p> loading... </p>;
   }
 
   return (

@@ -12,11 +12,13 @@ import { stateOptions } from "../../utils/stateOptions";
 import { canada } from "../../utils/North America/canada";
 import { mexico } from "../../utils/North America/mexico";
 import { countries } from "../../utils/Countries";
-
+import {
+  getMapObjLocalStorage,
+  emptyMapObjLocalStorage,
+} from "./cartFunctionality";
 const CheckoutForm = (props) => {
   // Map specifications that are passed to the extra field to be published to commercejs
-  const map_specifcations_cart = useSelector((state) => state.map.cart);
-
+  let map_specifcations_cart = getMapObjLocalStorage();
   const commerce = new Commerce(process.env.CHEC_PK);
   const {
     register,
@@ -107,10 +109,7 @@ const CheckoutForm = (props) => {
             Parses the data properly to match the shape for capture
         *** */
 
-    console.log("made it to onSubmit");
-    console.log(data, "data from checkout form");
     setProcessing(true);
-    console.log("processing...");
     let final = {};
 
     final.extra_fields = {
@@ -179,8 +178,9 @@ const CheckoutForm = (props) => {
               .then((res) => {
                 console.log(res, "res from CAPTURING CHECKOUT!!!");
                 props.setReceipt(res);
-                localStorage.removeItem("cart-id");
                 // Remove local storage carts things.... Need cart_react_id.
+                localStorage.removeItem("cart-id");
+                emptyMapObjLocalStorage();
                 router.replace(`/order-complete/${props.tokenId}/${res.id}`);
                 setProcessing(false);
               })
@@ -217,8 +217,8 @@ const CheckoutForm = (props) => {
             console.log(res, "res from CAPTURING CHECKOUT!!!");
             props.setReceipt(res);
             // Remove cart from cache...
-            // To Do: put other stuff in cache earlier and remove it here.
             localStorage.removeItem("cart-id");
+            emptyMapObjLocalStorage();
             router.replace(`/order-complete/${props.tokenId}/${res.id}`);
             setProcessing(false);
           })

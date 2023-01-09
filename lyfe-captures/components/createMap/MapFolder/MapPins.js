@@ -7,10 +7,6 @@ const MapPins = () => {
   const pins = useSelector((state) => state.map.pinList);
   const map = useMap();
 
-  if (pins.length > 0) {
-    console.log(pins[0].position);
-  }
-
   return (
     <Fragment>
       {pins.map((pin) => {

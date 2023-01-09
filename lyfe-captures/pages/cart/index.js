@@ -11,9 +11,9 @@ function CartPage() {
   const [checkout, setCheckout] = useState(false);
   const [receipt, setReceipt] = useState();
   const [checkNoItems, setCheckNoItems] = useState(false);
-  const [loading, setLoading] = useState(false); 
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    setLoading(true); 
+    setLoading(true);
     setCheckNoItems(false);
     commerce.cart.retrieve().then((res) => {
       setCart(res);
@@ -21,19 +21,15 @@ function CartPage() {
     });
   }, [receipt, checkNoItems]);
 
-  const addToCart = (productId, quantity) => {
-    console.log("add to cart clicked");
-  };
-
   let cartHasItems = cart.total_items > 0;
 
-  if (loading) return <p> loading... </p>
+  if (loading) return <p> loading... </p>;
 
   return (
     <div>
       {cartHasItems ? (
         <CheckoutContainer
-          addToCart={addToCart}
+          // addToCart={addToCart}
           setCheckout={setCheckout}
           cart={cart}
           checkEmpty={setCheckNoItems}
