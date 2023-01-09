@@ -200,3 +200,41 @@ export function emptyMapObjLocalStorage() {
     localStorage.removeItem("cart_data");
   }
 }
+
+export async function getOrderSummaryEcommerceJs(order_id) {
+  console.log("in getOrderSummaryEcommerceJs");
+  const url = new URL(`https://api.chec.io/v1/orders/${order_id}`);
+
+  console.log(url);
+  console.log(`${process.env.CHEC_PK}`);
+  const headers = {
+    "X-Authorization": `${process.env.CHEC_PK}`,
+    Accept: "application/json",
+    "Content-Type": "application/json",
+  };
+
+  let checkoutSummary = await fetch(url, {
+    method: "GET",
+    headers: headers,
+  }).then((response) => response.json());
+
+  // const url = new URL(
+  //   `https://api.chec.io/v1/orders/{order_id}/fulfillments/digital/packages`
+  // );
+
+  // const headers = {
+  //   "X-Authorization": proccess.env.CHEC_PK,
+  //   Accept: "application/json",
+  //   "Content-Type": "application/json",
+  // };
+
+  // let checkoutSummary = await fetch(url, {
+  //   method: "GET",
+  //   headers: headers,
+  // }).then((response) => response.json());
+
+  console.log(checkoutSummary);
+  // let checkoutSummary = response;
+
+  return checkoutSummary;
+}
