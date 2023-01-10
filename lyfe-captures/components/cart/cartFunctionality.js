@@ -1,8 +1,6 @@
 // Make this the only place where we update the commerce cart.
 // Also functions to manage the map object in local storage.
-import * as React from "react";
 import Commerce from "@chec/commerce.js";
-import throttle from "lodash/throttle";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -204,7 +202,6 @@ export function emptyMapObjLocalStorage() {
 
 export async function getOrderSummaryEcommerceJs(order_id) {
   const url = new URL(`https://api.chec.io/v1/orders/${order_id}`);
-  console.log("url: ", url);
   const headers = {
     "X-Authorization": `${process.env.CHEC_SK_SANDBOX}`,
     Accept: "application/json",
@@ -216,10 +213,8 @@ export async function getOrderSummaryEcommerceJs(order_id) {
   }).then((response) => response);
   if (response.status === 200) {
     let checkoutSummaryData = await response.json().then((res) => res);
-    console.log("checkoutSummaryData", checkoutSummaryData);
     try {
       let items = JSON.parse(checkoutSummaryData.extra_fields[0].value); // array of map objects
-      console.log("items", items);
       let pretty_items = items.map((item) => {
         return {
           name: item.name,

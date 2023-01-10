@@ -181,7 +181,6 @@ const CheckoutForm = (props) => {
                 // Remove local storage carts things.... Need cart_react_id.
                 localStorage.removeItem("cart-id");
                 emptyMapObjLocalStorage();
-                sessionStorage.setItem("order-id", res.id);
                 router.replace(`/order-complete/${props.tokenId}/${res.id}`);
                 setProcessing(false);
               })
@@ -219,7 +218,6 @@ const CheckoutForm = (props) => {
             props.setReceipt(res);
             // Remove cart from cache...
             localStorage.removeItem("cart-id");
-            sessionStorage.setItem("order-id", res.id);
             emptyMapObjLocalStorage();
             router.replace(`/order-complete/${props.tokenId}/${res.id}`);
             setProcessing(false);

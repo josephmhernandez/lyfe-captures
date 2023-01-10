@@ -7,7 +7,6 @@ import { Segment, Icon, Image } from "semantic-ui-react";
 import OrderSummaryItem from "./OrderSummaryItem";
 import classes from "./OrderSummary.module.css";
 const OrderSummary = ({ items, customer, price }) => {
-  console.log("customer: ", customer);
   let loadingCustomer = customer === {} ? true : false;
   let loadingPrice = price === {} ? true : false;
   return (
