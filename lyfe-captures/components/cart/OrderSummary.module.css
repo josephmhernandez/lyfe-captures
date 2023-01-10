@@ -1,0 +1,46 @@
+.orderContainer {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.orderSummaryContainer {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.orderContainer p {
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: var(--primary-font);
+  margin: 0;
+  color: black;
+}
+
+.orderSummaryContainer h1 {
+  text-align: right;
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: var(--primary-font);
+  margin: 0;
+  color: black;
+}
+
+.orderSummaryContainer h2 {
+  text-align: right;
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-family: var(--primary-font);
+  margin: 0;
+  color: black;
+}
+
+.line {
+  width: 100%;
+  margin: 1px;
+  height: 1px;
+  background: black;
+}

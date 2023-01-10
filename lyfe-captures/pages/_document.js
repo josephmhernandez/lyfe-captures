@@ -15,7 +15,10 @@ export default function Document() {
           href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap"
           rel="stylesheet"
         />
-        {/* <link rel="stylesheet" type="text/css" href="/static/css/nprogress.css" /> */}
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+        />
         <style>{loader}</style>
       </Head>
       <body>

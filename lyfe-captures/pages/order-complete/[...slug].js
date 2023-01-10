@@ -1,34 +1,33 @@
 import { useRouter } from "next/router";
-import classes from "./orderComplete.module.css";
-import { getOrderSummaryEcommerceJs } from "../../components/cart/cartFunctionality";
 import { useEffect, useState } from "react";
-// TO DO: Thank you Page... Thank you banner (order has been processed), Order Summary, View Some other products.
+import classes from "./orderComplete.module.css";
 import Image from "next/image";
+import OrderSummary from "../../components/cart/OrderSummary";
+import { getOrderSummaryEcommerceJs } from "../../components/cart/cartFunctionality";
 
 const img = "/images/dog-with-stick.jpg";
 
 const OrderCompleteId = () => {
   const router = useRouter();
+  const [email, setEmail] = useState("loading email...");
   const { slug } = router.query;
 
   const cart_id = slug ? slug[0] : undefined;
   const order_id = slug ? slug[1] : undefined;
-  const [orderSummary, setOrderSummary] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [customer, setCustomer] = useState({});
+  const [items, setItems] = useState([]);
+  const [price, setPrice] = useState({});
   useEffect(() => {
-    setOrderSummary(getOrderSummaryEcommerceJs(order_id));
-    if (orderSummary !== {}) {
-      setLoading(false);
-    }
+    getOrderSummaryEcommerceJs(order_id).then((res) => {
+      if (res && res.customer) {
+        setEmail(res.customer.email);
+        setItems(res.pretty_items);
+        setCustomer(res.customer);
+        setPrice(res.price);
+      }
+    });
   }, [order_id]);
 
-  const email = "thisIsMyEmail@gmail.com";
-  console.log(cart_id);
-
-  // if (orderSummary !== {}) {
-  //   setLoading(false);
-  // }
-  // console.log("cartStuff", cartStuff);
   return (
     <div>
       <div className={classes.orderComplete}>
@@ -58,11 +57,7 @@ const OrderCompleteId = () => {
         <h1>Sample Review</h1>
       </div>
       <div className={classes.sampleReview}>
-        <h1>Order Summary</h1>
-        <div>
-          {loading && <p>Loading...</p>}
-          {!loading && <p>Order Summary</p>}
-        </div>
+        <OrderSummary items={items} customer={customer} price={price} />
       </div>
     </div>
   );

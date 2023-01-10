@@ -1,7 +1,8 @@
 // Make this the only place where we update the commerce cart.
 // Also functions to manage the map object in local storage.
-
+import * as React from "react";
 import Commerce from "@chec/commerce.js";
+import throttle from "lodash/throttle";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -202,39 +203,59 @@ export function emptyMapObjLocalStorage() {
 }
 
 export async function getOrderSummaryEcommerceJs(order_id) {
-  console.log("in getOrderSummaryEcommerceJs");
   const url = new URL(`https://api.chec.io/v1/orders/${order_id}`);
-
-  console.log(url);
-  console.log(`${process.env.CHEC_PK}`);
+  console.log("url: ", url);
   const headers = {
-    "X-Authorization": `${process.env.CHEC_PK}`,
+    "X-Authorization": `${process.env.CHEC_SK_SANDBOX}`,
     Accept: "application/json",
     "Content-Type": "application/json",
   };
-
-  let checkoutSummary = await fetch(url, {
+  let response = await fetch(url, {
     method: "GET",
     headers: headers,
-  }).then((response) => response.json());
+  }).then((response) => response);
+  if (response.status === 200) {
+    let checkoutSummaryData = await response.json().then((res) => res);
+    console.log("checkoutSummaryData", checkoutSummaryData);
+    try {
+      let items = JSON.parse(checkoutSummaryData.extra_fields[0].value); // array of map objects
+      console.log("items", items);
+      let pretty_items = items.map((item) => {
+        return {
+          name: item.name,
+          description: item.description,
+          quantity: item.quantity,
+          unit_price: item.unitPrice,
+          tile_layer: item.tileLayer,
+          map_id: item.id,
+          orientation: item.orientation,
+        };
+      });
 
-  // const url = new URL(
-  //   `https://api.chec.io/v1/orders/{order_id}/fulfillments/digital/packages`
-  // );
-
-  // const headers = {
-  //   "X-Authorization": proccess.env.CHEC_PK,
-  //   Accept: "application/json",
-  //   "Content-Type": "application/json",
-  // };
-
-  // let checkoutSummary = await fetch(url, {
-  //   method: "GET",
-  //   headers: headers,
-  // }).then((response) => response.json());
-
-  console.log(checkoutSummary);
-  // let checkoutSummary = response;
-
-  return checkoutSummary;
+      let orderSummary = {
+        customer: {
+          first_name: checkoutSummaryData.customer.firstname,
+          last_name: checkoutSummaryData.customer.lastname,
+          email: checkoutSummaryData.customer.email,
+        },
+        price: {
+          shipping:
+            checkoutSummaryData.order.shipping.price.formatted_with_symbol,
+          tax: checkoutSummaryData.tax.amount.formatted_with_symbol,
+          total_price:
+            checkoutSummaryData.order.total_paid.formatted_with_symbol,
+          discount: checkoutSummaryData.order.discount,
+        },
+        pretty_items: pretty_items,
+      };
+      return orderSummary;
+    } catch (err) {
+      console.log("error parsing items for order summary");
+      console.log(err);
+      return undefined; // error
+    }
+  }
+  console.log("error getting order summary from ecommercejs", response);
+  console.log("checkoutSummary.status_code", response.status_code);
+  return undefined; // error
 }
