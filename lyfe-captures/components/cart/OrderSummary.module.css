@@ -44,3 +44,7 @@
   height: 1px;
   background: black;
 }
+
+.spacing {
+  margin: 20px;
+}

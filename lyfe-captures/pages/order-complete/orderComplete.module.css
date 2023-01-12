@@ -61,8 +61,12 @@
 }
 
 .sampleReview h1 {
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   font-weight: 400;
   color: var(--purple-dark-color);
   font-family: var(--page-heading-font-family);
+}
+
+.spacing {
+  margin: 20px;
 }
