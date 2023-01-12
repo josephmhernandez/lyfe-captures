@@ -250,7 +250,6 @@ export async function getOrderSummaryEcommerceJs(order_id) {
       return undefined; // error
     }
   }
-  console.log("error getting order summary from ecommercejs", response);
-  console.log("checkoutSummary.status_code", response.status_code);
+  console.log("error getting order summary from ecommercejs");
   return undefined; // error
 }

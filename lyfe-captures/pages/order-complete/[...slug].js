@@ -4,7 +4,7 @@ import classes from "./orderComplete.module.css";
 import Image from "next/image";
 import OrderSummary from "../../components/cart/OrderSummary";
 import { getOrderSummaryEcommerceJs } from "../../components/cart/cartFunctionality";
-
+import SampleReivew from "../../components/product/SampleReview";
 const img = "/images/dog-with-stick.jpg";
 
 const OrderCompleteId = () => {
@@ -30,6 +30,7 @@ const OrderCompleteId = () => {
 
   return (
     <div>
+      <div className={classes.spacing} />
       <div className={classes.orderComplete}>
         <h1>We are on our way!</h1>
         <div className={classes.grid}>
@@ -53,12 +54,14 @@ const OrderCompleteId = () => {
           <Image src={img} width={263} height={394} />
         </div>
       </div>
+      <div className={classes.spacing} />
       <div className={classes.sampleReview}>
-        <h1>Sample Review</h1>
+        <SampleReivew />
       </div>
       <div className={classes.sampleReview}>
         <OrderSummary items={items} customer={customer} price={price} />
       </div>
+      <div className={classes.spacing} />
     </div>
   );
 };
