@@ -1,4 +1,4 @@
-import { Segment, TextArea, Button } from "semantic-ui-react";
+import { Segment, TextArea, Button, Modal } from "semantic-ui-react";
 import classes from "./SampleReview.module.css";
 import ReactStars from "react-stars";
 
@@ -55,11 +55,15 @@ const SampleReivew = () => {
             );
           })}
         </div>
-        <Button
-          content="Submit Review"
-          primary
-          floated="right"
-          onClick={handleSubmit}
+        <Modal
+          trigger={
+            <Button primary floated="right">
+              Submit Review
+            </Button>
+          }
+          header="Hold your horses!"
+          content="We're still working on your map. Your review link will be emailed to you after you receive your memory map!"
+          actions={[{ key: "done", content: "Done", positive: true }]}
         />
       </Segment>
       <div className={classes.spacing} />
