@@ -21,7 +21,7 @@ const SampleReivew = () => {
     },
     {
       id: 2,
-      question: "How can your experience be enhanced?",
+      question: "How can your experience be improved?",
       sample_answer:
         "It would be cool if I could add mutiple pins locations to my map",
     },
@@ -30,8 +30,7 @@ const SampleReivew = () => {
   return (
     <div className={classes.container}>
       <h1>Sample Review</h1>
-      <h3>See we promised it'd be short!</h3>
-
+      <h2>See we promised it'd be short!</h2>
       <Segment raised className={classes.sampleReview}>
         <h2>Rate your experience!</h2>
         <ReactStars

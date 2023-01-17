@@ -37,10 +37,7 @@
 .grid {
   padding-left: 21%;
   padding-right: 21%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 0px;
-  place-items: center;
+  display: flex;
   justify-content: center;
   align-content: center;
   align-items: center;
