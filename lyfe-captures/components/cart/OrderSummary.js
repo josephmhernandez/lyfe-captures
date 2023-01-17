@@ -13,7 +13,8 @@ const OrderSummary = ({ items, customer, price }) => {
     <div className={classes.orderContainer}>
       <h1>Order Summary</h1>
 
-      <Segment className={classes.orderContainer} raised>
+      {/* <Segment className={classes.orderContainer} raised></Segment> */}
+      <Segment className={classes.orderSummaryContainer} raised>
         {loadingCustomer ? (
           <p>Loading...</p>
         ) : (
@@ -22,8 +23,6 @@ const OrderSummary = ({ items, customer, price }) => {
             sent to {customer.email}{" "}
           </p>
         )}
-      </Segment>
-      <Segment className={classes.orderSummaryContainer} raised>
         {items.map((item) => {
           return <OrderSummaryItem item={item} key={item.map_id} />;
         })}

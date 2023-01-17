@@ -39,19 +39,24 @@ const OrderCompleteId = () => {
               <p>Your order confirmation will be emailed to {email}</p>
             </li>
             <li>
-              <p>Your Map is being created as we speak!</p>
-            </li>
-            <li>
               <p>
-                Your review request will be sent after you receive your product
+                Your map is being created as we speak! As soon as we ship it
+                we'll send you a tracking number for your package
               </p>
             </li>
             <li>
-              <p>An order summary is available below</p>
+              <p>Your map will be shipped within the next two days!</p>
+            </li>
+            <li>
+              <p>
+                Your review request will be sent after you receive your product.
+                You can see a sample below
+              </p>
+            </li>
+            <li>
+              <p>Your order summary is also available below</p>
             </li>
           </ul>
-          {/* Size 3680 × 5520 */}
-          <Image src={img} width={263} height={394} />
         </div>
       </div>
       <div className={classes.spacing} />
