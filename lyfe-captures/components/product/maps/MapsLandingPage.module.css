@@ -3,7 +3,6 @@
 }
 
 .grid {
-  padding-bottom: 10%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 0px;
@@ -14,15 +13,29 @@
 }
 
 .mapsImage {
-  padding-left: 20%;
   display: flex;
   align-content: center;
   justify-content: center;
   width: 400px;
 }
 
+.all {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 1%;
+}
+
 .mapsLandingPage {
   font-family: var(--primary-font);
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .mapsLandingPage h1 {
@@ -31,7 +44,7 @@
   font-weight: 400;
   justify-content: center;
   color: var(--purple-dark-color);
-  font-family: 'Great Vibes';
+  font-family: "Great Vibes";
 }
 
 .mapsLandingPage ul {
@@ -48,7 +61,6 @@
   justify-content: center;
   font-size: 1.5rem;
   font-weight: 400;
-  margin-bottom: 1rem;
   color: black;
   font-family: var(--primary-font);
 }
@@ -60,7 +72,6 @@
 .mapsLandingPage a {
   display: flex;
   justify-content: left;
-  padding-left: 1rem;
 }
 
 .mapsLandingPage:hover button {
