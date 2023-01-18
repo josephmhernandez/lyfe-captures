@@ -47,7 +47,7 @@ const BootstrapButton = styled(Button)({
   },
 });
 
-const circlePinPath = "/pins/circle-pin-square-black-white.png";
+const defaultSliderPinImgPath = PinListConstants[0].image;
 
 const startPinSize = 40;
 
@@ -118,7 +118,7 @@ const Pin = () => {
         </div>
 
         <div className={classes.sliderContainer}>
-          <Image src={circlePinPath} width={30} height={30} />
+          <Image src={defaultSliderPinImgPath} width={30} height={30} />
           <Slider
             defaultValue={startPinSize}
             min={20}
@@ -129,7 +129,7 @@ const Pin = () => {
             onChange={handlePinSliderChange}
             color="secondary"
           />
-          <Image src={circlePinPath} width={100} height={100} />
+          <Image src={defaultSliderPinImgPath} width={100} height={100} />
         </div>
         <div className={classes.removePins}>
           <BootstrapButton variant="contained" onClick={handleRemovePins}>
