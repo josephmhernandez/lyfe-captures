@@ -1,12 +1,12 @@
-import ProductPicture from "../ProductPicture";
 import ShopNowBanner from "../ShopNowBanner";
 import Link from "next/link";
 import classes from "./MapsLandingPage.module.css";
 import shopNowImage from "../../../public/OO-Summer-Sale-Page-Banner-3840x1400px.webp";
 import mapProdPic from "../../../public/maps-prod-pic-landing.png";
 import Image from "next/image";
-import {CreateNowButton} from '../../ui/CustomButtons'
+import { CreateNowButton } from "../../ui/CustomButtons";
 import { v4 as uuid } from "uuid";
+import { Segment } from "semantic-ui-react";
 const DUMMY_TITLE = "what is this?";
 const DUMMY_DESCRIPTION =
   "We're giving you the capability to design a meaningful present. \nFrom a significant moment to a meaningful location, this print is perfect for any any loved one. \nLife is alwasy happening. We're hear to help you catpure the memories and moments that matter.";
@@ -33,15 +33,12 @@ const description_3 = [
 ];
 
 const MapsLandingPage = () => {
-  const shopNowBanner = "";
-  const altText = "";
-
   return (
-    <div>
+    <div className={classes.all}>
       <div className={classes.box}>
         <ShopNowBanner to="/maps" src={shopNowImage} alt="" />
       </div>
-      <div className={classes.mapsLandingPage}>
+      <Segment raised className={classes.mapsLandingPage}>
         <h1>{title}</h1>
 
         <div className={classes.grid}>
@@ -88,7 +85,7 @@ const MapsLandingPage = () => {
             </div>
           </div>
         </div>
-      </div>
+      </Segment>
     </div>
   );
 };
