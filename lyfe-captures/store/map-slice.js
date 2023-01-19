@@ -364,7 +364,8 @@ function getMapDescriptionText(mapObj) {
   } else if (mapObj.textSecondary !== "") {
     rtnText = "Map of " + mapObj.textSecondary;
   } else {
-    rtnText = "TO DO: Center of Map";
+    rtnText =
+      "Map at coordinates " + mapObj.center[0] + ", " + mapObj.center[1];
   }
   return rtnText;
 }

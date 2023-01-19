@@ -14,8 +14,8 @@ const EmptyCart = () => {
   return (
     <div className={classes.emptyPage}>
       <h2>Uh Oh! It looks like your cart is empty :/</h2>
-      <Image src='/maps-prod-pic-landing.png' width={400} height={400}/>
-      <h2>How about creating a new product?</h2>
+      <Image src="/maps-prod-pic-landing.png" width={400} height={400} />
+      <h2>How about creating a new map?</h2>
       <BuyNowButton onClick={handleClick}>Create A New Map</BuyNowButton>
     </div>
   );
