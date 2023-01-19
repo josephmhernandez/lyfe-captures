@@ -19,6 +19,7 @@ import {
   getPriceEcommerceJs,
   addToCartEcommerceJs,
 } from "../cart/cartFunctionality";
+import { tileLayer } from "leaflet";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -30,7 +31,7 @@ const CreateMap = (props) => {
   const addLngLat = useSelector((state) => state.map.addLngLat);
   const zoom = useSelector((state) => state.map.zoom);
   const router = useRouter();
-  const color = useSelector((state) => state.map.color);
+  const tileLayer = useSelector((state) => state.map.tileLayer);
   const [loading, setLoading] = useState(false);
   const sizeOption = SIZE_OPTION;
 
@@ -104,7 +105,14 @@ const CreateMap = (props) => {
         });
       }
     }
-  }, [orientation, defaultCenter, addLngLat, primaryText, secondaryText]);
+  }, [
+    orientation,
+    defaultCenter,
+    addLngLat,
+    primaryText,
+    secondaryText,
+    tileLayer,
+  ]);
 
   const handleAddToCart = async (event) => {
     setLoading(true);
