@@ -6,15 +6,17 @@ import {
 import { Segment, Icon, Image } from "semantic-ui-react";
 import OrderSummaryItem from "./OrderSummaryItem";
 import classes from "./OrderSummary.module.css";
-const OrderSummary = ({ items, customer, price }) => {
+const OrderSummary = ({ items, customer, price, orderId }) => {
   let loadingCustomer = customer === {} ? true : false;
   let loadingPrice = price === {} ? true : false;
+  let loadingOrderId = orderId === undefined ? true : false;
   return (
     <div className={classes.orderContainer}>
-      <h1>Order Summary</h1>
-
       {/* <Segment className={classes.orderContainer} raised></Segment> */}
       <Segment className={classes.orderSummaryContainer} raised>
+        <div className={classes.headerOrderSummary}>
+          <h1>Order Summary</h1>
+        </div>
         {loadingCustomer ? (
           <p>Loading...</p>
         ) : (
@@ -23,6 +25,12 @@ const OrderSummary = ({ items, customer, price }) => {
             sent to {customer.email}{" "}
           </p>
         )}
+        {loadingOrderId ? (
+          <p>Loading Order Id...</p>
+        ) : (
+          <p>{`Your order id is ${orderId}`}</p>
+        )}
+        <p>We've also sent it to your email</p>
         {items.map((item) => {
           return <OrderSummaryItem item={item} key={item.map_id} />;
         })}
