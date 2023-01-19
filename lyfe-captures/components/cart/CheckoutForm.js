@@ -112,8 +112,11 @@ const CheckoutForm = (props) => {
     setProcessing(true);
     let final = {};
 
+    // Get that extr_field key from an object in commercejs
+    // console.log("lineItems", lineItems);
+    const extra_field_id = props.liveObject.extra_fields[0].id;
     final.extra_fields = {
-      extr_bO6J5aM925EjpK: JSON.stringify(map_specifcations_cart),
+      [extra_field_id]: JSON.stringify(map_specifcations_cart),
     };
 
     final.line_items = lineItems;
