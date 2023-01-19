@@ -110,7 +110,9 @@ const CheckoutContainer = (props) => {
       commerce.checkout
         .checkDiscount(tokenId, { code: discountCode })
         .then((res) => {
-          if (!res.valid) {
+          // console.log("returned...", res);
+
+          if (!res.discount) {
             setInvalidDiscountCode(true);
           } else {
             setInvalidDiscountCode(false);
@@ -120,7 +122,10 @@ const CheckoutContainer = (props) => {
 
           setNoDiscountCode(false);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          setInvalidDiscountCode(true);
+        });
     }
   };
 
@@ -193,14 +198,23 @@ const CheckoutContainer = (props) => {
                 </p>
               )}
               {/* TO DO: implement discount code */}
-              {/* <Divider horizontal>Discount Code</Divider>
+              <Divider horizontal>Discount Code</Divider>
+              <div className={classes.discountDivide}>
+                <h3>Want 10% off your map?</h3>
+                <p>
+                  If you review your map after it arrives, use the following
+                  code:
+                  <span style={{ fontWeight: "bold" }}> {" IWILLREVIEW"}</span>
+                </p>
+                <p>We promise the review will be short and sweet!</p>
+                <form className="discount-code" onSubmit={handleDiscountClick}>
+                  <Input onChange={handleDiscountCode} />
+                  <Button color="black">Apply</Button>
+                </form>
+                {noDiscountCode && <p>No Discount Code Entered</p>}
+                {invalidDiscountCode && <p>Invalid Code!</p>}
+              </div>
 
-              <form className="discount-code" onSubmit={handleDiscountClick}>
-                <Input onChange={handleDiscountCode} />
-                <Button color="black">Apply</Button>
-              </form> */}
-              {/* {noDiscountCode && <p>No Discount Code Entered</p>}
-              {invalidDiscountCode && <p>Invalid Code!</p>} */}
               <Divider horizontal>Cart Totals</Divider>
               {liveObject && (
                 <>
@@ -211,7 +225,7 @@ const CheckoutContainer = (props) => {
                   )}
                   {liveObject.discount.length !== 0 && (
                     <Header color="olive" textAlign="center">
-                      (LUCKY) - {liveObject.discount.amount_saved.formatted}
+                      (DISCOUNT) - ${liveObject.discount.amount_saved.formatted}
                     </Header>
                   )}
                   <Header textAlign="center" size="large">

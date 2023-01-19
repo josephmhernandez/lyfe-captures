@@ -15,6 +15,7 @@ import { useDispatch } from "react-redux";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import getConfig from "next/config";
 import { mapActions } from "../../../store/map-slice";
+import { BuyNowButton } from "../../ui/CustomButtons";
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -112,9 +113,9 @@ const Pin = () => {
               })}
             </Select>
           </FormControl>
-          <BootstrapButton variant="contained" onClick={handleAddPin}>
+          <button class="ui positive button" onClick={handleAddPin}>
             Add Pin
-          </BootstrapButton>
+          </button>
         </div>
 
         <div className={classes.sliderContainer}>
@@ -132,9 +133,9 @@ const Pin = () => {
           <Image src={defaultSliderPinImgPath} width={100} height={100} />
         </div>
         <div className={classes.removePins}>
-          <BootstrapButton variant="contained" onClick={handleRemovePins}>
+          <button class="ui negative button" onClick={handleRemovePins}>
             Remove Pins
-          </BootstrapButton>
+          </button>
         </div>
       </ThemeProvider>
     </div>

@@ -71,4 +71,4 @@ export const CreateNowButton = styled(Button)({
     borderColor: "var(--purple-dark-color)",
     boxShadow: "none",
   },
-}); 
+});

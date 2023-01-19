@@ -171,9 +171,7 @@ const CreateMap = (props) => {
           {/* <BuyNowButton onClick={handleBuyNow}>
             Buy Now
           </BuyNowButton> */}
-          <AddToCartButton onClick={handleAddToCart}>
-            Add To Cart
-          </AddToCartButton>
+          <BuyNowButton onClick={handleAddToCart}>Add To Cart</BuyNowButton>
         </div>
       </Paper>
     </div>

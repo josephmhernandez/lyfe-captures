@@ -15,8 +15,8 @@ const title = "Uniquely Meaningful Maps";
 const heading_1 = "HIGH RESOLUTION";
 const description_1 = [
   "Created with your own unique design",
-  "Printed at 300 DPI",
   "Looks great up close and far away",
+  'Printed at 300 DPI. This is high resolution, and some might even say "overkill"',
 ];
 
 const heading_2 = "NEXT DAY SHIPPING";
@@ -29,7 +29,7 @@ const description_2 = [
 const heading_3 = "UNMATCHED CUSTOMER SERVICE";
 const description_3 = [
   "We respond with a solution in less than 24 hours",
-  "We ensure a transparent and speed printing to shipment process",
+  "We ensure a transparent and speedy printing to shipment process",
 ];
 
 const MapsLandingPage = () => {
@@ -76,14 +76,14 @@ const MapsLandingPage = () => {
                 );
               })}
             </ul>
-            <div>
-              <Link href="/maps">
-                <a>
-                  <CreateNowButton>Create Now</CreateNowButton>
-                </a>
-              </Link>
-            </div>
           </div>
+        </div>
+        <div>
+          <Link href="/maps">
+            <a>
+              <button class="ui massive positive button">Create Now</button>
+            </a>
+          </Link>
         </div>
       </Segment>
     </div>
