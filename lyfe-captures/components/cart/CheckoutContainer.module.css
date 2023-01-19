@@ -5,3 +5,10 @@
 .errorMsg {
   color: red;
 }
+
+.discountDivide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,4 +1,3 @@
-import { BootstrapButton } from "../../ui/CustomButtons";
 import TextField from "@mui/material/TextField";
 import classes from "./Text.module.css";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -50,15 +49,12 @@ const Text = (props) => {
   const handleRemoveAllText = (event) => {
     setShowAddBtn(true);
     setShowRemoveBtn(false);
-    dispatch(mapActions.removeAllText()); 
-  }; 
+    dispatch(mapActions.removeAllText());
+  };
 
   return (
     <div className={classes.container}>
       <ThemeProvider theme={theme}>
-        <BootstrapButton onClick={handleRemoveAllText}>
-          {`Remove All Text`}
-        </BootstrapButton>
         <TextField
           onChange={handlePrimaryTextChange}
           label="Primary Text"
@@ -74,15 +70,18 @@ const Text = (props) => {
           inputProps={{ maxLength: process.env.MAX_CHARS_SECONDARY }}
         />
         {showAddBtn && (
-          <BootstrapButton
-            onClick={handleAddLngLat}
-          >{`Add Lng-Lat`}</BootstrapButton>
+          <button class="ui positive button" onClick={handleAddLngLat}>
+            Add Coordinates
+          </button>
         )}
         {showRemoveBtn && (
-          <BootstrapButton
-            onClick={handleRemoveLngLat}
-          >{`Remove Lng-Lat`}</BootstrapButton>
+          <button class="ui negative button" onClick={handleRemoveLngLat}>
+            Remove Coordinates
+          </button>
         )}
+        <button class="ui negative button" onClick={handleRemoveAllText}>
+          Remove All Text
+        </button>
       </ThemeProvider>
     </div>
   );
