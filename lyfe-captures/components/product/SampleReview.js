@@ -30,7 +30,7 @@ const SampleReivew = () => {
   return (
     <div className={classes.container}>
       <h1>Sample Review</h1>
-      <h2>See we promised it'd be short!</h2>
+      <h2>See, we promised it'd be short!</h2>
       <Segment raised className={classes.sampleReview}>
         <h2>Rate your experience!</h2>
         <ReactStars

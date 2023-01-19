@@ -64,7 +64,12 @@ const OrderCompleteId = () => {
         <SampleReivew />
       </div>
       <div className={classes.sampleReview}>
-        <OrderSummary items={items} customer={customer} price={price} />
+        <OrderSummary
+          items={items}
+          customer={customer}
+          price={price}
+          orderId={order_id}
+        />
       </div>
       <div className={classes.spacing} />
     </div>

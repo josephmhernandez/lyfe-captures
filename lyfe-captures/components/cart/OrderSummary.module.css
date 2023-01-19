@@ -9,6 +9,14 @@
   display: flex;
   width: 70%;
   flex-direction: column;
+  /* align-items: flex-end; */
+  align-items: center;
+}
+
+.alignRight {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   align-items: flex-end;
 }
 
@@ -29,6 +37,13 @@
   color: black;
 }
 
+.headerOrderSummary h1 {
+  font-size: 3.5rem;
+  font-weight: 400;
+  color: var(--purple-dark-color);
+  font-family: var(--page-heading-font-family);
+}
+
 .orderSummaryContainer h2 {
   text-align: right;
   font-size: 1.5rem;
@@ -39,7 +54,7 @@
 }
 
 .line {
-  width: 100%;
+  width: 19%;
   margin: 1px;
   height: 1px;
   background: black;
