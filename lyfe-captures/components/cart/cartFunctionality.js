@@ -30,7 +30,6 @@ export function getMapObjLocalStorage() {
     if (oldCartData) {
       oldCartData = JSON.parse(oldCartData);
     } else {
-      console.log("oldCartData is empty string");
       oldCartData = [];
       // If empty string, set to empty array
       localStorage.setItem("cart_data", JSON.stringify(oldCartData));
@@ -52,14 +51,11 @@ export function addToMapObjLocalStorage(mapObj) {
     if (oldCartData) {
       oldCartData = JSON.parse(oldCartData);
     } else {
-      console.log("oldCartData is empty string");
       oldCartData = [];
     }
     // Add the new map to the old cart data.
     const newCartData = [...oldCartData, mapObj];
     localStorage.setItem("cart_data", JSON.stringify(newCartData));
-    console.log("Cart updated");
-    console.log("Cart data: ", newCartData);
   } else {
     const errorMsg = "Local storage not available";
     console.log(errorMsg);
@@ -78,17 +74,15 @@ export function removeMapObjFromLocalStorage(id) {
     if (oldCartData) {
       oldCartData = JSON.parse(oldCartData);
     } else {
-      console.log("oldCartData is empty string");
-      console.log("trying to remove id: ", id);
-      console.log("no cart data in localstorage");
+      // console.log("trying to remove id: ", id);
+      // console.log("no cart data in localstorage");
       oldCartData = [];
     }
     // Remove the map from the old cart data.
     const newCartData = oldCartData.filter((item) => item.id !== id);
 
     localStorage.setItem("cart_data", JSON.stringify(newCartData));
-    console.log("Cart updated");
-    console.log("Cart data: ", newCartData);
+    // console.log("Cart data: ", newCartData);
   }
 
   return "";
@@ -98,8 +92,7 @@ export function updateEntireMapObjLocalStorage(newMapObj) {
   // update entire mapObj in localStorage
   if (typeof localStorage !== "undefined") {
     localStorage.setItem("cart_data", JSON.stringify(newMapObj));
-    console.log("Cart updated");
-    console.log("Cart data: ", newMapObj);
+    // console.log("Cart data: ", newMapObj);
   }
 }
 
@@ -116,7 +109,7 @@ export function updateMapObjLocalStorage(id, quantity) {
     if (oldCartData) {
       oldCartData = JSON.parse(oldCartData);
     } else {
-      console.log("oldCartData is empty string");
+      // console.log("oldCartData is empty string");
       return "map objects data in local storage is an empty string";
     }
 
@@ -128,8 +121,7 @@ export function updateMapObjLocalStorage(id, quantity) {
       return item;
     });
     localStorage.setItem("cart_data", JSON.stringify(newCartData));
-    console.log("Cart updated");
-    console.log("Cart data: ", newCartData);
+    // console.log("Cart data: ", newCartData);
   }
   return ""; // no error
 }

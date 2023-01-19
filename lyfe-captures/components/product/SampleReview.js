@@ -5,7 +5,6 @@ import ReactStars from "react-stars";
 const SampleReivew = () => {
   const handleStarClick = (newRating) => {
     let rating = Math.floor(newRating);
-    // console.log(rating);
   };
 
   const handleSubmit = () => {

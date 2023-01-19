@@ -16,7 +16,7 @@ const CheckoutItems = (props) => {
     let description_list = [];
     try {
       for (const item of cart) {
-        let description = `${item.description} (${item.color}) x${item.quantity}`;
+        let description = `${item.description} (${item.tileLayer}) x${item.quantity}`;
         description_list.push(description);
       }
     } catch (err) {

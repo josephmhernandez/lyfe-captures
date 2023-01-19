@@ -113,7 +113,6 @@ const CheckoutForm = (props) => {
     let final = {};
 
     // Get that extr_field key from an object in commercejs
-    // console.log("lineItems", lineItems);
     const extra_field_id = props.liveObject.extra_fields[0].id;
     final.extra_fields = {
       [extra_field_id]: JSON.stringify(map_specifcations_cart),
@@ -227,7 +226,6 @@ const CheckoutForm = (props) => {
           })
           .catch((err) => {
             console.log(err);
-            console.log("here....");
             window.alert(err?.data?.error?.message);
             setProcessing(false);
           });
@@ -418,7 +416,6 @@ const CheckoutForm = (props) => {
           checked={getValues("gateway") === "stripe"}
           {...register("gateway", { required: "Please select Payment Type" })}
           onChange={(e) => {
-            console.log("target", e.target.value);
             setValue("gateway", e.target.value);
             reset((formValues) => ({
               ...formValues,

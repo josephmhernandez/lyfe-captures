@@ -38,16 +38,14 @@ const CartModal = (props) => {
     // for product names
     // iterate through cart and add to cartDict
     const tCart = tempCart;
-    console.log("cart before update", tCart);
+
     for (const item of tCart) {
       if (item.quantity >= 0) {
         cartDict[item.name] = (cartDict[item.name] || 0) + item.quantity;
       }
       if (item.quantity == 0) {
         // Remove cart item
-        console.log("calling localstorage remove", item.id);
         removeMapObjFromLocalStorage(item.id);
-        // dispatch(mapActions.removeFromCart({ id: item.id }));
       }
     }
 
