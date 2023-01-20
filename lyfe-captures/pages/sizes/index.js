@@ -1,7 +1,30 @@
+import { Segment } from "semantic-ui-react";
+import classes from "./sizes.module.css";
+
 const Sizes = () => {
   return (
-    <div>
-      <h1>Sizes</h1>
+    <div className={classes.sizes}>
+      <Segment raised className={classes.sizesSegment}>
+        <h1>Size Guide</h1>
+        <img
+          class="ui fluid image"
+          src="images/EFrameSizingGuide.png"
+          alt="Sizes"
+        />
+        <div>
+          <p style={{ fontStyle: "italic" }}>
+            Currently we are only offering large prints of 24x36 inches. These
+            look best in 24x36 in. frames! As we update our print sizes we’ll
+            make sure to take note of what frame size works best!
+          </p>
+          <p>24 x 36 in.</p>
+        </div>
+        <img
+          class="ui fluid image"
+          src="images/24_36_poster_dimension.png"
+          alt="24x36 Poster Dimensions"
+        />
+      </Segment>
     </div>
   );
 };
