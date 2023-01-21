@@ -224,6 +224,7 @@ export async function getOrderSummaryEcommerceJs(order_id) {
           first_name: checkoutSummaryData.customer.firstname,
           last_name: checkoutSummaryData.customer.lastname,
           email: checkoutSummaryData.customer.email,
+          cust_ord_ref: checkoutSummaryData.customer_reference,
         },
         price: {
           shipping:

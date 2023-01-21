@@ -17,6 +17,7 @@ const OrderCompleteId = () => {
   const [customer, setCustomer] = useState({});
   const [items, setItems] = useState([]);
   const [price, setPrice] = useState({});
+
   useEffect(() => {
     getOrderSummaryEcommerceJs(order_id).then((res) => {
       if (res && res.customer) {
