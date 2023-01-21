@@ -6,7 +6,7 @@ import {
 import { Segment, Icon, Image } from "semantic-ui-react";
 import OrderSummaryItem from "./OrderSummaryItem";
 import classes from "./OrderSummary.module.css";
-const OrderSummary = ({ items, customer, price, orderId }) => {
+const OrderSummary = ({ items, customer, price, orderId, merchantId }) => {
   let loadingCustomer = customer === {} ? true : false;
   let loadingPrice = price === {} ? true : false;
   let loadingOrderId = orderId === undefined ? true : false;
@@ -25,10 +25,10 @@ const OrderSummary = ({ items, customer, price, orderId }) => {
             sent to {customer.email}{" "}
           </p>
         )}
-        {loadingOrderId ? (
+        {loadingCustomer ? (
           <p>Loading Order Id...</p>
         ) : (
-          <p>{`Your order id is ${orderId}`}</p>
+          <p>{`Your order reference id is ${customer.cust_ord_ref}`}</p>
         )}
         <p>We've also sent it to your email</p>
         {items.map((item) => {
