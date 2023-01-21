@@ -111,8 +111,8 @@ const MapsLandingPage = () => {
           <p>
             Be sure to let us know what you think and how we can improve our
             product. We’re working tirelessly to help you design something that
-            is truly your own! Send us an email at help@mapyourmemory.com, we
-            love to read them!
+            is truly your own! Send us an email at
+            suggestions@mapyourmemory.com, we love to read them!
           </p>
         </div>
       </Segment>

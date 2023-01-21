@@ -46,7 +46,7 @@ const Footer = () => {
         </div>
         <div>
           <h2>Contact Us</h2>
-          <Link href="">help@lyfecaptures.com</Link>
+          <Link href="">help@mapyourmemory.com</Link>
         </div>
         <div className={classes.iconsPaymentMethod}>
           <h2>Follow Us</h2>
