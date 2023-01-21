@@ -438,7 +438,7 @@ const CheckoutForm = (props) => {
               ...formValues,
               firstname: "Testy",
               lastname: "McTesterson",
-              email: "TestyMcTest@gmail.com",
+              email: "joseph.hernandez@mapyourmemory.com",
               street: "123 Test St",
               town_city: "Testville",
               // county_state: "TX",
