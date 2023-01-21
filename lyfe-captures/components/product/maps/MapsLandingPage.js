@@ -14,22 +14,24 @@ const DUMMY_DESCRIPTION =
 const title = "Uniquely Meaningful Maps";
 const heading_1 = "HIGH RESOLUTION";
 const description_1 = [
-  "Created with your own unique design",
+  "Customize a unique map",
   "Looks great up close and far away",
+  "Printed on 24x36 inch poster paper",
   'Printed at 300 DPI. This is high resolution, and some might even say "overkill"',
 ];
 
 const heading_2 = "NEXT DAY SHIPPING";
 const description_2 = [
-  "Create your map today and we’ll ship it out in two business days guaranteed",
   "94% of our maps are shipped that next day",
-  "Tracking number emailed to you",
+  "Ships in two business days guaranteed",
+  "USPS tracking number emailed to you",
+  "Ships to continental US only",
 ];
 
 const heading_3 = "UNMATCHED CUSTOMER SERVICE";
 const description_3 = [
-  "We respond with a solution in less than 24 hours",
-  "We ensure a transparent and speedy printing to shipment process",
+  "Less than 24 hours response time",
+  "Speedy and transparent printing to shipping process",
 ];
 
 const MapsLandingPage = () => {
@@ -84,6 +86,34 @@ const MapsLandingPage = () => {
               <button class="ui massive positive button">Create Now</button>
             </a>
           </Link>
+        </div>
+
+        <div className={classes.description}>
+          <h2>What is Map Your Memory?</h2>
+          <p>
+            Our mission is to destroy every Live, Laugh, Love sign and replace
+            them with unique and meaningful artwork. These high quality prints
+            are just the start!
+          </p>
+          <p>
+            We'll provide you the tools to truly create meaningful and unique
+            artwork. All you need to do is hang it up! These work as a gift for
+            yourself or a gift for someone you care about. You probably can’t
+            remember what you got last Christmas and that wasn’t even a couple
+            months ago. We want you to create something that is truly unique to
+            you or someone else. Create a map to capture a memory, a story.
+            Commemorate an engagement, wedding, anniversary with a customized
+            pins. Map your family home, or favorite vacation spot, just make
+            sure it's somewhere special to you. Let your wall art being a
+            talking point, a focal point. And most importantly don’t let the
+            Live, Laugh, Love signs win!
+          </p>
+          <p>
+            Be sure to let us know what you think and how we can improve our
+            product. We’re working tirelessly to help you design something that
+            is truly your own! Send us an email at help@mapyourmemory.com, we
+            love to read them!
+          </p>
         </div>
       </Segment>
     </div>
