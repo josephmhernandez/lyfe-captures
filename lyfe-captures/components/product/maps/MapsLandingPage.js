@@ -4,9 +4,11 @@ import classes from "./MapsLandingPage.module.css";
 import shopNowImage from "../../../public/OO-Summer-Sale-Page-Banner-3840x1400px.webp";
 import mapProdPic from "../../../public/maps-prod-pic-landing.png";
 import Image from "next/image";
-import { CreateNowButton } from "../../ui/CustomButtons";
 import { v4 as uuid } from "uuid";
 import { Segment } from "semantic-ui-react";
+import { Carousel } from "react-responsive-carousel";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 const DUMMY_TITLE = "what is this?";
 const DUMMY_DESCRIPTION =
   "We're giving you the capability to design a meaningful present. \nFrom a significant moment to a meaningful location, this print is perfect for any any loved one. \nLife is alwasy happening. We're hear to help you catpure the memories and moments that matter.";
@@ -44,9 +46,14 @@ const MapsLandingPage = () => {
         <h1>{title}</h1>
 
         <div className={classes.grid}>
-          <div className={classes.mapsImage}>
-            <Image layout="intrinsic" src={mapProdPic} alt="Map" />
-          </div>
+          <Carousel>
+            <div className={classes.mapsImage}>
+              <Image layout="intrinsic" src={mapProdPic} alt="Map" />
+            </div>
+            <div className={classes.mapsImage}>
+              <Image layout="intrinsic" src={mapProdPic} alt="Map" />
+            </div>
+          </Carousel>
           <div>
             <h2>{heading_1}</h2>
             <ul>
@@ -116,6 +123,7 @@ const MapsLandingPage = () => {
           </p>
         </div>
       </Segment>
+      <div></div>
     </div>
   );
 };

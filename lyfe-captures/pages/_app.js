@@ -7,7 +7,7 @@ import store from "../store/index";
 import nProgress from "nprogress";
 import Router from "next/router";
 import "../styles/nprogress.css";
-
+import "../styles/overrides.css";
 Router.events.on("routeChangeStart", nProgress.start);
 Router.events.on("routeChangeError", nProgress.done);
 Router.events.on("routeChangeComplete", nProgress.done);
