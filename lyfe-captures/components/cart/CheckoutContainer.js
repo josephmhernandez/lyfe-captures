@@ -27,6 +27,7 @@ const CheckoutContainer = (props) => {
   const [invalidDiscountCode, setInvalidDiscountCode] = useState();
   const [showEditCart, setShowEditCart] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [loadingDiscount, setLoadingDiscount] = useState(false);
   useEffect(() => {
     setLoading(true);
     /* *** Getting Checkout Token - Set Live Object in State *** */
@@ -100,12 +101,13 @@ const CheckoutContainer = (props) => {
 
   const handleDiscountClick = (e) => {
     /* *** Checking to Make Sure Discount Code is Valid *** */
-
+    setLoadingDiscount(true);
     e.preventDefault();
 
     if (!discountCode) {
       setNoDiscountCode(true);
       setInvalidDiscountCode(false);
+      setLoadingDiscount(false);
     } else {
       commerce.checkout
         .checkDiscount(tokenId, { code: discountCode })
@@ -119,12 +121,13 @@ const CheckoutContainer = (props) => {
             setLiveObject(res);
             setDiscountCode(null);
           }
-
           setNoDiscountCode(false);
+          setLoadingDiscount(false);
         })
         .catch((err) => {
           console.log(err);
           setInvalidDiscountCode(true);
+          setLoadingDiscount(false);
         });
     }
   };
@@ -211,6 +214,7 @@ const CheckoutContainer = (props) => {
                   <Input onChange={handleDiscountCode} />
                   <Button color="black">Apply</Button>
                 </form>
+                {loadingDiscount && <p>Checking Discount Code...</p>}
                 {noDiscountCode && <p>No Discount Code Entered</p>}
                 {invalidDiscountCode && <p>Invalid Code!</p>}
               </div>

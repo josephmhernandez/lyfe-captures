@@ -185,7 +185,7 @@ const CartModal = (props) => {
             </React.Fragment>
           ))}
           <div className={classes.cartFooter}>
-            <p>{"$ " + total_price.toFixed(2)}</p>
+            <p>{"Subtotal: $ " + total_price.toFixed(2)}</p>
           </div>
           <div className={classes.cartFooterButtons}>
             <button onClick={handleGoToCheckout} className="ui green button">
