@@ -90,7 +90,7 @@ const MapsLandingPage = () => {
         <div>
           <Link href="/maps">
             <a>
-              <button class="ui massive positive button">Create Now</button>
+              <button className="ui massive positive button">Create Now</button>
             </a>
           </Link>
         </div>

@@ -113,7 +113,7 @@ const Pin = () => {
               })}
             </Select>
           </FormControl>
-          <button class="ui positive button" onClick={handleAddPin}>
+          <button className="ui positive button" onClick={handleAddPin}>
             Add Pin
           </button>
         </div>
@@ -133,7 +133,7 @@ const Pin = () => {
           <Image src={defaultSliderPinImgPath} width={100} height={100} />
         </div>
         <div className={classes.removePins}>
-          <button class="ui negative button" onClick={handleRemovePins}>
+          <button className="ui negative button" onClick={handleRemovePins}>
             Remove Pins
           </button>
         </div>
