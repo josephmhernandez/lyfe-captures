@@ -11,7 +11,8 @@ import "../styles/overrides.css";
 Router.events.on("routeChangeStart", nProgress.start);
 Router.events.on("routeChangeError", nProgress.done);
 Router.events.on("routeChangeComplete", nProgress.done);
-
+import { Elements } from "@stripe/react-stripe-js";
+import { loadStripe } from "@stripe/stripe-js";
 function MyApp({ Component, pageProps }) {
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -22,19 +23,31 @@ function MyApp({ Component, pageProps }) {
     }
   }, []);
 
+  const stripePromise = loadStripe(process.env.STRIPE_PK);
+  // const options = {
+  //   // passing the client secret obtained from the server
+  //   clientSecret: "{{CLIENT_SECRET}}",
+  // };
+
   return (
     <Provider store={store}>
       <Head>
         <title>Map Your Memory</title>
         <link rel="icon" href="/play-button.ico" />
+        <script
+          src="https://js.stripe.com/v3/"
+          crossOrigin="anonymous"
+        ></script>
         <meta
           name="description"
           content="Design your own unique map for a special occasion, event, or place. It's the perfect customized gift for weddings, engagements, and holidays."
         />
       </Head>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
+      <Elements stripe={stripePromise}>
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
+      </Elements>
     </Provider>
   );
 }

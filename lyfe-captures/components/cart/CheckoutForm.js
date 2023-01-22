@@ -2,24 +2,21 @@ import React, { useState, useEffect } from "react";
 import { Form, Label } from "semantic-ui-react";
 import Commerce from "@chec/commerce.js";
 import { useForm, Controller } from "react-hook-form";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import qs from "qs";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
 // Import Selections
-import { monthOptions, yearOptions } from "../../utils/cardOptions";
 import { stateOptions } from "../../utils/stateOptions";
-import { canada } from "../../utils/North America/canada";
-import { mexico } from "../../utils/North America/mexico";
 import { countries } from "../../utils/Countries";
 import {
   getMapObjLocalStorage,
   emptyMapObjLocalStorage,
 } from "./cartFunctionality";
+import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 const CheckoutForm = (props) => {
   // Map specifications that are passed to the extra field to be published to commercejs
   let map_specifcations_cart = getMapObjLocalStorage();
   const commerce = new Commerce(process.env.CHEC_PK);
+  const stripe = useStripe();
+  const elements = useElements();
   const {
     register,
     handleSubmit,
@@ -154,51 +151,74 @@ const CheckoutForm = (props) => {
     }
 
     if (data.gateway === "stripe") {
-      let stripInfo = {
-        name: `${data.firstname} ${data.lastname}`,
-        number: data.number,
-        exp_month: data.expiry_month,
-        exp_year: data.expiry_year,
-        cvc: data.cvc,
-        address_zip: data.postal_billing_zip_code,
-      };
+      // PAYMENT METHOD IS STRIPE
+      // Prepare Stripe.
+      const card = elements.getElement("card");
 
-      axiosWithAuth()
-        .post("/tokens", qs.stringify({ card: stripInfo }))
-        .then((res) => {
-          console.log(res, "res from token call");
-          final.payment = {
-            gateway: data.gateway,
-            card: {
-              token: res.data.id,
-            },
-          };
+      if (!props.shipOption) {
+        window.alert("Please select a shipping option");
+        setProcessing(false);
+        return;
+      }
 
-          if (props.shipOption) {
-            commerce.checkout
-              .capture(props.tokenId, final)
-              .then((res) => {
-                console.log(res, "res from CAPTURING CHECKOUT!!!");
-                props.setReceipt(res);
-                // Remove local storage carts things.... Need cart_react_id.
-                localStorage.removeItem("cart-id");
-                emptyMapObjLocalStorage();
-                router.replace(`/order-complete/${props.tokenId}/${res.id}`);
-                setProcessing(false);
-              })
-              .catch((err) => {
-                window.alert(err.data.error.message);
-                setProcessing(false);
-              });
-          } else {
-            window.alert("Please select a shipping method!");
-            setProcessing(false);
-          }
+      stripe
+        .createPaymentMethod({
+          type: "card",
+          card: card,
+          billing_details: {
+            name: `${final.billing.name}`,
+          },
         })
         .catch((err) => {
-          console.log(err.data, "error message");
+          console.log("err", err);
+          setProcessing(false);
+          window.alert(err);
+        })
+        .then((result) => {
+          if (result.error) {
+            console.log(result.error.message);
+            window.alert(result.error.message);
+            setProcessing(false);
+          } else {
+            // No error retreiving payment method.
+            final.payment = {
+              gateway: data.gateway,
+              stripe: {
+                payment_method_id: result.paymentMethod.id,
+              },
+            };
+
+            try {
+              commerce.checkout
+                .capture(props.tokenId, final)
+                .then((res) => {
+                  console.log(res, "res from CAPTURING CHECKOUT!!!");
+                  props.setReceipt(res);
+                  // Remove local storage carts things.... Need cart_react_id.
+                  localStorage.removeItem("cart-id");
+                  emptyMapObjLocalStorage();
+                  router.replace(`/order-complete/${props.tokenId}/${res.id}`);
+                  setProcessing(false);
+                })
+                .catch((err) => {
+                  window.alert(err.data.error.message);
+                  setProcessing(false);
+                });
+            } catch (e) {
+              setProcessing(false);
+              console.log(e, "error processing payment through commercejs");
+              window.alert(e.data.error.message);
+            }
+          }
+        })
+        .catch((e) => {
+          // Issue with information that the customer entered into the payment details.
+          setProcessing(false);
+          window.alert(e);
+          return;
         });
     } else {
+      // PAYMENT METHOD IS TEST GATEWAY
       final.payment = {
         gateway: data.gateway,
         card: {
@@ -426,7 +446,8 @@ const CheckoutForm = (props) => {
           }}
         />
         <label htmlFor="stripe">Credit Card</label>
-        <input
+
+        {/* <input
           name="gateway"
           type="radio"
           value="test_gateway"
@@ -452,120 +473,16 @@ const CheckoutForm = (props) => {
             }));
           }}
         />
-        <label htmlFor="test_gateway">Test Gateway</label>
+        <label htmlFor="test_gateway">Test Gateway</label> */}
       </Form.Group>
       {errors?.gateway && (
         <Label className="payment-type-error" basic color="red" pointing>
           {errors?.gateway.message}
         </Label>
       )}
-
-      <Form.Group>
-        <Controller
-          name="number"
-          type="number"
-          control={control}
-          rules={{ required: "Please enter Card Number" }}
-          defaultValue={""}
-          render={({ field }) => (
-            <Form.Input
-              {...field}
-              label="Credit Card Number"
-              error={errors?.number && errors?.number.message}
-              ref={null}
-              placeholder="0000111100001111"
-            />
-          )}
-        />
-        <Controller
-          name="postal_billing_zip_code"
-          control={control}
-          rules={{ required: "Please enter Billing zip" }}
-          defaultValue={""}
-          render={({ field }) => (
-            <Form.Input
-              {...field}
-              label="Billing Zip"
-              placeholder="Enter Billing Zip Code"
-              max="99999"
-              error={
-                errors?.postal_billing_zip_code &&
-                errors?.postal_billing_zip_code.message
-              }
-              ref={null}
-            />
-          )}
-        />
-      </Form.Group>
-
-      <Form.Group>
-        <Controller
-          width={3}
-          name="expiry_month"
-          fluid
-          options={monthOptions}
-          label="Month"
-          control={control}
-          rules={{ required: "Must Select Expiration Month" }}
-          render={({ field }) => (
-            <Form.Select
-              {...field}
-              label="Month"
-              placeholder="Month"
-              options={monthOptions || []}
-              fluid
-              error={errors?.expiry_month && errors?.expiry_month.message}
-              ref={null}
-              onChange={(e, { value }) => {
-                setValue("expiry_month", value);
-              }}
-            />
-          )}
-        />
-        <Controller
-          width={3}
-          name="expiry_year"
-          fluid
-          options={yearOptions}
-          label="Year"
-          control={control}
-          rules={{ required: "Must Select Expiration Year" }}
-          onChange={(e, { value }) => value}
-          render={({ field }) => (
-            <Form.Select
-              {...field}
-              label="Year"
-              placeholder="Year"
-              options={yearOptions || []}
-              fluid
-              error={errors?.expiry_year && errors?.expiry_year.message}
-              ref={null}
-              onChange={(e, { value }) => {
-                setValue("expiry_year", value);
-              }}
-            />
-          )}
-        />
-        <Controller
-          width={3}
-          name="cvc"
-          label="CVC"
-          placeholder="123"
-          defaultValue={""}
-          control={control}
-          rules={{ required: "Please enter CVC" }}
-          render={({ field }) => (
-            <Form.Input
-              {...field}
-              error={errors?.cvc && errors?.cvc.message}
-              label="CVC"
-              ref={null}
-              placeholder="123"
-            />
-          )}
-        />
-      </Form.Group>
-
+      <div className="ui segment">
+        <CardElement />
+      </div>
       <h1>Billing Address</h1>
       <Form.Checkbox
         label="Billing Address Same as Shipping ..."
