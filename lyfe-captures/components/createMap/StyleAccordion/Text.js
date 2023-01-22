@@ -70,16 +70,16 @@ const Text = (props) => {
           inputProps={{ maxLength: process.env.MAX_CHARS_SECONDARY }}
         />
         {showAddBtn && (
-          <button class="ui positive button" onClick={handleAddLngLat}>
+          <button className="ui positive button" onClick={handleAddLngLat}>
             Add Coordinates
           </button>
         )}
         {showRemoveBtn && (
-          <button class="ui negative button" onClick={handleRemoveLngLat}>
+          <button className="ui negative button" onClick={handleRemoveLngLat}>
             Remove Coordinates
           </button>
         )}
-        <button class="ui negative button" onClick={handleRemoveAllText}>
+        <button className="ui negative button" onClick={handleRemoveAllText}>
           Remove All Text
         </button>
       </ThemeProvider>

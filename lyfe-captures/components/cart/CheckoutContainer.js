@@ -28,6 +28,8 @@ const CheckoutContainer = (props) => {
   const [showEditCart, setShowEditCart] = useState(false);
   const [loading, setLoading] = useState(false);
   const [loadingDiscount, setLoadingDiscount] = useState(false);
+  const [loadingSelectShipping, setLoadingSelectShipping] = useState(false);
+
   useEffect(() => {
     setLoading(true);
     /* *** Getting Checkout Token - Set Live Object in State *** */
@@ -55,7 +57,6 @@ const CheckoutContainer = (props) => {
         Getting the Customer's Shipping Options based on the Country
         Function is triggered once user selects country in CheckoutForm. 
         */
-
     if (countrySymbol) {
       commerce.checkout
         .getShippingOptions(tokenId, {
@@ -73,7 +74,9 @@ const CheckoutContainer = (props) => {
           });
           setShippingOptions(shippingOptionsArray);
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+        });
     }
   };
 
@@ -82,6 +85,7 @@ const CheckoutContainer = (props) => {
         Applies shipping option to Cart Total
         Updates Live Object in state 
         */
+    setLoadingSelectShipping(true);
     commerce.checkout
       .checkShippingOption(tokenId, {
         id: value,
@@ -90,8 +94,12 @@ const CheckoutContainer = (props) => {
       .then((res) => {
         setShipOption(value);
         setLiveObject(res);
+        setLoadingSelectShipping(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setLoadingSelectShipping(false);
+      });
   };
 
   const handleDiscountCode = (e, { value }) => {
@@ -195,6 +203,12 @@ const CheckoutContainer = (props) => {
                 onChange={handleDropDownShipping}
                 options={shippingOptions || []}
               />
+
+              {loadingSelectShipping && (
+                <div className={classes.loading}>
+                  <p className={classes.loading}>Updating Shipping...</p>
+                </div>
+              )}
               {!shipOption && (
                 <p className={classes.errorMsg}>
                   "Select Country" in Customer Info for Shipping Options

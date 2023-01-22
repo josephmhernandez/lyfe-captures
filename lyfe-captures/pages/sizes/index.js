@@ -7,7 +7,7 @@ const Sizes = () => {
       <Segment raised className={classes.sizesSegment}>
         <h1>Size Guide</h1>
         <img
-          class="ui fluid image"
+          className="ui fluid image"
           src="images/EFrameSizingGuide.png"
           alt="Sizes"
         />
@@ -20,7 +20,7 @@ const Sizes = () => {
           <p>24 x 36 in.</p>
         </div>
         <img
-          class="ui fluid image"
+          className="ui fluid image"
           src="images/24_36_poster_dimension.png"
           alt="24x36 Poster Dimensions"
         />
