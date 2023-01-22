@@ -5,6 +5,11 @@ export default function Document() {
   return (
     <Html>
       <Head>
+        <script
+          src="https://js.stripe.com/v3/"
+          crossOrigin="anonymous"
+        ></script>
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -25,6 +30,7 @@ export default function Document() {
           crossOrigin="anonymous"
         ></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+
         <script>$('.rating').rating();</script>
         <style>{loader}</style>
       </Head>

@@ -195,7 +195,7 @@ export function emptyMapObjLocalStorage() {
 export async function getOrderSummaryEcommerceJs(order_id) {
   const url = new URL(`https://api.chec.io/v1/orders/${order_id}`);
   const headers = {
-    "X-Authorization": `${process.env.CHEC_SK_SANDBOX}`,
+    "X-Authorization": `${process.env.CHEC_SK}`,
     Accept: "application/json",
     "Content-Type": "application/json",
   };

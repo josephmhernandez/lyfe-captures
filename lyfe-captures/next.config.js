@@ -15,7 +15,8 @@ module.exports = {
   env: {
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     CHEC_PK: process.env.CHEC_PK,
-    CHEC_SK_SANDBOX: process.env.CHEC_SK_SANDBOX,
+    CHEC_SK: process.env.CHEC_SK,
+    STRIPE_PK: process.env.STRIPE_PK,
     MAX_CHARS_PRIMARY: process.env.MAX_CHARS_PRIMARY,
     MAX_CHARS_SECONDARY: process.env.MAX_CHARS_SECONDARY,
 
