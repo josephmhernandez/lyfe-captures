@@ -115,8 +115,6 @@ const CheckoutForm = (props) => {
       [extra_field_id]: JSON.stringify(map_specifcations_cart),
     };
 
-    final.line_items = lineItems;
-
     final.fulfillment = {
       shipping_method: props.shipOption,
     };

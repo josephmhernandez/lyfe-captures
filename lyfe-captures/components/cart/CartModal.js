@@ -19,6 +19,7 @@ import {
   updateEntireMapObjLocalStorage,
   updateMapObjLocalStorage,
 } from "./cartFunctionality";
+import { QrCodeScannerOutlined } from "@mui/icons-material";
 
 const CartModal = (props) => {
   // Display everything here and then onClose of Modal we will add the quantities that have changed.
@@ -59,13 +60,18 @@ const CartModal = (props) => {
     }
     // Iterate over prod names in Cart Dict and update the quantity of the product.
 
-    // Update Cart in commerce
+    // Update Cart in commercejs
+    var promiseArray = [];
     for (const name in cartDict) {
-      updateQuantityByIdEcommerceJs(name_to_item[name], cartDict[name]);
+      promiseArray.push(
+        updateQuantityByIdEcommerceJs(name_to_item[name], cartDict[name])
+      );
     }
+    await Promise.all(promiseArray);
+
     // Update live Object
-    let liveObject = await getLiveObjectEcommerceJs(props.token);
-    props.handleSetLiveObject(liveObject);
+    // let liveObject = await getLiveObjectEcommerceJs(props.token);
+    // props.handleSetLiveObject(liveObject);
 
     // Update Map Obj in Local Storage
     for (const item of tCart) {
@@ -109,7 +115,6 @@ const CartModal = (props) => {
   const editQuantityCart = (id, addValue) => {
     // Add quantity to the cart. Cart Modal update quantity.
     let curr_cart = tempCart;
-
     const product_index = curr_cart.findIndex((x) => x.id == id);
     if (product_index > -1) {
       let new_quantitiy = curr_cart[product_index].quantity + addValue;

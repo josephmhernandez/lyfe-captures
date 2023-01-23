@@ -147,11 +147,7 @@ const CheckoutContainer = (props) => {
           <Grid.Column width={8}>
             {showEditCart && (
               <Fragment>
-                <CartModal
-                  token={tokenId}
-                  handleCloseCart={setShowEditCart}
-                  handleSetLiveObject={setLiveObject}
-                />
+                <CartModal token={tokenId} handleCloseCart={setShowEditCart} />
               </Fragment>
             )}
             {!showEditCart && liveObject && tokenId && (
