@@ -150,7 +150,7 @@ const CheckoutContainer = (props) => {
                 <CartModal
                   token={tokenId}
                   handleCloseCart={setShowEditCart}
-                  handleSetLiveObject={setLiveObject}
+                  // handleSetLiveObject={setLiveObject}
                 />
               </Fragment>
             )}
