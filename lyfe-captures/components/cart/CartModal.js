@@ -61,7 +61,6 @@ const CartModal = (props) => {
     // Iterate over prod names in Cart Dict and update the quantity of the product.
 
     // Update Cart in commercejs
-    console.log("waiting.......for promises all to finish");
     var promiseArray = [];
     for (const name in cartDict) {
       promiseArray.push(
@@ -69,7 +68,6 @@ const CartModal = (props) => {
       );
     }
     await Promise.all(promiseArray);
-    console.log("done waiting for promises all to finish");
 
     // Update live Object
     // let liveObject = await getLiveObjectEcommerceJs(props.token);
@@ -116,21 +114,11 @@ const CartModal = (props) => {
 
   const editQuantityCart = (id, addValue) => {
     // Add quantity to the cart. Cart Modal update quantity.
-
     let curr_cart = tempCart;
-    console.log("cart before edit quantity: ", curr_cart);
     const product_index = curr_cart.findIndex((x) => x.id == id);
     if (product_index > -1) {
       let new_quantitiy = curr_cart[product_index].quantity + addValue;
       setTempCart([
-        ...curr_cart.slice(0, product_index),
-        Object.assign({}, curr_cart[product_index], {
-          quantity: new_quantitiy,
-        }),
-        ...curr_cart.slice(product_index + 1),
-      ]);
-
-      console.log("new cart: ", [
         ...curr_cart.slice(0, product_index),
         Object.assign({}, curr_cart[product_index], {
           quantity: new_quantitiy,
