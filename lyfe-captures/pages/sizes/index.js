@@ -21,7 +21,7 @@ const Sizes = () => {
         </div>
         <img
           className="ui fluid image"
-          src="images/24_36_poster_dimension.png"
+          src="images/24_36_Poster_Dimenstions-small.png"
           alt="24x36 Poster Dimensions"
         />
       </Segment>

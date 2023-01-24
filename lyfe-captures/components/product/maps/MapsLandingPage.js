@@ -3,6 +3,9 @@ import Link from "next/link";
 import classes from "./MapsLandingPage.module.css";
 import shopNowImage from "../../../public/OO-Summer-Sale-Page-Banner-3840x1400px.webp";
 import mapProdPic from "../../../public/maps-prod-pic-landing.png";
+import prodPic1 from "../../../public/images/prod-pics/3-maps-prod-pic-small.png";
+import prodPic2 from "../../../public/images/prod-pics/map-vert-prod-pic-small.png";
+import prodPic3 from "../../../public/images/prod-pics/puerto-rico-landscape-prod-pic-small.png";
 import Image from "next/image";
 import { v4 as uuid } from "uuid";
 import { Segment } from "semantic-ui-react";
@@ -46,14 +49,19 @@ const MapsLandingPage = () => {
         <h1>{title}</h1>
 
         <div className={classes.grid}>
-          <Carousel>
-            <div className={classes.mapsImage}>
-              <Image layout="intrinsic" src={mapProdPic} alt="Map" />
-            </div>
-            <div className={classes.mapsImage}>
-              <Image layout="intrinsic" src={mapProdPic} alt="Map" />
-            </div>
-          </Carousel>
+          <div className={classes.myCarousel}>
+            <Carousel className={classes.bg}>
+              <div className={classes.mapsImage}>
+                <Image layout="intrinsic" src={prodPic1} alt="Map" />
+              </div>
+              <div className={classes.mapsImage}>
+                <Image layout="intrinsic" src={prodPic2} alt="Map" />
+              </div>
+              <div className={classes.mapsImage}>
+                <Image layout="intrinsic" src={prodPic3} alt="Map" />
+              </div>
+            </Carousel>
+          </div>
           <div>
             <h2>{heading_1}</h2>
             <ul>
