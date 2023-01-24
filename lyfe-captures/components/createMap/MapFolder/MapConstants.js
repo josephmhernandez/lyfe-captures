@@ -57,13 +57,13 @@ export const MapStyleDict = {
   "dark-transit": {
     id: "dark-transit",
     iconImg: "/blackWhiteSquareIcon.svg",
-    url: "https://api.maptiler.com/maps/265e1571-5b2a-47cf-bdf4-0f78abaefb47/{z}/{x}/{y}.png?key=ht4mIQlGHtGak0dQVtAU",
+    url: `https://api.maptiler.com/maps/265e1571-5b2a-47cf-bdf4-0f78abaefb47/{z}/{x}/{y}.png?key=${process.env.MAPTILER_API_KEY}`,
   },
-  // "modern-light": {
-  //   id: "modern-light",
-  //   iconImg: "/modernLightIcon.svg",
-  //   url: `https://api.maptiler.com/maps/b5849635-c4d4-4bb8-b7ea-78ccd9bcf89c/{z}/{x}/{y}.png?key=${process.env.MAPTILER_API_KEY}`,
-  // },
+  "modern-light": {
+    id: "modern-light",
+    iconImg: "/modernLightIcon.svg",
+    url: `https://api.maptiler.com/maps/b5849635-c4d4-4bb8-b7ea-78ccd9bcf89c/{z}/{x}/{y}.png?key=${process.env.MAPTILER_API_KEY}`,
+  },
 };
 
 export const SIZE_OPTION = "_24_36";
