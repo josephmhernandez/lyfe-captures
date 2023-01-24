@@ -3,6 +3,7 @@ import { v4 as uuid } from "uuid";
 // import L from 'leaflet';
 import { getPriceEcommerceJs } from "../components/cart/cartFunctionality";
 import { MapConstants } from "../components/createMap/MapFolder/MapConstants";
+import { DEFAULT_TILE_LAYER } from "../components/createMap/MapFolder/MapConstants";
 import { addToMapObjLocalStorage } from "../components/cart/cartFunctionality";
 const mapSlice = createSlice({
   name: "map",
@@ -12,7 +13,7 @@ const mapSlice = createSlice({
     location: process.env.MAP_LOCATION,
     lngLat: [process.env.MAP_LOCATION_LAT, process.env.MAP_LOCATION_LNG],
     orientation: "portrait",
-    tileLayer: "white-transit",
+    tileLayer: DEFAULT_TILE_LAYER,
     textPrimary: "",
     textSecondary: "",
     textCoordinates: "",

@@ -67,7 +67,7 @@ const MapTileLayer = (props) => {
     url = MapStyleDict[tileLayer].url;
   } else {
     console.log("Error: " + tileLayer + " not found in MapStyleDict");
-    url = MapStyleDict["black-transit"].url;
+    url = MapStyleDict[MapConstants.DEFAULT_TILE_LAYER].url;
   }
 
   return (
