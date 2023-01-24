@@ -49,10 +49,15 @@ export const MapConstants = {
 
 // Background color for the map first. ColorIconPathMap
 export const MapStyleDict = {
+  test: {
+    id: "test",
+    iconImg: "/whiteBlackSquareIcon.svg",
+    url: "https://api.maptiler.com/maps/voyager/{z}/{x}/{y}.png?key=PmIF6Ez34ROeDo7jJGuD#",
+  },
   "light-transit": {
     id: "light-transit",
     iconImg: "/whiteBlackSquareIcon.svg",
-    url: "https://api.maptiler.com/maps/voyager/{z}/{x}/{y}.png?key=PmIF6Ez34ROeDo7jJGuD#",
+    url: `https://api.maptiler.com/maps/1ec3a490-b9a7-418e-b22b-26f45c463081/{z}/{x}/{y}.png?key=${process.env.MAPTILER_API_KEY}`,
   },
   "dark-transit": {
     id: "dark-transit",
