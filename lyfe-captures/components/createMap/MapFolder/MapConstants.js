@@ -49,18 +49,23 @@ export const MapConstants = {
 
 // Background color for the map first. ColorIconPathMap
 export const MapStyleDict = {
-  "white-transit": {
-    id: "white-transit",
+  "light-transit": {
+    id: "light-transit",
     iconImg: "/whiteBlackSquareIcon.svg",
     url: "https://api.maptiler.com/maps/voyager/{z}/{x}/{y}.png?key=PmIF6Ez34ROeDo7jJGuD#",
   },
-  "black-transit": {
-    id: "black-transit",
+  "dark-transit": {
+    id: "dark-transit",
     iconImg: "/blackWhiteSquareIcon.svg",
     url: "https://api.maptiler.com/maps/265e1571-5b2a-47cf-bdf4-0f78abaefb47/{z}/{x}/{y}.png?key=ht4mIQlGHtGak0dQVtAU",
   },
+  // "modern-light": {
+  //   id: "modern-light",
+  //   iconImg: "/modernLightIcon.svg",
+  //   url: `https://api.maptiler.com/maps/b5849635-c4d4-4bb8-b7ea-78ccd9bcf89c/{z}/{x}/{y}.png?key=${process.env.MAPTILER_API_KEY}`,
+  // },
 };
 
 export const SIZE_OPTION = "_24_36";
 export const MATERIAL_OPTION = "POSTER";
-export const DEFAULT_TILE_LAYER = "white-transit";
+export const DEFAULT_TILE_LAYER = "light-transit";
