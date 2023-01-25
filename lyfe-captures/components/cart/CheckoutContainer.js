@@ -213,10 +213,10 @@ const CheckoutContainer = (props) => {
               {/* TO DO: implement discount code */}
               <Divider horizontal>Discount Code</Divider>
               <div className={classes.discountDivide}>
-                <h3>Want 10% off your map?</h3>
+                <h3>Want 20% off your map?</h3>
                 <p>
-                  If you review your map after it arrives, use the following
-                  code:
+                  If you PROMISE to review your map after it arrives, use the
+                  following code:
                   <span style={{ fontWeight: "bold" }}> {" IWILLREVIEW"}</span>
                 </p>
                 <p>We promise the review will be short and sweet!</p>
