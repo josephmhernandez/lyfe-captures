@@ -620,7 +620,7 @@ const CheckoutForm = (props) => {
       )}
 
       <Form.Button type="submit" color="green" size="huge">
-        Complete Checkout and Pay
+        Place Order
       </Form.Button>
     </Form>
   );

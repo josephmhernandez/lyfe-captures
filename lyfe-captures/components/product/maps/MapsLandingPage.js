@@ -1,8 +1,7 @@
 import ShopNowBanner from "../ShopNowBanner";
 import Link from "next/link";
 import classes from "./MapsLandingPage.module.css";
-import shopNowImage from "../../../public/OO-Summer-Sale-Page-Banner-3840x1400px.webp";
-import mapProdPic from "../../../public/maps-prod-pic-landing.png";
+import shopNowImage from "../../../public/images/banner-valentines-day.png";
 import prodPic1 from "../../../public/images/prod-pics/3-maps-prod-pic-small.png";
 import prodPic2 from "../../../public/images/prod-pics/map-vert-prod-pic-small.png";
 import prodPic3 from "../../../public/images/prod-pics/puerto-rico-landscape-prod-pic-small.png";
@@ -16,13 +15,12 @@ const DUMMY_TITLE = "what is this?";
 const DUMMY_DESCRIPTION =
   "We're giving you the capability to design a meaningful present. \nFrom a significant moment to a meaningful location, this print is perfect for any any loved one. \nLife is alwasy happening. We're hear to help you catpure the memories and moments that matter.";
 
-const title = "Uniquely Meaningful Maps";
+const title = "Meaningful Maps";
 const heading_1 = "HIGH RESOLUTION";
 const description_1 = [
-  "Customize a unique map",
+  "Design a unique map 24x36 inches",
   "Looks great up close and far away",
-  "Printed on 24x36 inch poster paper",
-  'Printed at 300 DPI. This is high resolution, and some might even say "overkill"',
+  'Printed at 300 DPI. This is great resolution, and some might say "overkill"',
 ];
 
 const heading_2 = "NEXT DAY SHIPPING";
@@ -35,7 +33,7 @@ const description_2 = [
 
 const heading_3 = "UNMATCHED CUSTOMER SERVICE";
 const description_3 = [
-  "Less than 24 hours response time",
+  "Under 24 hours response time",
   "Speedy and transparent printing to shipping process",
 ];
 
