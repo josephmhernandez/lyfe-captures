@@ -9,7 +9,12 @@ const OrderSummaryItem = ({ item }) => {
   let tile_layer_image = MapStyleDict[item.tile_layer].iconImg;
   return (
     <Segment className={classes.item} raised key={item.map_id}>
-      <Image className="ui small rounded image" src={tile_layer_image} />
+      <Image
+        width={150}
+        height={150}
+        className="ui small rounded image"
+        src={tile_layer_image}
+      />
       <div className={classes.name}>
         <h1>{item.name}</h1>
         <p className={classes.name}>{item.description}</p>

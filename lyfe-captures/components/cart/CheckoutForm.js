@@ -199,7 +199,12 @@ const CheckoutForm = (props) => {
                   setProcessing(false);
                 })
                 .catch((err) => {
-                  window.alert(err.data.error.message);
+                  if (err.data.error.message) {
+                    window.alert(err.data.error.message);
+                    console.log(err.data.error.message);
+                  } else {
+                    console.log(err.data);
+                  }
                   setProcessing(false);
                 });
             } catch (e) {

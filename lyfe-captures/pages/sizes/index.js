@@ -7,11 +7,16 @@ const Sizes = () => {
     <div className={classes.sizes}>
       <Segment raised className={classes.sizesSegment}>
         <h1>Size Guide</h1>
-        <Image
-          className="ui fluid image"
-          src="images/EFrameSizingGuide.png"
-          alt="Sizes"
-        />
+        <div>
+          <Image
+            className="ui fluid image"
+            src="images/EFrameSizingGuide.png"
+            alt="Sizes"
+            height="1741"
+            width="2612"
+          />
+        </div>
+
         <div>
           <p style={{ fontStyle: "italic" }}>
             Currently we are only offering large prints of 24x36 inches. These
@@ -20,11 +25,15 @@ const Sizes = () => {
           </p>
           <p>24 x 36 in.</p>
         </div>
-        <Image
-          className="ui fluid image"
-          src="images/24_36_Poster_Dimenstions-small.png"
-          alt="24x36 Poster Dimensions"
-        />
+        <div>
+          <Image
+            className="ui fluid image"
+            src="images/24_36_Poster_Dimenstions-small.png"
+            alt="24x36 Poster Dimensions"
+            width="2304"
+            height="1152"
+          />
+        </div>
       </Segment>
     </div>
   );

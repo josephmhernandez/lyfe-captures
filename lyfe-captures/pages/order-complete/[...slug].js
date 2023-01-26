@@ -5,7 +5,6 @@ import Image from "next/image";
 import OrderSummary from "../../components/cart/OrderSummary";
 import { getOrderSummaryEcommerceJs } from "../../components/cart/cartFunctionality";
 import SampleReivew from "../../components/product/SampleReview";
-const img = "/images/dog-with-stick.jpg";
 
 const OrderCompleteId = () => {
   const router = useRouter();
