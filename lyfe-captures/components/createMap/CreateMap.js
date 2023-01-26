@@ -19,7 +19,6 @@ import {
   getPriceEcommerceJs,
   addToCartEcommerceJs,
 } from "../cart/cartFunctionality";
-import { tileLayer } from "leaflet";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -138,12 +137,17 @@ const CreateMap = (props) => {
     setLoading(false);
   };
 
-  const MapWithNoSSR = dynamic(() => import("./MapFolder/Map"), {
+  const MapWithNoSSR = dynamic(import("./MapFolder/Map"), {
     ssr: false,
+    loading: () => (
+      <div>
+        <p>loading map...</p>
+      </div>
+    ),
   });
 
   if (loading) {
-    return <p> loading... </p>;
+    return <p> loading no structured_formatting... </p>;
   }
 
   return (

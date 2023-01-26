@@ -179,7 +179,7 @@ const CheckoutContainer = (props) => {
                 </div>
               </Header>
               {loading ? (
-                <p> loading...</p>
+                <p> loading yo...</p>
               ) : (
                 <div>
                   {liveObject &&
@@ -207,7 +207,7 @@ const CheckoutContainer = (props) => {
               )}
               {!shipOption && (
                 <p className={classes.errorMsg}>
-                  "Select Country" in Customer Info for Shipping Options
+                  {`"Select Country" in Customer Info for Shipping Options`}
                 </p>
               )}
               {/* TO DO: implement discount code */}

@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import Script from "next/script";
 import Layout from "../components/layout/Layout";
 import { useEffect } from "react";
 import Head from "next/head";
@@ -34,15 +35,13 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <title>Map Your Memory</title>
         <link rel="icon" href="/play-button.ico" />
-        <script
-          src="https://js.stripe.com/v3/"
-          crossOrigin="anonymous"
-        ></script>
+
         <meta
           name="description"
           content="Design your own unique map for a special occasion, event, or place. It's the perfect customized gift for weddings, engagements, and holidays."
         />
       </Head>
+      <Script src="https://js.stripe.com/v3/" crossOrigin="anonymous"></Script>
       <Elements stripe={stripePromise}>
         <Layout>
           <Component {...pageProps} />

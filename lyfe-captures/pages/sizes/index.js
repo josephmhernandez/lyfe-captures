@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Segment } from "semantic-ui-react";
 import classes from "./sizes.module.css";
 
@@ -6,7 +7,7 @@ const Sizes = () => {
     <div className={classes.sizes}>
       <Segment raised className={classes.sizesSegment}>
         <h1>Size Guide</h1>
-        <img
+        <Image
           className="ui fluid image"
           src="images/EFrameSizingGuide.png"
           alt="Sizes"
@@ -19,7 +20,7 @@ const Sizes = () => {
           </p>
           <p>24 x 36 in.</p>
         </div>
-        <img
+        <Image
           className="ui fluid image"
           src="images/24_36_Poster_Dimenstions-small.png"
           alt="24x36 Poster Dimensions"

@@ -76,7 +76,7 @@ const Questions = () => {
       <div className={classes.questionAccordion}>
         {question_content.map((question) => {
           return (
-            <div>
+            <div key={question.id}>
               <h2>{question.title}</h2>
               <p>{question.description}</p>
             </div>

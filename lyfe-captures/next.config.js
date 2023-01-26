@@ -12,6 +12,17 @@ module.exports = {
     primaryColor: "#8657c7",
   },
   reactStrictMode: true,
+  images: {
+    unoptimized: true,
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.chec.io",
+        port: "",
+        pathname: "/merchants/47490/assets/**",
+      },
+    ],
+  },
   env: {
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     CHEC_PK: process.env.CHEC_PK,

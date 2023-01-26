@@ -30,7 +30,7 @@ const OrderSummary = ({ items, customer, price, orderId }) => {
         ) : (
           <p>{`Your order reference id is ${customer.cust_ord_ref}`}</p>
         )}
-        <p>We've also sent it to your email</p>
+        <p>{`We've also sent it to your email`}</p>
         {items.map((item) => {
           return <OrderSummaryItem item={item} key={item.map_id} />;
         })}

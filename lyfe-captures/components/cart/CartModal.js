@@ -180,7 +180,7 @@ const CartModal = (props) => {
           {/* Then for each unique map Render the Item Block  */}
 
           {tempCart.map((item) => (
-            <React.Fragment>
+            <React.Fragment key={item.id}>
               <ItemCartModal
                 key={item.id}
                 item={item}
