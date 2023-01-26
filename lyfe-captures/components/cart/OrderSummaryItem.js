@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Segment, Icon } from "semantic-ui-react";
 import { MapStyleDict } from "../../components/createMap/MapFolder/MapConstants";
 import classes from "./OrderSummaryItem.module.css";
@@ -8,7 +9,7 @@ const OrderSummaryItem = ({ item }) => {
   let tile_layer_image = MapStyleDict[item.tile_layer].iconImg;
   return (
     <Segment className={classes.item} raised key={item.map_id}>
-      <img className="ui small rounded image" src={tile_layer_image} />
+      <Image className="ui small rounded image" src={tile_layer_image} />
       <div className={classes.name}>
         <h1>{item.name}</h1>
         <p className={classes.name}>{item.description}</p>

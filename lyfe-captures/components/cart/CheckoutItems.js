@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { ConstructionOutlined } from "@mui/icons-material";
 import { getMapObjLocalStorage } from "./cartFunctionality";
 import { current } from "@reduxjs/toolkit";
+import Image from "next/image";
 const CheckoutItems = (props) => {
   const item = props.item;
   const total_price = `${props.item.line_total.formatted_with_symbol}`;
@@ -30,7 +31,7 @@ const CheckoutItems = (props) => {
   return (
     <>
       <div className={classes.itemCart}>
-        <img src={item.image.url} />
+        <Image height={100} width={100} src={item.image.url} />
         <div className={classes.productNameDescription}>
           <h3>{props.item.product_name}</h3>
           {description_map_s_bought.map((description, index) => {

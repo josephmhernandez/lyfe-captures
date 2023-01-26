@@ -20,7 +20,7 @@ const heading_1 = "HIGH RESOLUTION";
 const description_1 = [
   "Design a unique map 24x36 inches",
   "Looks great up close and far away",
-  'Printed at 300 DPI. This is great resolution, and some might say "overkill"',
+  `Printed at 300 DPI. This is great resolution, and some might say "overkill"`,
 ];
 
 const heading_2 = "NEXT DAY SHIPPING";
@@ -109,7 +109,7 @@ const MapsLandingPage = () => {
             are just the start!
           </p>
           <p>
-            We'll provide you the tools to truly create meaningful and unique
+            {`We'll provide you the tools to truly create meaningful and unique
             artwork. All you need to do is hang it up! These work as a gift for
             yourself or a gift for someone you care about. You probably can’t
             remember what you got last Christmas and that wasn’t even a couple
@@ -119,7 +119,7 @@ const MapsLandingPage = () => {
             pins. Map your family home, or favorite vacation spot, just make
             sure it's somewhere special to you. Let your wall art being a
             talking point, a focal point. And most importantly don’t let the
-            Live, Laugh, Love signs win!
+            Live, Laugh, Love signs win!`}
           </p>
           <p>
             Be sure to let us know what you think and how we can improve our

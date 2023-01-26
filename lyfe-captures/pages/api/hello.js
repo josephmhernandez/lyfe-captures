@@ -1,11 +1,10 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
+  res.status(200).json({ name: "John Doe" });
 }
 
-
-export default async function serverSideCall(req, res) {
+export async function serverSideCall(req, res) {
   const {
     query: { firstName, lastName },
   } = req;
@@ -14,8 +13,8 @@ export default async function serverSideCall(req, res) {
       lastName=${lastName}&firstName=${firstName}
       &apiKey=${process.env.KEY}
   `;
-  const response = await fetch (baseUrl);
+  const response = await fetch(baseUrl);
   res.status(200).json({
-  data: response.data,
-});
+    data: response.data,
+  });
 }

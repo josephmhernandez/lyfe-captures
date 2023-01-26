@@ -41,8 +41,8 @@ const OrderCompleteId = () => {
             </li>
             <li>
               <p>
-                Your map is being created as we speak! As soon as we ship it
-                we'll send you a tracking number for your package
+                {`Your map is being created as we speak! As soon as we ship it
+                we'll send you a tracking number for your package`}
               </p>
             </li>
             <li>

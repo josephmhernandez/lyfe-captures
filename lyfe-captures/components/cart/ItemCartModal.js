@@ -4,6 +4,7 @@ import {
   MapStyleDict,
   DEFAULT_TILE_LAYER,
 } from "../createMap/MapFolder/MapConstants";
+import Image from "next/image";
 
 const ItemCartModal = (props) => {
   let total_price = props.item.quantity * props.item.unitPrice;
@@ -37,7 +38,7 @@ const ItemCartModal = (props) => {
         {/* picture, description, qunatity Price*/}
         <div className={classes.itemBlockDescription}>
           {/* to do load this based on color available.  */}
-          <img src={iconImagePath} />
+          <Image src={iconImagePath} />
           <p>{props.item.description}</p>
         </div>
         <div className={classes.itemBlockQuantity}>
