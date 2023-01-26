@@ -179,7 +179,7 @@ const CheckoutContainer = (props) => {
                 </div>
               </Header>
               {loading ? (
-                <p> loading yo...</p>
+                <p> loading...</p>
               ) : (
                 <div>
                   {liveObject &&

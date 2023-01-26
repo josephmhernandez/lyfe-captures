@@ -147,7 +147,7 @@ const CreateMap = (props) => {
   });
 
   if (loading) {
-    return <p> loading no structured_formatting... </p>;
+    return <p> loading... </p>;
   }
 
   return (
