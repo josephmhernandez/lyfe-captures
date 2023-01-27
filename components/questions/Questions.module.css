@@ -1,0 +1,48 @@
+.contactTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: var(--primary-font);
+  width: 100%;
+  padding: 0%; 
+}
+
+.contactTitle h1 {
+  font-size: var(--page-heading-font-size);
+  font-weight: var(--page-heading-font-weight);
+  color: var(--purple-dark-color);
+  font-family: 'Great Vibes';
+  margin: 0; 
+  padding: 16px 0 0 0; 
+}
+
+.contactTitle p {
+  font-size: var(--page-paragraph-font-size);
+  font-weight: var(--page-paragraph-font-weight);
+  font-family: var(--page-paragraph-font-family);
+  width: 50%;
+  text-align: justify;
+  text-justify: inter-word;
+  margin: 16px 0 0 0;
+}
+
+.questionAccordion {
+  width: 50%;
+  padding: 0%;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.questionAccordion p {
+  width:100%; 
+  margin: 0;
+}
+
+.questionAccordion h2 {
+  color:var(--purple-dark-color);
+  margin: 16px 0 0 0;
+}
+
+.questionAccordion:last-of-type {
+  margin: 16px;
+}
