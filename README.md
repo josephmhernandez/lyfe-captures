@@ -34,3 +34,9 @@ The easiest way to deploy your Next.js app is to use the [Vercel Platform](https
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
 
 making sure i don't reintroduce ds
+
+# Deploying to AWS Amplify
+
+Build file amplify.yml
+build_scripts are ran in prebuild
+output is saved to out file
