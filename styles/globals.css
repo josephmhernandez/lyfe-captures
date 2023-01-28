@@ -1,0 +1,50 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* * {
+  box-sizing: border-box;
+} */
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+  body {
+    color: black;
+    background: white;
+  }
+}
+
+
+:root {
+  --purple-dark-color: #8657c7;
+  --purple-dark-color-rgb: 134, 87, 199;
+  --purple-light-color: #B483CD;
+  --primary-font: "Source Sans Pro", sans-serif;
+  --create-map-opacity: .15;
+  --accordion-font-weight: 500; 
+  --accordion-title-font-size: x-large;
+  --accordion-sub-font-size: large;
+
+  --buy-now-btn-color: #23d160; 
+  --buy-now-btn-hover-color: #1fbb56; 
+
+  --page-heading-font-size: 3.5rem;
+  --page-heading-font-weight: 400;
+  --page-heading-font-family: 'Great Vibes';
+
+  --page-paragraph-font-size: 1.5rem;
+  --page-paragraph-font-weight: 400;
+  --page-paragraph-font-family: "Source Sans Pro", sans-serif;
+}
+
