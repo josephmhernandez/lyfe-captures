@@ -47,7 +47,7 @@ const Search = (props) => {
     fetchLngLat({ placeId: place_id }, (results) => {
       if (results[0]) {
         const location = JSON.stringify(results[0].geometry.location);
-        location = JSON.parse(location); 
+        location = JSON.parse(location);
         dispatch(mapActions.changeMapCenter(location));
       }
     });
@@ -111,8 +111,7 @@ const Search = (props) => {
     <div>
       <Script
         src={`https://maps.googleapis.com/maps/api/js?key=${process.env.GOOGLE_API_KEY}&libraries=places`}
-        onLoad={() => {
-        }}
+        onLoad={() => {}}
       ></Script>
       <Autocomplete
         id="google-map-demo"
@@ -134,14 +133,14 @@ const Search = (props) => {
           // this.props.onSearch(newValue);
 
           // Call API here and then we can pass center to props.onSearch() <- name that something like on center change....
-          // newValue.place_id <- path 
+          // newValue.place_id <- path
           handleOnSearch(newValue);
         }}
         onInputChange={(event, newInputValue) => {
           setInputValue(newInputValue);
         }}
         renderInput={(params) => (
-          <TextField {...params} label="Add a location" fullWidth />
+          <TextField {...params} label="Search..." fullWidth />
         )}
         renderOption={(props, option) => {
           const matches =

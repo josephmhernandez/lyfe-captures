@@ -1,18 +1,7 @@
 import TextField from "@mui/material/TextField";
 import classes from "./Text.module.css";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import getConfig from "next/config";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
-const { publicRuntimeConfig } = getConfig();
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: publicRuntimeConfig.primaryColor,
-    },
-  },
-});
 
 import { mapActions } from "../../../store/map-slice";
 
@@ -54,35 +43,33 @@ const Text = (props) => {
 
   return (
     <div className={classes.container}>
-      <ThemeProvider theme={theme}>
-        <TextField
-          onChange={handlePrimaryTextChange}
-          label="Primary Text"
-          color="primary"
-          value={textPrimary}
-          inputProps={{ maxLength: process.env.MAX_CHARS_PRIMARY }}
-        />
-        <TextField
-          onChange={handleSecondaryTextChange}
-          label="Secondary Text"
-          color="primary"
-          value={textSecondary}
-          inputProps={{ maxLength: process.env.MAX_CHARS_SECONDARY }}
-        />
-        {showAddBtn && (
-          <button className="ui positive button" onClick={handleAddLngLat}>
-            Add Coordinates
-          </button>
-        )}
-        {showRemoveBtn && (
-          <button className="ui negative button" onClick={handleRemoveLngLat}>
-            Remove Coordinates
-          </button>
-        )}
-        <button className="ui negative button" onClick={handleRemoveAllText}>
-          Remove All Text
+      <TextField
+        onChange={handlePrimaryTextChange}
+        label="Primary Text"
+        color="primary"
+        value={textPrimary}
+        inputProps={{ maxLength: process.env.MAX_CHARS_PRIMARY }}
+      />
+      <TextField
+        onChange={handleSecondaryTextChange}
+        label="Secondary Text"
+        color="primary"
+        value={textSecondary}
+        inputProps={{ maxLength: process.env.MAX_CHARS_SECONDARY }}
+      />
+      {showAddBtn && (
+        <button className="ui positive button" onClick={handleAddLngLat}>
+          Add Coordinates
         </button>
-      </ThemeProvider>
+      )}
+      {showRemoveBtn && (
+        <button className="ui negative button" onClick={handleRemoveLngLat}>
+          Remove Coordinates
+        </button>
+      )}
+      <button className="ui negative button" onClick={handleRemoveAllText}>
+        Remove All Text
+      </button>
     </div>
   );
 };
