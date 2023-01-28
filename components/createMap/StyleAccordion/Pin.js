@@ -40,7 +40,7 @@ const startPinSize = 40;
 
 const Pin = () => {
   const dispatch = useDispatch();
-  const [selectedPin, setSelectedPin] = React.useState("heart-white-black");
+  const [selectedPin, setSelectedPin] = React.useState("heart-black-white");
   const [sizePin, setSizePin] = React.useState(startPinSize);
   const handleChange = (event) => {
     setSelectedPin(event.target.value);

@@ -47,14 +47,6 @@ export default function Document() {
           id="script-semantic-cloudflare"
           src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
         ></Script>
-        <Script src="js/vendor/jquery-1.11.2.min.js"></Script>
-
-        <Script src="js/accordion.js"></Script>
-
-        <Script language="javascript">
-          {`$('.ui.accordion').accordion('refresh');
-`}
-        </Script>
 
         <Script id="script-rating">{`$(".rating").rating();`}</Script>
       </body>
