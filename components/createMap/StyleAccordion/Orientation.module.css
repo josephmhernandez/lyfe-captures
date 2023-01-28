@@ -3,4 +3,8 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+
+  font-family: var(--primary-font);
+  font-weight: var(--accordion-font-weight);
+  font-size: var(--accordion-font-size);
 }

@@ -42,6 +42,7 @@ export default function Document() {
           integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
           crossOrigin="anonymous"
         ></Script>
+
         <Script
           id="script-semantic-cloudflare"
           src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
