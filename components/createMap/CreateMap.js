@@ -11,7 +11,6 @@ import {
   MATERIAL_OPTION,
 } from "./MapFolder/MapConstants";
 import { mapActions } from "../../store/map-slice";
-import NextNProgress from "nextjs-progressbar";
 import { AddToCartButton, BuyNowButton } from "../ui/CustomButtons";
 import { useRouter } from "next/router";
 import Commerce from "@chec/commerce.js";
@@ -20,7 +19,6 @@ import {
   addToCartEcommerceJs,
 } from "../cart/cartFunctionality";
 import { getMapDescriptionText } from "./mapFunctionality";
-import { QrCodeScannerOutlined } from "@mui/icons-material";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -133,8 +131,6 @@ const CreateMap = (props) => {
       secondaryText,
       defaultCenter
     );
-    console.log("in handleAddToCart");
-    console.log("description", description);
 
     dispatch(
       mapActions.addMapToCart({
