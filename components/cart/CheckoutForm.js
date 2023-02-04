@@ -199,7 +199,8 @@ const CheckoutForm = (props) => {
                   setProcessing(false);
                 })
                 .catch((err) => {
-                  if (err.data.error.message) {
+                  // If there is a 502 Cors error. it looks like the shopping cart is expired. Maybe try to remove that cookie and create another in the new shopping cart.
+                  if (err.data && err.data.error.message) {
                     window.alert(err.data.error.message);
                     console.log(err.data.error.message);
                   } else {

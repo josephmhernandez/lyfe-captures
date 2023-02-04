@@ -205,6 +205,8 @@ export async function getOrderSummaryEcommerceJs(order_id) {
   }).then((response) => response);
   if (response.status === 200) {
     let checkoutSummaryData = await response.json().then((res) => res);
+    console.log(checkoutSummaryData);
+
     try {
       let items = JSON.parse(checkoutSummaryData.extra_fields[0].value); // array of map objects
       let pretty_items = items.map((item) => {
@@ -232,7 +234,9 @@ export async function getOrderSummaryEcommerceJs(order_id) {
           tax: checkoutSummaryData.tax.amount.formatted_with_symbol,
           total_price:
             checkoutSummaryData.order.total_paid.formatted_with_symbol,
-          discount: checkoutSummaryData.order.discount,
+          discount:
+            checkoutSummaryData.order.discount.amount_saved
+              .formatted_with_symbol,
         },
         pretty_items: pretty_items,
       };
