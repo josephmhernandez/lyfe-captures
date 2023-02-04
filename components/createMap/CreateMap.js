@@ -19,6 +19,8 @@ import {
   getPriceEcommerceJs,
   addToCartEcommerceJs,
 } from "../cart/cartFunctionality";
+import { getMapDescriptionText } from "./mapFunctionality";
+import { QrCodeScannerOutlined } from "@mui/icons-material";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -126,11 +128,20 @@ const CreateMap = (props) => {
       Material: MATERIAL_OPTION,
     };
 
+    let description = await getMapDescriptionText(
+      primaryText,
+      secondaryText,
+      defaultCenter
+    );
+    console.log("in handleAddToCart");
+    console.log("description", description);
+
     dispatch(
       mapActions.addMapToCart({
         name: productName,
         unitPrice: price,
         lineItemId: lineItemId.line_items,
+        description: description,
       })
     );
     router.push("/cart");
