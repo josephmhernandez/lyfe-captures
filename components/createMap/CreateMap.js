@@ -11,7 +11,6 @@ import {
   MATERIAL_OPTION,
 } from "./MapFolder/MapConstants";
 import { mapActions } from "../../store/map-slice";
-import NextNProgress from "nextjs-progressbar";
 import { AddToCartButton, BuyNowButton } from "../ui/CustomButtons";
 import { useRouter } from "next/router";
 import Commerce from "@chec/commerce.js";
@@ -19,6 +18,7 @@ import {
   getPriceEcommerceJs,
   addToCartEcommerceJs,
 } from "../cart/cartFunctionality";
+import { getMapDescriptionText } from "./mapFunctionality";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -126,11 +126,18 @@ const CreateMap = (props) => {
       Material: MATERIAL_OPTION,
     };
 
+    let description = await getMapDescriptionText(
+      primaryText,
+      secondaryText,
+      defaultCenter
+    );
+
     dispatch(
       mapActions.addMapToCart({
         name: productName,
         unitPrice: price,
         lineItemId: lineItemId.line_items,
+        description: description,
       })
     );
     router.push("/cart");

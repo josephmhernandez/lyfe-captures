@@ -5,6 +5,7 @@ import { getPriceEcommerceJs } from "../components/cart/cartFunctionality";
 import { MapConstants } from "../components/createMap/MapFolder/MapConstants";
 import { DEFAULT_TILE_LAYER } from "../components/createMap/MapFolder/MapConstants";
 import { addToMapObjLocalStorage } from "../components/cart/cartFunctionality";
+
 const mapSlice = createSlice({
   name: "map",
   initialState: {
@@ -293,7 +294,7 @@ const mapSlice = createSlice({
         }
       }
 
-      mapObj.description = getMapDescriptionText(mapObj);
+      mapObj.description = action.payload.description;
 
       // call local storage to update cart.
       addToMapObjLocalStorage(mapObj);
@@ -343,30 +344,4 @@ function convertToDms(dd, isLng) {
   // Round it to 2 decimal points.
   sec = Math.round(sec * 100) / 100;
   return dir + " " + deg + "°" + min + "'" + sec + '"';
-}
-
-/**
- * Converts map object to description string for customer to identify map in cart
- * Order of getting descritpion:
- * 1. textPrimary
- * 2. textSecondary
- * 3. center coordinate to nearest city
- *
- * @param mapObj the map object in cart
- * @param {string} mapObj.textPrimary the primary text on the map
- * @param {string} mapObj.textSecondary the secondary text on the map
- * @param {[lng, lat]} mapObj.center the coordinates of center of map
- * @return description string
- */
-function getMapDescriptionText(mapObj) {
-  let rtnText = "";
-  if (mapObj.textPrimary !== "") {
-    rtnText = "Map of " + mapObj.textPrimary;
-  } else if (mapObj.textSecondary !== "") {
-    rtnText = "Map of " + mapObj.textSecondary;
-  } else {
-    rtnText =
-      "Map at coordinates " + mapObj.center[0] + ", " + mapObj.center[1];
-  }
-  return rtnText;
 }
