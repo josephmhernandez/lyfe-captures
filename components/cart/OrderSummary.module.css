@@ -42,6 +42,7 @@
   font-weight: 400;
   color: var(--purple-dark-color);
   font-family: var(--page-heading-font-family);
+  text-align: center;
 }
 
 .orderSummaryContainer h2 {
@@ -51,6 +52,10 @@
   font-family: var(--primary-font);
   margin: 0;
   color: black;
+}
+
+.orderSummaryContainer p {
+  text-align: center;
 }
 
 .line {

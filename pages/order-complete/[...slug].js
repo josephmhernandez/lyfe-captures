@@ -28,6 +28,7 @@ const OrderCompleteId = () => {
     });
   }, [order_id]);
 
+  console.log(price);
   return (
     <div>
       <div className={classes.spacing} />
@@ -36,7 +37,7 @@ const OrderCompleteId = () => {
         <div className={classes.grid}>
           <ul>
             <li>
-              <p>Your order confirmation will be emailed to {email}</p>
+              <p>Order confirmation emailed to {email}</p>
             </li>
             <li>
               <p>
@@ -48,13 +49,10 @@ const OrderCompleteId = () => {
               <p>Your map will be shipped within the next two days!</p>
             </li>
             <li>
-              <p>
-                Your review request will be sent after you receive your product.
-                You can see a sample below
-              </p>
+              <p>Sample review below</p>
             </li>
             <li>
-              <p>Your order summary is also available below</p>
+              <p>Order summary available below</p>
             </li>
           </ul>
         </div>
