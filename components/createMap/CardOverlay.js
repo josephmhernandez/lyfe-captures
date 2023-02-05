@@ -3,7 +3,7 @@ import classes from "./CreateMap.module.css";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import { MapConstants } from "./MapFolder/MapConstants";
+import { MapConstants, MapStyleDict } from "./MapFolder/MapConstants";
 const SIZE_OPTION = "_24_36";
 const STYLING_OPTION = "basic";
 
@@ -12,6 +12,10 @@ const CardOverlay = (props) => {
   const textSecondary = useSelector((state) => state.map.textSecondary);
   const textCoordinates = useSelector((state) => state.map.textCoordinates);
   const orientation = useSelector((state) => state.map.orientation);
+  const tileLayer = useSelector((state) => state.map.tileLayer);
+  const transparentFlag = useSelector(
+    (state) => state.map.transparentTextBlock
+  );
   const [showTextPrimary, setShowTextPrimary] = useState(true);
   const [showTextSecondary, setShowTextSecondary] = useState(true);
   const [showTextCoordinates, setShowTextCoordinates] = useState(true);
@@ -19,58 +23,31 @@ const CardOverlay = (props) => {
     height: "calc(var(--card-overlay-multiplier) * var(--poster-height))",
     width: "calc(var(--card-overlay-multiplier) * var(--poster-width))",
   });
+  const [textBlockStyle, setTextBlockStyle] = useState({});
   const [styling, setStyling] = useState(STYLING_OPTION);
   const [mapSizeOption, setMapSizeOption] = useState(SIZE_OPTION);
-  const padding =
-    (100 * 0.5) / MapConstants.poster_size[mapSizeOption].full_width;
-  const stylePadding = padding.toString() + "%";
 
-  const [mapPaddingStyle, setMapPaddingStyle] = useState({
-    paddingTop: stylePadding,
-  });
+  const color_text_for_dict = transparentFlag ? "color_transparent" : "color";
 
   const styleTextPrimary = {
-    fontFamily:
-      MapConstants.poster_size[mapSizeOption]["styling"][styling].primary_font,
-    fontSize:
-      MapConstants.poster_size[mapSizeOption]["styling"][styling]
-        .primary_font_size,
-    color:
-      MapConstants.poster_size[mapSizeOption]["styling"][styling]
-        .primary_font_color,
+    fontFamily: MapStyleDict[tileLayer]["text"]["fontFamily"]["primary"],
+    fontSize: MapStyleDict[tileLayer]["text"]["size"]["primary"] + "px",
+    color: MapStyleDict[tileLayer]["text"][color_text_for_dict]["primary"],
   };
   const styleTextSecondary = {
-    fontFamily:
-      MapConstants.poster_size[mapSizeOption]["styling"][styling]
-        .secondary_font,
-    fontSize:
-      MapConstants.poster_size[mapSizeOption]["styling"][styling]
-        .secondary_font_size,
-    color:
-      MapConstants.poster_size[mapSizeOption]["styling"][styling]
-        .secondary_font_color,
+    fontFamily: MapStyleDict[tileLayer]["text"]["fontFamily"]["secondary"],
+    fontSize: MapStyleDict[tileLayer]["text"]["size"]["secondary"] + "px",
+    color: MapStyleDict[tileLayer]["text"][color_text_for_dict]["secondary"],
   };
 
   const styleTextCoordinates = {
-    fontFamily:
-      MapConstants.poster_size[mapSizeOption]["styling"][styling]
-        .coordinate_font,
-    fontSize:
-      MapConstants.poster_size[mapSizeOption]["styling"][styling]
-        .coordinate_font_size,
-    color:
-      MapConstants.poster_size[mapSizeOption]["styling"][styling]
-        .coordinate_font_color,
+    fontFamily: MapStyleDict[tileLayer]["text"]["fontFamily"]["coordinate"],
+    fontSize: MapStyleDict[tileLayer]["text"]["size"]["coordinate"] + "px",
+    color: MapStyleDict[tileLayer]["text"][color_text_for_dict]["coordinate"],
   };
 
   useEffect(() => {
     if (orientation === "portrait") {
-      // Calculate the padding (1/2 inch) between poster edge and map.
-      const padding =
-        (100 * 0.5) / MapConstants.poster_size[mapSizeOption].full_width;
-      const stylePadding = padding.toString() + "%";
-      setMapPaddingStyle({ paddingTop: stylePadding });
-
       // Calculate Paper size. Portrait.
       const optionObj = MapConstants.poster_size[mapSizeOption];
       const height = optionObj.full_height * optionObj.poster_multiplier;
@@ -81,13 +58,6 @@ const CardOverlay = (props) => {
       };
       setPaperStyle(style);
     } else {
-      // Landscape Mode
-      // Calculate the padding difference between map to paper.  (1/2 in real life)
-      const padding =
-        (100 * 0.5) / MapConstants.poster_size[mapSizeOption].full_height;
-      const stylePadding = padding.toString() + "%";
-      setMapPaddingStyle({ paddingTop: stylePadding });
-
       // Calculate the size of the landscape Paper.
       const optionObj = MapConstants.poster_size[mapSizeOption];
       const height = optionObj.full_height * optionObj.poster_multiplier;
@@ -117,12 +87,60 @@ const CardOverlay = (props) => {
     } else {
       setShowTextCoordinates(false);
     }
-  }, [textPrimary, textSecondary, textCoordinates, orientation]);
+    if (textCoordinates || textPrimary || textSecondary) {
+      let marginTop = 0;
+      if (textPrimary) {
+        marginTop +=
+          parseInt(MapStyleDict[tileLayer]["text"]["size"]["primary"]) * 1.5;
+      }
+      if (textSecondary) {
+        marginTop +=
+          parseInt(MapStyleDict[tileLayer]["text"]["size"]["secondary"]) * 1.5;
+      }
+      if (textCoordinates) {
+        marginTop +=
+          parseInt(MapStyleDict[tileLayer]["text"]["size"]["coordinate"]) * 1.5;
+      }
+      marginTop +=
+        parseInt(MapStyleDict[tileLayer]["text"]["textBlock"]["padding"]) * 2;
+
+      marginTop +=
+        parseFloat(MapStyleDict[tileLayer]["text"]["textBlock"]["spacing"]) *
+        parseInt(MapConstants.poster_size[mapSizeOption]["poster_multiplier"]);
+
+      marginTop = marginTop * -1;
+
+      setTextBlockStyle({
+        "margin-top": marginTop,
+        overflow: "hidden",
+        backgroundColor:
+          MapStyleDict[tileLayer]["text"][color_text_for_dict]["background"],
+        zIndex: "10",
+        borderRadius: MapStyleDict[tileLayer]["text"]["textBlock"]["rounded"],
+        padding: MapStyleDict[tileLayer]["text"]["textBlock"]["padding"],
+      });
+    } else {
+      setTextBlockStyle({
+        overflow: "hidden",
+        backgroundColor:
+          MapStyleDict[tileLayer]["text"][color_text_for_dict]["background"],
+        zIndex: "10",
+        borderRadius: MapStyleDict[tileLayer]["text"]["textBlock"]["rounded"],
+      });
+    }
+  }, [
+    textPrimary,
+    textSecondary,
+    textCoordinates,
+    orientation,
+    tileLayer,
+    transparentFlag,
+  ]);
 
   return (
     <Paper style={paperStyle} className={classes.paper} elevation={24}>
-      <div style={mapPaddingStyle}>{props.children}</div>
-      <div className={classes.textMap}>
+      <div style={{ zIndex: 1 }}>{props.children}</div>
+      <div style={textBlockStyle} className={classes.textMap}>
         {showTextPrimary && (
           <Typography style={styleTextPrimary}>{textPrimary}</Typography>
         )}

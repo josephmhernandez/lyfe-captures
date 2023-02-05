@@ -58,36 +58,16 @@
 .paper {
   display: flex;
   flex-direction: column;
-  border: 3px solid black;
   border-radius: 0px;
   position: relative;
   align-items: center;
+  background: "#0000";
 }
 
 .textMap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  flex-grow: 1;
-}
-
-.textPrimary {
-  font-family: "Semplicita";
-  font-size: 1.5rem;
-  color: rgb(0, 0, 0);
-}
-
-.textSecondary {
-  font-family: "Semplicita";
-  font-size: 0.75rem;
-  color: rgb(0, 0, 0);
-}
-
-.textCoordinates {
-  font-family: "Semplicita";
-  font-size: 0.5rem;
-  color: rgb(0, 0, 0);
 }
 
 .actionBtns {

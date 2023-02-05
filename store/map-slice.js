@@ -23,6 +23,7 @@ const mapSlice = createSlice({
     styling: "basic",
     zoom: process.env.MAP_ZOOM,
     tileZoomOffset: process.env.TILE_ZOOM_OFFSET,
+    transparentTextBlock: false,
     // cart: [],
     bbox: [],
   },
@@ -50,6 +51,9 @@ const mapSlice = createSlice({
       if (data.bbox !== undefined) {
         state.bbox = data.bbox;
       }
+    },
+    setTransparentTextBlock: (state, action) => {
+      state.transparentTextBlock = action.payload;
     },
     changeLocation: (state, action) => {
       // On location search we want to search api for location and update lngLat
