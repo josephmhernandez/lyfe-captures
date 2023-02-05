@@ -57,7 +57,6 @@ const Pin = () => {
             onChange={handleChange}
             autoWidth
             label="Select-Pin"
-            // variant="standard"
           >
             {PinListConstants.map((pin) => {
               return (
