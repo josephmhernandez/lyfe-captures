@@ -249,7 +249,7 @@ const mapSlice = createSlice({
       mapObj.name = action.payload.name; // This is the official name of the product
       mapObj.unitPrice = action.payload.unitPrice;
       mapObj.lineItemId = action.payload.lineItemId;
-
+      mapObj.isTransparentTextBlock = state.transparentTextBlock;
       // Make sure if coordinates are added that we recaclulate them
       if (mapObj.textCoordinates !== "") {
         if (mapContains(mapObj.bbox, mapObj.pinList[0]?.position)) {
