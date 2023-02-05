@@ -3,7 +3,8 @@ import classes from "./Text.module.css";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-import { mapActions } from "../../../store/map-slice";
+import mapSlice, { mapActions } from "../../../store/map-slice";
+import { Checkbox } from "semantic-ui-react";
 
 const Text = (props) => {
   const dispatch = useDispatch();
@@ -12,7 +13,9 @@ const Text = (props) => {
   const [showRemoveBtn, setShowRemoveBtn] = useState(false);
   const textPrimary = useSelector((state) => state.map.textPrimary);
   const textSecondary = useSelector((state) => state.map.textSecondary);
-
+  const transparentFlag = useSelector(
+    (state) => state.map.transparentTextBlock
+  );
   const handlePrimaryTextChange = (event) => {
     dispatch(mapActions.setTextPrimary(event.target.value));
   };
@@ -39,6 +42,14 @@ const Text = (props) => {
     setShowAddBtn(true);
     setShowRemoveBtn(false);
     dispatch(mapActions.removeAllText());
+  };
+
+  const handleTransparentCheck = (e, { checked }) => {
+    if (checked) {
+      dispatch(mapActions.setTransparentTextBlock(true));
+    } else {
+      dispatch(mapActions.setTransparentTextBlock(false));
+    }
   };
 
   return (
@@ -70,6 +81,24 @@ const Text = (props) => {
       <button className="ui negative button" onClick={handleRemoveAllText}>
         Remove All Text
       </button>
+      <Checkbox
+        onChange={handleTransparentCheck}
+        label="Transparent Text Block"
+      />
+      {/* <div
+        onChecked={(event) => dispatch(mapSlice.setTransparentTextBlockTrue())}
+        className="ui checkbox"
+        onUnchecked={(event) =>
+          dispatch(mapSlice.setTransparentTextBlockFalse())
+        }
+      >
+        <input
+          type="checkbox"
+          name="TransparentTextBlock"
+          value={transparentFlag}
+        />
+        <label>Transparent Text Block</label>
+      </div> */}
     </div>
   );
 };

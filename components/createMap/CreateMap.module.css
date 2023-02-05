@@ -58,21 +58,23 @@
 .paper {
   display: flex;
   flex-direction: column;
-  border: 3px solid black;
   border-radius: 0px;
   position: relative;
   align-items: center;
+  background: "#0000";
 }
 
 .textMap {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  flex-grow: 1;
+  /* justify-content: center; */
+  /* flex-grow: 1; */
+  /* width: 100%; */
+  /* z-index: 1; */
 }
 
-.textPrimary {
+/* .textPrimary {
   font-family: "Semplicita";
   font-size: 1.5rem;
   color: rgb(0, 0, 0);
@@ -88,7 +90,7 @@
   font-family: "Semplicita";
   font-size: 0.5rem;
   color: rgb(0, 0, 0);
-}
+} */
 
 .actionBtns {
   display: flex;

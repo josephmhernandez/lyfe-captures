@@ -40,6 +40,7 @@ const CreateMap = (props) => {
   const [mapStyle, setMapStyle] = useState({
     width: width.toString() + "px",
     height: height.toString() + "px",
+    zIndex: -1,
   });
 
   const dispatch = useDispatch();
@@ -63,12 +64,12 @@ const CreateMap = (props) => {
         setMapStyle({
           height:
             (
-              (optionObj.full_height - 1) *
+              (optionObj.full_height - optionObj.margin) *
               optionObj.poster_multiplier
             ).toString() + "px",
           width:
             (
-              (optionObj.full_width - 1) *
+              (optionObj.full_width - optionObj.margin) *
               optionObj.poster_multiplier
             ).toString() + "px",
         });
@@ -93,12 +94,12 @@ const CreateMap = (props) => {
         setMapStyle({
           height:
             (
-              (optionObj.full_width - 1) *
+              (optionObj.full_width - optionObj.margin) *
               optionObj.poster_multiplier
             ).toString() + "px",
           width:
             (
-              (optionObj.full_height - 1) *
+              (optionObj.full_height - optionObj.margin) *
               optionObj.poster_multiplier
             ).toString() + "px",
         });
