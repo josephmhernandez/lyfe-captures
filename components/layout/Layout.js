@@ -4,10 +4,11 @@ import { Fragment } from "react";
 import Footer from "./Footer";
 import PromoBanner from "./PromoBanner";
 import NavigationBar from "./NavigationBar";
+import classes from "./Layout.module.css";
 
 const Layout = (props) => {
   return (
-    <Fragment>
+    <Fragment className={classes.layout}>
       <PromoBanner />
       <NavigationBar />
       <main>{props.children}</main>

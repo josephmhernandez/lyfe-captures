@@ -2,7 +2,10 @@ import { createSlice, current } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
 // import L from 'leaflet';
 import { getPriceEcommerceJs } from "../components/cart/cartFunctionality";
-import { MapConstants } from "../components/createMap/MapFolder/MapConstants";
+import {
+  MapConstants,
+  MapStyleDict,
+} from "../components/createMap/MapFolder/MapConstants";
 import { DEFAULT_TILE_LAYER } from "../components/createMap/MapFolder/MapConstants";
 import { addToMapObjLocalStorage } from "../components/cart/cartFunctionality";
 
@@ -267,6 +270,7 @@ const mapSlice = createSlice({
       mapObj.styling_specs =
         MapConstants["poster_size"][mapObj.size]["styling"][mapObj.styling];
 
+      mapObj.text_styling_specs = MapStyleDict[mapObj.tileLayer];
       // TO DO: Test this :)
       if (
         mapObj.textPrimary != "" ||
