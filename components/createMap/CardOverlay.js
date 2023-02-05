@@ -121,7 +121,6 @@ const CardOverlay = (props) => {
       });
     } else {
       setTextBlockStyle({
-        // "margin-top": "-100px",
         overflow: "hidden",
         backgroundColor:
           MapStyleDict[tileLayer]["text"][color_text_for_dict]["background"],
