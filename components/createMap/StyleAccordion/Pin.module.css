@@ -16,10 +16,7 @@
 }
 
 .item {
-  background-color: rgb(
-    var(--purple-dark-color-rgb),
-    var(--create-map-opacity)
-  );
+  background-color: rgb(164, 163, 163);
 }
 
 .removePins {
