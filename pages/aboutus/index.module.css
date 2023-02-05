@@ -7,9 +7,9 @@
 }
 
 .aboutus h1 {
-  font-size: 3.5rem;
-  font-weight: 400;
-  color: var(--purple-dark-color);
+  font-size: var(--page-heading-font-size);
+  font-weight: var(--page-heading-font-weight);
+  color: var(--color-primary);
   font-family: var(--page-heading-font-family);
   padding: 16px 0 0 0;
 }
@@ -21,6 +21,7 @@
   width: 35%;
   text-align: justify;
   text-justify: inter-word;
+  color: var(--color-primary);
 }
 
 .aboutus p:last-of-type {

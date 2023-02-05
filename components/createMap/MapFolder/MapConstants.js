@@ -21,27 +21,27 @@ export const MapConstants = {
       styling: {
         basic: {
           // 4.5 inches of space for letting. 1/2 inch margins around map. really 4 in or it will be crowded.
-          block_inches: 4.5, // 4.5*23 = 103.5 px //4*23 = 92 px
+          // block_inches: 4.5, // 4.5*23 = 103.5 px //4*23 = 92 px
           // Font sizes in pixels.
           // text block in pixels
-          primary_font_size: 32,
-          primary_font: "Semplicita",
-          primary_font_color: "#000000",
-          // primary_text_block: x, // written out in pixels through browswer inspector. (helps with printing process. Nothing on front end)
-          secondary_font_size: 16,
-          secondary_font: "Semplicita",
-          secondary_font_color: "#000000",
-          // secondary_text_block: x, //writen out in pixels through browswer inspector. (helps with printing process. Nothing on front end)
-          coordinate_font_size: 12,
-          coordinate_font: "Semplicita",
-          coordinate_font_color: "#000000",
+          // primary_font_size: 32,
+          // primary_font: "Semplicita",
+          // primary_font_color: "#000000",
+          // // primary_text_block: x, // written out in pixels through browswer inspector. (helps with printing process. Nothing on front end)
+          // secondary_font_size: 16,
+          // secondary_font: "Semplicita",
+          // secondary_font_color: "#000000",
+          // // secondary_text_block: x, //writen out in pixels through browswer inspector. (helps with printing process. Nothing on front end)
+          // coordinate_font_size: 12,
+          // coordinate_font: "Semplicita",
+          // coordinate_font_color: "#000000",
           // coordinate_text_block: x, //writen out in pixels through browswer inspector. (helps with printing process. Nothing on front end)
-          borders: [
-            {
-              border_inches: 0.5,
-              color: "#FFFFFF",
-            },
-          ],
+          // borders: [
+          //   {
+          //     border_inches: 0.5,
+          //     color: "#FFFFFF",
+          //   },
+          // ],
         },
       },
     },

@@ -234,9 +234,7 @@ export async function getOrderSummaryEcommerceJs(order_id) {
           tax: checkoutSummaryData.tax.amount.formatted_with_symbol,
           total_price:
             checkoutSummaryData.order.total_paid.formatted_with_symbol,
-          discount:
-            checkoutSummaryData.order.discount.amount_saved
-              .formatted_with_symbol,
+          discount: checkoutSummaryData.order.discount,
         },
         pretty_items: pretty_items,
       };

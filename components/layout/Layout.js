@@ -7,7 +7,7 @@ import NavigationBar from "./NavigationBar";
 
 const Layout = (props) => {
   return (
-    <Fragment>
+    <Fragment style={{ display: "flex" }}>
       <PromoBanner />
       <NavigationBar />
       <main>{props.children}</main>

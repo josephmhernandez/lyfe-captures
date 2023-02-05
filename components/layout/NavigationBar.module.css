@@ -12,17 +12,18 @@
   align-content: center;
   align-items: center;
   box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.45);
-  background-color: white;
+  background-color: var(--color-primary);
   padding-top: 5px;
   padding-bottom: 5px;
 }
 
 .logo a {
   float: left;
-  color: #8657c7;
+  color: var(--color-secondary);
   font-family: "Great-Vibes";
-  font-size:4rem;
+  font-size: 4rem;
   padding-left: 3%;
+  z-index: 100;
 }
 
 .navbar {
@@ -35,7 +36,7 @@
 .navbar a {
   align-items: center;
   align-content: center;
-  color: #8657c7;
+  color: var(--color-secondary);
   font-size: 1.5rem;
   font-family: "Source Sans Pro", sans-serif;
   font-weight: 400;
@@ -53,7 +54,7 @@
 /* cart icon - right justified, size the cart*/
 .cartnav a {
   float: right;
-  color: #f2f2f2;
+  /* color: var(--color-secondary); */
   padding-right: 4%;
 }
 

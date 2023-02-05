@@ -4,6 +4,13 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  display: flex;
+  flex-direction: column;
+
+  /* justify-content: center; */
+  align-items: center;
+  /* flex-grow: 1; */
+  /* min-height: 100vh; */
 }
 
 a {
@@ -25,26 +32,52 @@ a {
   }
 }
 
+/* #root {
+} */
 
 :root {
-  --purple-dark-color: #8657c7;
-  --purple-dark-color-rgb: 134, 87, 199;
-  --purple-light-color: #B483CD;
-  --primary-font: "Source Sans Pro", sans-serif;
-  --create-map-opacity: .15;
-  --accordion-font-weight: 500; 
+  /* --purple-dark-color: #8657c7;
+  --purple-dark-color-rgb: 134, 87, 199; */
+  --color-primary: #203354;
+  --color-secondary: white;
+  --purple-dark-color: #203354;
+  --purple-dark-color-rgb: 32, 51, 84;
+
+  --purple-light-color: #b483cd;
+
+  --primary-font: "HKGrotesk-Bold", sans-serif;
+  --create-map-opacity: 0.15;
+  --accordion-font-weight: 500;
   --accordion-title-font-size: x-large;
   --accordion-sub-font-size: large;
 
-  --buy-now-btn-color: #23d160; 
-  --buy-now-btn-hover-color: #1fbb56; 
+  --buy-now-btn-color: #23d160;
+  --buy-now-btn-hover-color: #1fbb56;
 
   --page-heading-font-size: 3.5rem;
-  --page-heading-font-weight: 400;
-  --page-heading-font-family: 'Great Vibes';
+  --page-heading-font-weight: 300;
+  --page-heading-font-family: "HKGrotesk-Bold", sans-serif;
 
   --page-paragraph-font-size: 1.5rem;
   --page-paragraph-font-weight: 400;
-  --page-paragraph-font-family: "Source Sans Pro", sans-serif;
+  --page-paragraph-font-family: "Monsterrat", sans-serif;
 }
 
+@font-face {
+  font-family: "HKGrotesk-Bold";
+  src: url("../public/fonts/HKGrotesk-Bold.otf");
+}
+
+/* @font-face {
+  font-family: "Monsterrat";
+  src: url("/fonts/Montserrat-VariableFont_wght.ttf");
+  font-style: medium;
+  font-weight: normal;
+} */
+
+@font-face {
+  font-family: "Monsterrat";
+  src: url("../public/fonts/Montserrat-VariableFont_wght.ttf");
+  /* font-weight: 300; */
+  /* font-style: normal; */
+}

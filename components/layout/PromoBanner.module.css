@@ -1,13 +1,12 @@
 .container {
-  background-color: var(--purple-dark-color);
+  background-color: var(--color-primary);
   width: 100%;
   display: flex;
   flex-direction: row;
   font-family: var(--primary-font);
   font-weight: 400;
-  color: white;
+  color: var(--color-secondary);
   font-size: 2rem;
-
   justify-content: center;
   align-content: center;
 }

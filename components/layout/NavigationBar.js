@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import cartPic from "../../public/cart-icon-small.png";
+import cartPic from "../../public/cart-icon-small-white.png";
 import classes from "./NavigationBar.module.css";
 
 const NavigationBar = (props) => {
@@ -32,7 +32,7 @@ const NavigationBar = (props) => {
         <div className={classes.cartnav}>
           <Link href="/cart">
             <a>
-              <Image src={cartPic} alt="CART" />
+              <Image width={30} height={30} src={cartPic} alt="CART" />
             </a>
           </Link>
         </div>
