@@ -2,6 +2,7 @@
 
 .navBar nav {
   display: block;
+  width: 100%;
 }
 
 .grid {
@@ -15,6 +16,7 @@
   background-color: var(--color-primary);
   padding-top: 5px;
   padding-bottom: 5px;
+  width: 100%;
 }
 
 .logo a {

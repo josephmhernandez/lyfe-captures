@@ -31,6 +31,18 @@ export default function Document() {
         </div>
         <Main />
         <NextScript />
+        {/* <style jsx global>
+          {`
+            #__next {
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              flex: 1;
+              width: 50%;
+            }
+          `}
+        </style> */}
+
         <Script
           id="script-stripe-js"
           src="https://js.stripe.com/v3/"
