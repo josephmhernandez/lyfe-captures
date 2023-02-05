@@ -12,27 +12,7 @@ import { styled } from "@mui/material/styles";
 import Slider from "@mui/material/Slider";
 import { useDispatch } from "react-redux";
 
-import getConfig from "next/config";
 import { mapActions } from "../../../store/map-slice";
-import { BuyNowButton } from "../../ui/CustomButtons";
-
-const BootstrapButton = styled(Button)({
-  boxShadow: "none",
-  textTransform: "none",
-  fontSize: 16,
-  padding: "6px 12px",
-  border: "1px solid",
-  lineHeight: 1.5,
-  backgroundColor: "var(--purple-dark-color)",
-  borderColor: "white",
-  fontFamily: "var(--font-family-primary)",
-  color: "white",
-  "&:hover": {
-    backgroundColor: "var(--purple-light-color)",
-    borderColor: "var(--purple-dark-color)",
-    boxShadow: "none",
-  },
-});
 
 const defaultSliderPinImgPath = PinListConstants[0].image;
 
@@ -77,7 +57,7 @@ const Pin = () => {
             onChange={handleChange}
             autoWidth
             label="Select-Pin"
-            variant="standard"
+            // variant="standard"
           >
             {PinListConstants.map((pin) => {
               return (
@@ -113,7 +93,6 @@ const Pin = () => {
           aria-label="pin-size"
           value={sizePin}
           onChange={handlePinSliderChange}
-          color="secondary"
         />
         <Image src={defaultSliderPinImgPath} width={100} height={100} />
       </div>
