@@ -1,15 +1,18 @@
 import ShopNowBanner from "../ShopNowBanner";
 import Link from "next/link";
 import classes from "./MapsLandingPage.module.css";
-import shopNowImage from "../../../public/images/banner-valentines-day.png";
+
+import shopNowImage from "../../../public/images/banner-wide.png";
+import benefitsBanner from "../../../public/images/cropped-benefits-banner.png";
 import prodPic1 from "../../../public/images/prod-pics/3-maps-prod-pic-small.png";
 import prodPic2 from "../../../public/images/prod-pics/map-vert-prod-pic-small.png";
 import prodPic3 from "../../../public/images/prod-pics/puerto-rico-landscape-prod-pic-small.png";
 import Image from "next/image";
 import { v4 as uuid } from "uuid";
-import { Segment } from "semantic-ui-react";
+import { Label, Segment } from "semantic-ui-react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Button } from "semantic-ui-react";
 
 const DUMMY_TITLE = "what is this?";
 const DUMMY_DESCRIPTION =
@@ -43,6 +46,14 @@ const MapsLandingPage = () => {
       <div className={classes.box}>
         <ShopNowBanner to="/maps" src={shopNowImage} alt="" />
       </div>
+      <div style={{ paddingTop: "-10px" }}>
+        <Image
+          className={classes.shopNowBanner}
+          src={benefitsBanner}
+          alt="Benefits"
+        />
+      </div>
+
       <Segment raised className={classes.mapsLandingPage}>
         <h1>{title}</h1>
 
@@ -96,7 +107,18 @@ const MapsLandingPage = () => {
         <div>
           <Link href="/maps">
             <a>
-              <button className="ui massive positive button">Create Now</button>
+              <Button
+                style={{
+                  "background-color": "var(--color-primary)",
+                  color: "white",
+                  "border-radius": "100px",
+                  "font-family": "var(--page-paragraph-font-family)",
+                  "font-size": "var(--page-paragraph-font-size)",
+                  "font-weight": "600",
+                }}
+              >
+                Create Now
+              </Button>
             </a>
           </Link>
         </div>
