@@ -1,5 +1,14 @@
 .box {
-  padding-top: 3px;
+  /* padding-top: 10px; */
+  z-index: 10;
+}
+.benefits {
+  margin-top: -1%;
+}
+
+#bodyid .create-new-menu-btn {
+  background-color: black;
+  border-radius: 8px;
 }
 
 .grid {
@@ -21,7 +30,8 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding-bottom: 1%;
+  background-color: var(--color-primary);
+  /* padding-bottom: 1%; */
 }
 
 .bg {

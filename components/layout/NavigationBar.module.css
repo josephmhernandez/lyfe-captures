@@ -23,9 +23,9 @@
   float: left;
   color: var(--color-secondary);
   font-family: "Great-Vibes";
-  font-size: 4rem;
+  font-size: 3rem;
   padding-left: 3%;
-  z-index: 100;
+  z-index: 1000000;
 }
 
 .navbar {
@@ -39,8 +39,8 @@
   align-items: center;
   align-content: center;
   color: var(--color-secondary);
-  font-size: 1.5rem;
-  font-family: "Source Sans Pro", sans-serif;
+  font-size: 1.2rem;
+  font-family: var(--page-paragraph-font-family);
   font-weight: 400;
 }
 
