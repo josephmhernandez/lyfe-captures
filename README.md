@@ -40,3 +40,11 @@ making sure i don't reintroduce ds
 Build file amplify.yml
 build_scripts are ran in prebuild
 output is saved to out file
+
+# Production Deployment. This automatically triggers Amplify to do its thing
+
+$ git checkout main
+$ git pull
+$ git checkout validator
+$ git merge main
+$ git push
