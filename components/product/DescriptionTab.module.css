@@ -1,0 +1,66 @@
+.grid {
+  display: flex;
+  flex-direction: row;
+  /* border-top: 3px solid; */
+  /* border-bottom: 3px solid; */
+  border-color: var(--color-primary);
+  /* margin-top: -5px; */
+
+  /* margin-bottom: 5px; */
+}
+
+.flexChild {
+  flex: 2;
+  /* width: 50%; */
+  /* float: left; */
+  /* border-right: 3px solid; */
+  border-color: var(--color-primary);
+  /* overflow: auto; */
+}
+
+/* .flexChild:first-child {
+  flex: 2;
+} */
+
+.descriptionContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  height: 100%;
+  padding: 7%;
+
+  color: var(--color-primary);
+  background-color: whtie;
+}
+
+.descriptionContent h1 {
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-family: var(--page-heading-font-family);
+}
+
+.descriptionContent p {
+  font-size: var(--page-paragraph-font-size);
+  font-weight: 400;
+  font-family: var(--page-paragraph-font-family);
+  text-align: center;
+  width: 75%;
+}
+
+.picContainer {
+  /* display: block; */
+  /* border-radius: 8px; */
+  /* width: 100%; */
+  position: relative;
+  width: 100%;
+  padding-bottom: 50%; /* ratio of the image.... */
+}
+
+.picStyle {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* margin-top: -5px; */
+}

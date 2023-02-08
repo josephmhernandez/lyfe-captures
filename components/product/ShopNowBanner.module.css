@@ -1,5 +1,16 @@
 .shopNowBanner {
+  display: block;
   /* border-radius: 8px; */
   /* width: 100%; */
-  height: 1%;
+  /* height: 700px; */
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  /* height: 1%; */
+}
+
+.pic {
+  /* position: absolute; */
+  width: 100%;
+  height: 100%;
 }

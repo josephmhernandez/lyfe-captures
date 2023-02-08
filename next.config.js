@@ -7,6 +7,11 @@ const nextConfig = {
 module.exports = nextConfig;
 
 module.exports = {
+  experimental: {
+    images: {
+      layoutRaw: true,
+    },
+  },
   publicRuntimeConfig: {
     // Will be available on both server and client
     primaryColor: "#8657c7",
