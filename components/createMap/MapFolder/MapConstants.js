@@ -190,4 +190,4 @@ export const MapStyleDict = {
 
 export const SIZE_OPTION = "_24_36";
 export const MATERIAL_OPTION = "POSTER";
-export const DEFAULT_TILE_LAYER = "light-transit";
+export const DEFAULT_TILE_LAYER = "dark-transit";

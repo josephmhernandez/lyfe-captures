@@ -1,13 +1,18 @@
-import Image from "next/image";
+import Image from "next/future/image";
 import Link from "next/link";
 import classes from "./ShopNowBanner.module.css";
 // Big picture for shop now button. Goes straing to product page. Made for landing page.
 
 const ShopNowBanner = (props) => {
   return (
-    <Link href={props.to}>
+    <Link className={classes.shopNowBanner} href={props.to}>
       <a>
-        <Image className={classes.shopNowBanner} src={props.src} alt={props.alt} />
+        <Image
+          src={props.src}
+          alt={props.alt}
+          className={classes.pic}
+          layout="raw"
+        />
       </a>
     </Link>
   );

@@ -5,7 +5,7 @@ import classes from "./NavigationBar.module.css";
 
 const NavigationBar = (props) => {
   return (
-    <div style={{ display: "flex", width: "100%" }}>
+    <div style={{ display: "flex", width: "100%", paddingBottom: "3px" }}>
       <nav className={classes.grid}>
         <div className={classes.logo}>
           <Link href="/">MapYourMemory</Link>

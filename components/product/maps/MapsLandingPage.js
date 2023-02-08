@@ -7,12 +7,13 @@ import benefitsBanner from "../../../public/images/cropped-benefits-banner.png";
 import prodPic1 from "../../../public/images/prod-pics/3-maps-prod-pic-small.png";
 import prodPic2 from "../../../public/images/prod-pics/map-vert-prod-pic-small.png";
 import prodPic3 from "../../../public/images/prod-pics/puerto-rico-landscape-prod-pic-small.png";
-import Image from "next/image";
+import Image from "next/future/image";
 import { v4 as uuid } from "uuid";
 import { Label, Segment } from "semantic-ui-react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Button } from "semantic-ui-react";
+import DescriptionTab from "../DescriptionTab";
 
 const DUMMY_TITLE = "what is this?";
 const DUMMY_DESCRIPTION =
@@ -40,21 +41,77 @@ const description_3 = [
   "Speedy and transparent printing to shipping process",
 ];
 
+const heading_x = "Ultra High Resolution";
+const description_x = [
+  "With a resolution of 300 DPI, every detail of your maps will be captured in stunning clarity, making your maps look more like pieces of art. Standard DPI for a computer display is 96 DPI so your monitor won't do it justice. At a 24 in. x 36 in. size, your map will look great up close and far away.",
+];
+const dict_x = {
+  heading: heading_x,
+  text: description_x,
+};
+
+const dict_customizable = {
+  heading: "Customizable",
+  text: [""],
+};
+
+const dict_hanging = {
+  heading: "Painless Hanging",
+  text: [""],
+};
+
+const dict_sizes = {
+  heading: "Sizes",
+  text: [""],
+};
+
+const dict_shipping = {
+  heading: "Shipping",
+  text: [""],
+};
+
+const dict_gifts = {
+  heading: "Unique Gifts",
+  text: [""],
+};
+
+const dict_quality = {
+  heading: "Quality",
+  text: [""],
+};
+
 const MapsLandingPage = () => {
   return (
     <div className={classes.all}>
-      <div className={classes.box}>
-        <ShopNowBanner to="/maps" src={shopNowImage} alt="" />
-      </div>
-      <div style={{ paddingTop: "-10px" }}>
+      <ShopNowBanner to="/maps" src={shopNowImage} alt="" />
+
+      <div className={classes.benefitsStyle}>
         <Image
-          className={classes.shopNowBanner}
+          className={classes.picBenefitsStyle}
           src={benefitsBanner}
           alt="Benefits"
+          layout="raw"
         />
       </div>
-
-      <Segment raised className={classes.mapsLandingPage}>
+      <div className={classes.centerContent}>
+        <Link href="/maps">
+          <a>
+            <Button
+              style={{
+                "background-color": "var(--color-primary)",
+                color: "white",
+                "border-radius": "100px",
+                "font-family": "var(--page-paragraph-font-family)",
+                "font-size": "var(--page-paragraph-font-size)",
+                "font-weight": "400",
+              }}
+            >
+              Create Now
+            </Button>
+          </a>
+        </Link>
+      </div>
+      {/* <Segment raised className={classes.mapsLandingPage}>
         <h1>{title}</h1>
 
         <div className={classes.grid}>
@@ -150,8 +207,43 @@ const MapsLandingPage = () => {
             suggestions@mapyourmemory.com, we love to read them!
           </p>
         </div>
-      </Segment>
-      <div></div>
+      </Segment> */}
+
+      <DescriptionTab
+        img={prodPic1}
+        description={dict_x}
+        img_first_flag={true}
+      />
+      <DescriptionTab
+        img={prodPic1}
+        description={dict_customizable}
+        img_first_flag={false}
+      />
+      <DescriptionTab
+        img={prodPic1}
+        description={dict_hanging}
+        img_first_flag={true}
+      />
+      <DescriptionTab
+        img={prodPic1}
+        description={dict_sizes}
+        img_first_flag={false}
+      />
+      <DescriptionTab
+        img={prodPic1}
+        description={dict_shipping}
+        img_first_flag={true}
+      />
+      <DescriptionTab
+        img={prodPic1}
+        description={dict_gifts}
+        img_first_flag={false}
+      />
+      <DescriptionTab
+        img={prodPic1}
+        description={dict_quality}
+        img_first_flag={true}
+      />
     </div>
   );
 };
