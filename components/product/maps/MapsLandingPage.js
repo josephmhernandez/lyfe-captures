@@ -51,33 +51,45 @@ const dict_x = {
 };
 
 const dict_customizable = {
-  heading: "Customizable",
-  text: [""],
+  heading: "Personalized Touch",
+  text: [
+    "You have the freedom to choose a location and make it your own with a variety of customization options. Choose from modern, geographical, transit styles, or any of our exclusive maps. Add text or pins to commemorate special places and occasions. With the ability to add your personal touch to the map, you can make it truly unique to you and your story. The customization benefits of this map make it a one-of-a-kind work of art that is both meaningful and beautiful.",
+  ],
 };
 
 const dict_hanging = {
-  heading: "Painless Hanging",
-  text: [""],
+  heading: "Effortless Installation",
+  text: [
+    "Hanging your custom high-resolution map is a breeze! With a simple and straightforward process, you can transform your space in no time. The map is less than 15 lb’s making it lightweight and easy to handle. With the back subframe all you need to do is install your French cleat (included) and hangin it in any direction you want. The subframe is versatile and will allow you to hang by any conventional hangin method",
+  ],
 };
 
 const dict_sizes = {
   heading: "Sizes",
-  text: [""],
+  text: [
+    'We currently offer one size for our custom high-resolution maps: 24" x 36". This size is the perfect balance between impact and versatility, making it suitable for any room in your home or office. The 24" x 36" size provides enough space for you to showcase your personalized map in detail, while still being compact enough to fit in smaller spaces',
+  ],
 };
 
 const dict_shipping = {
   heading: "Shipping",
-  text: [""],
+  text: [
+    "At the moment, our shipping times are estimated to take between 3-9 business days and are available within the continental United States. Please allow 2 business days for the map to be printed and the adhesive to cure before it can be shipped. Our team strives to ensure that your personalized map arrives in perfect condition and we take the necessary steps to ensure it is protected during shipping",
+  ],
 };
 
 const dict_gifts = {
   heading: "Unique Gifts",
-  text: [""],
+  text: [
+    "Our maps make for the perfect gift for any occasion. Whether it's a special anniversary, a wedding, an engagement, or simply a way to show someone how much you care, our maps are a unique and personalized way to express your feelings. With the ability to choose a location, style, add text, and even place special pins, you can create a customized piece of art that will always be cherished",
+  ],
 };
 
 const dict_quality = {
-  heading: "Quality",
-  text: [""],
+  heading: "Superior Craftsmanship",
+  text: [
+    "Our hand-made maps are of the highest quality. The maps are printed on an aluminum composite material and adhered to a 1/4 inch thick acrylic block, giving them a luxurious and sturdy feel. The colors are fade-resistant and the detail is sharp, with crystal clear images and lifelike colors. The 1/4 inch thick acrylic block enhances the vibrancy of the colors, making them pop and adding a beautiful, glossy finish, creating a stunning piece of art that will be sure to catch the eye",
+  ],
 };
 
 const MapsLandingPage = () => {
@@ -93,13 +105,14 @@ const MapsLandingPage = () => {
           layout="raw"
         />
       </div>
+      <div className={classes.spacingBecauseOfImageBug}></div>
       <div className={classes.centerContent}>
         <Link href="/maps">
           <a>
             <Button
               style={{
-                "background-color": "var(--color-primary)",
-                color: "white",
+                "background-color": "white",
+                color: "var(--color-primary)",
                 "border-radius": "100px",
                 "font-family": "var(--page-paragraph-font-family)",
                 "font-size": "var(--page-paragraph-font-size)",
