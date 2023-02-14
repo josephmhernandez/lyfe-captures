@@ -50,74 +50,40 @@ export const MapConstants = {
 
 // Background color for the map first. ColorIconPathMap
 export const MapStyleDict = {
-  test: {
-    id: "test",
-    iconImg: "/whiteBlackSquareIcon.svg",
-    url: "https://api.maptiler.com/maps/voyager/{z}/{x}/{y}.png?key=PmIF6Ez34ROeDo7jJGuD#",
-    text: {
-      fontFamily: {
-        primary: "Semplicita",
-        secondary: "Semplicita",
-        coordinate: "Semplicita",
-      },
-      size: {
-        primary: "24",
-        secondary: "12",
-        coordinate: "8",
-      },
-      color: {
-        background: "#FFFFFF",
-        primary: "#000000",
-        secondary: "#000000",
-        coordinate: "#000000",
-      },
-      color_transparent: {
-        background: "#0000",
-        primary: "#FFFFFF",
-        secondary: "#FFFFFF",
-        coordinate: "#FFFFFF",
-      },
-      textBlock: {
-        padding: "8px",
-        rounded: "3px",
-        spacing: "1", // Inches
-      },
-    },
-  },
-  "light-transit": {
-    id: "light-transit",
-    iconImg: "/whiteBlackSquareIcon.svg",
-    url: `https://api.maptiler.com/maps/1ec3a490-b9a7-418e-b22b-26f45c463081/{z}/{x}/{y}.png?key=${process.env.MAPTILER_API_KEY}`,
-    text: {
-      fontFamily: {
-        primary: "Semplicita",
-        secondary: "Semplicita",
-        coordinate: "Semplicita",
-      },
-      size: {
-        primary: "24",
-        secondary: "12",
-        coordinate: "8",
-      },
-      color: {
-        background: "#000000",
-        primary: "#FFFFFF",
-        secondary: "#FFFFFF",
-        coordinate: "#FFFFFF",
-      },
-      color_transparent: {
-        background: "#0000",
-        primary: "#000000",
-        secondary: "#000000",
-        coordinate: "#000000",
-      },
-      textBlock: {
-        padding: "8px",
-        rounded: "3px",
-        spacing: "1", // Inches
-      },
-    },
-  },
+  // test: {
+  //   id: "test",
+  //   iconImg: "/whiteBlackSquareIcon.svg",
+  //   url: "https://api.maptiler.com/maps/voyager/{z}/{x}/{y}.png?key=PmIF6Ez34ROeDo7jJGuD#",
+  //   text: {
+  //     fontFamily: {
+  //       primary: "Semplicita",
+  //       secondary: "Semplicita",
+  //       coordinate: "Semplicita",
+  //     },
+  //     size: {
+  //       primary: "24",
+  //       secondary: "12",
+  //       coordinate: "8",
+  //     },
+  //     color: {
+  //       background: "#FFFFFF",
+  //       primary: "#000000",
+  //       secondary: "#000000",
+  //       coordinate: "#000000",
+  //     },
+  //     color_transparent: {
+  //       background: "#0000",
+  //       primary: "#FFFFFF",
+  //       secondary: "#FFFFFF",
+  //       coordinate: "#FFFFFF",
+  //     },
+  //     textBlock: {
+  //       padding: "8px",
+  //       rounded: "3px",
+  //       spacing: "1", // Inches
+  //     },
+  //   },
+  // },
   "dark-transit": {
     id: "dark-transit",
     iconImg: "/blackWhiteSquareIcon.svg",
@@ -182,6 +148,74 @@ export const MapStyleDict = {
       textBlock: {
         padding: "8px",
         rounded: "3px",
+        spacing: "1", // Inches
+      },
+    },
+  },
+  "city-lights": {
+    id: "city-lights",
+    iconImg: "/city-lights.png",
+    url: `https://api.maptiler.com/maps/70207988-ec48-4dce-8172-230ff9375b7d/{z}/{x}/{y}.png?key=${process.env.MAPTILER_API_KEY}`,
+    text: {
+      fontFamily: {
+        primary: "Semplicita",
+        secondary: "Semplicita",
+        coordinate: "Semplicita",
+      },
+      size: {
+        primary: "24",
+        secondary: "12",
+        coordinate: "8",
+      },
+      color: {
+        background: "#000000",
+        primary: "#ffd900",
+        secondary: "#ffd900",
+        coordinate: "#ffd900",
+      },
+      color_transparent: {
+        background: "#0000",
+        primary: "#ffd900",
+        secondary: "#ffd900",
+        coordinate: "#ffd900",
+      },
+      textBlock: {
+        padding: "8px",
+        rounded: "8px",
+        spacing: "1", // Inches
+      },
+    },
+  },
+  "ocean-tan": {
+    id: "ocean-tan",
+    iconImg: "/tan-ocean.png",
+    url: `https://api.maptiler.com/maps/cd852295-1a11-4a53-a22b-995b2ded0e62/{z}/{x}/{y}.png?key=${process.env.MAPTILER_API_KEY}`,
+    text: {
+      fontFamily: {
+        primary: "Semplicita",
+        secondary: "Semplicita",
+        coordinate: "Semplicita",
+      },
+      size: {
+        primary: "24",
+        secondary: "12",
+        coordinate: "8",
+      },
+      color: {
+        background: "#000000",
+        primary: "#FFFFFF",
+        secondary: "#FFFFFF",
+        coordinate: "#FFFFFF",
+      },
+      color_transparent: {
+        background: "#0000",
+        primary: "#000000",
+        secondary: "#000000",
+        coordinate: "#000000",
+      },
+      textBlock: {
+        padding: "8px",
+        rounded: "8px",
         spacing: "1", // Inches
       },
     },
