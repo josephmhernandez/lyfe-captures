@@ -34,7 +34,7 @@ function MyApp({ Component, pageProps }) {
     <Provider store={store}>
       <Head>
         <title>Map Your Memory</title>
-        <link rel="icon" href="/play-button.ico" />
+        <link rel="icon" href="/pin-logo.ico" />
 
         <meta
           name="description"
