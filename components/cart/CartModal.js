@@ -109,7 +109,7 @@ const CartModal = (props) => {
     // Cancel quantity changes...
     props.handleCloseCart(false);
     let liveObject = await getLiveObjectEcommerceJs(props.token);
-    props.handleSetLiveObject(liveObject);
+    // props.handleSetLiveObject(liveObject);
   };
 
   const editQuantityCart = (id, addValue) => {

@@ -215,11 +215,12 @@ const CheckoutContainer = (props) => {
               <div className={classes.discountDivide}>
                 <h3>Want 20% off your map?</h3>
                 <p>
-                  If you PROMISE to review your map after it arrives, use the
-                  following code:
-                  <span style={{ fontWeight: "bold" }}> {" IWILLREVIEW"}</span>
+                  Attention map lovers! Get a 20% discount on all orders for a
+                  limited time. Please think about leaving an honest review
+                  after receiving your customized map!
                 </p>
-                <p>We promise the review will be short and sweet!</p>
+                <span style={{ fontWeight: "bold" }}> {"MapYourMemory20"}</span>
+                <p>(case sensitive)</p>
                 <form className="discount-code" onSubmit={handleDiscountClick}>
                   <Input onChange={handleDiscountCode} />
                   <Button color="black">Apply</Button>
