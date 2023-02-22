@@ -27,16 +27,16 @@
 
 .orderComplete p {
   justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 400;
+  font-size: var(--page-paragraph-font-size);
+  font-weight: var(--page-paragraph-font-weight);
   margin-bottom: 1rem;
   color: black;
-  font-family: var(--primary-font);
+  font-family: var(--page-paragraph-font-family);
 }
 
 .grid {
-  padding-left: 21%;
-  padding-right: 21%;
+  /* padding-left: 21%; */
+  /* padding-right: 21%; */
   display: flex;
   justify-content: center;
   align-content: center;
