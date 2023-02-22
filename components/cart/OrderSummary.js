@@ -10,9 +10,14 @@ const OrderSummary = ({ items, customer, price, orderId }) => {
   let loadingCustomer = customer === {} ? true : false;
   let loadingPrice = price === {} ? true : false;
   let loadingOrderId = orderId === undefined ? true : false;
+  console.log(price);
+  let discount = price.discount
+    ? price.discount.amount_saved.formatted_with_symbol
+    : 0;
+  let shipping = price.shipping ? price.shipping : 0;
+
   return (
     <div className={classes.orderContainer}>
-      {/* <Segment className={classes.orderContainer} raised></Segment> */}
       <Segment className={classes.orderSummaryContainer} raised>
         <div className={classes.headerOrderSummary}>
           <h1>Order Summary</h1>
@@ -30,7 +35,7 @@ const OrderSummary = ({ items, customer, price, orderId }) => {
           ) : (
             <p>{`Your order reference id is ${customer.cust_ord_ref}`}</p>
           )}
-          <p>{`We've also sent it to your email`}</p>
+          <p>{`We've also sent it to your email!`}</p>
         </div>
         {items.map((item) => {
           return <OrderSummaryItem item={item} key={item.map_id} />;
@@ -40,8 +45,8 @@ const OrderSummary = ({ items, customer, price, orderId }) => {
         ) : (
           <div className={classes.alignRight}>
             <h2>Tax: {price.tax}</h2>
-            <h2>Shipping: {price.shipping}</h2>
-            <h2>Discount: -{price.discount}</h2>
+            <h2>Shipping: {shipping}</h2>
+            <h2>Discount: -{discount}</h2>
             <div className={classes.line}></div>
             <h1>Order Total: {price.total_price}</h1>
           </div>

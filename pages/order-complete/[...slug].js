@@ -49,7 +49,7 @@ const OrderCompleteId = () => {
               <p>Your map will be shipped within the next two days!</p>
             </li>
             <li>
-              <p>Sample review below</p>
+              <p>Reach out if you have any questions or suggestions!</p>
             </li>
             <li>
               <p>Order summary available below</p>
@@ -58,9 +58,9 @@ const OrderCompleteId = () => {
         </div>
       </div>
       <div className={classes.spacing} />
-      <div className={classes.sampleReview}>
+      {/* <div className={classes.sampleReview}>
         <SampleReivew />
-      </div>
+      </div> */}
       <div className={classes.sampleReview}>
         <OrderSummary
           items={items}
