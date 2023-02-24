@@ -25,10 +25,6 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   const stripePromise = loadStripe(process.env.STRIPE_PK);
-  // const options = {
-  //   // passing the client secret obtained from the server
-  //   clientSecret: "{{CLIENT_SECRET}}",
-  // };
 
   return (
     <Provider store={store}>
@@ -50,5 +46,14 @@ function MyApp({ Component, pageProps }) {
     </Provider>
   );
 }
+
+// Need this so that the pageProps are passed to the page component. This checks to see if there is an "getInitialProps" function in the page component and if so, it runs it and passes the result to the page component.
+MyApp.getInitialProps = async ({ Component, ctx }) => {
+  let pageProps = {};
+  if (Component.getInitialProps) {
+    pageProps = await Component.getInitialProps(ctx);
+  }
+  return { pageProps };
+};
 
 export default MyApp;
