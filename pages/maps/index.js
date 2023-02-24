@@ -1,10 +1,6 @@
-import Layout from "../../components/layout/Layout";
 import CreateMap from "../../components/createMap/CreateMap";
 import MobileModal from "../../components/ui/MobileModal";
-import classes from "./index.module.css";
 import { useRouter } from "next/router";
-// import Map from "../../components/createMap/MapFolder/Map";
-
 const mapCenter = { lat: 38.9072, lng: -77.0369 };
 const mapDimension = { width: 700, height: 700 };
 
@@ -14,6 +10,7 @@ const MapPage = (props) => {
   const router = useRouter();
 
   const handleClose = () => {
+    // handling close of modal when user is on mobile.
     router.push("/");
   };
 

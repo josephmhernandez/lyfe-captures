@@ -23,9 +23,6 @@ import { getMapDescriptionText } from "./mapFunctionality";
 const commerce = new Commerce(process.env.CHEC_PK);
 
 const CreateMap = (props) => {
-  console.log("CreateMap.js props: ", props.isMobileView);
-  console.log(props);
-
   const orientation = useSelector((state) => state.map.orientation);
   const defaultCenter = useSelector((state) => state.map.lngLat);
   const primaryText = useSelector((state) => state.map.textPrimary);
