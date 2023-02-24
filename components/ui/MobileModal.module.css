@@ -1,0 +1,16 @@
+.content a {
+  color: blue;
+  text-decoration: underline;
+}
+
+.content {
+  font-family: var(--page-paragraph-font-family);
+  color: var(--color-primary);
+}
+
+.inputEmail {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  align-items: center;
+}
