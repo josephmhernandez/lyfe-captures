@@ -2,17 +2,46 @@ import { Modal, Button, Input } from "semantic-ui-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-
 import React from "react";
 import classes from "./MobileModal.module.css";
+import { v4 as uuid } from "uuid";
+
 const MobileModal = (props) => {
   const [open, setOpen] = useState(true);
   const [userEmail, setUserEmail] = useState("");
 
-  const handleEmailSend = () => {
+  const handleEmailSend = async () => {
     console.log("handleEmailSend:" + userEmail);
 
+    if (!userEmail) {
+      return;
+    }
+
+    // Verify that it is a valid email
+    if (
+      !String(userEmail)
+        .toLowerCase()
+        .match(
+          /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+    ) {
+      return;
+    }
+
+    const params = {
+      user_id: uuid(),
+      email: userEmail,
+    };
+    const url = "/api/write_user";
     // Call the API to send the email to our dynamoDB Users table
+    const response = await fetch(url, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(params),
+    });
   };
 
   return (

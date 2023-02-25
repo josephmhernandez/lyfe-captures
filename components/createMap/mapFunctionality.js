@@ -35,7 +35,6 @@ export async function getMapDescriptionText(
     const { results } = result;
     let rtnText = beginText + center[0] + ", " + center[1];
     if (results[0]) {
-      console.log(results[0].formatted_address);
       rtnText = beginText + results[0].formatted_address;
       return rtnText;
     } else {

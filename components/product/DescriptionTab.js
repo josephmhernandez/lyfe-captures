@@ -4,7 +4,6 @@ import classes from "./DescriptionTab.module.css";
 
 const DescriptionTab = ({ description, img, img_first_flag }) => {
   const ImageComponent = (img) => {
-    console.log("img", img);
     return <Image height={100} src={img} alt="description" />;
   };
 
