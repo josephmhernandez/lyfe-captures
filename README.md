@@ -43,10 +43,10 @@ output is saved to out file
 
 # Production Deployment. This automatically triggers Amplify to do its thing
 
-$ git checkout main
+$ git checkout master
 $ git pull
-$ git checkout validator
-$ git merge main
+$ git checkout prod
+$ git merge master
 $ git push
 
 # Local Build
