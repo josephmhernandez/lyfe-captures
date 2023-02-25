@@ -4,7 +4,7 @@ frontend:
     preBuild:
       commands:
         - "ls"
-        - "npm ci"
+        - "npm i"
         - "cd build_scripts"
         - "chmod +x set_env.sh"
         - "./set_env.sh"
