@@ -28,7 +28,6 @@ const OrderCompleteId = () => {
     });
   }, [order_id]);
 
-  console.log(price);
   return (
     <div>
       <div className={classes.spacing} />

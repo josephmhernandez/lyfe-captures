@@ -1,12 +1,11 @@
 import { Modal, Button, Input } from "semantic-ui-react";
-import { useId, useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-
 import React from "react";
 import classes from "./MobileModal.module.css";
-
 import { v4 as uuid } from "uuid";
+
 const MobileModal = (props) => {
   const [open, setOpen] = useState(true);
   const [userEmail, setUserEmail] = useState("");
@@ -34,8 +33,7 @@ const MobileModal = (props) => {
       email: userEmail,
     };
     const url = "/api/write_user";
-
-    console.log("CALling API: ", url, " with params: ", params);
+    // Call the API to send the email to our dynamoDB Users table
     const response = await fetch(url, {
       method: "POST",
       mode: "cors",
@@ -44,9 +42,6 @@ const MobileModal = (props) => {
       },
       body: JSON.stringify(params),
     });
-    // const response = await writeUser(params);
-    console.log("handleEmailSend response: ", response);
-    // Call the API to send the email to our dynamoDB Users table
   };
 
   return (
