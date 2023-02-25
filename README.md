@@ -48,3 +48,7 @@ $ git pull
 $ git checkout validator
 $ git merge main
 $ git push
+
+# Local Build
+
+npm run build
