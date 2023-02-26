@@ -39,6 +39,7 @@ export default async function writeUser(req, res) {
     ddb.putItem(params, function (err, data) {
       if (err) {
         console.log("Error", err);
+        return res.status(500).json({ success: false });
       } else {
         console.log("Success", data);
       }
@@ -46,5 +47,8 @@ export default async function writeUser(req, res) {
   } catch (err) {
     console.log("big error");
     console.log(err);
+    return res.status(500).json({ success: false });
   }
+
+  return res.status(200).json({ success: true });
 }
