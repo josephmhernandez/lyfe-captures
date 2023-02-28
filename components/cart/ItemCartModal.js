@@ -26,8 +26,10 @@ const ItemCartModal = (props) => {
 
   // Need to get the specific map style
   const tileLayer = props.item.tileLayer;
-  let iconImagePath = MapStyleDict[tileLayer].iconImg;
-  if (iconImagePath === undefined) {
+  let iconImagePath = "";
+  try {
+    iconImagePath = MapStyleDict[tileLayer].iconImg;
+  } catch (e) {
     console.log("cannot find image icon for tileLayer: ", tileLayer);
     iconImagePath = MapStyleDict[DEFAULT_TILE_LAYER].iconImg;
   }
