@@ -11,9 +11,14 @@ const OrderSummary = ({ items, customer, price, orderId }) => {
   let loadingPrice = price === {} ? true : false;
   let loadingOrderId = orderId === undefined ? true : false;
   console.log(price);
-  let discount = price.discount
-    ? price.discount.amount_saved.formatted_with_symbol
-    : 0;
+  let discount = 0;
+  try {
+    discount = price.discount
+      ? price.discount.amount_saved.formatted_with_symbol
+      : 0;
+  } catch (error) {
+    discount = 0;
+  }
   let shipping = price.shipping ? price.shipping : 0;
 
   return (
