@@ -10,7 +10,6 @@ const CheckoutItems = (props) => {
   const total_price = `${props.item.line_total.formatted_with_symbol}`;
   const quantity = `x${props.item.quantity}`;
   let cart = getMapObjLocalStorage();
-  console.log("item", item);
 
   function lookUpDescriptions() {
     // Return descirption + color + quantity
