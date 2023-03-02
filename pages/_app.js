@@ -37,7 +37,6 @@ function MyApp({ Component, pageProps }) {
           content="Design your own unique map for a special occasion, event, or place. It's the perfect customized gift for weddings, engagements, and holidays."
         />
       </Head>
-      <Script src="https://js.stripe.com/v3/" crossOrigin="anonymous"></Script>
       <Elements stripe={stripePromise}>
         <Layout>
           <Component {...pageProps} />
