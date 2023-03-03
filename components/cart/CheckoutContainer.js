@@ -14,6 +14,7 @@ import CartModal from "./CartModal";
 import CheckoutForm from "./CheckoutForm";
 import CheckoutItems from "./CheckoutItems";
 import classes from "./CheckoutContainer.module.css";
+import { getLiveObjectEcommerceJs } from "./cartFunctionality";
 
 const CheckoutContainer = (props) => {
   const commerce = new Commerce(process.env.CHEC_PK);
@@ -29,6 +30,10 @@ const CheckoutContainer = (props) => {
   const [loading, setLoading] = useState(false);
   const [loadingDiscount, setLoadingDiscount] = useState(false);
   const [loadingSelectShipping, setLoadingSelectShipping] = useState(false);
+  const [loadingTax, setLoadingTax] = useState(true);
+  const [estimatedTax, setEstimatedTax] = useState(0);
+
+  console.log("liveObject", liveObject);
 
   useEffect(() => {
     setLoading(true);
@@ -50,7 +55,21 @@ const CheckoutContainer = (props) => {
       });
 
     props.setCheckout(true);
+
+    if (estimatedTax != 0) {
+      setLoadingTax(false);
+    }
   }, [showEditCart]);
+
+  const handleSetTax = async (tax) => {
+    setLoadingTax(false);
+    setEstimatedTax(tax);
+
+    // Get set the new live object here
+    // setLiveObject(res);
+    const newLiveObject = await getLiveObjectEcommerceJs(tokenId);
+    setLiveObject(newLiveObject);
+  };
 
   const getShippingOptions = (countrySymbol) => {
     /* 
@@ -158,6 +177,7 @@ const CheckoutContainer = (props) => {
                 getShippingOptions={getShippingOptions}
                 setShipOption={setShipOption}
                 setReceipt={props.setReceipt}
+                handleSetTax={handleSetTax}
               />
             )}
           </Grid.Column>
@@ -243,8 +263,18 @@ const CheckoutContainer = (props) => {
                       (DISCOUNT) - ${liveObject.discount.amount_saved.formatted}
                     </Header>
                   )}
+                  {!loadingTax && (
+                    <Header color="olive" textAlign="center">
+                      (ESTIMATED TAX) + {estimatedTax}
+                    </Header>
+                  )}
+                  {loadingTax && (
+                    <Header color="olive" textAlign="center">
+                      (TAX) + {`enter shipping information to calculate tax`}
+                    </Header>
+                  )}
                   <Header textAlign="center" size="large">
-                    {liveObject.total.formatted_with_symbol}
+                    {liveObject.total_with_tax.formatted_with_symbol}
                   </Header>
                 </>
               )}

@@ -11,6 +11,7 @@ import {
   emptyMapObjLocalStorage,
 } from "./cartFunctionality";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
+import { getValue } from "@mui/system";
 const CheckoutForm = (props) => {
   // Map specifications that are passed to the extra field to be published to commercejs
   let map_specifcations_cart = getMapObjLocalStorage();
@@ -35,6 +36,8 @@ const CheckoutForm = (props) => {
   const [shipCountry, setShipCountry] = useState();
   const [billingShipCountry, setBillingShipCountry] = useState();
 
+  console.log("props.liveObject", props.liveObject);
+  console.log("props", props);
   useEffect(() => {
     /* 
             Takes Line Items from props and strutures the data 
@@ -92,6 +95,43 @@ const CheckoutForm = (props) => {
 
     if (billingShipCountry === "US") {
       return stateOptions;
+    }
+  };
+
+  const handleLookupTax = async () => {
+    // Lookup Tax for the country and the region for ecommercejs.
+
+    const url = "/api/commerce/update_tax";
+
+    const country = getValues("country");
+    const region = getValues("county_state");
+    const postal_code = getValues("postal_zip_code");
+
+    if (country === "" || region === "" || postal_code === "") {
+      return;
+    }
+
+    if (postal_code.length < 5) {
+      return;
+    }
+
+    const params = {
+      checkout_id: props.liveObject.id,
+      country: getValues("country"),
+      region: getValues("county_state"),
+      postal_code: getValues("postal_zip_code"),
+    };
+    const response = await fetch(url, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(params),
+    }).then((res) => res.json());
+
+    if (response.tax) {
+      props.handleSetTax(response.tax);
     }
   };
 
@@ -364,6 +404,7 @@ const CheckoutForm = (props) => {
                   ...formValues,
                   county_state: "",
                 }));
+                handleLookupTax();
                 return value;
               }}
               ref={null}
@@ -407,6 +448,7 @@ const CheckoutForm = (props) => {
               fluid
               onChange={(e, { value }) => {
                 setValue("county_state", value);
+                handleLookupTax();
               }}
             />
           )}
@@ -432,6 +474,10 @@ const CheckoutForm = (props) => {
               error={errors?.postal_zip_code && errors?.postal_zip_code.message}
               ref={null}
               max="99999"
+              onChange={(e) => {
+                setValue("postal_zip_code", e.target.value);
+                handleLookupTax();
+              }}
             />
           )}
         />
