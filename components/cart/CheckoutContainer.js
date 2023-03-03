@@ -33,8 +33,6 @@ const CheckoutContainer = (props) => {
   const [loadingTax, setLoadingTax] = useState(true);
   const [estimatedTax, setEstimatedTax] = useState(0);
 
-  console.log("liveObject", liveObject);
-
   useEffect(() => {
     setLoading(true);
     /* *** Getting Checkout Token - Set Live Object in State *** */

@@ -10,7 +10,6 @@ const OrderSummary = ({ items, customer, price, orderId }) => {
   let loadingCustomer = customer === {} ? true : false;
   let loadingPrice = price === {} ? true : false;
   let loadingOrderId = orderId === undefined ? true : false;
-  console.log(price);
   let discount = 0;
   try {
     discount = price.discount

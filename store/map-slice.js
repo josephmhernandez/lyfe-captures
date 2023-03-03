@@ -97,7 +97,6 @@ const mapSlice = createSlice({
     },
     setTileLayer: (state, action) => {
       let tileLayer = action.payload.tileLayer;
-      console.log(tileLayer);
       return {
         ...state,
         tileLayer: tileLayer,
@@ -142,7 +141,7 @@ const mapSlice = createSlice({
             textCoordinates: new_text_coordinates,
           };
         } else {
-          console.log("map doesnt contain pin");
+          // console.log("map doesnt contain pin");
         }
       }
 
