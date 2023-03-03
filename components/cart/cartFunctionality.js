@@ -205,7 +205,6 @@ export async function getOrderSummaryEcommerceJs(order_id) {
   }).then((response) => response);
   if (response.status === 200) {
     let checkoutSummaryData = await response.json().then((res) => res);
-    console.log(checkoutSummaryData);
 
     try {
       let items = JSON.parse(checkoutSummaryData.extra_fields[0].value); // array of map objects

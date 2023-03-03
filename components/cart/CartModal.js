@@ -54,7 +54,6 @@ const CartModal = (props) => {
     // name_to_item[prod_name] = line_item_id
     let name_to_item = {};
     let ecom_cart = await getCartEcommerceJs();
-    console.log("ecom_cart", ecom_cart.line_items);
     for (const item of ecom_cart.line_items) {
       name_to_item[item.name] = item.id;
     }

@@ -36,8 +36,6 @@ const CheckoutForm = (props) => {
   const [shipCountry, setShipCountry] = useState();
   const [billingShipCountry, setBillingShipCountry] = useState();
 
-  console.log("props.liveObject", props.liveObject);
-  console.log("props", props);
   useEffect(() => {
     /* 
             Takes Line Items from props and strutures the data 
