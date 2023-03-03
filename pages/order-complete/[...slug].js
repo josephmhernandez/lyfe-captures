@@ -1,10 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import classes from "./orderComplete.module.css";
-import Image from "next/image";
 import OrderSummary from "../../components/cart/OrderSummary";
-import { getOrderSummaryEcommerceJs } from "../../components/cart/cartFunctionality";
-import SampleReivew from "../../components/product/SampleReview";
+import { Button } from "semantic-ui-react";
 
 const OrderCompleteId = () => {
   const router = useRouter();
@@ -83,7 +81,25 @@ const OrderCompleteId = () => {
           orderId={order_id}
         />
       </div>
-      <div className={classes.spacing} />
+      <div className={classes.orderComplete}>
+        <div className={classes.spacing} />
+        <Button
+          style={{
+            "background-color": "var(--color-primary)",
+            color: "white",
+            "border-radius": "100px",
+            "font-family": "var(--page-paragraph-font-family)",
+            "font-size": "var(--page-paragraph-font-size)",
+            "font-weight": "400",
+          }}
+          onClick={() => {
+            router.push("/");
+          }}
+        >
+          Return Home
+        </Button>
+        <div className={classes.spacing} />
+      </div>
     </div>
   );
 };

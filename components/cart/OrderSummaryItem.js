@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Segment, Icon } from "semantic-ui-react";
+import { Segment } from "semantic-ui-react";
 import { MapStyleDict } from "../../components/createMap/MapFolder/MapConstants";
 import classes from "./OrderSummaryItem.module.css";
 const OrderSummaryItem = ({ item }) => {
