@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import OrderSummary from "../../components/cart/OrderSummary";
 import { getOrderSummaryEcommerceJs } from "../../components/cart/cartFunctionality";
 import SampleReivew from "../../components/product/SampleReview";
-import classes from "./reviewPage.module.css";
+import classes from "./ReviewPage.module.css";
 const ReviewPage = () => {
   // review/{cart_id}/{order_id}
   const router = useRouter();
