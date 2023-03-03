@@ -17,15 +17,30 @@ const OrderCompleteId = () => {
   const [items, setItems] = useState([]);
   const [price, setPrice] = useState({});
 
+  const url_get_order_summary = "/api/commerce/get_order_summary";
   useEffect(() => {
-    getOrderSummaryEcommerceJs(order_id).then((res) => {
-      if (res && res.customer) {
-        setEmail(res.customer.email);
-        setItems(res.pretty_items);
-        setCustomer(res.customer);
-        setPrice(res.price);
-      }
-    });
+    const params = {
+      order_id: order_id,
+    };
+    fetch(url_get_order_summary, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(params),
+    })
+      .then((res) => {
+        res.json().then((data) => {
+          if (data.customer) {
+            setEmail(data.customer.email);
+            setItems(data.pretty_items);
+            setCustomer(data.customer);
+            setPrice(data.price);
+          }
+        });
+      })
+      .catch((err) => console.log(err));
   }, [order_id]);
 
   return (

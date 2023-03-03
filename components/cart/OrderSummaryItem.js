@@ -16,7 +16,7 @@ const OrderSummaryItem = ({ item }) => {
         src={tile_layer_image}
       />
       <div className={classes.name}>
-        <h1>{item.name}</h1>
+        <h2>{item.name}</h2>
         <p className={classes.name}>{item.description}</p>
       </div>
       <p>{formatted_quantity}</p>

@@ -19,3 +19,7 @@
   font-weight: var(--page-paragraph-font-weight);
   font-family: var(--page-paragraph-font-family);
 }
+
+.spacing {
+  margin: 20px;
+}
