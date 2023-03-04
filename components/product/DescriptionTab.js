@@ -3,10 +3,6 @@ import Image from "next/future/image";
 import classes from "./DescriptionTab.module.css";
 
 const DescriptionTab = ({ description, img, img_first_flag }) => {
-  const ImageComponent = (img) => {
-    return <Image height={100} src={img} alt="description" />;
-  };
-
   const DescriptionConent = ({ description }) => {
     const heading = description.heading;
     const descriptions = description.text; // Array of strings
@@ -39,11 +35,16 @@ const DescriptionTab = ({ description, img, img_first_flag }) => {
       <div className={classes.flexChild}>
         <DescriptionConent description={description} />
       </div>
-      <div className={classes.flexChild}>
-        <div className={classes.picContainer}>
-          <Image className={classes.picStyle} src={img} layout="raw" />
+
+      {img != undefined ? (
+        <div className={classes.flexChild}>
+          <div className={classes.picContainer}>
+            <Image className={classes.picStyle} src={img} layout="raw" />
+          </div>
         </div>
-      </div>
+      ) : (
+        <div></div>
+      )}
     </div>
   );
 };
