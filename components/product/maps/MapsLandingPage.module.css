@@ -1,34 +1,15 @@
-.box {
-  /* padding-top: 10px; */
-  /* z-index: 10; */
-}
-.benefits {
-  /* margin-top: -1%; */
-}
-
 #bodyid .create-new-menu-btn {
   background-color: black;
   border-radius: 8px;
 }
 
-.grid {
-  display: grid;
-  grid-auto-columns: minmax(0, 1fr);
-  /* grid-template-columns: repeat(2, 1fr); */
-  grid-auto-flow: column;
-  grid-gap: 20px;
-  place-items: center;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-}
-
+/* Mobile css */
 .centerContent {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 25px;
+  padding-bottom: 10px;
   background-color: var(--color-primary);
 }
 
@@ -38,103 +19,11 @@
   margin-top: -5px;
 }
 
-.all {
-  /* display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%; */
-  /* height: 100%; */
-  /* background-color: var(--color-primary); */
-  /* padding-bottom: 1%; */
-}
-
-.bg {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.mapsLandingPage {
-  font-family: var(--primary-font);
-  display: flex;
-  width: 85%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.myCarousel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.mapsLandingPage h1 {
-  display: flex;
-  font-size: 3.5rem;
-  font-weight: 400;
-  justify-content: center;
-  color: var(--purple-dark-color);
-  font-family: "Great Vibes";
-}
-
-.mapsLandingPage ul {
-  list-style-type: "\2713";
-  padding-left: 1rem;
-  color: var(--purple-dark-color);
-}
-
-.mapsLandingPage li {
-  padding-left: 1rem;
-}
-
-.mapsLandingPage p {
-  justify-content: center;
-  font-size: 1.5rem;
-  font-weight: 400;
-  color: black;
-  font-family: var(--primary-font);
-}
-
-.mapsLandingPage h2 {
-  color: var(--purple-dark-color);
-}
-
-.mapsLandingPage a {
-  display: flex;
-  justify-content: left;
-}
-
-.mapsLandingPage:hover button {
-  cursor: pointer;
-}
-
-.description {
-  /* margin-top: 3%; */
-}
-
-.description h2 {
-  text-align: center;
-}
-
-.benefitsStyle {
-  /* position: flex; */
-  /* margin-top: 100px; */
-  /* margin-bottom: 15px; */
-}
-
 .benefitsStyle {
   display: block;
-  /* border-radius: 8px; */
-  /* width: 100%; */
-  /* height: 700px; */
   position: relative;
   width: 100%;
   padding-bottom: 26.171%;
-  /* height: 1%; */
 }
 
 .picBenefitsStyle {
@@ -142,4 +31,127 @@
   width: 100%;
   height: 100%;
   margin-top: -5px;
+}
+
+@media only screen and (min-width: 600px) {
+  .grid {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    grid-gap: 20px;
+    place-items: center;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+
+  .centerContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 25px;
+    background-color: var(--color-primary);
+  }
+
+  .spacingBecauseOfImageBug {
+    background-color: var(--color-primary);
+    padding-bottom: 0px;
+    margin-top: -5px;
+  }
+
+  .bg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mapsLandingPage {
+    font-family: var(--primary-font);
+    display: flex;
+    width: 85%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .myCarousel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .mapsLandingPage h1 {
+    display: flex;
+    font-size: 3.5rem;
+    font-weight: 400;
+    justify-content: center;
+    color: var(--purple-dark-color);
+    font-family: "Great Vibes";
+  }
+
+  .mapsLandingPage ul {
+    list-style-type: "\2713";
+    padding-left: 1rem;
+    color: var(--purple-dark-color);
+  }
+
+  .mapsLandingPage li {
+    padding-left: 1rem;
+  }
+
+  .mapsLandingPage p {
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: black;
+    font-family: var(--primary-font);
+  }
+
+  .mapsLandingPage h2 {
+    color: var(--purple-dark-color);
+  }
+
+  .mapsLandingPage a {
+    display: flex;
+    justify-content: left;
+  }
+
+  .mapsLandingPage:hover button {
+    cursor: pointer;
+  }
+
+  .description {
+    /* margin-top: 3%; */
+  }
+
+  .description h2 {
+    text-align: center;
+  }
+
+  .benefitsStyle {
+    /* position: flex; */
+    /* margin-top: 100px; */
+    /* margin-bottom: 15px; */
+  }
+
+  .benefitsStyle {
+    display: block;
+    /* border-radius: 8px; */
+    /* width: 100%; */
+    /* height: 700px; */
+    position: relative;
+    width: 100%;
+    padding-bottom: 26.171%;
+    /* height: 1%; */
+  }
+
+  .picBenefitsStyle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin-top: -5px;
+  }
 }

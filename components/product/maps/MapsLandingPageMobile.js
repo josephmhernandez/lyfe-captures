@@ -1,18 +1,9 @@
 import ShopNowBanner from "../ShopNowBanner";
-import Link from "next/link";
 import classes from "./MapsLandingPage.module.css";
 
-import shopNowImage from "../../../public/images/banner-wide.png";
-import benefitsBanner from "../../../public/images/cropped-benefits-banner.png";
+import shopNowImage from "../../../public/images/mobile-create-now-banner.png";
 import prodPic1 from "../../../public/images/prod-pics/3-maps-prod-pic-small.png";
-import prodPic2 from "../../../public/images/prod-pics/map-vert-prod-pic-small.png";
-import prodPic3 from "../../../public/images/prod-pics/puerto-rico-landscape-prod-pic-small.png";
-import Image from "next/future/image";
-import { v4 as uuid } from "uuid";
-import { Label, Segment } from "semantic-ui-react";
-import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
-import { Button } from "semantic-ui-react";
 import DescriptionTab from "../DescriptionTab";
 
 const DUMMY_TITLE = "what is this?";
@@ -20,6 +11,22 @@ const DUMMY_DESCRIPTION =
   "We're giving you the capability to design a meaningful present. \nFrom a significant moment to a meaningful location, this print is perfect for any any loved one. \nLife is alwasy happening. We're hear to help you catpure the memories and moments that matter.";
 
 const title = "Meaningful Maps";
+
+const pre_heading_1 = "How it works";
+const pre_description_1 = [
+  "Choose a meaningful location, select a desired map style, customize with text and pins, and receive a luxurious wall art piece to bring your memories to life",
+];
+
+const pre_heading_2 = "Who's this for?";
+const pre_description_2 = [
+  "This map is the ultimate way to celebrate your adventures, travels, memories, and the places you love. It transforms your home into a personalized masterpiece, reflecting your unique style and passions. We've found these make great gifts commemorating special events including weddings and engagements",
+];
+
+const pre_heading_3 = "Benefits";
+const pre_description_3 = [
+  "Elevate any space with fully customized, premium artwork. These large, high definition prints come with a ready to hang subframe making the setup process painless. Add a touch of luxury in your decor to celebrate your adventures and memories, or create a thoughtful gift for any occasion",
+];
+
 const heading_1 = "HIGH RESOLUTION";
 const description_1 = [
   "Design a unique map 24x36 inches",
@@ -45,6 +52,20 @@ const heading_x = "Ultra High Resolution";
 const description_x = [
   "With a resolution of 300 DPI, every detail of your maps will be captured in stunning clarity, making your maps look more like pieces of art. Standard DPI for a computer display is 96 DPI so your monitor won't do it justice. At a 24 in. x 36 in. size, your map will look great up close and far away.",
 ];
+
+const dict_how_it_works = {
+  heading: pre_heading_1,
+  text: pre_description_1,
+};
+const dict_who_is_this_for = {
+  heading: pre_heading_2,
+  text: pre_description_2,
+};
+const dict_benefits = {
+  heading: pre_heading_3,
+  text: pre_description_3,
+};
+
 const dict_x = {
   heading: heading_x,
   text: description_x,
@@ -92,38 +113,20 @@ const dict_quality = {
   ],
 };
 
-const MapsLandingPage = () => {
+const MapsLandingPageMobile = () => {
   return (
     <div className={classes.all}>
       <ShopNowBanner to="/maps" src={shopNowImage} alt="" />
 
-      <div className={classes.benefitsStyle}>
-        <Image
-          className={classes.picBenefitsStyle}
-          src={benefitsBanner}
-          alt="Benefits"
-          layout="raw"
-        />
-      </div>
       <div className={classes.spacingBecauseOfImageBug}></div>
-      <div className={classes.centerContent}>
-        <Link href="/maps">
-          <a>
-            <Button
-              style={{
-                "background-color": "white",
-                color: "var(--color-primary)",
-                "border-radius": "100px",
-                "font-family": "var(--page-paragraph-font-family)",
-                "font-size": "var(--page-paragraph-font-size)",
-                "font-weight": "400",
-              }}
-            >
-              Create Now
-            </Button>
-          </a>
-        </Link>
-      </div>
+
+      <DescriptionTab
+        className={classes.invertColor}
+        img={undefined}
+        description={dict_how_it_works}
+      />
+      <DescriptionTab img={undefined} description={dict_who_is_this_for} />
+      <DescriptionTab img={undefined} description={dict_benefits} />
       <DescriptionTab
         img={prodPic1}
         description={dict_x}
@@ -132,7 +135,7 @@ const MapsLandingPage = () => {
       <DescriptionTab
         img={prodPic1}
         description={dict_customizable}
-        img_first_flag={false}
+        img_first_flag={true}
       />
       <DescriptionTab
         img={prodPic1}
@@ -142,7 +145,7 @@ const MapsLandingPage = () => {
       <DescriptionTab
         img={prodPic1}
         description={dict_sizes}
-        img_first_flag={false}
+        img_first_flag={true}
       />
       <DescriptionTab
         img={prodPic1}
@@ -152,7 +155,7 @@ const MapsLandingPage = () => {
       <DescriptionTab
         img={prodPic1}
         description={dict_gifts}
-        img_first_flag={false}
+        img_first_flag={true}
       />
       <DescriptionTab
         img={prodPic1}
@@ -163,4 +166,4 @@ const MapsLandingPage = () => {
   );
 };
 
-export default MapsLandingPage;
+export default MapsLandingPageMobile;
