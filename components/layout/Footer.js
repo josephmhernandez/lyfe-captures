@@ -13,9 +13,6 @@ const Footer = () => {
             <span>
               <Image src="/amex.svg" alt="amex" width={50} height={50} />
             </span>
-            {/* <span>
-              <Image src="/paypal.svg" alt="paypal" width={50} height={50} />
-            </span> */}
             <span>
               <Image src="/visa.svg" alt="visa" width={50} height={50} />
             </span>
@@ -44,12 +41,12 @@ const Footer = () => {
             <Link href="/terms-of-service">Terms of Service</Link>
           </span> */}
         </div>
-        <div>
+        <div className={classes.contact}>
           <h2>Contact Us</h2>
           <Link href="">help@mapyourmemory.com</Link>
         </div>
         <div className={classes.iconsPaymentMethod}>
-          <h2>Follow Us</h2>
+          <h2 className={classes.followUs}>Follow Us</h2>
           <span>
             <Image src="/facebook.svg" alt="fb" width={35} height={35} />
           </span>

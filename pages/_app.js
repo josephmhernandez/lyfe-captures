@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import Script from "next/script";
 import Layout from "../components/layout/Layout";
+import MobileLayout from "../components/layout/MobileLayout";
 import { useEffect } from "react";
 import Head from "next/head";
 import { Provider } from "react-redux";
@@ -14,7 +15,8 @@ Router.events.on("routeChangeError", nProgress.done);
 Router.events.on("routeChangeComplete", nProgress.done);
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, isMobileView, pageProps }) {
+  console.log("isMobileView: ", isMobileView);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const loader = document.getElementById("globalLoader");
@@ -38,9 +40,17 @@ function MyApp({ Component, pageProps }) {
         />
       </Head>
       <Elements stripe={stripePromise}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        {isMobileView && (
+          <MobileLayout>
+            <Component {...pageProps} />
+          </MobileLayout>
+        )}
+
+        {!isMobileView && (
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        )}
       </Elements>
     </Provider>
   );
@@ -52,6 +62,17 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
   }
+
+  let isMobileView = (
+    ctx.req ? ctx.req.headers["user-agent"] : navigator.userAgent
+  ).match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i);
+
+  //Returning the isMobileView as a prop to the component for further use.
+  return {
+    isMobileView: Boolean(isMobileView),
+    pageProps,
+  };
+
   return { pageProps };
 };
 

@@ -1,5 +1,11 @@
 /* The navbar container */
 
+.container {
+  display: flex;
+  width: 100%;
+  padding-bottom: 3px;
+}
+
 .navBar nav {
   display: block;
   width: 100%;
@@ -74,7 +80,35 @@
   font-style: normal;
 }
 
-/* @font-face {
-  font-family: "Source Sans Pro", sans-serif;
-  src: url("https://fonts.google.com/specimen/Source+Sans+Pro");
-} */
+@media screen and (max-width: 600px) {
+  .container {
+    padding-bottom: 0px;
+    /* margin-top: 10px; */
+    margin-bottom: 3px;
+  }
+  .grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    padding-left: 5%;
+  }
+  /* .logo a {
+    font-size: 2rem;
+    padding-left: 0%;
+  } */
+
+  .logo {
+    padding-left: 10%;
+  }
+
+  .logo h1 {
+    font-size: 2rem;
+    font-family: "Great-Vibes";
+    color: white;
+  }
+
+  .grid i {
+    color: white;
+    justify-content: left;
+  }
+}
