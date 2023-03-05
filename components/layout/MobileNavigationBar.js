@@ -3,14 +3,20 @@ import Image from "next/image";
 import cartPic from "../../public/cart-icon-small-white.png";
 import classes from "./NavigationBar.module.css";
 
-const NavigationBar = (props) => {
+const MobileNavigationBar = (props) => {
   return (
     <div className={classes.container}>
       <nav className={classes.grid}>
+        <i
+          onClick={() => {
+            console.log("clickity");
+          }}
+          class="bars icon large white"
+        ></i>
         <div className={classes.logo}>
-          <Link href="/">MapYourMemory</Link>
+          <h1>MapYourMemory</h1>
         </div>
-        <div className={classes.navbar}>
+        {/* <div className={classes.navbar}>
           <ul>
             <li>
               <Link href="/aboutus">About Us</Link>
@@ -28,17 +34,17 @@ const NavigationBar = (props) => {
               <Link href="/contactus">Contact Us</Link>
             </li>
           </ul>
-        </div>
-        <div className={classes.cartnav}>
+        </div> */}
+        {/* <div className={classes.cartnav}>
           <Link href="/cart">
             <a>
               <Image width={30} height={30} src={cartPic} alt="CART" />
             </a>
           </Link>
-        </div>
+        </div> */}
       </nav>
     </div>
   );
 };
 
-export default NavigationBar;
+export default MobileNavigationBar;

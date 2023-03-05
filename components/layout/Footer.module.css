@@ -67,3 +67,56 @@
   font-weight: 100;
   font-style: normal;
 }
+
+@media screen and (max-width: 600px) {
+  .grid {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    gap: 1px;
+  }
+
+  .container h3 {
+    font-family: "Great Vibes";
+    font-size: 2rem;
+    font-weight: var(--mobile-page-heading-font-weight);
+  }
+
+  .container h2 {
+    font-family: var(--primary-font);
+    font-weight: var(--mobile-page-heading-font-weight);
+    font-size: var(--mobile-page-heading-font-size);
+  }
+
+  .container a {
+    font-family: var(--primary-font);
+    font-weight: var(--mobile-page-paragraph-font-weight);
+    font-size: var(--mobile-page-paragraph-font-size);
+  }
+
+  .support {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+
+  .contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+
+  .followUs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+}
