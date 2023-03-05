@@ -16,7 +16,6 @@ Router.events.on("routeChangeComplete", nProgress.done);
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 function MyApp({ Component, isMobileView, pageProps }) {
-  console.log("isMobileView: ", isMobileView);
   useEffect(() => {
     if (typeof window !== "undefined") {
       const loader = document.getElementById("globalLoader");
