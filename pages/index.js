@@ -22,9 +22,10 @@ Home.Layout = Layout;
 
 // Need this here to get the current device that the user is on.
 // Can't have getInitialProps in the component itself. It must be on the page component.
-Home.getInitialProps = (ctx) => {
-  let isMobileView = (
-    ctx.req ? ctx.req.headers["user-agent"] : navigator.userAgent
+Home.getInitialProps = async (ctx) => {
+  let isMobileView = await (ctx.req
+    ? ctx.req.headers["user-agent"]
+    : navigator.userAgent
   ).match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i);
 
   //Returning the isMobileView as a prop to the component for further use.
