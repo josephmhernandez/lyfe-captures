@@ -3,6 +3,8 @@ import Layout from "../components/layout/Layout";
 import MapsLandingPage from "../components/product/maps/MapsLandingPage";
 import MapsLandingPageMobile from "../components/product/maps/MapsLandingPageMobile";
 export default function Home(props) {
+  console.log("props.isMobileView: Home", props.isMobileView);
+
   if (props.isMobileView) {
     return (
       <Fragment>
