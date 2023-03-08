@@ -62,8 +62,9 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     pageProps = await Component.getInitialProps(ctx);
   }
 
-  let isMobileView = (
-    ctx.req ? ctx.req.headers["user-agent"] : navigator.userAgent
+  let isMobileView = await (ctx.req
+    ? ctx.req.headers["user-agent"]
+    : navigator.userAgent
   ).match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i);
 
   //Returning the isMobileView as a prop to the component for further use.
