@@ -64,6 +64,16 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     pageProps = await Component.getInitialProps(ctx);
   }
 
+  console.log("ctx: MyApp");
+  console.log("ctx.req: MyApp", ctx.req);
+  console.log(
+    "ctx.req.headers['user-agent']: Home",
+    ctx.req.headers["user-agent"]
+  );
+
+  let waits = await ctx.req.headers["user-agent"];
+  console.log("waits: Home", waits);
+
   let isMobileView = await (ctx.req
     ? ctx.req.headers["user-agent"]
     : navigator.userAgent
