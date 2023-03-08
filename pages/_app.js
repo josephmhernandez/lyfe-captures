@@ -27,6 +27,8 @@ function MyApp({ Component, isMobileView, pageProps }) {
 
   const stripePromise = loadStripe(process.env.STRIPE_PK);
 
+  console.log("isMobileView: app.js", isMobileView);
+
   return (
     <Provider store={store}>
       <Head>
