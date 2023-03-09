@@ -66,7 +66,6 @@ const SampleReivew = (props) => {
 
   return (
     <div className={classes.container}>
-      <h2>{`See, we promised it'd be short!`}</h2>
       <Segment raised className={classes.sampleReview}>
         <h2>Rate your experience!</h2>
         <ReactStars
