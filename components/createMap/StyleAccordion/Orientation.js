@@ -7,10 +7,11 @@ import {
 
 import classes from "./Orientation.module.css";
 import getConfig from "next/config";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { mapActions } from "../../../store/map-slice";
 
 const Orientation = () => {
+  const orientation = useSelector((state) => state.map.orientation);
   const dispatch = useDispatch();
 
   const handleOrientationChange = (event) => {
@@ -23,7 +24,7 @@ const Orientation = () => {
         <RadioGroup
           row
           aria-labelledby="orientation-radio-buttons-group-custom-map"
-          defaultValue="portrait"
+          defaultValue={orientation}
           name="orientation-radio-buttons-group"
           onChange={handleOrientationChange}
         >
