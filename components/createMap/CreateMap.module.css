@@ -1,10 +1,24 @@
+.noteContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  padding-top: 2.5%;
+}
+
+.noteContainer p {
+  font-size: var(--page-paragraph-font-size);
+  font-weight: var(--page-paragraph-font-weight);
+  font-family: var(--page-paragraph-font-family);
+}
+
 .container {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   padding-bottom: 5%;
-  padding-top: 5%;
+  padding-top: 2.5%;
 }
 
 .wrapper {

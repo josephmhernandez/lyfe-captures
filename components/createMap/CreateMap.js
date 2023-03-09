@@ -1,6 +1,6 @@
 import { Paper } from "@mui/material";
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CardOverlay from "./CardOverlay";
 import classes from "./CreateMap.module.css";
@@ -159,11 +159,19 @@ const CreateMap = (props) => {
   }
 
   return (
-    <div className={classes.container}>
-      <Paper elevation={24} className={classes.wrapper}>
-        <CardOverlay>
-          <MapWithNoSSR center={defaultCenter} zoom={zoom} style={mapStyle}>
-            {/* {({ TileLayer, Marker, Popup }) => (
+    <Fragment>
+      <div className={classes.noteContainer}>
+        <p>
+          <span style={{ fontWeight: "bold" }}>Please Note:</span> Sometimes
+          when using Google Chrome there are white grid lines that appear on the
+          map. Be assured, those lines will not show up on your masterpiece!
+        </p>
+      </div>
+      <div className={classes.container}>
+        <Paper elevation={24} className={classes.wrapper}>
+          <CardOverlay>
+            <MapWithNoSSR center={defaultCenter} zoom={zoom} style={mapStyle}>
+              {/* {({ TileLayer, Marker, Popup }) => (
               <>
                 <TileLayer
                   url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -174,19 +182,20 @@ const CreateMap = (props) => {
                 </Marker>
               </>
             )} */}
-          </MapWithNoSSR>
-        </CardOverlay>
-      </Paper>
-      <Paper elevation={24} className={classes.accordionBox}>
-        <CustomizedAccordions />
-        <div className={classes.actionBtns}>
-          {/* <BuyNowButton onClick={handleBuyNow}>
+            </MapWithNoSSR>
+          </CardOverlay>
+        </Paper>
+        <Paper elevation={24} className={classes.accordionBox}>
+          <CustomizedAccordions />
+          <div className={classes.actionBtns}>
+            {/* <BuyNowButton onClick={handleBuyNow}>
             Buy Now
           </BuyNowButton> */}
-          <BuyNowButton onClick={handleAddToCart}>Add To Cart</BuyNowButton>
-        </div>
-      </Paper>
-    </div>
+            <BuyNowButton onClick={handleAddToCart}>Add To Cart</BuyNowButton>
+          </div>
+        </Paper>
+      </div>
+    </Fragment>
   );
 };
 
