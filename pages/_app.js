@@ -1,8 +1,6 @@
 import "../styles/globals.css";
-import Script from "next/script";
 import Layout from "../components/layout/Layout";
-import MobileLayout from "../components/layout/MobileLayout";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Head from "next/head";
 import { Provider } from "react-redux";
 import store from "../store/index";
@@ -15,10 +13,12 @@ Router.events.on("routeChangeError", nProgress.done);
 Router.events.on("routeChangeComplete", nProgress.done);
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+
 function MyApp({ Component, isMobileView, pageProps }) {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const loader = document.getElementById("globalLoader");
+
       if (loader) {
         loader.style.display = "none";
       }
@@ -26,8 +26,6 @@ function MyApp({ Component, isMobileView, pageProps }) {
   }, []);
 
   const stripePromise = loadStripe(process.env.STRIPE_PK);
-
-  console.log("isMobileView: app.js", isMobileView);
 
   return (
     <Provider store={store}>
@@ -41,17 +39,9 @@ function MyApp({ Component, isMobileView, pageProps }) {
         />
       </Head>
       <Elements stripe={stripePromise}>
-        {isMobileView && (
-          <MobileLayout>
-            <Component {...pageProps} />
-          </MobileLayout>
-        )}
-
-        {!isMobileView && (
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        )}
+        <Layout>
+          <Component {...pageProps} />
+        </Layout>
       </Elements>
     </Provider>
   );
@@ -63,16 +53,6 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
   }
-
-  console.log("ctx: MyApp");
-  console.log("ctx.req: MyApp", ctx.req);
-  console.log(
-    "ctx.req.headers['user-agent']: Home",
-    ctx.req.headers["user-agent"]
-  );
-
-  let waits = await ctx.req.headers["user-agent"];
-  console.log("waits: Home", waits);
 
   let isMobileView = await (ctx.req
     ? ctx.req.headers["user-agent"]
