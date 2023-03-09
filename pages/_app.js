@@ -15,15 +15,16 @@ Router.events.on("routeChangeError", nProgress.done);
 Router.events.on("routeChangeComplete", nProgress.done);
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
+import { renderMatches } from "react-router-dom";
 function MyApp({ Component, isMobileView, pageProps }) {
-  let isMobile = false;
-  if (typeof window !== "undefined") {
-    const windowSize = useRef([window.innerWidth, window.innerHeight]);
-    console.log("windowSize.current: app.js", windowSize.current);
-    if (windowSize.current[0] < 768) {
-      isMobile = true;
-    }
-  }
+  // let isMobile = false;
+  // if (typeof window !== "undefined") {
+  //   const windowSize = useRef([window.innerWidth, window.innerHeight]);
+  //   console.log("windowSize.current: app.js", windowSize.current);
+  //   if (windowSize.current[0] < 768) {
+  //     isMobile = true;
+  //   }
+  // }
   useEffect(() => {
     if (typeof window !== "undefined") {
       const loader = document.getElementById("globalLoader");
@@ -37,7 +38,15 @@ function MyApp({ Component, isMobileView, pageProps }) {
   const stripePromise = loadStripe(process.env.STRIPE_PK);
 
   console.log("isMobileView: app.js", isMobileView);
+
+  const isMobile = useMediaQuery("(max-width: 600px)");
+  const isFirst = useIsFirstRender();
+
+  console.log("isMobile: app.js", isMobile);
+  console.log("isFirst: app.js", isFirst);
   pageProps.isMobileView = isMobile;
+
+  console.log("pageProps: app.js", pageProps);
   return (
     <Provider store={store}>
       <Head>
@@ -50,13 +59,13 @@ function MyApp({ Component, isMobileView, pageProps }) {
         />
       </Head>
       <Elements stripe={stripePromise}>
-        {isMobileView && (
+        {isMobile && (
           <MobileLayout>
             <Component {...pageProps} />
           </MobileLayout>
         )}
 
-        {!isMobileView && (
+        {!isMobile && (
           <Layout>
             <Component {...pageProps} />
           </Layout>
