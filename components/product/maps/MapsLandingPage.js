@@ -17,7 +17,7 @@ import DescriptionTab from "../DescriptionTab";
 
 const DUMMY_TITLE = "what is this?";
 const DUMMY_DESCRIPTION =
-  "We're giving you the capability to design a meaningful present. \nFrom a significant moment to a meaningful location, this print is perfect for any any loved one. \nLife is alwasy happening. We're hear to help you catpure the memories and moments that matter.";
+  "We're giving you the capability to design a meaningful present. \nFrom a significant moment to a meaningful location, this print is perfect for any any loved one. \nLife is alwasy happening. We're hear to help you catpure the memories and moments that matter";
 
 const title = "Meaningful Maps";
 const heading_1 = "HIGH RESOLUTION";
@@ -43,7 +43,7 @@ const description_3 = [
 
 const heading_x = "Ultra High Resolution";
 const description_x = [
-  "With a resolution of 300 DPI, every detail of your maps will be captured in stunning clarity, making your maps look more like pieces of art. Standard DPI for a computer display is 96 DPI so your monitor won't do it justice. At a 24 in. x 36 in. size, your map will look great up close and far away.",
+  "With a resolution of 300 DPI, every detail of your maps will be captured in stunning clarity, making your maps look more like pieces of art. Standard DPI for a computer display is 96 DPI so your monitor won't do it justice. At a 24 in. x 36 in. size, your map will look great up close and far away",
 ];
 const dict_x = {
   heading: heading_x,
@@ -53,7 +53,7 @@ const dict_x = {
 const dict_customizable = {
   heading: "Personalized Touch",
   text: [
-    "You have the freedom to choose a location and make it your own with a variety of customization options. Choose from modern, geographical, transit styles, or any of our exclusive maps. Add text or pins to commemorate special places and occasions. With the ability to add your personal touch to the map, you can make it truly unique to you and your story. The customization benefits of this map make it a one-of-a-kind work of art that is both meaningful and beautiful.",
+    "You have the freedom to choose a location and make it your own with a variety of customization options. Choose from modern, geographical, transit styles, or any of our exclusive maps. Add text or pins to commemorate special places and occasions. With the ability to add your personal touch to the map, you can make it truly unique to you and your story. The customization benefits of this map make it a one-of-a-kind work of art that is both meaningful and beautiful",
   ],
 };
 
