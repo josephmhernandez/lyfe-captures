@@ -1,15 +1,9 @@
-import Layout from "../../components/layout/Layout";
 import classes from "./index.module.css";
-import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { useIsFirstRender } from "../../hooks/useIsFirstRender";
-import { Fragment } from "react";
-import NavigationBar from "../../components/layout/NavigationBar";
-import MobileNavigationBar from "../../components/layout/MobileNavigationBar";
+
 const AboutUs = () => {
   const about_us_description = "";
   return (
     <div>
-      {/* {renderNav()} */}
       <div className={classes.aboutus}>
         <h1>Thanks for your interest!</h1>
         <p>
@@ -43,18 +37,3 @@ const AboutUs = () => {
   );
 };
 export default AboutUs;
-
-function renderNav() {
-  const isMobile = useMediaQuery("(max-width: 600px)");
-  const isFirst = useIsFirstRender();
-
-  if (isFirst) {
-    console.log("first render!!!!");
-  }
-
-  if (isMobile) {
-    return <MobileNavigationBar />;
-  }
-
-  return <NavigationBar />;
-}

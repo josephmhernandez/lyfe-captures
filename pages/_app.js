@@ -1,7 +1,5 @@
 import "../styles/globals.css";
-import Script from "next/script";
 import Layout from "../components/layout/Layout";
-import MobileLayout from "../components/layout/MobileLayout";
 import { useEffect, useRef } from "react";
 import Head from "next/head";
 import { Provider } from "react-redux";
@@ -15,18 +13,8 @@ Router.events.on("routeChangeError", nProgress.done);
 Router.events.on("routeChangeComplete", nProgress.done);
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-import { renderMatches } from "react-router-dom";
-import { useMediaQuery } from "../hooks/useMediaQuery";
-import { useIsFirstRender } from "../hooks/useIsFirstRender";
+
 function MyApp({ Component, isMobileView, pageProps }) {
-  // let isMobile = false;
-  // if (typeof window !== "undefined") {
-  //   const windowSize = useRef([window.innerWidth, window.innerHeight]);
-  //   console.log("windowSize.current: app.js", windowSize.current);
-  //   if (windowSize.current[0] < 768) {
-  //     isMobile = true;
-  //   }
-  // }
   useEffect(() => {
     if (typeof window !== "undefined") {
       const loader = document.getElementById("globalLoader");
@@ -39,16 +27,6 @@ function MyApp({ Component, isMobileView, pageProps }) {
 
   const stripePromise = loadStripe(process.env.STRIPE_PK);
 
-  // console.log("isMobileView: app.js", isMobileView);
-
-  // const isMobile = useMediaQuery("(max-width: 600px)");
-  // const isFirst = useIsFirstRender();
-
-  // console.log("isMobile: app.js", isMobile);
-  // console.log("isFirst: app.js", isFirst);
-  // pageProps.isMobileView = isMobile;
-
-  // console.log("pageProps: app.js", pageProps);
   return (
     <Provider store={store}>
       <Head>
@@ -61,12 +39,6 @@ function MyApp({ Component, isMobileView, pageProps }) {
         />
       </Head>
       <Elements stripe={stripePromise}>
-        {/* {isMobile && (
-          <MobileLayout>
-            <Component {...pageProps} />
-          </MobileLayout>
-        )} */}
-
         <Layout>
           <Component {...pageProps} />
         </Layout>
@@ -81,16 +53,6 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
   }
-
-  // console.log("ctx: MyApp");
-  // console.log("ctx.req: MyApp", ctx.req);
-  // console.log(
-  //   "ctx.req.headers['user-agent']: Home",
-  //   ctx.req.headers["user-agent"]
-  // );
-
-  // let waits = await ctx.req.headers["user-agent"];
-  // console.log("waits: Home", waits);
 
   let isMobileView = await (ctx.req
     ? ctx.req.headers["user-agent"]

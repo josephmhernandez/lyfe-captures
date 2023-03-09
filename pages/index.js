@@ -1,28 +1,9 @@
 import { useMediaQuery } from "@mantine/hooks";
 import { Fragment } from "react";
 import Layout from "../components/layout/Layout";
-import MobileNavigationBar from "../components/layout/MobileNavigationBar";
-import NavigationBar from "../components/layout/NavigationBar";
 import MapsLandingPage from "../components/product/maps/MapsLandingPage";
 import MapsLandingPageMobile from "../components/product/maps/MapsLandingPageMobile";
-import { useIsFirstRender } from "../hooks/useIsFirstRender";
 export default function Home(props) {
-  console.log("props.isMobileView: Home", props.isMobileView);
-
-  // if (props.isMobileView) {
-  //   return (
-  //     <Fragment>
-  //       <MapsLandingPageMobile />
-  //     </Fragment>
-  //   );
-  // }
-
-  // return (
-  //   <Fragment>
-  //     <MapsLandingPage />
-  //   </Fragment>
-  // );
-
   return <div>{renderComp()}</div>;
 }
 
@@ -46,16 +27,10 @@ Home.getInitialProps = async (ctx) => {
 
 function renderComp() {
   const isMobile = useMediaQuery("(max-width: 600px)");
-  const isFirst = useIsFirstRender();
-
-  if (isFirst) {
-    console.log("first render!!!!");
-  }
 
   if (isMobile) {
     return (
       <Fragment>
-        {/* <MobileNavigationBar /> */}
         <MapsLandingPageMobile />
       </Fragment>
     );
@@ -63,7 +38,6 @@ function renderComp() {
 
   return (
     <Fragment>
-      {/* <NavigationBar /> */}
       <MapsLandingPage />
     </Fragment>
   );
