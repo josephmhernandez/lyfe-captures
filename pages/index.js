@@ -1,23 +1,27 @@
+import { useMediaQuery } from "@mantine/hooks";
 import { Fragment } from "react";
 import Layout from "../components/layout/Layout";
 import MapsLandingPage from "../components/product/maps/MapsLandingPage";
 import MapsLandingPageMobile from "../components/product/maps/MapsLandingPageMobile";
+import { useIsFirstRender } from "../hooks/useIsFirstRender";
 export default function Home(props) {
   console.log("props.isMobileView: Home", props.isMobileView);
 
-  if (props.isMobileView) {
-    return (
-      <Fragment>
-        <MapsLandingPageMobile />
-      </Fragment>
-    );
-  }
+  // if (props.isMobileView) {
+  //   return (
+  //     <Fragment>
+  //       <MapsLandingPageMobile />
+  //     </Fragment>
+  //   );
+  // }
 
-  return (
-    <Fragment>
-      <MapsLandingPage />
-    </Fragment>
-  );
+  // return (
+  //   <Fragment>
+  //     <MapsLandingPage />
+  //   </Fragment>
+  // );
+
+  return <div>{renderComp()}</div>;
 }
 
 Home.Layout = Layout;
@@ -45,3 +49,26 @@ Home.getInitialProps = async (ctx) => {
 };
 
 // export default MapPage;
+
+function renderComp() {
+  const isMobile = useMediaQuery("(max-width: 600px)");
+  const isFirst = useIsFirstRender();
+
+  if (isFirst) {
+    console.log("first render!!!!");
+  }
+
+  if (isMobile) {
+    return (
+      <Fragment>
+        <MapsLandingPageMobile />
+      </Fragment>
+    );
+  }
+
+  return (
+    <Fragment>
+      <MapsLandingPage />
+    </Fragment>
+  );
+}

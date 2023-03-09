@@ -2,7 +2,7 @@ import "../styles/globals.css";
 import Script from "next/script";
 import Layout from "../components/layout/Layout";
 import MobileLayout from "../components/layout/MobileLayout";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Head from "next/head";
 import { Provider } from "react-redux";
 import store from "../store/index";
@@ -16,9 +16,18 @@ Router.events.on("routeChangeComplete", nProgress.done);
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 function MyApp({ Component, isMobileView, pageProps }) {
+  let isMobile = false;
+  if (typeof window !== "undefined") {
+    const windowSize = useRef([window.innerWidth, window.innerHeight]);
+    console.log("windowSize.current: app.js", windowSize.current);
+    if (windowSize.current[0] < 768) {
+      isMobile = true;
+    }
+  }
   useEffect(() => {
     if (typeof window !== "undefined") {
       const loader = document.getElementById("globalLoader");
+
       if (loader) {
         loader.style.display = "none";
       }
@@ -28,7 +37,7 @@ function MyApp({ Component, isMobileView, pageProps }) {
   const stripePromise = loadStripe(process.env.STRIPE_PK);
 
   console.log("isMobileView: app.js", isMobileView);
-
+  pageProps.isMobileView = isMobile;
   return (
     <Provider store={store}>
       <Head>
