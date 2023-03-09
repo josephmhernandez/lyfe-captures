@@ -1,6 +1,6 @@
 import TextField from "@mui/material/TextField";
 import classes from "./Text.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import mapSlice, { mapActions } from "../../../store/map-slice";
@@ -13,6 +13,15 @@ const Text = (props) => {
   const [showRemoveBtn, setShowRemoveBtn] = useState(false);
   const textPrimary = useSelector((state) => state.map.textPrimary);
   const textSecondary = useSelector((state) => state.map.textSecondary);
+  const textCoordinates = useSelector((state) => state.map.textCoordinates);
+
+  useEffect(() => {
+    if (textCoordinates.length > 0) {
+      setShowAddBtn(false);
+      setShowRemoveBtn(true);
+    }
+  }, []);
+
   const transparentFlag = useSelector(
     (state) => state.map.transparentTextBlock
   );
@@ -84,6 +93,7 @@ const Text = (props) => {
       <Checkbox
         onChange={handleTransparentCheck}
         label="Transparent Text Block"
+        checked={transparentFlag}
       />
       {/* <div
         onChecked={(event) => dispatch(mapSlice.setTransparentTextBlockTrue())}
