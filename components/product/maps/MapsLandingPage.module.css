@@ -33,6 +33,10 @@
   margin-top: -5px;
 }
 
+.centerContent btn:hover {
+  cursor: pointer;
+}
+
 @media only screen and (min-width: 600px) {
   .grid {
     display: grid;
