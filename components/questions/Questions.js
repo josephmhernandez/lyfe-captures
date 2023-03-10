@@ -71,18 +71,15 @@ const Questions = () => {
   return (
     <div className={classes.contactTitle}>
       <h1>{page_title}</h1>
-      <p>{title_description}</p>
-
-      <div className={classes.questionAccordion}>
-        {question_content.map((question) => {
-          return (
-            <div key={question.id}>
-              <h2>{question.title}</h2>
-              <p>{question.description}</p>
-            </div>
-          );
-        })}
-      </div>
+      <p className={classes.headingP}>{title_description}</p>
+      {question_content.map((question) => {
+        return (
+          <div key={question.id} className={classes.questionAccordion}>
+            <h2>{question.title}</h2>
+            <p>{question.description}</p>
+          </div>
+        );
+      })}
     </div>
   );
 };
