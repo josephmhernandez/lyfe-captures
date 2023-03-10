@@ -43,7 +43,9 @@ const Footer = () => {
         </div>
         <div className={classes.contact}>
           <h2>Contact Us</h2>
-          <Link href="">help@mapyourmemory.com</Link>
+          <Link href={"mailto:" + process.env.EMAIL_SUPPORT}>
+            help@mapyourmemory.com
+          </Link>
         </div>
         <div className={classes.iconsPaymentMethod}>
           <h2 className={classes.followUs}>Follow Us</h2>

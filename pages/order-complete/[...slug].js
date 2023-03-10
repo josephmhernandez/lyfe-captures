@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import classes from "./orderComplete.module.css";
 import OrderSummary from "../../components/cart/OrderSummary";
 import { Button } from "semantic-ui-react";
+import Link from "next/link";
 
 const OrderCompleteId = () => {
   const router = useRouter();
@@ -61,7 +62,12 @@ const OrderCompleteId = () => {
               <p>Your map will be shipped within the next two days!</p>
             </li>
             <li>
-              <p>Reach out if you have any questions or suggestions!</p>
+              <p>
+                <Link href={"mailto:" + process.env.EMAIL_SUPPORT}>
+                  <a style={{ textDecoration: "underline" }}>Reach out</a>
+                </Link>{" "}
+                if you have any questions or suggestions!
+              </p>
             </li>
             <li>
               <p>Order summary available below</p>
