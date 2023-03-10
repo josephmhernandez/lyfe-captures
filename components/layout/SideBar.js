@@ -1,4 +1,4 @@
-import { Menu, Icon, Header, Segment, Sidebar } from "semantic-ui-react";
+import { Menu, Sidebar } from "semantic-ui-react";
 import Link from "next/link";
 import { useEffect } from "react";
 import classes from "./SideBar.module.css";
