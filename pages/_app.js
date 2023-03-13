@@ -13,7 +13,7 @@ Router.events.on("routeChangeError", nProgress.done);
 Router.events.on("routeChangeComplete", nProgress.done);
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
-
+import React from "react";
 function MyApp({ Component, isMobileView, pageProps }) {
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -38,6 +38,7 @@ function MyApp({ Component, isMobileView, pageProps }) {
           content="Design your own unique map for a special occasion, event, or place. It's the perfect customized gift for weddings, engagements, and holidays."
         />
       </Head>
+      <FacebookPixel />
       <Elements stripe={stripePromise}>
         <Layout>
           <Component {...pageProps} />
@@ -67,5 +68,21 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
 
   return { pageProps };
 };
+
+function FacebookPixel() {
+  React.useEffect(() => {
+    import("react-facebook-pixel")
+      .then((x) => x.default)
+      .then((ReactPixel) => {
+        ReactPixel.init(process.env.FB_PIXEL_ID);
+        ReactPixel.pageView();
+
+        Router.events.on("routeChangeComplete", () => {
+          ReactPixel.pageView();
+        });
+      });
+  });
+  return null;
+}
 
 export default MyApp;
