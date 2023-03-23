@@ -19,31 +19,21 @@ const DUMMY_TITLE = "what is this?";
 const DUMMY_DESCRIPTION =
   "We're giving you the capability to design a meaningful present. \nFrom a significant moment to a meaningful location, this print is perfect for any any loved one. \nLife is alwasy happening. We're hear to help you catpure the memories and moments that matter";
 
+const heading_special = "Special Request? We can help!";
+const description_special = [
+  `We're here to help you with special accomidations. Want a specific color? We can help! Want a different size? We can help! Want a different style? We can help! We're here to help you create a unique and meaningful gift for your loved one. Please contact us at ${process.env.EMAIL_SPECIAL_REQUESTS}`,
+];
+
 const title = "Meaningful Maps";
-const heading_1 = "HIGH RESOLUTION";
-const description_1 = [
-  "Design a unique map 24x36 inches",
-  "Looks great up close and far away",
-  `Printed at 300 DPI. This is great resolution, and some might say "overkill"`,
-];
 
-const heading_2 = "NEXT DAY SHIPPING";
-const description_2 = [
-  "94% of our maps are shipped that next day",
-  "Ships in two business days guaranteed",
-  "USPS tracking number emailed to you",
-  "Ships to continental US only",
-];
-
-const heading_3 = "UNMATCHED CUSTOMER SERVICE";
-const description_3 = [
-  "Under 24 hours response time",
-  "Speedy and transparent printing to shipping process",
-];
+const dict_special_request = {
+  heading: heading_special,
+  text: description_special,
+};
 
 const heading_x = "Ultra High Resolution";
 const description_x = [
-  "With a resolution of 300 DPI, every detail of your maps will be captured in stunning clarity, making your maps look more like pieces of art. Standard DPI for a computer display is 96 DPI so your monitor won't do it justice. At a 24 in. x 36 in. size, your map will look great up close and far away",
+  `With a resolution of 300 DPI, every detail of your maps will be captured in stunning clarity, making your maps look more like pieces of art. Standard DPI for a computer display is 96 DPI so your monitor won't do it justice. At a 24 in. x 36 in. size, your map will look great up close and far away`,
 ];
 const dict_x = {
   heading: heading_x,
@@ -123,6 +113,10 @@ const MapsLandingPage = () => {
             </Button>
           </a>
         </Link>
+      </div>
+      <div className={classes.specialRequest}>
+        <h1>{dict_special_request.heading}</h1>
+        <p>{dict_special_request.text}</p>
       </div>
       <DescriptionTab
         img={prodPic1}

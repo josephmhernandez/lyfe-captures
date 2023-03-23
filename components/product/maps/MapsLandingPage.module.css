@@ -37,6 +37,34 @@
   cursor: pointer;
 }
 
+.specialRequest {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.specialRequest h1 {
+  font-size: 2rem;
+  font-weight: 400;
+  justify-content: center;
+  color: var(--purple-dark-color);
+  font-family: var(--primary-font);
+  margin-bottom: -5px;
+}
+
+.specialRequest p {
+  justify-content: center;
+  text-align: center;
+  width: 80%;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  font-weight: 400;
+  font-family: var(--page-paragraph-font-family);
+}
+
 @media only screen and (min-width: 600px) {
   .grid {
     display: grid;
