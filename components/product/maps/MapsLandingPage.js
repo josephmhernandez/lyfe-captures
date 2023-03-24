@@ -2,22 +2,20 @@ import ShopNowBanner from "../ShopNowBanner";
 import Link from "next/link";
 import classes from "./MapsLandingPage.module.css";
 
-import shopNowImage from "../../../public/images/banner-wide.png";
+import shopNowImage from "../../../public/images/new-banner-wide.png";
 import benefitsBanner from "../../../public/images/cropped-benefits-banner.png";
-import prodPic1 from "../../../public/images/prod-pics/3-maps-prod-pic-small.png";
-import prodPic2 from "../../../public/images/prod-pics/map-vert-prod-pic-small.png";
-import prodPic3 from "../../../public/images/prod-pics/puerto-rico-landscape-prod-pic-small.png";
+import prodPicThreeD from "../../../public/images/new-prod-pics/3-d-effect.jpg";
+import prodPicBackFrame from "../../../public/images/new-prod-pics/backframe-hanging.jpg";
+import prodPicCloseUpPinsDarkTransit from "../../../public/images/new-prod-pics/close-up-pins-dark-transit.jpg";
+import prodPicFourCorner from "../../../public/images/new-prod-pics/four-corner.png";
+import prodPicTextCloseUp from "../../../public/images/new-prod-pics/text-close-up.jpg";
+import prodPicTransitBlack from "../../../public/images/new-prod-pics/trans-black.png";
+import prodPicTransitWhite from "../../../public/images/new-prod-pics/trans-white.png";
+
 import Image from "next/future/image";
-import { v4 as uuid } from "uuid";
-import { Label, Segment } from "semantic-ui-react";
-import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Button } from "semantic-ui-react";
 import DescriptionTab from "../DescriptionTab";
-
-const DUMMY_TITLE = "what is this?";
-const DUMMY_DESCRIPTION =
-  "We're giving you the capability to design a meaningful present. \nFrom a significant moment to a meaningful location, this print is perfect for any any loved one. \nLife is alwasy happening. We're hear to help you catpure the memories and moments that matter";
 
 const heading_special = "Special Request? We can help!";
 const description_special = [
@@ -119,37 +117,37 @@ const MapsLandingPage = () => {
         <p>{dict_special_request.text}</p>
       </div>
       <DescriptionTab
-        img={prodPic1}
+        img={prodPicTransitWhite}
         description={dict_x}
         img_first_flag={true}
       />
       <DescriptionTab
-        img={prodPic1}
+        img={prodPicCloseUpPinsDarkTransit}
         description={dict_customizable}
         img_first_flag={false}
       />
       <DescriptionTab
-        img={prodPic1}
+        img={prodPicBackFrame}
         description={dict_hanging}
         img_first_flag={true}
       />
       <DescriptionTab
-        img={prodPic1}
+        img={prodPicTransitBlack}
         description={dict_sizes}
         img_first_flag={false}
       />
       <DescriptionTab
-        img={prodPic1}
+        img={prodPicFourCorner}
         description={dict_shipping}
         img_first_flag={true}
       />
       <DescriptionTab
-        img={prodPic1}
+        img={prodPicTextCloseUp}
         description={dict_gifts}
         img_first_flag={false}
       />
       <DescriptionTab
-        img={prodPic1}
+        img={prodPicThreeD}
         description={dict_quality}
         img_first_flag={true}
       />
