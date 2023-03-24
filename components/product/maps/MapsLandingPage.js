@@ -7,10 +7,12 @@ import benefitsBanner from "../../../public/images/cropped-benefits-banner.png";
 import prodPicThreeD from "../../../public/images/new-prod-pics/3-d-effect.jpg";
 import prodPicBackFrame from "../../../public/images/new-prod-pics/backframe-hanging.jpg";
 import prodPicCloseUpPinsDarkTransit from "../../../public/images/new-prod-pics/close-up-pins-dark-transit.jpg";
-import prodPicFourCorner from "../../../public/images/new-prod-pics/four-corner.png";
+// import prodPicFourCorner from "../../../public/images/new-prod-pics/four-corner.png";
+import prodPicFourCorner from "../../../public/images/new-prod-pics/four-corner.jpg";
 import prodPicTextCloseUp from "../../../public/images/new-prod-pics/text-close-up.jpg";
 import prodPicTransitBlack from "../../../public/images/new-prod-pics/trans-black.png";
-import prodPicTransitWhite from "../../../public/images/new-prod-pics/trans-white.png";
+// import prodPicTransitWhite from "../../../public/images/new-prod-pics/trans-white.png";
+import prodPicTransitWhite from "../../../public/images/new-prod-pics/corner-transit-white.jpg";
 
 import Image from "next/future/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";

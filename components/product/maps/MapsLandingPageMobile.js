@@ -9,7 +9,7 @@ import prodPicCloseUpPinsDarkTransit from "../../../public/images/new-prod-pics/
 import prodPicFourCorner from "../../../public/images/new-prod-pics/four-corner.png";
 import prodPicTextCloseUp from "../../../public/images/new-prod-pics/text-close-up.jpg";
 import prodPicTransitBlack from "../../../public/images/new-prod-pics/trans-black.png";
-import prodPicTransitWhite from "../../../public/images/new-prod-pics/trans-white.png";
+import prodPicTransitWhite from "../../../public/images/new-prod-pics/corner-transit-white.jpg";
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import DescriptionTab from "../DescriptionTab";
