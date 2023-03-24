@@ -2,7 +2,15 @@ import ShopNowBanner from "../ShopNowBanner";
 import classes from "./MapsLandingPage.module.css";
 
 import shopNowImage from "../../../public/images/mobile-create-now-banner.png";
-import prodPic1 from "../../../public/images/prod-pics/3-maps-prod-pic-small.png";
+
+import prodPicThreeD from "../../../public/images/new-prod-pics/3-d-effect.jpg";
+import prodPicBackFrame from "../../../public/images/new-prod-pics/backframe-hanging.jpg";
+import prodPicCloseUpPinsDarkTransit from "../../../public/images/new-prod-pics/close-up-pins-dark-transit.jpg";
+import prodPicFourCorner from "../../../public/images/new-prod-pics/four-corner.png";
+import prodPicTextCloseUp from "../../../public/images/new-prod-pics/text-close-up.jpg";
+import prodPicTransitBlack from "../../../public/images/new-prod-pics/trans-black.png";
+import prodPicTransitWhite from "../../../public/images/new-prod-pics/trans-white.png";
+
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import DescriptionTab from "../DescriptionTab";
 
@@ -128,37 +136,37 @@ const MapsLandingPageMobile = () => {
       <DescriptionTab img={undefined} description={dict_who_is_this_for} />
       <DescriptionTab img={undefined} description={dict_benefits} />
       <DescriptionTab
-        img={prodPic1}
+        img={prodPicTransitWhite}
         description={dict_x}
         img_first_flag={true}
       />
       <DescriptionTab
-        img={prodPic1}
+        img={prodPicCloseUpPinsDarkTransit}
         description={dict_customizable}
         img_first_flag={true}
       />
       <DescriptionTab
-        img={prodPic1}
+        img={prodPicBackFrame}
         description={dict_hanging}
         img_first_flag={true}
       />
       <DescriptionTab
-        img={prodPic1}
+        img={prodPicTransitBlack}
         description={dict_sizes}
         img_first_flag={true}
       />
       <DescriptionTab
-        img={prodPic1}
+        img={prodPicFourCorner}
         description={dict_shipping}
         img_first_flag={true}
       />
       <DescriptionTab
-        img={prodPic1}
+        img={prodPicTextCloseUp}
         description={dict_gifts}
         img_first_flag={true}
       />
       <DescriptionTab
-        img={prodPic1}
+        img={prodPicThreeD}
         description={dict_quality}
         img_first_flag={true}
       />
