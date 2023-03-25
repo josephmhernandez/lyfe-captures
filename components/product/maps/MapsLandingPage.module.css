@@ -47,7 +47,7 @@
 }
 
 .specialRequest h1 {
-  font-size: 2rem;
+  font-size: var(--page-heading-font-size);
   font-weight: 400;
   justify-content: center;
   color: var(--purple-dark-color);
@@ -60,7 +60,7 @@
   text-align: center;
   width: 80%;
   color: var(--color-primary);
-  font-size: 2rem;
+  font-size: var(--page-paragraph-font-size);
   font-weight: 400;
   font-family: var(--page-paragraph-font-family);
 }
@@ -68,7 +68,7 @@
 /* Medium Size Screen */
 @media only screen and (max-width: 1300px) {
   .specialRequest p {
-    font-size: 1rem;
+    font-size: var(--medium-page-paragraph-font-size);
   }
 }
 

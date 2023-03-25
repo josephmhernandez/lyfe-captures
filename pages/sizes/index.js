@@ -8,6 +8,14 @@ const Sizes = () => {
       <Segment raised className={classes.sizesSegment}>
         <h1>Size Guide</h1>
         <div>
+          <p>
+            We’ve added this sizing guide to give you a better understanding of
+            how your art will look! Currently we’re only offering 24’’ by 36’’
+            prints. These are printed on 1/4 inch acrylic. If you have a special
+            request on sizing let us know! This is typical. We will try our best
+            to accommodate!
+          </p>
+
           <Image
             className="ui fluid image"
             src="images/EFrameSizingGuide.png"
@@ -16,19 +24,11 @@ const Sizes = () => {
             width="2612"
           />
         </div>
-
-        <div>
-          <p style={{ fontStyle: "italic" }}>
-            Currently we are only offering large prints of 24x36 inches. These
-            look best in 24x36 in. frames! As we update our print sizes we’ll
-            make sure to take note of what frame size works best!
-          </p>
-          <p>24 x 36 in.</p>
-        </div>
+        <h1>Acrylic Dimensions</h1>
         <div>
           <Image
             className="ui fluid image"
-            src="images/24_36_Poster_Dimenstions-small.png"
+            src="images/dimensions24x36.png"
             alt="24x36 Poster Dimensions"
             width="2304"
             height="1152"
