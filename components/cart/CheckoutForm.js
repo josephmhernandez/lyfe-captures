@@ -228,7 +228,7 @@ const CheckoutForm = (props) => {
               commerce.checkout
                 .capture(props.tokenId, final)
                 .then((res) => {
-                  console.log(res, "res from CAPTURING CHECKOUT!!!");
+                  // console.log(res, "res from CAPTURING CHECKOUT!!!");
                   props.setReceipt(res);
                   // Remove local storage carts things.... Need cart_react_id.
                   localStorage.removeItem("cart-id");
@@ -278,7 +278,7 @@ const CheckoutForm = (props) => {
         commerce.checkout
           .capture(props.tokenId, final)
           .then((res) => {
-            console.log(res, "res from CAPTURING CHECKOUT!!!");
+            // console.log(res, "res from CAPTURING CHECKOUT!!!");
             props.setReceipt(res);
             // Remove cart from cache...
             localStorage.removeItem("cart-id");

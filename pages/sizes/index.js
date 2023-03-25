@@ -18,10 +18,10 @@ const Sizes = () => {
 
           <Image
             className="ui fluid image"
-            src="images/EFrameSizingGuide.png"
+            src="images/eframeSizingGuide.jpg"
             alt="Sizes"
-            height="1741"
-            width="2612"
+            height="632"
+            width="1124"
           />
         </div>
         <h1>Acrylic Dimensions</h1>
