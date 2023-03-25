@@ -231,14 +231,14 @@ const CheckoutContainer = (props) => {
               {/* TO DO: implement discount code */}
               <Divider horizontal>Discount Code</Divider>
               <div className={classes.discountDivide}>
-                <h3>Want 20% off your map?</h3>
+                {/* <h3>Want 20% off your map?</h3>
                 <p>
                   Attention map lovers! Get a 20% discount on all orders for a
                   limited time. Please think about leaving an honest review
                   after receiving your customized map!
-                </p>
-                <span style={{ fontWeight: "bold" }}> {"MapYourMemory20"}</span>
-                <p>(case sensitive)</p>
+                </p> */}
+                {/* <span style={{ fontWeight: "bold" }}> {"MapYourMemory20"}</span> */}
+                {/* <p>(case sensitive)</p> */}
                 <form className="discount-code" onSubmit={handleDiscountClick}>
                   <Input onChange={handleDiscountCode} />
                   <Button color="black">Apply</Button>

@@ -2,7 +2,7 @@ import ShopNowBanner from "../ShopNowBanner";
 import Link from "next/link";
 import classes from "./MapsLandingPage.module.css";
 
-import shopNowImage from "../../../public/images/new-banner-wide.png";
+import shopNowImage from "../../../public/images/banner-large-sale.png";
 import benefitsBanner from "../../../public/images/cropped-benefits-banner.png";
 import prodPicThreeD from "../../../public/images/new-prod-pics/3-d-effect.jpg";
 import prodPicBackFrame from "../../../public/images/new-prod-pics/backframe-hanging.jpg";
@@ -21,7 +21,7 @@ import DescriptionTab from "../DescriptionTab";
 
 const heading_special = "Special Request? We can help!";
 const description_special = [
-  `We're here to help you with special accomidations. Want a specific color? We can help! Want a different size? We can help! Want a different style? We can help! We're here to help you create a unique and meaningful gift for your loved one. Please contact us at ${process.env.EMAIL_SPECIAL_REQUESTS}`,
+  `Want a specific color? We can help! Want a different size? We can help! Want a different style? We can help! We're here to help you create a unique and meaningful gift for your loved one. Please contact us at ${process.env.EMAIL_SPECIAL_REQUESTS}`,
 ];
 
 const title = "Meaningful Maps";
@@ -33,7 +33,7 @@ const dict_special_request = {
 
 const heading_x = "Ultra High Resolution";
 const description_x = [
-  `With a resolution of 300 DPI, every detail of your maps will be captured in stunning clarity, making your maps look more like pieces of art. Standard DPI for a computer display is 96 DPI so your monitor won't do it justice. At a 24 in. x 36 in. size, your map will look great up close and far away`,
+  `With a resolution of 300 DPI, every detail of your maps will be captured in stunning clarity, making your maps pieces of art. Standard DPI for a computer display is 96 DPI so your monitor won't do it justice. At a 24 in. x 36 in. size, your map will look great up close and far away`,
 ];
 const dict_x = {
   heading: heading_x,
@@ -50,21 +50,21 @@ const dict_customizable = {
 const dict_hanging = {
   heading: "Effortless Installation",
   text: [
-    "Hanging your custom high-resolution map is a breeze! With a simple and straightforward process, you can transform your space in no time. The map is less than 15 lb’s making it lightweight and easy to handle. With the back subframe all you need to do is install your French cleat (included) and hangin it in any direction you want. The subframe is versatile and will allow you to hang by any conventional hangin method",
+    "Hanging your custom high-resolution map is a breeze! With a simple and straightforward process, you can transform your space in no time. The map is less than 13 lb’s making it lightweight and easy to handle. With the back subframe all you need to do is install your French cleat (included) and hangin it in any direction you want. The subframe is versatile and will allow you to hang by any conventional hangin method",
   ],
 };
 
 const dict_sizes = {
   heading: "Sizes",
   text: [
-    'We currently offer one size for our custom high-resolution maps: 24" x 36". This size is the perfect balance between impact and versatility, making it suitable for any room in your home or office. The 24" x 36" size provides enough space for you to showcase your personalized map in detail, while still being compact enough to fit in smaller spaces',
+    'We currently offer one size for our custom high-resolution maps: 24" x 36". This size is the perfect balance between impact and versatility, making it suitable for any room in your home or office. The 24" x 36" size provides enough space for you to showcase your personalized map in detail, while still being compact enough to fit in smaller spaces. Special request? Just send us an email!',
   ],
 };
 
 const dict_shipping = {
   heading: "Shipping",
   text: [
-    "At the moment, our shipping times are estimated to take between 3-9 business days and are available within the continental United States. Please allow 2 business days for the map to be printed and the adhesive to cure before it can be shipped. Our team strives to ensure that your personalized map arrives in perfect condition and we take the necessary steps to ensure it is protected during shipping",
+    "At the moment, our shipping times are estimated to take between 3-9 business days and are available within the continental United States. Please allow 4 business days for the map to be printed and the adhesive to cure before it can be shipped. Our team strives to ensure that your personalized map arrives in perfect condition and we take the necessary steps to ensure it is protected during shipping",
   ],
 };
 
@@ -78,7 +78,7 @@ const dict_gifts = {
 const dict_quality = {
   heading: "Superior Craftsmanship",
   text: [
-    "Our hand-made maps are of the highest quality. The maps are printed on an aluminum composite material and adhered to a 1/4 inch thick acrylic block, giving them a luxurious and sturdy feel. The colors are fade-resistant and the detail is sharp, with crystal clear images and lifelike colors. The 1/4 inch thick acrylic block enhances the vibrancy of the colors, making them pop and adding a beautiful, glossy finish, creating a stunning piece of art that will be sure to catch the eye",
+    "Our hand-made maps are of the highest quality. The maps are printed on a 1/4 inch thick acrylic block, giving them a luxurious and sturdy feel. The colors are fade-resistant and the detail is sharp, with crystal clear images and lifelike colors. The 1/4 inch thick acrylic block enhances the vibrancy of the colors, making them pop and adding a beautiful, glossy finish, creating a stunning piece of art that will be sure to catch the eye",
   ],
 };
 
@@ -115,9 +115,16 @@ const MapsLandingPage = () => {
         </Link>
       </div>
       <div className={classes.specialRequest}>
-        <h1>{dict_special_request.heading}</h1>
-        <p>{dict_special_request.text}</p>
+        <h1>Pre-Launch Sale?</h1>
+        <p>
+          We're currently running a pre-launch sale for our custom maps! We have
+          perfected our prototype, and while we wait for our supplies to arrive
+          we thought we give you time now to pre-order your custom map at a
+          steep discount! After April 25th we won’t be offering this discount if
+          you have any questions just reach out! help@mapyourmemory.com
+        </p>
       </div>
+
       <DescriptionTab
         img={prodPicTransitWhite}
         description={dict_x}
@@ -153,6 +160,10 @@ const MapsLandingPage = () => {
         description={dict_quality}
         img_first_flag={true}
       />
+      <div className={classes.specialRequest}>
+        <h1>{dict_special_request.heading}</h1>
+        <p>{dict_special_request.text}</p>
+      </div>
     </div>
   );
 };

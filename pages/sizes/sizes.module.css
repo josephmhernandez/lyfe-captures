@@ -14,18 +14,47 @@
 }
 
 .sizes h1 {
-  font-size: 3.5rem;
-  font-weight: 400;
-  color: var(--purple-dark-color);
+  font-size: var(--page-heading-font-size);
+  font-weight: var(--page-heading-font-weight);
+  color: var(--color-primary);
   font-family: var(--page-heading-font-family);
   padding: 16px 0 0 0;
 }
 
 .sizes p {
-  margin-top: 1%;
-  font-family: var(--primary-font);
-  font-weight: 400;
-  font-size: 1.5rem;
-  color: black;
   text-align: center;
+  font-family: var(--page-paragraph-font-family);
+  font-weight: var(--page-paragraph-font-weight);
+  font-size: var(--page-paragraph-font-size);
+  color: var(--color-primary);
+}
+
+/* Medium Size Screen */
+@media only screen and (max-width: 1300px) {
+  .sizes p {
+    font-size: var(--medium-page-paragraph-font-size);
+  }
+}
+
+/* Mobile Screen */
+@media only screen and (max-width: 600px) {
+  .sizes h1 {
+    font-size: var(--mobile-page-heading-font-size);
+    font-weight: var(--mobile-page-heading-font-weight);
+    font-family: var(--mobile-page-heading-font-family);
+  }
+
+  .sizes p {
+    font-size: var(--mobile-page-paragraph-font-size);
+    font-weight: var(--mobile-page-paragraph-font-weight);
+    font-family: var(--mobile-page-paragraph-font-family);
+  }
+
+  .sizesSegment {
+    width: 100%;
+  }
+
+  .sizes {
+    padding: 0;
+  }
 }

@@ -2,6 +2,8 @@ import classes from "./EmptyCart.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { BuyNowButton } from "../../components/ui/CustomButtons";
+import { Button } from "semantic-ui-react";
+import prodPicTransitBlack from "../../public/images/new-prod-pics/trans-black.png";
 import Image from "next/image";
 const EmptyCart = () => {
   const router = useRouter();
@@ -13,10 +15,25 @@ const EmptyCart = () => {
 
   return (
     <div className={classes.emptyPage}>
-      <h2>Uh Oh! It looks like your cart is empty :/</h2>
-      <Image src="/maps-prod-pic-landing.png" width={400} height={400} />
-      <h2>How about creating a new map?</h2>
-      <BuyNowButton onClick={handleClick}>Create A New Map</BuyNowButton>
+      <h1>Uh Oh! It looks like your cart is empty :/</h1>
+      <Image src={prodPicTransitBlack} width={800} height={400} />
+      <h1>How about creating a new map?</h1>
+      <Link href="/maps">
+        <a>
+          <Button
+            style={{
+              "background-color": "var(--color-primary)",
+              color: "white",
+              "border-radius": "100px",
+              "font-family": "var(--page-paragraph-font-family)",
+              "font-size": "var(--page-paragraph-font-size)",
+              "font-weight": "400",
+            }}
+          >
+            Create a new map
+          </Button>
+        </a>
+      </Link>
     </div>
   );
 };
