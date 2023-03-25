@@ -1,7 +1,7 @@
 import ShopNowBanner from "../ShopNowBanner";
 import classes from "./MapsLandingPage.module.css";
 
-import shopNowImage from "../../../public/images/mobile-create-now-banner.png";
+import shopNowImage from "../../../public/images/mobile-banner.png";
 
 import prodPicThreeD from "../../../public/images/new-prod-pics/3-d-effect.jpg";
 import prodPicBackFrame from "../../../public/images/new-prod-pics/backframe-hanging.jpg";
