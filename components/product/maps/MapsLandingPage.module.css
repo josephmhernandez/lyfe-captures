@@ -60,9 +60,16 @@
   text-align: center;
   width: 80%;
   color: var(--color-primary);
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: 400;
   font-family: var(--page-paragraph-font-family);
+}
+
+/* Medium Size Screen */
+@media only screen and (max-width: 1300px) {
+  .specialRequest p {
+    font-size: 1rem;
+  }
 }
 
 @media only screen and (min-width: 600px) {
