@@ -53,7 +53,7 @@ a {
   --page-heading-font-weight: 300;
   --page-heading-font-family: "HKGrotesk-Bold", sans-serif;
 
-  --page-paragraph-font-size: 1rem;
+  --page-paragraph-font-size: 1.5rem;
   --page-paragraph-font-weight: 400;
   --page-paragraph-font-family: "Monsterrat", sans-serif;
 
@@ -64,6 +64,10 @@ a {
   --mobile-page-paragraph-font-size: 0.8rem;
   --mobile-page-paragraph-font-weight: 400;
   --mobile-page-paragraph-font-family: "Monsterrat", sans-serif;
+
+  --medium-page-paragraph-font-size: 1rem;
+  --medium-page-font-weight: 400;
+  --medium-page-font-family: "Monsterrat", sans-serif;
 }
 
 @font-face {
