@@ -118,8 +118,10 @@ const MapsLandingPage = () => {
           We're currently running a pre-launch sale for our custom maps! We have
           perfected our prototype, and while we wait for our supplies to arrive
           we thought we give you time now to pre-order your custom map at a
-          steep discount! After April 25th we won’t be offering this discount if
-          you have any questions just reach out! help@mapyourmemory.com
+          steep discount! All maps ordered during the pre-launch sale will be
+          shipped out on April 25th! After April 25th we won’t be offering this
+          discount if you have any questions just reach out!
+          help@mapyourmemory.com
         </p>
       </div>
 
