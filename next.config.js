@@ -53,5 +53,6 @@ module.exports = {
     EMAIL_SPECIAL_REQUESTS: process.env.EMAIL_SPECIAL_REQUESTS,
 
     FB_PIXEL_ID: process.env.FB_PIXEL_ID,
+    GTM_ID: process.env.GTM_ID,
   },
 };
