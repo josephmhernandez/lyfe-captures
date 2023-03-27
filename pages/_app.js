@@ -14,6 +14,8 @@ Router.events.on("routeChangeComplete", nProgress.done);
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
+import TagManager from "react-gtm-module";
+
 function MyApp({ Component, isMobileView, pageProps }) {
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -23,6 +25,8 @@ function MyApp({ Component, isMobileView, pageProps }) {
         loader.style.display = "none";
       }
     }
+
+    TagManager.initialize({ gtmId: process.env.GTM_ID });
   }, []);
 
   const stripePromise = loadStripe(process.env.STRIPE_PK);
