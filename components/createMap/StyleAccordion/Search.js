@@ -5,7 +5,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { useState } from "react";
 import TextField from "@mui/material/TextField";
 import throttle from "lodash/throttle";
-
+import * as gtag from "../../../lib/gtag";
 import Box from "@mui/material/Box";
 import Script from "next/script";
 
@@ -38,6 +38,15 @@ const Search = (props) => {
   const handleOnSearch = async (locationObj) => {
     if (locationObj === null) {
       return;
+    }
+
+    if (locationObj.description) {
+      gtag.event({
+        action: "search-create-now",
+        params: {
+          search_term: locationObj.description,
+        },
+      });
     }
 
     dispatch(mapActions.changeLocation(locationObj));
