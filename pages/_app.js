@@ -15,10 +15,18 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
 import TagManager from "react-gtm-module";
+import * as gtag from "../lib/gtag";
+import { useRouter } from "next/router";
+import Script from "next/script";
 
 function MyApp({ Component, isMobileView, pageProps }) {
+  const router = useRouter();
+  let firstTime = true;
+
   useEffect(() => {
-    if (typeof window !== "undefined") {
+    if (typeof window !== "undefined" && firstTime) {
+      console.log("loads once?");
+      firstTime = false;
       const loader = document.getElementById("globalLoader");
 
       if (loader) {
@@ -26,8 +34,17 @@ function MyApp({ Component, isMobileView, pageProps }) {
       }
     }
 
-    TagManager.initialize({ gtmId: process.env.GTM_ID });
-  }, []);
+    // Google Analytics
+    const handleRouteChange = (url) => {
+      gtag.pageview(url);
+    };
+    router.events.on("routeChangeComplete", handleRouteChange);
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+
+    // TagManager.initialize({ gtmId: process.env.GTM_ID });
+  }, [router.events]);
 
   const stripePromise = loadStripe(process.env.STRIPE_PK);
 
@@ -43,6 +60,24 @@ function MyApp({ Component, isMobileView, pageProps }) {
         />
       </Head>
       <FacebookPixel />
+      <Script
+        strategy="afterInteractive"
+        src="https://www.googletagmanager.com/gtag/js?id=G-R6Y7MSPDH7"
+      ></Script>
+      <Script
+        id="google-analytics"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-R6Y7MSPDH7', {
+          page_path: window.location.pathname,
+          }); 
+        `,
+        }}
+      />
       <Elements stripe={stripePromise}>
         <Layout>
           <Component {...pageProps} />

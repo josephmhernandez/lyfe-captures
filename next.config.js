@@ -52,7 +52,9 @@ module.exports = {
     EMAIL_SUPPORT: process.env.EMAIL_SUPPORT,
     EMAIL_SPECIAL_REQUESTS: process.env.EMAIL_SPECIAL_REQUESTS,
 
+    // Analytics
     FB_PIXEL_ID: process.env.FB_PIXEL_ID,
     GTM_ID: process.env.GTM_ID,
+    GA_MEASUREMENT_ID: process.env.GA_MEASUREMENT_ID,
   },
 };
