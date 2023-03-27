@@ -10,6 +10,8 @@ echo "GOOGLE_API_KEY=$GOOGLE_API_KEY" >> $ENV_PATH
 echo "AWS_ACCESS_KEY_ID=$DYNAMO_ACCESS_KEY_ID" >> $ENV_PATH
 echo "AWS_SECRET_ACCESS_KEY=$DYNAMO_SECRET_ACCESS_KEY" >> $ENV_PATH
 echo "AWS_REGION=$REGION" >> $ENV_PATH
+echo "GTM_ID=$GTM_ID" >> $ENV_PATH
+
 # Wrtie Constants (as env vars)
 echo "MAX_CHARS_PRIMARY=50" >> $ENV_PATH
 echo "MAX_CHARS_SECONDARY=60" >> $ENV_PATH
@@ -25,4 +27,3 @@ echo "TILE_ZOOM_OFFSET=2" >> $ENV_PATH
 echo "CART_ITEM_MAX_QUANTITY=50" >> $ENV_PATH
 echo "EMAIL_SUPPORT=help@mapyourmemory.com" >> $ENV_PATH
 echo "EMAIL_SPECIAL_REQUESTS=special_requests@mapyourmemory.com" >> $ENV_PATH
-

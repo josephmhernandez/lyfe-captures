@@ -89,7 +89,7 @@ const dict_customizable = {
 const dict_hanging = {
   heading: "Effortless Installation",
   text: [
-    "Hanging your custom high-resolution map is a breeze! With a simple and straightforward process, you can transform your space in no time. The map is less than 13 lb’s making it lightweight and easy to handle. With the back subframe all you need to do is install your French cleat (included) and hangin it in any direction you want. The subframe is versatile and will allow you to hang by any conventional hangin method",
+    "Hanging your custom high-resolution map is a breeze! With a simple and straightforward process, you can transform your space in no time. The map is less than 13 lb’s making it lightweight and easy to handle. With the back subframe all you need to do is install your French cleat (included) and hanging it in any direction you want. The subframe is versatile and will allow you to hang by any conventional hanging method",
   ],
 };
 

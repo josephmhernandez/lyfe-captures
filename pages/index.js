@@ -1,9 +1,15 @@
 import { useMediaQuery } from "@mantine/hooks";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import Layout from "../components/layout/Layout";
 import MapsLandingPage from "../components/product/maps/MapsLandingPage";
 import MapsLandingPageMobile from "../components/product/maps/MapsLandingPageMobile";
+import TagManager from "react-gtm-module";
+
 export default function Home(props) {
+  useEffect(() => {
+    TagManager.initialize({ gtmId: process.env.GTM_ID });
+  }, []);
+
   return <div>{renderComp()}</div>;
 }
 
