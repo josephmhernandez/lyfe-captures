@@ -43,8 +43,10 @@ const Search = (props) => {
     if (locationObj.description) {
       gtag.event({
         action: "search-create-now",
-        params: {
-          search_term: locationObj.description,
+        category: "search",
+        label: "search-location",
+        value: {
+          search_location: locationObj.description,
         },
       });
     }
