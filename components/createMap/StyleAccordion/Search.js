@@ -45,9 +45,7 @@ const Search = (props) => {
         action: "search-create-now",
         category: "search",
         label: "search-location",
-        value: {
-          search_location: locationObj.description,
-        },
+        value: locationObj.description,
       });
     }
 
