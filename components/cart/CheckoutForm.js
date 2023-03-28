@@ -12,6 +12,8 @@ import {
 } from "./cartFunctionality";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { getValue } from "@mui/system";
+import * as gtag from "../../lib/gtag";
+
 const CheckoutForm = (props) => {
   // Map specifications that are passed to the extra field to be published to commercejs
   let map_specifcations_cart = getMapObjLocalStorage();
@@ -235,6 +237,13 @@ const CheckoutForm = (props) => {
                   emptyMapObjLocalStorage();
                   router.replace(`/order-complete/${props.tokenId}/${res.id}`);
                   setProcessing(false);
+
+                  gtag.event({
+                    action: "place-order",
+                    category: "checkout",
+                    label: "checked out",
+                    value: res.id,
+                  });
                 })
                 .catch((err) => {
                   // If there is a 502 Cors error. it looks like the shopping cart is expired. Maybe try to remove that cookie and create another in the new shopping cart.

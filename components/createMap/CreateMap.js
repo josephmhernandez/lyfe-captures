@@ -19,6 +19,7 @@ import {
   addToCartEcommerceJs,
 } from "../cart/cartFunctionality";
 import { getMapDescriptionText } from "./mapFunctionality";
+import * as gtag from "../../lib/gtag";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -143,6 +144,14 @@ const CreateMap = (props) => {
     );
     router.push("/cart");
     setLoading(false);
+
+    // Google Analytics
+    gtag.event({
+      action: "add-to-cart",
+      category: "checkout",
+      label: "add-map-to-cart",
+      value: productName,
+    });
   };
 
   const MapWithNoSSR = dynamic(import("./MapFolder/Map"), {
