@@ -16,8 +16,14 @@ import Image from "next/future/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Button } from "semantic-ui-react";
 import DescriptionTab from "../DescriptionTab";
-import bg from "../../../public/images/bg.png";
-import myGif from "../../../public/images/try3.gif";
+import React, { useState, useEffect } from "react";
+
+import one_pic from "../../../public/images/image-rotation/city-lights-2.png";
+import two_pic from "../../../public/images/image-rotation/dark-transit-3.png";
+import three_pic from "../../../public/images/image-rotation/modern-1.png";
+
+const prod_images = [one_pic, two_pic, three_pic];
+
 const heading_special = "Special Request? We can help!";
 const description_special = [
   `Want a specific color? We can help! Want a different size? We can help! Want a different style? We can help! We're here to help you create a unique and meaningful gift for your loved one. Please contact us at ${process.env.EMAIL_SPECIAL_REQUESTS}`,
@@ -82,6 +88,19 @@ const dict_quality = {
 };
 
 const MapsLandingPage = () => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    //Implementing the setInterval method
+    const interval = setInterval(() => {
+      const new_count = (count + 1) % prod_images.length;
+      setCount(new_count);
+    }, 4000);
+
+    //Clearing the interval
+    return () => clearInterval(interval);
+  }, [count]);
+
   return (
     <div className={classes.all}>
       <ShopNowBanner to="/maps" src={shopNowImage} alt="" />
@@ -92,7 +111,7 @@ const MapsLandingPage = () => {
           <div
             style={{
               height: "100%",
-              backgroundImage: `url(${myGif.src})`,
+              backgroundImage: `url(${prod_images[count].src})`,
               backgroundSize: "contain",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "top center",
