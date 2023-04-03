@@ -25,7 +25,6 @@ function MyApp({ Component, isMobileView, pageProps }) {
 
   useEffect(() => {
     if (typeof window !== "undefined" && firstTime) {
-      console.log("loads once?");
       firstTime = false;
       const loader = document.getElementById("globalLoader");
 
