@@ -16,7 +16,8 @@ import Image from "next/future/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Button } from "semantic-ui-react";
 import DescriptionTab from "../DescriptionTab";
-
+import bg from "../../../public/images/bg.png";
+import myGif from "../../../public/images/try3.gif";
 const heading_special = "Special Request? We can help!";
 const description_special = [
   `Want a specific color? We can help! Want a different size? We can help! Want a different style? We can help! We're here to help you create a unique and meaningful gift for your loved one. Please contact us at ${process.env.EMAIL_SPECIAL_REQUESTS}`,
@@ -85,22 +86,158 @@ const MapsLandingPage = () => {
     <div className={classes.all}>
       <ShopNowBanner to="/maps" src={shopNowImage} alt="" />
 
-      <div className={classes.benefitsStyle}>
-        <Image
-          className={classes.picBenefitsStyle}
-          src={benefitsBanner}
-          alt="Benefits"
-          layout="raw"
-        />
+      {/* Normal Product Landing Page Information. Outlines the offer */}
+      <div className={classes.twoColumns}>
+        <div className={classes.flexChild}>
+          <div
+            style={{
+              height: "100%",
+              backgroundImage: `url(${myGif.src})`,
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+              backgroundPosition: "top center",
+            }}
+          >
+            {/* <Image src={bg} alt="my gif" layout="raw"></Image> */}
+          </div>
+          {/* Left Side. Product Pictures. Fade Image to show different designs & customization */}
+        </div>
+        <div className={classes.flexChild}>
+          {/* Right Side. Offer  Description. */}
+          <h1> What You Get </h1>
+
+          <div className={classes.benefits}>
+            <div>
+              <h2>Elegant Art Piece That Pops On The Wall</h2>
+              <ul>
+                <li>
+                  <p>
+                    <b>Large Acrylic Print - </b>durable, scratch-resistant
+                    material that gives the map a 3D effect
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>High Resolution - </b>300 DPI print making your map look
+                    incredible from up close and far away{" "}
+                  </p>
+                </li>
+              </ul>
+
+              <h2>Free Floating Hanging Kit</h2>
+              <ul>
+                <li>
+                  <p>
+                    {" "}
+                    <b>Floating Back Frame - </b> (already attached) for
+                    effortless hanging. Back frame does NOT show through the
+                    acrylic. We've ensured that won't happen in any type of
+                    light
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>French Cleat and Screws - </b>Install with just a
+                    screwdriver and a stud finder
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Gloves - </b>Hang your map fingerprint free{" "}
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Installation Instructional Video - </b> Simply takes a
+                    minute to hang
+                  </p>
+                </li>
+              </ul>
+
+              <h2>100% Satisfaction</h2>
+              <ul>
+                <li>
+                  <p>
+                    {" "}
+                    <b>Don't like it? - </b>Send it back
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    {" "}
+                    <b>Damaged in shipping? - </b>We'll expedite another
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Typo? - </b>We'll fix it
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Mock Up Design -</b>
+                    We'll email you the image of your map before we print to
+                    correct any mistakes
+                  </p>
+                </li>
+              </ul>
+
+              <h2>100% Customizability</h2>
+              <ul>
+                <li>
+                  <p>
+                    <b>Want a different Style? Different Colors? - </b>Email us
+                    and we'll get the style you want
+                  </p>
+                </li>
+              </ul>
+
+              <h2>Free Gift Option</h2>
+              <ul>
+                <li>
+                  <p>
+                    <b>Sending directly as a gift? - </b>Let us send a hand
+                    written letter to the recipient with your message
+                  </p>
+                </li>
+              </ul>
+
+              <h2>Free Consultation</h2>
+              <ul>
+                <li>
+                  <p>
+                    <b>Not great with computers? - </b>We'll hop on a zoom call
+                    together to help you out
+                  </p>
+                </li>
+                <li>
+                  <p>
+                    <b>Don't have time? - </b>Email us what you're looking for
+                    and we'll send you a mockup in 12 hours
+                  </p>
+                </li>
+              </ul>
+
+              <h2>You Pay Shipping.... Just Kidding</h2>
+              <ul>
+                <li>
+                  <p>
+                    That'd be a weird place to draw the line. OF COURSE free
+                    shipping. All you pay is the listed price plus tax
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-      <div className={classes.spacingBecauseOfImageBug}></div>
       <div className={classes.centerContent}>
         <Link href="/maps">
           <a>
             <Button
               style={{
-                "background-color": "white",
-                color: "var(--color-primary)",
+                "background-color": "var(--color-primary)",
+                color: "white",
                 "border-radius": "100px",
                 "font-family": "var(--page-paragraph-font-family)",
                 "font-size": "var(--page-paragraph-font-size)",
@@ -112,6 +249,17 @@ const MapsLandingPage = () => {
           </a>
         </Link>
       </div>
+
+      <div className={classes.benefitsStyle}>
+        <Image
+          className={classes.picBenefitsStyle}
+          src={benefitsBanner}
+          alt="Benefits"
+          layout="raw"
+        />
+      </div>
+      <div className={classes.spacingBecauseOfImageBug}></div>
+
       <div className={classes.specialRequest}>
         <h1>Pre-Launch Sale?</h1>
         <p>
@@ -119,7 +267,7 @@ const MapsLandingPage = () => {
           perfected our prototype, and while we wait for our supplies to arrive
           we thought we give you time now to pre-order your custom map at a
           steep discount! All maps ordered during the pre-launch sale will be
-          shipped out on April 25th! After April 25th we won’t be offering this
+          shipped out on May 15th! After May 15th we won’t be offering this
           discount if you have any questions just reach out!
           help@mapyourmemory.com
         </p>
