@@ -133,7 +133,7 @@ const MapsLandingPage = () => {
         </div>
         <div className={classes.flexChild}>
           {/* Right Side. Offer  Description. */}
-          <h1> What you get </h1>
+          <h1> What You Get </h1>
 
           <div className={classes.benefits}>
             <div>
