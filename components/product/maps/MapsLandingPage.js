@@ -115,6 +115,13 @@ const MapsLandingPage = () => {
               backgroundSize: "contain",
               backgroundRepeat: "no-repeat",
               backgroundPosition: "top center",
+              overflow: "hidden",
+              opacity: "1.0",
+              "-webkit-transition": "background 1.5s linear",
+              "-moz-transition": "background 1.5s linear",
+              "-o-transition": "background 1.5s linear",
+              "-ms-transition": "background 1.5s linear",
+              transition: "background 1.5s linear",
             }}
           >
             {/* <Image src={bg} alt="my gif" layout="raw"></Image> */}
