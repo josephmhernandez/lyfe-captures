@@ -233,13 +233,37 @@ const MapsLandingPage = () => {
                 <li>
                   <p>
                     <b>Not great with computers? - </b>We'll hop on a zoom call
-                    together to help you out
+                    together to help you out. Email us:{" "}
+                    <span>
+                      <a
+                        to="#"
+                        onClick={(e) => {
+                          window.location.href =
+                            "mailto:" + process.env.EMAIL_SPECIAL_REQUESTS;
+                          e.preventDefault();
+                        }}
+                      >
+                        {process.env.EMAIL_SPECIAL_REQUESTS}
+                      </a>
+                    </span>
                   </p>
                 </li>
                 <li>
                   <p>
                     <b>Don't have time? - </b>Email us what you're looking for
-                    and we'll send you a mockup in 12 hours
+                    and we'll send you a mockup in 12 hours:{" "}
+                    <span>
+                      <a
+                        to="#"
+                        onClick={(e) => {
+                          window.location.href =
+                            "mailto:" + process.env.EMAIL_SPECIAL_REQUESTS;
+                          e.preventDefault();
+                        }}
+                      >
+                        {process.env.EMAIL_SPECIAL_REQUESTS}
+                      </a>
+                    </span>
                   </p>
                 </li>
               </ul>
