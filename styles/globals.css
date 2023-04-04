@@ -65,6 +65,10 @@ a {
   --mobile-page-heading-font-weight: 300;
   --mobile-page-heading-font-family: "HKGrotesk-Bold", sans-serif;
 
+  --mobile-page-heading-2-font-size: 1rem;
+  --mobile-page-heading-2-font-weight: 300;
+  --mobile-page-heading-2-font-family: "HKGrotesk-Bold", sans-serif;
+
   --mobile-page-paragraph-font-size: 0.8rem;
   --mobile-page-paragraph-font-weight: 400;
   --mobile-page-paragraph-font-family: "Monsterrat", sans-serif;

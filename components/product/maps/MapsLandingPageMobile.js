@@ -13,6 +13,16 @@ import prodPicTransitWhite from "../../../public/images/new-prod-pics/corner-tra
 
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import DescriptionTab from "../DescriptionTab";
+import React, { useState, useEffect } from "react";
+
+import one_pic from "../../../public/images/image-rotation/city-lights-2.png";
+import two_pic from "../../../public/images/image-rotation/dark-transit-3.png";
+import three_pic from "../../../public/images/image-rotation/modern-1.png";
+import Image from "next/future/image";
+import Link from "next/link";
+import { Button } from "semantic-ui-react";
+
+const prod_images = [one_pic, two_pic, three_pic];
 
 const DUMMY_TITLE = "what is this?";
 const DUMMY_DESCRIPTION =
@@ -122,11 +132,200 @@ const dict_quality = {
 };
 
 const MapsLandingPageMobile = () => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    //Implementing the setInterval method
+    const interval = setInterval(() => {
+      const new_count = (count + 1) % prod_images.length;
+      setCount(new_count);
+    }, 4000);
+
+    //Clearing the interval
+    return () => clearInterval(interval);
+  }, [count]);
+
   return (
     <div className={classes.all}>
       <ShopNowBanner to="/maps" src={shopNowImage} alt="" />
 
       <div className={classes.spacingBecauseOfImageBug}></div>
+
+      {/* Normal Product Landing Page Information. Outlines the offer */}
+      {/* <div className={classes.twoColumns}>
+        <div className={classes.flexChild}> */}
+      {/* <div className={classes.prodPicsRotation}>
+        <Image
+          src={prod_images[count]}
+          alt="multi prod pics"
+          layout="raw"
+          className={classes.prodPicsRotation}
+        ></Image>
+      </div> */}
+
+      <div
+        style={{
+          height: "375px",
+          backgroundImage: `url(${prod_images[count].src})`,
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "top center",
+          overflow: "hidden",
+          opacity: "1.0",
+          "-webkit-transition": "background 1.5s linear",
+          "-moz-transition": "background 1.5s linear",
+          "-o-transition": "background 1.5s linear",
+          "-ms-transition": "background 1.5s linear",
+          transition: "background 1.5s linear",
+        }}
+      ></div>
+      {/* Left Side. Product Pictures. Fade Image to show different designs & customization */}
+
+      {/* <div className={classes.flexChild}> */}
+      <div className={classes.mobileOffer}>
+        {/* Right Side. Offer  Description. */}
+        <h1> What You Get </h1>
+
+        <div className={classes.benefits}>
+          <h2>Elegant Art Piece That Pops On The Wall</h2>
+          <ul>
+            <li>
+              <p>
+                <b>Large Acrylic Print - </b>durable, scratch-resistant material
+                that gives the map a 3D effect
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>High Resolution - </b>300 DPI print making your map look
+                incredible from up close and far away{" "}
+              </p>
+            </li>
+          </ul>
+
+          <h2>Free Floating Hanging Kit</h2>
+          <ul>
+            <li>
+              <p>
+                {" "}
+                <b>Floating Back Frame - </b> (already attached) for effortless
+                hanging. Back frame does NOT show through the acrylic. We've
+                ensured that won't happen in any type of light
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>French Cleat and Screws - </b>Install with just a screwdriver
+                and a stud finder
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Gloves - </b>Hang your map fingerprint free{" "}
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Installation Instructional Video - </b> Simply takes a minute
+                to hang
+              </p>
+            </li>
+          </ul>
+
+          <h2>100% Satisfaction</h2>
+          <ul>
+            <li>
+              <p>
+                {" "}
+                <b>Don't like it? - </b>Send it back
+              </p>
+            </li>
+            <li>
+              <p>
+                {" "}
+                <b>Damaged in shipping? - </b>We'll expedite another
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Typo? - </b>We'll fix it
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Mock Up Design -</b>
+                We'll email you the image of your map before we print to correct
+                any mistakes
+              </p>
+            </li>
+          </ul>
+
+          <h2>100% Customizability</h2>
+          <ul>
+            <li>
+              <p>
+                <b>Want a different Style? Different Colors? - </b>Email us and
+                we'll get the style you want
+              </p>
+            </li>
+          </ul>
+
+          <h2>Free Gift Option</h2>
+          <ul>
+            <li>
+              <p>
+                <b>Sending directly as a gift? - </b>Let us send a hand written
+                letter to the recipient with your message
+              </p>
+            </li>
+          </ul>
+
+          <h2>Free Consultation</h2>
+          <ul>
+            <li>
+              <p>
+                <b>Not great with computers? - </b>We'll hop on a zoom call
+                together to help you out
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Don't have time? - </b>Email us what you're looking for and
+                we'll send you a mockup in 12 hours
+              </p>
+            </li>
+          </ul>
+
+          <h2>You Pay Shipping.... Just Kidding</h2>
+          <ul>
+            <li>
+              <p>
+                That'd be a weird place to draw the line. OF COURSE free
+                shipping. All you pay is the listed price plus tax
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className={classes.centerContent}>
+        <Link href="/maps">
+          <a>
+            <Button
+              style={{
+                "background-color": "var(--color-primary)",
+                color: "white",
+                "border-radius": "100px",
+                "font-family": "var(--page-paragraph-font-family)",
+                "font-size": "var(--page-paragraph-font-size)",
+                "font-weight": "400",
+              }}
+            >
+              Create Now
+            </Button>
+          </a>
+        </Link>
+      </div>
 
       <DescriptionTab
         className={classes.invertColor}
