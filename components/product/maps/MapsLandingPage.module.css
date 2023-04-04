@@ -128,6 +128,59 @@
   font-family: var(--page-paragraph-font-family);
 }
 
+.mobileOffer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.mobileOffer h1 {
+  /* width: 80%; */
+  font-size: var(--mobile-page-heading-font-size);
+  font-weight: var(--mobile-page-heading-font-weight);
+  font-family: var(--mobile-page-heading-font-family);
+}
+.mobileOffer h2 {
+  font-size: var(--mobile-page-heading-2-font-size);
+  font-weight: var(--mobile-page-heading-2-font-weight);
+  font-family: var(--mobile-page-heading-2-font-family);
+  margin: 0;
+}
+.mobileOffer p {
+  font-size: var(--mobile-page-paragraph-font-size);
+  font-weight: var(--mobile-page-paragraph-font-weight);
+  font-family: var(--mobile-page-paragraph-font-family);
+}
+
+.mobileOffer ul {
+  list-style-type: "\2713";
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  color: var(--color-primary);
+}
+
+.mobileOffer li {
+  padding: 0;
+  margin: 0;
+  padding-left: 1rem;
+  margin: 0;
+}
+
+.centerContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 10px;
+  background-color: white;
+}
+
 /* Medium Size Screen */
 @media only screen and (max-width: 1300px) {
   .specialRequest p {
