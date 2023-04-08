@@ -2,8 +2,11 @@ import { Menu, Sidebar } from "semantic-ui-react";
 import Link from "next/link";
 import { useEffect } from "react";
 import classes from "./SideBar.module.css";
+import { useRouter } from "next/router";
 
 const SideBar = ({ animation, direction, visible, setVisible }) => {
+  const router = useRouter();
+
   // For mobile view vertical menu
   const handleScroll = () => {
     setVisible(false);
@@ -12,8 +15,25 @@ const SideBar = ({ animation, direction, visible, setVisible }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   });
-  const handleSelect = () => {
+
+  const handleSelect = (e, { name }) => {
     setVisible(false);
+
+    if (name === "nvm") {
+      setVisible(false);
+    } else if (name === "Home") {
+      router.push("/");
+    } else if (name === "AboutUs") {
+      router.push("/aboutus");
+    } else if (name === "Maps") {
+      router.push("/maps");
+    } else if (name === "Sizes") {
+      router.push("/sizes");
+    } else if (name === "Faqs") {
+      router.push("/faqs");
+    } else if (name === "ContactUs") {
+      router.push("/contactus");
+    }
   };
 
   return (
@@ -26,27 +46,26 @@ const SideBar = ({ animation, direction, visible, setVisible }) => {
       vertical
       visible={visible}
       width="thin"
-      className={classes.sideBar}
     >
-      <Menu.Item as="a" onClick={handleSelect}>
+      <Menu.Item name="nvm" as="a" onClick={handleSelect}>
         <i className="minus icon"> </i>
       </Menu.Item>
-      <Menu.Item as="a" onClick={handleSelect}>
+      <Menu.Item name="Home" as="a" onClick={handleSelect}>
         <Link href="/">Home</Link>
       </Menu.Item>
-      <Menu.Item as="a" onClick={handleSelect}>
+      <Menu.Item name="AboutUs" as="a" onClick={handleSelect}>
         <Link href="/aboutus">About Us</Link>
       </Menu.Item>
-      <Menu.Item as="a" onClick={handleSelect}>
-        <Link href="/maps"> Create Now </Link>
+      <Menu.Item name="Maps" as="a" onClick={handleSelect}>
+        <Link href="/maps">Create Now</Link>
       </Menu.Item>
-      <Menu.Item as="a" onClick={handleSelect}>
+      <Menu.Item name="Sizes" as="a" onClick={handleSelect}>
         <Link href="/sizes">Sizes</Link>
       </Menu.Item>
-      <Menu.Item as="a" onClick={handleSelect}>
+      <Menu.Item name="Faqs" as="a" onClick={handleSelect}>
         <Link href="/faqs">FAQs</Link>
       </Menu.Item>
-      <Menu.Item as="a" onClick={handleSelect}>
+      <Menu.Item name="ContactUs" as="a" onClick={handleSelect}>
         <Link href="/contactus">Contact Us</Link>
       </Menu.Item>
     </Sidebar>
