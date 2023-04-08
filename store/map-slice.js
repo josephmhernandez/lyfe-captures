@@ -1,12 +1,12 @@
 import { createSlice, current } from "@reduxjs/toolkit";
 import { v4 as uuid } from "uuid";
-// import L from 'leaflet';
-import { getPriceEcommerceJs } from "../components/cart/cartFunctionality";
 import {
   MapConstants,
   MapStyleDict,
+  WEB_ZOOM_OFFSET,
+  DEFAULT_TILE_LAYER,
 } from "../components/createMap/MapFolder/MapConstants";
-import { DEFAULT_TILE_LAYER } from "../components/createMap/MapFolder/MapConstants";
+
 import { addToMapObjLocalStorage } from "../components/cart/cartFunctionality";
 
 const mapSlice = createSlice({
@@ -25,7 +25,7 @@ const mapSlice = createSlice({
     size: "_24_36",
     styling: "basic",
     zoom: process.env.MAP_ZOOM,
-    tileZoomOffset: process.env.TILE_ZOOM_OFFSET,
+    tileZoomOffset: WEB_ZOOM_OFFSET,
     transparentTextBlock: false,
     // cart: [],
     bbox: [],
@@ -265,10 +265,6 @@ const mapSlice = createSlice({
         }
       }
 
-      // Capture data about the map. For re-creation.
-      mapObj.styling_specs =
-        MapConstants["poster_size"][mapObj.size]["styling"][mapObj.styling];
-
       mapObj.text_styling_specs = MapStyleDict[mapObj.tileLayer];
       // TO DO: Test this :)
       if (
@@ -312,6 +308,18 @@ const mapSlice = createSlice({
         ...state,
         pinList: [],
       };
+    },
+
+    setZoom: (state, action) => {
+      // Plan to use this for increasing experience. Maybe reset zoom to x whenever we search a new place.
+      state.zoom = action.payload;
+    },
+    setZoomOffset: (state, action) => {
+      // For Mobile we want to set it to 3. And for desktop we want to set it to 2.
+      state.tileZoomOffset = action.payload;
+    },
+    setSizeOption: (state, action) => {
+      state.size = action.payload;
     },
   },
 });
