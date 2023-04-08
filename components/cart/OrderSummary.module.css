@@ -72,3 +72,38 @@
 .spacing {
   margin: 20px;
 }
+
+/* nothing with screen size bigger than 600px */
+@media (max-width: 600px) {
+  .headerOrderSummary h1 {
+    font-size: var(--mobile-page-heading-font-size);
+    font-weight: var(--mobile-page-heading-font-weight);
+  }
+
+  .headerOrderSummary p {
+    font-size: var(--mobile-page-paragraph-font-size);
+    font-weight: var(--mobile-page-paragraph-font-weight);
+  }
+
+  .orderSummaryContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: left;
+    text-align: left;
+  }
+
+  .orderSummaryContainer h2 {
+    font-size: 1rem;
+    font-weight: var(--mobile-page-heading-font-weight);
+    text-align: left;
+    padding-left: 0.5rem;
+  }
+
+  .orderSummaryContainer p {
+    font-size: 0.75rem;
+    font-weight: var(--mobile-page-paragraph-font-weight);
+    text-align: left;
+    padding-left: 0.5rem;
+  }
+}

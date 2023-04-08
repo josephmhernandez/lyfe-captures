@@ -17,7 +17,7 @@ const OrderSummaryItem = ({ item }) => {
       />
       <div className={classes.name}>
         <h2>{item.name}</h2>
-        <p className={classes.name}>{item.description}</p>
+        <p>{item.description}</p>
       </div>
       <p>{formatted_quantity}</p>
       <p>{formatted_total_price}</p>
