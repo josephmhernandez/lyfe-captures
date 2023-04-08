@@ -178,17 +178,17 @@ const CreateMap = (props) => {
   if (loading) {
     return <p> loading... </p>;
   }
-  const handleZoomOffsetIncrease = () => {
-    console.log("zoomOffsetIncrease");
-    console.log("new zoomOffset", zoomOffset + 1);
-    dispatch(mapActions.setZoomOffset(zoomOffset + 1));
-  };
+  // const handleZoomOffsetIncrease = () => {
+  //   console.log("zoomOffsetIncrease");
+  //   console.log("new zoomOffset", zoomOffset + 1);
+  //   dispatch(mapActions.setZoomOffset(zoomOffset + 1));
+  // };
 
-  const handleZoomOffsetDecrease = () => {
-    console.log("zoomOffsetDecrease");
-    console.log("new zoomOffset", zoomOffset - 1);
-    dispatch(mapActions.setZoomOffset(zoomOffset - 1));
-  };
+  // const handleZoomOffsetDecrease = () => {
+  //   console.log("zoomOffsetDecrease");
+  //   console.log("new zoomOffset", zoomOffset - 1);
+  //   dispatch(mapActions.setZoomOffset(zoomOffset - 1));
+  // };
 
   return (
     <Fragment>
@@ -220,12 +220,6 @@ const CreateMap = (props) => {
         <Paper elevation={24} className={classes.accordionBox}>
           <CustomizedAccordions />
           <div className={classes.actionBtns}>
-            <Button onClick={handleZoomOffsetIncrease}>
-              zoomOffsetIncrease
-            </Button>
-            <Button onClick={handleZoomOffsetDecrease}>
-              zoomOffsetDecrease
-            </Button>
             {/* <BuyNowButton onClick={handleBuyNow}>
             Buy Now
           </BuyNowButton> */}
