@@ -76,6 +76,12 @@
   align-items: center;
 }
 
+.mobileTextDisplay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .actionBtns {
   display: flex;
   flex-direction: column;

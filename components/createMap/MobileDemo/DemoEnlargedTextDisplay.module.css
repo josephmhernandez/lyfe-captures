@@ -1,0 +1,18 @@
+.textMap {
+  margin-top: 10px;
+  display: inline-block;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.largeBg {
+  /* overflow: "hidden"; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  /* background-color: aqua; */
+  width: 100%;
+  z-index: 1;
+}

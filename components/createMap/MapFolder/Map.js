@@ -16,9 +16,8 @@ import {
 } from "../MapFolder/MapConstants";
 import { useDispatch, useSelector } from "react-redux";
 import MapPins from "./MapPins";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { mapActions } from "../../../store/map-slice";
-import { ExpandCircleDown } from "@mui/icons-material";
 
 const MapFunctionality = () => {
   const dispatch = useDispatch();
@@ -36,6 +35,9 @@ const MapFunctionality = () => {
     },
   });
 
+  const zoomOffset = useSelector((state) => state.map.tileZoomOffset);
+  const mapZoom = useSelector((state) => state.map.zoom);
+
   useEffect(() => {
     if (bbox != JSON.stringify(map.getBounds())) {
       const bbox_new = JSON.stringify(map.getBounds());
@@ -46,6 +48,10 @@ const MapFunctionality = () => {
         bbox: bbox_new,
       };
       dispatch(mapActions.changeMapCenter(payload));
+      console.log("center", map.getCenter());
+      console.log("zoomOffsest", zoomOffset);
+      console.log("mapZoom", mapZoom);
+      console.log("bbox", bbox);
     }
 
     const timer = setTimeout(() => {}, 2000);
@@ -59,7 +65,10 @@ const MapTileLayer = (props) => {
   const tileLayer = useSelector((state) => state.map.tileLayer);
   const tileZoomOffset = useSelector((state) => state.map.tileZoomOffset);
 
-  let tileSize = 256 / (2 * tileZoomOffset);
+  let tileSize = 256 / 2 ** tileZoomOffset;
+  if (tileZoomOffset == 0) {
+    tileSize = 256;
+  }
 
   let url = "";
   // Map from tileLayer to api url. (open map tiles)
@@ -107,7 +116,7 @@ const Map = (props) => {
         maxBounds={bounds}
         maxBoundsViscosity={1.0}
         // 24 x 36
-
+        attributionControl={false}
         style={props.style}
       >
         <MapTileLayer />

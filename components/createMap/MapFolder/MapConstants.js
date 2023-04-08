@@ -45,6 +45,22 @@ export const MapConstants = {
         },
       },
     },
+    _24_36_demo: {
+      variant_size: "24 x 36 IN.",
+      full_width: 24,
+      full_height: 36,
+      // Multiplier for converting inches to pixels.
+      poster_multiplier: 9,
+      margin: 0,
+      portrait: {
+        map_width: 24,
+        map_height: 36,
+      },
+      landscape: {
+        map_width: 36,
+        map_height: 24,
+      },
+    },
   },
 };
 
@@ -99,6 +115,11 @@ export const MapStyleDict = {
         secondary: "12",
         coordinate: "8",
       },
+      size_demo: {
+        primary: "8",
+        secondary: "4",
+        coordinate: "2",
+      },
       color: {
         background: "#FFFFFF",
         primary: "#000000",
@@ -115,6 +136,11 @@ export const MapStyleDict = {
         padding: "8px",
         rounded: "8px",
         spacing: "1", // Inches
+      },
+      text_block_demo: {
+        padding: "1px",
+        rounded: "3px",
+        spacing: "1",
       },
     },
   },
@@ -133,6 +159,11 @@ export const MapStyleDict = {
         secondary: "12",
         coordinate: "8",
       },
+      size_demo: {
+        primary: "8",
+        secondary: "4",
+        coordinate: "2",
+      },
       color: {
         background: "#000000",
         primary: "#FFFFFF",
@@ -147,8 +178,13 @@ export const MapStyleDict = {
       },
       textBlock: {
         padding: "8px",
-        rounded: "3px",
+        rounded: "8px",
         spacing: "1", // Inches
+      },
+      text_block_demo: {
+        padding: "1px",
+        rounded: "3px",
+        spacing: "1",
       },
     },
   },
@@ -167,6 +203,11 @@ export const MapStyleDict = {
         secondary: "12",
         coordinate: "8",
       },
+      size_demo: {
+        primary: "8",
+        secondary: "4",
+        coordinate: "2",
+      },
       color: {
         background: "#000000",
         primary: "#ffd900",
@@ -183,6 +224,11 @@ export const MapStyleDict = {
         padding: "8px",
         rounded: "8px",
         spacing: "1", // Inches
+      },
+      text_block_demo: {
+        padding: "1px",
+        rounded: "3px",
+        spacing: "1",
       },
     },
   },
@@ -201,6 +247,11 @@ export const MapStyleDict = {
         secondary: "12",
         coordinate: "8",
       },
+      size_demo: {
+        primary: "8",
+        secondary: "4",
+        coordinate: "3",
+      },
       color: {
         background: "#000000",
         primary: "#FFFFFF",
@@ -218,6 +269,11 @@ export const MapStyleDict = {
         rounded: "8px",
         spacing: "1", // Inches
       },
+      text_block_demo: {
+        padding: "1px",
+        rounded: "3px",
+        spacing: "1",
+      },
     },
   },
 };
@@ -225,3 +281,6 @@ export const MapStyleDict = {
 export const SIZE_OPTION = "_24_36";
 export const MATERIAL_OPTION = "POSTER";
 export const DEFAULT_TILE_LAYER = "dark-transit";
+
+export const MOBILE_ZOOM_OFFSET = 3;
+export const WEB_ZOOM_OFFSET = 2;
