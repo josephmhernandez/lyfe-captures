@@ -11,9 +11,8 @@ import {
   emptyMapObjLocalStorage,
 } from "./cartFunctionality";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import { getValue } from "@mui/system";
 import * as gtag from "../../lib/gtag";
-import classes from "./CheckoutForm.module.css";
+
 const CheckoutForm = (props) => {
   // Map specifications that are passed to the extra field to be published to commercejs
   let map_specifcations_cart = getMapObjLocalStorage();

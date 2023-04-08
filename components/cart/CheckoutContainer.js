@@ -140,8 +140,6 @@ const CheckoutContainer = (props) => {
       commerce.checkout
         .checkDiscount(tokenId, { code: discountCode })
         .then((res) => {
-          // console.log("returned...", res);
-
           if (!res.discount) {
             setInvalidDiscountCode(true);
           } else {
