@@ -3,6 +3,8 @@ import Link from "next/link";
 import { useEffect } from "react";
 import classes from "./SideBar.module.css";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import cartPic from "../../public/cart-icon-small-white.png";
 
 const SideBar = ({ animation, direction, visible, setVisible }) => {
   const router = useRouter();
@@ -33,6 +35,8 @@ const SideBar = ({ animation, direction, visible, setVisible }) => {
       router.push("/faqs");
     } else if (name === "ContactUs") {
       router.push("/contactus");
+    } else if (name === "Cart") {
+      router.push("/cart");
     }
   };
 
@@ -53,11 +57,16 @@ const SideBar = ({ animation, direction, visible, setVisible }) => {
       <Menu.Item name="Home" as="a" onClick={handleSelect}>
         <Link href="/">Home</Link>
       </Menu.Item>
-      <Menu.Item name="AboutUs" as="a" onClick={handleSelect}>
-        <Link href="/aboutus">About Us</Link>
+      <Menu.Item name="Cart" as="a" onClick={handleSelect}>
+        <Link href="/cart">
+          <Image width={25} height={25} src={cartPic} alt="CART" />
+        </Link>
       </Menu.Item>
       <Menu.Item name="Maps" as="a" onClick={handleSelect}>
         <Link href="/maps">Create Now</Link>
+      </Menu.Item>
+      <Menu.Item name="AboutUs" as="a" onClick={handleSelect}>
+        <Link href="/aboutus">About Us</Link>
       </Menu.Item>
       <Menu.Item name="Sizes" as="a" onClick={handleSelect}>
         <Link href="/sizes">Sizes</Link>
