@@ -34,7 +34,7 @@
   margin: 0rem;
 }
 
-/* nothing with screen size bigger than 960px */
+/* nothing with screen size bigger than 600px */
 @media (max-width: 600px) {
   .itemCart {
     width: 100%;
