@@ -140,8 +140,6 @@ const CheckoutContainer = (props) => {
       commerce.checkout
         .checkDiscount(tokenId, { code: discountCode })
         .then((res) => {
-          // console.log("returned...", res);
-
           if (!res.discount) {
             setInvalidDiscountCode(true);
           } else {
@@ -163,52 +161,37 @@ const CheckoutContainer = (props) => {
   if (isMobile) {
     console.log("in mobile");
 
-    const shippingComp = () => {
-      return (
-        <Fragment>
-          <Divider horizontal>Shipping Options</Divider>
-          <Dropdown
-            placeholder="Select Shipping Method"
-            fluid
-            selection
-            value={shipOption}
-            onChange={handleDropDownShipping}
-            options={shippingOptions || []}
-          />
-
-          {loadingSelectShipping && (
-            <div className={classes.loading}>
-              <p className={classes.loading}>Updating Shipping...</p>
-            </div>
-          )}
-          {!shipOption && (
-            <p className={classes.errorMsg}>
-              {`"Select Country" in Customer Info for Shipping Options`}
-            </p>
-          )}
-        </Fragment>
-      );
-    };
-
     return (
       <React.Fragment>
-        {/* <Grid columns={1} centered> */}
-        {/* <Segment> */}
-        <div className={classes.mobileControlWidth}>
-          <Header textAlign="center" size="huge">
+        <div>
+          <Header textAlign="center" size="large">
             Current Cart
           </Header>
-          <Header textAlign="center">
+          {showEditCart ? (
+            <></>
+          ) : (
             <div className={classes.editCart}>
-              <a
+              <Button
+                style={{
+                  "background-color": "var(--color-primary)",
+                  color: "white",
+                  "border-radius": "100px",
+                  "font-family": "var(--page-paragraph-font-family)",
+                  "font-size": "1rem",
+                  "font-weight": "400",
+                  /* Center button in div*/
+                  display: "block",
+                  marginLeft: "auto",
+                  marginRight: "auto",
+                }}
                 onClick={() => {
                   setShowEditCart(true);
                 }}
               >
                 Edit Cart
-              </a>
+              </Button>
             </div>
-          </Header>
+          )}
           {loading ? (
             <p> loading...</p>
           ) : (
@@ -221,7 +204,7 @@ const CheckoutContainer = (props) => {
           )}
         </div>
 
-        <Grid.Column width={8}>
+        <Grid.Column className={classes.mobilePadding} width={8}>
           {showEditCart && (
             <Fragment>
               <CartModal token={tokenId} handleCloseCart={setShowEditCart} />
@@ -239,7 +222,6 @@ const CheckoutContainer = (props) => {
               renderShippingComponent={() => (
                 <Fragment>
                   <h1>Shipping Options</h1>
-                  {/* <Divider horizontal>Shipping Options</Divider> */}
                   <Dropdown
                     placeholder="Select Shipping Method"
                     fluid
@@ -289,11 +271,18 @@ const CheckoutContainer = (props) => {
                   </Header>
                 </div>
               )}
+              placeOrderBtnStyle={{
+                marginTop: "1rem",
+                marginBottom: "1rem",
+                borderRadius: "100px",
+                /* center button */
+                display: "block",
+                marginLeft: "auto",
+                marginRight: "auto",
+              }}
             />
           )}
         </Grid.Column>
-
-        {/* </Grid> */}
       </React.Fragment>
     );
   }

@@ -11,7 +11,6 @@ import {
   emptyMapObjLocalStorage,
 } from "./cartFunctionality";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import { getValue } from "@mui/system";
 import * as gtag from "../../lib/gtag";
 
 const CheckoutForm = (props) => {
@@ -688,8 +687,12 @@ const CheckoutForm = (props) => {
 
       {props.renderShippingComponent && props.renderShippingComponent()}
       {props.renderCartTotalComponent && props.renderCartTotalComponent()}
-      {/* {props.placeShippingComponent} */}
-      <Form.Button type="submit" color="green" size="huge">
+      <Form.Button
+        type="submit"
+        color="green"
+        size="huge"
+        style={props.placeOrderBtnStyle ? props.placeOrderBtnStyle : {}}
+      >
         Place Order
       </Form.Button>
     </Form>

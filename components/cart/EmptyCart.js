@@ -22,10 +22,10 @@ const EmptyCart = () => {
         <a>
           <Button
             style={{
-              "background-color": "var(--color-primary)",
+              "background-color": "#23d160",
               color: "white",
               "border-radius": "100px",
-              "font-family": "var(--page-paragraph-font-family)",
+              "font-family": "var(--page-heading-font-family)",
               "font-size": "var(--page-paragraph-font-size)",
               "font-weight": "400",
             }}
