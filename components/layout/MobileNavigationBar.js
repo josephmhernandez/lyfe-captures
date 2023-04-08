@@ -25,7 +25,9 @@ const MobileNavigationBar = (props) => {
 
         <div className={classes.logo}>
           <Link href="/">
-            <h1>MapYourMemory</h1>
+            <div className={classes.mobileLogo}>
+              <h1>MapYourMemory</h1>
+            </div>
           </Link>
         </div>
       </nav>

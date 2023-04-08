@@ -20,8 +20,10 @@ import {
   updateMapObjLocalStorage,
 } from "./cartFunctionality";
 import { QrCodeScannerOutlined } from "@mui/icons-material";
-
+import { useMediaQuery } from "@mantine/hooks";
+import { Button } from "semantic-ui-react";
 const CartModal = (props) => {
+  const isMobile = useMediaQuery("(max-width: 600px)");
   // Display everything here and then onClose of Modal we will add the quantities that have changed.
   const dispatch = useDispatch();
   let cart = getMapObjLocalStorage();
@@ -192,15 +194,51 @@ const CartModal = (props) => {
             <p>{"Subtotal: $ " + total_price.toFixed(2)}</p>
           </div>
           <div className={classes.cartFooterButtons}>
-            <button onClick={handleGoToCheckout} className="ui green button">
-              Update Cart
-            </button>
-            {/* <button onClick={handleEmptyCart} className="ui red button">
+            {isMobile ? (
+              <div style={{ paddingBottom: "1rem" }}>
+                <Button
+                  style={{
+                    "background-color": "var(--color-primary)",
+                    color: "white",
+                    "border-radius": "100px",
+                    "font-family": "var(--page-paragraph-font-family)",
+                    "font-size": "1rem",
+                    "font-weight": "400",
+                  }}
+                  onClick={handleGoToCheckout}
+                >
+                  Update Cart
+                </Button>
+                <Button
+                  style={{
+                    "background-color": "var(--color-primary)",
+                    color: "white",
+                    "border-radius": "100px",
+                    "font-family": "var(--page-paragraph-font-family)",
+                    "font-size": "1rem",
+                    "font-weight": "400",
+                  }}
+                  onClick={handleCancelChanges}
+                >
+                  Cancel
+                </Button>
+              </div>
+            ) : (
+              <div>
+                <button
+                  onClick={handleGoToCheckout}
+                  className="ui green button"
+                >
+                  Update Cart
+                </button>
+                {/* <button onClick={handleEmptyCart} className="ui red button">
               Empty Cart
             </button> */}
-            <button onClick={handleCancelChanges} className="ui button">
-              Cancel
-            </button>
+                <button onClick={handleCancelChanges} className="ui button">
+                  Cancel
+                </button>
+              </div>
+            )}
           </div>
         </React.Fragment>
       )}

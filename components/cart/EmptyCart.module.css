@@ -15,3 +15,11 @@
   font-weight: var(--page-heading-font-weight);
   color: var(--color-primary);
 }
+
+/* nothing with screen size bigger than 600px */
+@media (max-width: 600px) {
+  .emptyPage h1 {
+    font-size: var(--mobile-page-heading-font-size);
+    text-align: center;
+  }
+}

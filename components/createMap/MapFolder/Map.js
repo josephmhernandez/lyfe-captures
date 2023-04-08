@@ -16,9 +16,8 @@ import {
 } from "../MapFolder/MapConstants";
 import { useDispatch, useSelector } from "react-redux";
 import MapPins from "./MapPins";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import { mapActions } from "../../../store/map-slice";
-import { ExpandCircleDown } from "@mui/icons-material";
 
 const MapFunctionality = () => {
   const dispatch = useDispatch();
@@ -59,7 +58,7 @@ const MapTileLayer = (props) => {
   const tileLayer = useSelector((state) => state.map.tileLayer);
   const tileZoomOffset = useSelector((state) => state.map.tileZoomOffset);
 
-  let tileSize = 256 / (2 * tileZoomOffset);
+  let tileSize = 256 / 2 ** tileZoomOffset;
 
   let url = "";
   // Map from tileLayer to api url. (open map tiles)
@@ -107,7 +106,7 @@ const Map = (props) => {
         maxBounds={bounds}
         maxBoundsViscosity={1.0}
         // 24 x 36
-
+        attributionControl={false}
         style={props.style}
       >
         <MapTileLayer />

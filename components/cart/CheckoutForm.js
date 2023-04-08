@@ -11,7 +11,6 @@ import {
   emptyMapObjLocalStorage,
 } from "./cartFunctionality";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
-import { getValue } from "@mui/system";
 import * as gtag from "../../lib/gtag";
 
 const CheckoutForm = (props) => {
@@ -372,7 +371,6 @@ const CheckoutForm = (props) => {
           )}
         />
       </Form.Group>
-
       <Form.Group>
         <Controller
           width={10}
@@ -489,7 +487,6 @@ const CheckoutForm = (props) => {
           )}
         />
       </Form.Group>
-
       <h1>Payment Info</h1>
       <Form.Group className="payment-radio">
         <input
@@ -688,7 +685,14 @@ const CheckoutForm = (props) => {
         </>
       )}
 
-      <Form.Button type="submit" color="green" size="huge">
+      {props.renderShippingComponent && props.renderShippingComponent()}
+      {props.renderCartTotalComponent && props.renderCartTotalComponent()}
+      <Form.Button
+        type="submit"
+        color="green"
+        size="huge"
+        style={props.placeOrderBtnStyle ? props.placeOrderBtnStyle : {}}
+      >
         Place Order
       </Form.Button>
     </Form>

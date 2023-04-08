@@ -20,6 +20,7 @@ import {
 } from "../cart/cartFunctionality";
 import { getMapDescriptionText } from "./mapFunctionality";
 import * as gtag from "../../lib/gtag";
+import { Button } from "semantic-ui-react";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -43,6 +44,10 @@ const CreateMap = (props) => {
     height: height.toString() + "px",
     zIndex: -1,
   });
+
+  const zoomOffset = useSelector((state) => state.map.tileZoomOffset);
+  const mapZoom = useSelector((state) => state.map.zoom);
+  const bbox = useSelector((state) => state.map.bbox);
 
   const dispatch = useDispatch();
 
@@ -123,6 +128,9 @@ const CreateMap = (props) => {
 
     let lineItemId = await addToCartEcommerceJs(productName, 1);
     let price = await getPriceEcommerceJs(productName);
+
+    dispatch(mapActions.setSizeOption(SIZE_OPTION));
+
     let variantInfo = {
       Size: MapConstants.poster_size[SIZE_OPTION].variant_size,
       Material: MATERIAL_OPTION,
@@ -166,6 +174,17 @@ const CreateMap = (props) => {
   if (loading) {
     return <p> loading... </p>;
   }
+  // const handleZoomOffsetIncrease = () => {
+  //   console.log("zoomOffsetIncrease");
+  //   console.log("new zoomOffset", zoomOffset + 1);
+  //   dispatch(mapActions.setZoomOffset(zoomOffset + 1));
+  // };
+
+  // const handleZoomOffsetDecrease = () => {
+  //   console.log("zoomOffsetDecrease");
+  //   console.log("new zoomOffset", zoomOffset - 1);
+  //   dispatch(mapActions.setZoomOffset(zoomOffset - 1));
+  // };
 
   return (
     <Fragment>
@@ -178,7 +197,7 @@ const CreateMap = (props) => {
       </div>
       <div className={classes.container}>
         <Paper elevation={24} className={classes.wrapper}>
-          <CardOverlay>
+          <CardOverlay SIZE_OPTION={"_24_36"}>
             <MapWithNoSSR center={defaultCenter} zoom={zoom} style={mapStyle}>
               {/* {({ TileLayer, Marker, Popup }) => (
               <>
