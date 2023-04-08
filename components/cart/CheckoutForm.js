@@ -372,7 +372,6 @@ const CheckoutForm = (props) => {
           )}
         />
       </Form.Group>
-
       <Form.Group>
         <Controller
           width={10}
@@ -489,7 +488,6 @@ const CheckoutForm = (props) => {
           )}
         />
       </Form.Group>
-
       <h1>Payment Info</h1>
       <Form.Group className="payment-radio">
         <input
@@ -688,6 +686,9 @@ const CheckoutForm = (props) => {
         </>
       )}
 
+      {props.renderShippingComponent && props.renderShippingComponent()}
+      {props.renderCartTotalComponent && props.renderCartTotalComponent()}
+      {/* {props.placeShippingComponent} */}
       <Form.Button type="submit" color="green" size="huge">
         Place Order
       </Form.Button>

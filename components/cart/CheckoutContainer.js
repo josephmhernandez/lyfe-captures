@@ -15,6 +15,7 @@ import CheckoutForm from "./CheckoutForm";
 import CheckoutItems from "./CheckoutItems";
 import classes from "./CheckoutContainer.module.css";
 import { getLiveObjectEcommerceJs } from "./cartFunctionality";
+import { useMediaQuery } from "@mantine/hooks";
 
 const CheckoutContainer = (props) => {
   const commerce = new Commerce(process.env.CHEC_PK);
@@ -32,6 +33,8 @@ const CheckoutContainer = (props) => {
   const [loadingSelectShipping, setLoadingSelectShipping] = useState(false);
   const [loadingTax, setLoadingTax] = useState(true);
   const [estimatedTax, setEstimatedTax] = useState(0);
+
+  const isMobile = useMediaQuery("(max-width: 600px)");
 
   useEffect(() => {
     setLoading(true);
@@ -156,6 +159,144 @@ const CheckoutContainer = (props) => {
         });
     }
   };
+
+  if (isMobile) {
+    console.log("in mobile");
+
+    const shippingComp = () => {
+      return (
+        <Fragment>
+          <Divider horizontal>Shipping Options</Divider>
+          <Dropdown
+            placeholder="Select Shipping Method"
+            fluid
+            selection
+            value={shipOption}
+            onChange={handleDropDownShipping}
+            options={shippingOptions || []}
+          />
+
+          {loadingSelectShipping && (
+            <div className={classes.loading}>
+              <p className={classes.loading}>Updating Shipping...</p>
+            </div>
+          )}
+          {!shipOption && (
+            <p className={classes.errorMsg}>
+              {`"Select Country" in Customer Info for Shipping Options`}
+            </p>
+          )}
+        </Fragment>
+      );
+    };
+
+    return (
+      <React.Fragment>
+        {/* <Grid columns={1} centered> */}
+        {/* <Segment> */}
+        <div className={classes.mobileControlWidth}>
+          <Header textAlign="center" size="huge">
+            Current Cart
+          </Header>
+          <Header textAlign="center">
+            <div className={classes.editCart}>
+              <a
+                onClick={() => {
+                  setShowEditCart(true);
+                }}
+              >
+                Edit Cart
+              </a>
+            </div>
+          </Header>
+          {loading ? (
+            <p> loading...</p>
+          ) : (
+            <div>
+              {liveObject &&
+                liveObject.line_items.map((item) => (
+                  <CheckoutItems item={item} />
+                ))}
+            </div>
+          )}
+        </div>
+
+        <Grid.Column width={8}>
+          {showEditCart && (
+            <Fragment>
+              <CartModal token={tokenId} handleCloseCart={setShowEditCart} />
+            </Fragment>
+          )}
+          {!showEditCart && liveObject && tokenId && (
+            <CheckoutForm
+              liveObject={liveObject}
+              tokenId={tokenId}
+              shipOption={shipOption}
+              getShippingOptions={getShippingOptions}
+              setShipOption={setShipOption}
+              setReceipt={props.setReceipt}
+              handleSetTax={handleSetTax}
+              renderShippingComponent={() => (
+                <Fragment>
+                  <h1>Shipping Options</h1>
+                  {/* <Divider horizontal>Shipping Options</Divider> */}
+                  <Dropdown
+                    placeholder="Select Shipping Method"
+                    fluid
+                    selection
+                    value={shipOption}
+                    onChange={handleDropDownShipping}
+                    options={shippingOptions || []}
+                  />
+
+                  {loadingSelectShipping && (
+                    <div className={classes.loading}>
+                      <p className={classes.loading}>Updating Shipping...</p>
+                    </div>
+                  )}
+                  {!shipOption && (
+                    <p className={classes.errorMsg}>
+                      {`"Select Country" in Customer Info for Shipping Options`}
+                    </p>
+                  )}
+                </Fragment>
+              )}
+              renderCartTotalComponent={() => (
+                <div>
+                  <h1>Cart Total</h1>
+                  {shipOption && (
+                    <Header color="olive" textAlign="center">
+                      (Shipping) + {liveObject.shipping.price.formatted}
+                    </Header>
+                  )}
+                  {liveObject.discount.length !== 0 && (
+                    <Header color="olive" textAlign="center">
+                      (DISCOUNT) - ${liveObject.discount.amount_saved.formatted}
+                    </Header>
+                  )}
+                  {!loadingTax && (
+                    <Header color="olive" textAlign="center">
+                      (ESTIMATED TAX) + {estimatedTax}
+                    </Header>
+                  )}
+                  {loadingTax && (
+                    <Header color="olive" textAlign="center">
+                      (TAX) + {`enter shipping information to calculate tax`}
+                    </Header>
+                  )}
+                  <Header textAlign="center" size="large">
+                    {liveObject.total_with_tax.formatted_with_symbol}
+                  </Header>
+                </div>
+              )}
+            />
+          )}
+        </Grid.Column>
+
+        {/* </Grid> */}
+      </React.Fragment>
+    );
+  }
 
   return (
     <React.Fragment>
