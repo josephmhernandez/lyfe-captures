@@ -95,20 +95,6 @@ const Text = (props) => {
         label="Transparent Text Block"
         checked={transparentFlag}
       />
-      {/* <div
-        onChecked={(event) => dispatch(mapSlice.setTransparentTextBlockTrue())}
-        className="ui checkbox"
-        onUnchecked={(event) =>
-          dispatch(mapSlice.setTransparentTextBlockFalse())
-        }
-      >
-        <input
-          type="checkbox"
-          name="TransparentTextBlock"
-          value={transparentFlag}
-        />
-        <label>Transparent Text Block</label>
-      </div> */}
     </div>
   );
 };

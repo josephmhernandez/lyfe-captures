@@ -52,10 +52,6 @@ const CreateMap = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("center", defaultCenter);
-    console.log("zoomOffsest", zoomOffset);
-    console.log("mapZoom", mapZoom);
-    console.log("bbox", bbox);
     if (orientation === "portrait") {
       // Map Size.
       const optionObj = MapConstants.poster_size[SIZE_OPTION];

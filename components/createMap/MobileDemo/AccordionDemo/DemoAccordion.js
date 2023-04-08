@@ -23,7 +23,6 @@ const DemoAccordion = () => {
   };
 
   return (
-    // <div className={classes.accordion}>
     <div className={classes.wholeScreen}>
       <Accordion fluid styled>
         <Accordion.Title

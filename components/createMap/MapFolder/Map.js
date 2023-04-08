@@ -35,9 +35,6 @@ const MapFunctionality = () => {
     },
   });
 
-  const zoomOffset = useSelector((state) => state.map.tileZoomOffset);
-  const mapZoom = useSelector((state) => state.map.zoom);
-
   useEffect(() => {
     if (bbox != JSON.stringify(map.getBounds())) {
       const bbox_new = JSON.stringify(map.getBounds());
@@ -48,10 +45,6 @@ const MapFunctionality = () => {
         bbox: bbox_new,
       };
       dispatch(mapActions.changeMapCenter(payload));
-      console.log("center", map.getCenter());
-      console.log("zoomOffsest", zoomOffset);
-      console.log("mapZoom", mapZoom);
-      console.log("bbox", bbox);
     }
 
     const timer = setTimeout(() => {}, 2000);
@@ -66,9 +59,6 @@ const MapTileLayer = (props) => {
   const tileZoomOffset = useSelector((state) => state.map.tileZoomOffset);
 
   let tileSize = 256 / 2 ** tileZoomOffset;
-  if (tileZoomOffset == 0) {
-    tileSize = 256;
-  }
 
   let url = "";
   // Map from tileLayer to api url. (open map tiles)

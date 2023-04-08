@@ -1,6 +1,5 @@
-import React, { Fragment } from "react";
 import Image from "next/image";
-import { ActionIcon, Radio } from "@mantine/core";
+import { ActionIcon } from "@mantine/core";
 import classes from "./Colors.module.css";
 import { MapStyleDict } from "../../MapFolder/MapConstants";
 import { useDispatch } from "react-redux";

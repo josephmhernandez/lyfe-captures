@@ -50,10 +50,6 @@ const DemoCreateMap = () => {
   }
 
   useEffect(() => {
-    console.log("center", defaultCenter);
-    console.log("zoomOffsest", zoomOffset);
-    console.log("mapZoom", mapZoom);
-    console.log("bbox", bbox);
     if (orientation === "portrait") {
       // Map Size.
       const optionObj = MapConstants.poster_size["_24_36_demo"];

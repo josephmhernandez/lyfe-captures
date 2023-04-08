@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { MapConstants, MapStyleDict } from "../MapFolder/MapConstants";
+import { MapStyleDict } from "../MapFolder/MapConstants";
 import { Typography } from "@mui/material";
 import classes from "./DemoEnlargedTextDisplay.module.css";
 const DemoEnlargedTextDisplay = () => {
@@ -15,13 +15,8 @@ const DemoEnlargedTextDisplay = () => {
   const [bgTextDisplayStyle, setBgTextDisplayStyle] = useState({});
   const color_text_for_dict = transparentFlag ? "color_transparent" : "color";
 
-  // const size_path = props.SIZE_OPTION.includes("demo") ? "size_demo" : "size";
   const size_path = "size";
-  // const text_block_path = props.SIZE_OPTION.includes("demo")
-  //   ? "text_block_demo"
-  //   : "textBlock";
   const text_block_path = "textBlock";
-  const mapSizeOption = "_24_36";
 
   useEffect(() => {
     if (textCoordinates || textPrimary || textSecondary) {

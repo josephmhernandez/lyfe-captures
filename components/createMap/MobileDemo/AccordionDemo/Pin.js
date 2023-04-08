@@ -7,8 +7,6 @@ import Image from "next/image";
 
 import { PinListConstants } from "./PinListConstants";
 import classes from "./Pin.module.css";
-import { Button } from "@mui/material";
-import { styled } from "@mui/material/styles";
 import Slider from "@mui/material/Slider";
 import { useDispatch } from "react-redux";
 

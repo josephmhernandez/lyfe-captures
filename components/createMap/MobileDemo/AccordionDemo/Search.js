@@ -21,7 +21,6 @@ const geocoderService = { current: null };
 const Search = (props) => {
   const [value, setValue] = useState(null);
   const [inputValue, setInputValue] = useState("");
-  const [center, setCenter] = useState(null);
   const [options, setOptions] = useState([]);
   const dispatch = useDispatch();
 
