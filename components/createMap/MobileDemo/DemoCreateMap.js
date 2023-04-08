@@ -17,9 +17,11 @@ import {
 } from "../../cart/cartFunctionality";
 import { getMapDescriptionText } from "../mapFunctionality";
 import DemoEnlargedTextDisplay from "./DemoEnlargedTextDisplay";
-
+import { useRouter } from "next/router";
 const DemoCreateMap = () => {
+  const router = useRouter();
   const [hasText, setHasText] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const defaultCenter = useSelector((state) => state.map.lngLat);
   const zoom = useSelector((state) => state.map.zoom);
@@ -125,7 +127,7 @@ const DemoCreateMap = () => {
   ]);
 
   const handleBuyNow = async (event) => {
-    console.log("Add to cart");
+    setLoading(true);
 
     let productName = "Personalized Map";
     event.preventDefault();
@@ -150,8 +152,8 @@ const DemoCreateMap = () => {
         description: description,
       })
     );
-    // router.push("/cart");
-    // setLoading(false);
+    router.push("/cart");
+    setLoading(false);
   };
 
   // const handleZoomOffsetIncrease = () => {
@@ -165,6 +167,14 @@ const DemoCreateMap = () => {
   //   console.log("new zoomOffset", zoomOffset - 1);
   //   dispatch(mapActions.setZoomOffset(zoomOffset - 1));
   // };
+
+  if (loading) {
+    return (
+      <div>
+        <p>loading...</p>
+      </div>
+    );
+  }
 
   const MapWithNoSSR = dynamic(import("../MapFolder/Map"), {
     ssr: false,
