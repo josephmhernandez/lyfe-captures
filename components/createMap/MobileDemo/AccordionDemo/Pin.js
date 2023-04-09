@@ -84,7 +84,7 @@ const Pin = () => {
         <Image src={defaultSliderPinImgPath} width={30} height={30} />
         <Slider
           defaultValue={startPinSize}
-          min={20}
+          min={10}
           max={90}
           step={5}
           aria-label="pin-size"
