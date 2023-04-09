@@ -119,4 +119,8 @@
     align-content: center;
     align-items: center;
   }
+
+  .centerElements h3 {
+    font-family: "Great Vibes";
+  }
 }
