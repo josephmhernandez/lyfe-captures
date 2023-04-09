@@ -5,10 +5,11 @@ import {
   DEFAULT_TILE_LAYER,
 } from "../createMap/MapFolder/MapConstants";
 import Image from "next/image";
+import { Button, Icon } from "semantic-ui-react";
 
 const ItemCartModal = (props) => {
   let total_price = props.item.quantity * props.item.unitPrice;
-  let total_price_formatted = "$ " + total_price.toFixed(2);
+  let total_price_formatted = "$" + total_price.toFixed(2);
 
   let errorMessage = "";
 
@@ -44,25 +45,41 @@ const ItemCartModal = (props) => {
           <p>{props.item.description}</p>
         </div>
         <div className={classes.itemBlockQuantity}>
-          <button
-            onClick={() => {
-              props.handleAddQuantity(props.item);
+          <Button
+            icon
+            style={{
+              "background-color": "var(--color-primary)",
+              color: "white",
+              "border-radius": "100px",
+              "font-family": "var(--page-paragraph-font-family)",
+              "font-size": "1rem",
+              "font-weight": "400",
             }}
-            className="positive ui button"
+            onClick={() => props.handleAddQuantity(props.item)}
           >
-            +
-          </button>
+            <Icon name="plus" />
+          </Button>
           <p>{props.item.quantity}</p>
-          <button
-            onClick={() => props.handleSubQuantity(props.item)}
-            className="negative ui button"
-          >
-            -
-          </button>
-          {errorMessage && <p>{errorMessage}</p>}
-        </div>
 
-        <p>{total_price_formatted}</p>
+          <Button
+            icon
+            style={{
+              "background-color": "var(--color-primary)",
+              color: "white",
+              "border-radius": "100px",
+              "font-family": "var(--page-paragraph-font-family)",
+              "font-size": "1rem",
+              "font-weight": "400",
+            }}
+            onClick={() => props.handleSubQuantity(props.item)}
+          >
+            <Icon name="minus" />
+          </Button>
+          {/* {errorMessage && <p>{errorMessage}</p>} */}
+        </div>
+        <div className={classes.itemBlockPrice}>
+          <p>{total_price_formatted}</p>
+        </div>
       </div>
     </React.Fragment>
   );

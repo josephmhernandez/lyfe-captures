@@ -1,0 +1,32 @@
+.eachAccordion {
+  background-color: rgb(
+    var(--purple-dark-color-rgb),
+    var(--create-map-opacity)
+  );
+  font-family: var(--primary-font);
+  font-weight: var(--accordion-font-weight);
+  font-size: var(--accordion-title-font-size);
+}
+
+.text {
+  font-family: var(--primary-font);
+  font-weight: var(--accordion-font-weight);
+  font-size: var(--accordion-title-font-size);
+}
+
+.accordion {
+  background-color: rgb(
+    var(--purple-dark-color-rgb),
+    var(--create-map-opacity)
+  );
+  font-family: var(--primary-font);
+  font-weight: var(--accordion-font-weight);
+  font-size: var(--accordion-title-font-size);
+  width: 100%;
+}
+
+.wholeScreen {
+  width: 95vw;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}

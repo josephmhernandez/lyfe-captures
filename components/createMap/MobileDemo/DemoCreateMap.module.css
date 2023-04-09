@@ -1,0 +1,21 @@
+.wrapper {
+  padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.centerObj {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+.centerObj p {
+  font-size: var(--page-paragraph-font-size);
+  font-weight: var(--page-paragraph-font-weight);
+  font-family: var(--page-paragraph-font-family);
+}

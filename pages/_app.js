@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import Layout from "../components/layout/Layout";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import Head from "next/head";
 import { Provider } from "react-redux";
 import store from "../store/index";
@@ -61,7 +61,7 @@ function MyApp({ Component, isMobileView, pageProps }) {
       <FacebookPixel />
       <Script
         strategy="afterInteractive"
-        src="https://www.googletagmanager.com/gtag/js?id=G-R6Y7MSPDH7"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.GA_MEASUREMENT_ID}`}
       ></Script>
       <Script
         id="google-analytics"
@@ -71,7 +71,7 @@ function MyApp({ Component, isMobileView, pageProps }) {
           window.dataLayer = window.dataLayer || [];
           function gtag(){dataLayer.push(arguments);}
           gtag('js', new Date());
-          gtag('config', 'G-R6Y7MSPDH7', {
+          gtag('config', '${process.env.GA_MEASUREMENT_ID}', {
           page_path: window.location.pathname,
           }); 
         `,
@@ -103,8 +103,6 @@ MyApp.getInitialProps = async ({ Component, ctx }) => {
     isMobileView: Boolean(isMobileView),
     pageProps,
   };
-
-  return { pageProps };
 };
 
 function FacebookPixel() {

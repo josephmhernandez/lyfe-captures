@@ -4,8 +4,6 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 import { MapConstants, MapStyleDict } from "./MapFolder/MapConstants";
-const SIZE_OPTION = "_24_36";
-const STYLING_OPTION = "basic";
 
 const CardOverlay = (props) => {
   const textPrimary = useSelector((state) => state.map.textPrimary);
@@ -24,25 +22,28 @@ const CardOverlay = (props) => {
     width: "calc(var(--card-overlay-multiplier) * var(--poster-width))",
   });
   const [textBlockStyle, setTextBlockStyle] = useState({});
-  const [styling, setStyling] = useState(STYLING_OPTION);
-  const [mapSizeOption, setMapSizeOption] = useState(SIZE_OPTION);
+  const [mapSizeOption, setMapSizeOption] = useState(props.SIZE_OPTION);
 
   const color_text_for_dict = transparentFlag ? "color_transparent" : "color";
 
+  const is_mobile = props.SIZE_OPTION.includes("demo");
+  const size_path = is_mobile ? "size_demo" : "size";
+  const text_block_path = is_mobile ? "text_block_demo" : "textBlock";
+
   const styleTextPrimary = {
     fontFamily: MapStyleDict[tileLayer]["text"]["fontFamily"]["primary"],
-    fontSize: MapStyleDict[tileLayer]["text"]["size"]["primary"] + "px",
+    fontSize: MapStyleDict[tileLayer]["text"][size_path]["primary"] + "px",
     color: MapStyleDict[tileLayer]["text"][color_text_for_dict]["primary"],
   };
   const styleTextSecondary = {
     fontFamily: MapStyleDict[tileLayer]["text"]["fontFamily"]["secondary"],
-    fontSize: MapStyleDict[tileLayer]["text"]["size"]["secondary"] + "px",
+    fontSize: MapStyleDict[tileLayer]["text"][size_path]["secondary"] + "px",
     color: MapStyleDict[tileLayer]["text"][color_text_for_dict]["secondary"],
   };
 
   const styleTextCoordinates = {
     fontFamily: MapStyleDict[tileLayer]["text"]["fontFamily"]["coordinate"],
-    fontSize: MapStyleDict[tileLayer]["text"]["size"]["coordinate"] + "px",
+    fontSize: MapStyleDict[tileLayer]["text"][size_path]["coordinate"] + "px",
     color: MapStyleDict[tileLayer]["text"][color_text_for_dict]["coordinate"],
   };
 
@@ -91,21 +92,26 @@ const CardOverlay = (props) => {
       let marginTop = 0;
       if (textPrimary) {
         marginTop +=
-          parseInt(MapStyleDict[tileLayer]["text"]["size"]["primary"]) * 1.5;
+          parseInt(MapStyleDict[tileLayer]["text"][size_path]["primary"]) * 1.5;
       }
       if (textSecondary) {
         marginTop +=
-          parseInt(MapStyleDict[tileLayer]["text"]["size"]["secondary"]) * 1.5;
+          parseInt(MapStyleDict[tileLayer]["text"][size_path]["secondary"]) *
+          1.5;
       }
       if (textCoordinates) {
         marginTop +=
-          parseInt(MapStyleDict[tileLayer]["text"]["size"]["coordinate"]) * 1.5;
+          parseInt(MapStyleDict[tileLayer]["text"][size_path]["coordinate"]) *
+          1.5;
       }
       marginTop +=
-        parseInt(MapStyleDict[tileLayer]["text"]["textBlock"]["padding"]) * 2;
+        parseInt(MapStyleDict[tileLayer]["text"][text_block_path]["padding"]) *
+        2;
 
       marginTop +=
-        parseFloat(MapStyleDict[tileLayer]["text"]["textBlock"]["spacing"]) *
+        parseFloat(
+          MapStyleDict[tileLayer]["text"][text_block_path]["spacing"]
+        ) *
         parseInt(MapConstants.poster_size[mapSizeOption]["poster_multiplier"]);
 
       marginTop = marginTop * -1;
@@ -116,8 +122,9 @@ const CardOverlay = (props) => {
         backgroundColor:
           MapStyleDict[tileLayer]["text"][color_text_for_dict]["background"],
         zIndex: "10",
-        borderRadius: MapStyleDict[tileLayer]["text"]["textBlock"]["rounded"],
-        padding: MapStyleDict[tileLayer]["text"]["textBlock"]["padding"],
+        borderRadius:
+          MapStyleDict[tileLayer]["text"][text_block_path]["rounded"],
+        padding: MapStyleDict[tileLayer]["text"][text_block_path]["padding"],
       });
     } else {
       setTextBlockStyle({
@@ -125,7 +132,8 @@ const CardOverlay = (props) => {
         backgroundColor:
           MapStyleDict[tileLayer]["text"][color_text_for_dict]["background"],
         zIndex: "10",
-        borderRadius: MapStyleDict[tileLayer]["text"]["textBlock"]["rounded"],
+        borderRadius:
+          MapStyleDict[tileLayer]["text"][text_block_path]["rounded"],
       });
     }
   }, [
