@@ -94,7 +94,7 @@ const OrderCompleteId = () => {
             "background-color": "var(--color-primary)",
             color: "white",
             "border-radius": "100px",
-            "font-family": "var(--page-paragraph-font-family)",
+            "font-family": "var(--page-heading-font-family)",
             "font-size": "var(--page-paragraph-font-size)",
             "font-weight": "400",
           }}
