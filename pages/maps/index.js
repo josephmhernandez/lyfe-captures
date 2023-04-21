@@ -12,12 +12,18 @@ const MapPage = (props) => {
   if (typeof window !== "undefined") {
     if (props.isMobileView || isMobile) {
       dispatch(mapSlice.actions.setZoomOffset(3));
+      dispatch(mapSlice.actions.setSizeOption("_24_36_demo"));
       // Send to mobile create now Demo
       return <DemoCreateMap />;
     }
   }
 
-  return <CreateMap />;
+  dispatch(mapSlice.actions.setZoomOffset(3));
+  dispatch(mapSlice.actions.setSizeOption("_24_36_demo"));
+  console.log("Always doing mobile demo for ryans map options");
+  return <DemoCreateMap />;
+
+  // return <CreateMap />;
 };
 
 // Need this here to get the current device that the user is on.

@@ -61,6 +61,22 @@ export const MapConstants = {
         map_height: 24,
       },
     },
+    _square_demo: {
+      variant_size: "24 x 24 IN.",
+      full_width: 24,
+      full_height: 24,
+      // Multiplier for converting inches to pixels.
+      poster_multiplier: 9,
+      margin: 0,
+      portrait: {
+        map_width: 24,
+        map_height: 24,
+      },
+      landscape: {
+        map_width: 24,
+        map_height: 24,
+      },
+    },
   },
 };
 

@@ -245,9 +245,9 @@ const mapSlice = createSlice({
       mapObj.quantity = 1;
       mapObj.description = "";
       mapObj.id = uuid();
-      mapObj.name = action.payload.name; // This is the official name of the product
-      mapObj.unitPrice = action.payload.unitPrice;
-      mapObj.lineItemId = action.payload.lineItemId;
+      // mapObj.name = action.payload.name; // This is the official name of the product
+      // mapObj.unitPrice = action.payload.unitPrice;
+      // mapObj.lineItemId = action.payload.lineItemId;
       mapObj.isTransparentTextBlock = state.transparentTextBlock;
       // Make sure if coordinates are added that we recaclulate them
       if (mapObj.textCoordinates !== "") {
@@ -297,10 +297,19 @@ const mapSlice = createSlice({
         }
       }
 
-      mapObj.description = action.payload.description;
+      /* Adding for the tool  */
+      mapObj.nameTheMap = action.payload.name_the_map;
+      mapObj.emailToSend = action.payload.email_to_send;
+      mapObj.isSquare = action.payload.is_square;
+      mapObj.whiteToXHexCode = action.payload.white_to_x_hex_code;
+      mapObj.blackToXHexCode = action.payload.black_to_x_hex_code;
+
+      // mapObj.description = action.payload.description;
 
       // call local storage to update cart.
       addToMapObjLocalStorage(mapObj);
+
+      // Calling API to send to backend
     },
     removePinsFromMap: (state, action) => {
       // Remove all pins from the map.

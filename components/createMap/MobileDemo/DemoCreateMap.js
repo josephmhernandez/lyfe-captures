@@ -18,6 +18,7 @@ import {
 import { getMapDescriptionText } from "../mapFunctionality";
 import DemoEnlargedTextDisplay from "./DemoEnlargedTextDisplay";
 import { useRouter } from "next/router";
+import { useSelect } from "@mui/base";
 const DemoCreateMap = () => {
   const router = useRouter();
   const [hasText, setHasText] = useState(false);
@@ -30,9 +31,10 @@ const DemoCreateMap = () => {
   const addLngLat = useSelector((state) => state.map.addLngLat);
   const tileLayer = useSelector((state) => state.map.tileLayer);
   const orientation = useSelector((state) => state.map.orientation);
+  const sizeOption = useSelector((state) => state.map.size);
 
   // Map Size.
-  const optionObj = MapConstants.poster_size["_24_36_demo"];
+  const optionObj = MapConstants.poster_size[sizeOption];
   const height = optionObj.portrait.map_height * optionObj.poster_multiplier;
   const width = optionObj.portrait.map_width * optionObj.poster_multiplier;
 
@@ -54,7 +56,7 @@ const DemoCreateMap = () => {
   useEffect(() => {
     if (orientation === "portrait") {
       // Map Size.
-      const optionObj = MapConstants.poster_size["_24_36_demo"];
+      const optionObj = MapConstants.poster_size[sizeOption];
       const height =
         optionObj.portrait.map_height * optionObj.poster_multiplier;
       const width = optionObj.portrait.map_width * optionObj.poster_multiplier;
@@ -85,7 +87,7 @@ const DemoCreateMap = () => {
       }
     } else {
       //Landscape Calculate Map Size.
-      const optionObj = MapConstants.poster_size["_24_36_demo"];
+      const optionObj = MapConstants.poster_size[sizeOption];
       const height =
         optionObj.landscape.map_height * optionObj.poster_multiplier;
       const width = optionObj.landscape.map_width * optionObj.poster_multiplier;
@@ -124,6 +126,7 @@ const DemoCreateMap = () => {
     secondaryText,
     tileLayer,
     defaultCenter,
+    sizeOption,
   ]);
 
   const handleBuyNow = async (event) => {
@@ -136,7 +139,7 @@ const DemoCreateMap = () => {
     let price = await getPriceEcommerceJs(productName);
 
     // Make sure we are working with mobile.
-    dispatch(mapActions.setSizeOption("_24_36_demo"));
+    dispatch(mapActions.setSizeOption(sizeOption));
 
     let description = await getMapDescriptionText(
       primaryText,
@@ -191,7 +194,7 @@ const DemoCreateMap = () => {
       </div>
       {/* CardOverlay is the only thing that isn't a new compnonent in demo */}
       <div className={classes.wrapper}>
-        <CardOverlay SIZE_OPTION={"_24_36_demo"}>
+        <CardOverlay SIZE_OPTION={sizeOption}>
           <MapWithNoSSR
             center={defaultCenter}
             zoom={zoom}
@@ -207,7 +210,7 @@ const DemoCreateMap = () => {
       <div className={classes.centerObj}>
         <DemoAccordion />
 
-        <Button
+        {/* <Button
           style={{
             "background-color": "#23d160",
             color: "white",
@@ -219,7 +222,7 @@ const DemoCreateMap = () => {
           onClick={handleBuyNow}
         >
           Buy Now
-        </Button>
+        </Button> */}
       </div>
     </div>
   );
