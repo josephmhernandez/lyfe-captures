@@ -2,7 +2,7 @@ import Orientation from "./Orientation";
 import Colors from "./Colors";
 import Pin from "./Pin";
 import Text from "./Text";
-
+import RyanPrintOptions from "./RyanPrintOptions";
 import classes from "./AccordionDemo.module.css";
 import { useSelector } from "react-redux";
 import { useState } from "react";
@@ -71,6 +71,17 @@ const DemoAccordion = () => {
             defaultPrimaryText={textPrimary}
             defaultSecondaryText={textSecondary}
           />
+        </Accordion.Content>
+        <Accordion.Title
+          active={activeIndex === 5}
+          index={5}
+          onClick={handleClick}
+        >
+          <Icon name="dropdown" />
+          Ryan Options
+        </Accordion.Title>
+        <Accordion.Content active={activeIndex === 5}>
+          <RyanPrintOptions />
         </Accordion.Content>
       </Accordion>
     </div>

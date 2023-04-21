@@ -48,6 +48,7 @@ const CardOverlay = (props) => {
   };
 
   useEffect(() => {
+    console.log(mapSizeOption);
     if (orientation === "portrait") {
       // Calculate Paper size. Portrait.
       const optionObj = MapConstants.poster_size[mapSizeOption];
@@ -143,6 +144,7 @@ const CardOverlay = (props) => {
     orientation,
     tileLayer,
     transparentFlag,
+    mapSizeOption,
   ]);
 
   return (
