@@ -104,7 +104,24 @@ const MapsLandingPage = () => {
   return (
     <div className={classes.all}>
       <ShopNowBanner to="/maps" src={shopNowImage} alt="" />
-
+      <div className={classes.centerContent}>
+        <Link href="/maps">
+          <a>
+            <Button
+              style={{
+                "background-color": "var(--buy-now-btn-color)",
+                color: "white",
+                "border-radius": "100px",
+                "font-family": "var(--page-paragraph-font-family)",
+                "font-size": "var(--page-paragraph-font-size)",
+                "font-weight": "400",
+              }}
+            >
+              Create Now
+            </Button>
+          </a>
+        </Link>
+      </div>
       {/* Normal Product Landing Page Information. Outlines the offer */}
       <div className={classes.twoColumns}>
         <div className={classes.flexChild}>
@@ -286,7 +303,7 @@ const MapsLandingPage = () => {
           <a>
             <Button
               style={{
-                "background-color": "var(--color-primary)",
+                "background-color": "var(--buy-now-btn-color)",
                 color: "white",
                 "border-radius": "100px",
                 "font-family": "var(--page-paragraph-font-family)",
@@ -311,15 +328,14 @@ const MapsLandingPage = () => {
       <div className={classes.spacingBecauseOfImageBug}></div>
 
       <div className={classes.specialRequest}>
-        <h1>Pre-Launch Sale?</h1>
+        <h1>Low Inventory Sale?</h1>
         <p>
-          We're currently running a pre-launch sale for our custom maps! We have
-          perfected our prototype, and while we wait for our supplies to arrive
-          we thought we give you time now to pre-order your custom map at a
-          steep discount! All maps ordered during the pre-launch sale will be
-          shipped out on May 15th! After May 15th we won’t be offering this
-          discount if you have any questions just reach out!
-          help@mapyourmemory.com
+          We're currently running a Low Inventory sale for our custom maps!
+          While we wait for our supplies to arrive we thought we give you time
+          now to order your custom map at a steep discount! All maps ordered
+          during the Low Inventory sale will be shipped out on May 15th! After
+          May 15th we won’t be offering this discount if you have any questions
+          just reach out! help@mapyourmemory.com
         </p>
       </div>
 
@@ -361,6 +377,24 @@ const MapsLandingPage = () => {
       <div className={classes.specialRequest}>
         <h1>{dict_special_request.heading}</h1>
         <p>{dict_special_request.text}</p>
+      </div>
+      <div className={classes.centerContent}>
+        <Link href="/maps">
+          <a>
+            <Button
+              style={{
+                "background-color": "var(--buy-now-btn-color)",
+                color: "white",
+                "border-radius": "100px",
+                "font-family": "var(--page-paragraph-font-family)",
+                "font-size": "var(--page-paragraph-font-size)",
+                "font-weight": "400",
+              }}
+            >
+              Create Now
+            </Button>
+          </a>
+        </Link>
       </div>
     </div>
   );
