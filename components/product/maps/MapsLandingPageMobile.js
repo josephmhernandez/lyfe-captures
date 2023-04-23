@@ -150,7 +150,24 @@ const MapsLandingPageMobile = () => {
       <ShopNowBanner to="/maps" src={shopNowImage} alt="" />
 
       <div className={classes.spacingBecauseOfImageBug}></div>
-
+      <div className={classes.centerContent}>
+        <Link href="/maps">
+          <a>
+            <Button
+              style={{
+                "background-color": "var(--buy-now-btn-color)",
+                color: "white",
+                "border-radius": "100px",
+                "font-family": "var(--page-paragraph-font-family)",
+                "font-size": "var(--page-paragraph-font-size)",
+                "font-weight": "400",
+              }}
+            >
+              Create Now
+            </Button>
+          </a>
+        </Link>
+      </div>
       {/* Normal Product Landing Page Information. Outlines the offer */}
       {/* <div className={classes.twoColumns}>
         <div className={classes.flexChild}> */}
@@ -337,7 +354,7 @@ const MapsLandingPageMobile = () => {
           <a>
             <Button
               style={{
-                "background-color": "var(--color-primary)",
+                "background-color": "var(--buy-now-btn-color)",
                 color: "white",
                 "border-radius": "100px",
                 "font-family": "var(--page-paragraph-font-family)",
