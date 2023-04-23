@@ -328,14 +328,14 @@ const MapsLandingPage = () => {
       <div className={classes.spacingBecauseOfImageBug}></div>
 
       <div className={classes.specialRequest}>
-        <h1>Low Inventory Sale?</h1>
+        <h1>Limited Inventory Sale?</h1>
         <p>
-          We're currently running a Low Inventory sale for our custom maps!
+          We're currently running a Limited Inventory sale for our custom maps!
           While we wait for our supplies to arrive we thought we give you time
           now to order your custom map at a steep discount! All maps ordered
-          during the Low Inventory sale will be shipped out on May 15th! After
-          May 15th we won’t be offering this discount if you have any questions
-          just reach out! help@mapyourmemory.com
+          during the Limited Inventory sale will be shipped out on May 15th!
+          After May 15th we won’t be offering this discount if you have any
+          questions just reach out! help@mapyourmemory.com
         </p>
       </div>
 

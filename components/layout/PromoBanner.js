@@ -1,5 +1,5 @@
 const DUMMY_PROMO_TEXT =
-  "Low Inventory Sale - All Maps $499! - 99 left - Everything ships May 30th";
+  "Limited Inventory Sale - All Maps $499! - 99 left - Everything ships May 30th";
 import classes from "./PromoBanner.module.css";
 
 const PromoBanner = () => {
