@@ -14,12 +14,10 @@ Router.events.on("routeChangeComplete", nProgress.done);
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
-import TagManager from "react-gtm-module";
 import * as gtag from "../lib/gtag";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import OfferModal from "../components/ui/OfferModal";
-import { Modal } from "semantic-ui-react";
 
 function MyApp({ Component, isMobileView, pageProps }) {
   const router = useRouter();
@@ -43,7 +41,7 @@ function MyApp({ Component, isMobileView, pageProps }) {
         // If not, set the visited flag to true
         localStorage.setItem("visited", true);
         setShowDiscount(true);
-      }, 5000); // 10 seconds
+      }, 10000); // 10 seconds
     }
 
     // Google Analytics
@@ -96,12 +94,6 @@ function MyApp({ Component, isMobileView, pageProps }) {
             open={showDiscount}
             onClose={() => setShowDiscount(false)}
           />
-          {/* <Modal open={showDiscount} onClose={() => setShowDiscount(false)}>
-            <Modal.Header>Modal #1</Modal.Header>
-            <Modal.Content>
-              <p>what?</p>
-            </Modal.Content>
-          </Modal> */}
           <Component {...pageProps} />
         </Layout>
       </Elements>

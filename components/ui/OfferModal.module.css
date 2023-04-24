@@ -39,15 +39,6 @@
 
 /* When the screen is below 600px */
 @media only screen and (max-width: 600px) {
-  /* .modal {
-    display: flex;
-    width: 90%;
-    color: var(--color-primary);
-    background-color: var(--color-primary);
-    text-align: center;
-    padding: 10px;
-  } */
-
   .modal h1 {
     font-size: var(--mobile-page-heading-font-size);
     font-weight: var(--mobile-page-heading-font-weight);
