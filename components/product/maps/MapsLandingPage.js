@@ -12,7 +12,8 @@ import prodPicTextCloseUp from "../../../public/images/new-prod-pics/text-close-
 import prodPicTransitBlack from "../../../public/images/new-prod-pics/trans-black.png";
 import prodPicTransitWhite from "../../../public/images/new-prod-pics/corner-transit-white.jpg";
 
-import Image from "next/future/image";
+// import Image from "next/future/image";
+import Image from "next/image";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Button } from "semantic-ui-react";
 import DescriptionTab from "../DescriptionTab";
@@ -105,7 +106,7 @@ const MapsLandingPage = () => {
     <div className={classes.all}>
       <ShopNowBanner to="/maps" src={shopNowImage} alt="" />
       <div className={classes.centerContent}>
-        <Link href="/maps">
+        <Link href="/maps" legacyBehavior>
           <a>
             <Button
               style={{
@@ -299,7 +300,7 @@ const MapsLandingPage = () => {
         </div>
       </div>
       <div className={classes.centerContent}>
-        <Link href="/maps">
+        <Link href="/maps" legacyBehavior>
           <a>
             <Button
               style={{
@@ -379,7 +380,7 @@ const MapsLandingPage = () => {
         <p>{dict_special_request.text}</p>
       </div>
       <div className={classes.centerContent}>
-        <Link href="/maps">
+        <Link href="/maps" legacyBehavior>
           <a>
             <Button
               style={{

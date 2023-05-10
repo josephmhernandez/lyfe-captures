@@ -18,6 +18,13 @@ import TagManager from "react-gtm-module";
 import * as gtag from "../lib/gtag";
 import { useRouter } from "next/router";
 import Script from "next/script";
+import { Amplify } from "aws-amplify";
+import awsconfig from "../aws-exports";
+
+Amplify.configure({
+  ...awsconfig,
+  ssr: true,
+});
 
 function MyApp({ Component, isMobileView, pageProps }) {
   const router = useRouter();

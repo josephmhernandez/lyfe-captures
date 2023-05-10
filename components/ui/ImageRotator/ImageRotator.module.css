@@ -1,0 +1,73 @@
+.fadeInImage {
+  /* Center contents of div in div */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  justify-self: center;
+  width: 100%;
+  /* 
+  transition: opacity 1s, transform 0.8s;
+  -webkit-transition: 1.5s linear;
+  -moz-transition: 1.5s linear;
+  -o-transition: 1.5s linear;
+  -ms-transition: 1.5s linear;
+
+  animation: fadeIn 4s ease-in-out;
+  -webkit-animation: fadeIn 4s;
+  -moz-animation: fadeIn 4s;
+  -o-animation: fadeIn 4s;
+  animation-fill-mode: forwards;
+  -ms-animation: fadeIn 4s; */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}

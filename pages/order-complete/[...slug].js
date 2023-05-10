@@ -63,7 +63,10 @@ const OrderCompleteId = () => {
             </li>
             <li>
               <p>
-                <Link href={"mailto:" + process.env.EMAIL_SUPPORT}>
+                <Link
+                  href={"mailto:" + process.env.EMAIL_SUPPORT}
+                  legacyBehavior
+                >
                   <a style={{ textDecoration: "underline" }}>Reach out</a>
                 </Link>{" "}
                 if you have any questions or suggestions!

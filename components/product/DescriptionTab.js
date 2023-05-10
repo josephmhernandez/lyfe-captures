@@ -1,5 +1,6 @@
 import { ClassNames } from "@emotion/react";
-import Image from "next/future/image";
+// import Image from "next/future/image";
+import Image from "next/image";
 import classes from "./DescriptionTab.module.css";
 
 const DescriptionTab = ({ description, img, img_first_flag }) => {

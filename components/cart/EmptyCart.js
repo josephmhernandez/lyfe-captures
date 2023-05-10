@@ -18,7 +18,7 @@ const EmptyCart = () => {
       <h1>Uh Oh! It looks like your cart is empty :/</h1>
       <Image src={prodPicTransitBlack} width={800} height={400} />
       <h1>How about creating a new map?</h1>
-      <Link href="/maps">
+      <Link href="/maps" legacyBehavior>
         <a>
           <Button
             style={{

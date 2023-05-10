@@ -1,0 +1,116 @@
+.container {
+  display: flex;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.container h1 {
+  font-size: var(--page-heading-font-size);
+  font-weight: var(--page-heading-font-weight);
+  font-family: var(--page-heading-font-family);
+  color: var(--color-primary);
+  text-align: center;
+}
+
+.container h2 {
+  font-size: var(--page-heading-2-font-size);
+  font-weight: var(--page-heading-2-font-weight);
+  font-family: var(--page-heading-2-font-family);
+  color: var(--color-primary);
+}
+
+.container p {
+  font-size: var(--page-paragraph-font-size);
+  font-weight: var(--page-paragraph-font-weight);
+  font-family: var(--page-paragraph-font-family);
+  color: var(--color-primary);
+}
+
+.column {
+  flex: 1; /* Each column takes up equal space */
+  margin-right: 32px; /* Gap between columns */
+  text-align: justify;
+}
+
+.column:last-child {
+  margin-right: 0; /* Remove margin from last column */
+  /* center content in div */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.column:first-child {
+  display: flex; /* Use flexbox for contents of first column */
+  justify-content: flex-end; /* Align contents to the right */
+}
+
+/* WHen the screen is less than 1200px wide */
+@media (max-width: 1500px) {
+  .container {
+    width: 85%;
+  }
+
+  .container h1 {
+    font-size: var(--medium-page-heading-font-size);
+    font-weight: var(--medium-page-heading-font-weight);
+    font-family: var(--medium-page-heading-font-family);
+  }
+
+  .container h2 {
+    font-size: var(--medium-page-heading-2-font-size);
+    font-weight: var(--medium-page-heading-2-font-weight);
+    font-family: var(--medium-page-heading-2-font-family);
+  }
+
+  .container p {
+    font-size: var(--medium-page-paragraph-font-size);
+    font-weight: var(--medium-page-paragraph-font-weight);
+    font-family: var(--medium-page-paragraph-font-family);
+  }
+}
+
+/* When screen is less than 768px wide then change the flex-direction to a column */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-content: center;
+    justify-self: center;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .column {
+    margin-right: 0;
+    margin-bottom: 32px;
+  }
+
+  .column:last-child {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .container h1 {
+    font-size: var(--mobile-page-heading-font-size);
+    font-weight: var(--mobile-page-heading-font-weight);
+    font-family: var(--mobile-page-heading-font-family);
+    margin: 0;
+  }
+
+  .container h2 {
+    font-size: var(--mobile-page-heading-2-font-size);
+    font-weight: var(--mobile-page-heading-2-font-weight);
+    font-family: var(--mobile-page-heading-2-font-family);
+    padding: 0;
+    margin: 1px;
+  }
+
+  .container p {
+    font-size: var(--mobile-page-paragraph-font-size);
+    font-weight: var(--mobile-page-paragraph-font-weight);
+    font-family: var(--mobile-page-paragraph-font-family);
+  }
+}

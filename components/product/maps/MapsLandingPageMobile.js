@@ -18,7 +18,7 @@ import React, { useState, useEffect } from "react";
 import one_pic from "../../../public/images/image-rotation/city-lights-2.png";
 import two_pic from "../../../public/images/image-rotation/dark-transit-3.png";
 import three_pic from "../../../public/images/image-rotation/modern-1.png";
-import Image from "next/future/image";
+
 import Link from "next/link";
 import { Button } from "semantic-ui-react";
 
@@ -151,7 +151,7 @@ const MapsLandingPageMobile = () => {
 
       <div className={classes.spacingBecauseOfImageBug}></div>
       <div className={classes.centerContent}>
-        <Link href="/maps">
+        <Link href="/maps" legacyBehavior>
           <a>
             <Button
               style={{
@@ -350,7 +350,7 @@ const MapsLandingPageMobile = () => {
       </div>
 
       <div className={classes.centerContent}>
-        <Link href="/maps">
+        <Link href="/maps" legacyBehavior>
           <a>
             <Button
               style={{
