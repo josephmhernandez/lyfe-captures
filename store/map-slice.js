@@ -182,7 +182,7 @@ const mapSlice = createSlice({
       const position = state.lngLat; // Change this position to the state of the center of the map...
       const unique_id = uuid();
 
-      const pinList = state.pinList;
+      let pinList = state.pinList;
 
       if (pinList.length >= process.env.MAX_PINS) {
         // Add pin to map.
