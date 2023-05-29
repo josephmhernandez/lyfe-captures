@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  // reactStrictMode: true,
   swcMinify: true,
 };
 
@@ -16,15 +16,29 @@ module.exports = {
     // Will be available on both server and client
     primaryColor: "#8657c7",
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
-    unoptimized: true,
+    // unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
         hostname: "cdn.chec.io",
         port: "",
         pathname: "/merchants/47490/assets/**",
+      },
+      {
+        protocol: "https",
+        hostname:
+          "mapyourmemory-storage-7ecb0ad634450-staging.s3.amazonaws.com",
+        port: "",
+        pathname: "/public/**",
+      },
+      {
+        protocol: "https",
+        hostname:
+          "mapyourmemory-storage-7ecb0ad634450-staging.s3.us-east-2.amazonaws.com",
+        port: "",
+        pathname: "/public/**",
       },
     ],
   },
