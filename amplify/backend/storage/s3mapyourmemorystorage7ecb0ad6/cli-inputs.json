@@ -1,0 +1,12 @@
+{
+  "resourceName": "s3mapyourmemorystorage7ecb0ad6",
+  "bucketName": "mapyourmemory-storage-7ecb0ad6",
+  "policyUUID": "48354da6",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "READ"
+  ]
+}

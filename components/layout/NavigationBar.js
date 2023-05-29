@@ -30,7 +30,7 @@ const NavigationBar = (props) => {
           </ul>
         </div>
         <div className={classes.cartnav}>
-          <Link href="/cart">
+          <Link href="/cart" legacyBehavior>
             <a>
               <Image width={30} height={30} src={cartPic} alt="CART" />
             </a>

@@ -73,9 +73,17 @@ a {
   --mobile-page-paragraph-font-weight: 400;
   --mobile-page-paragraph-font-family: "Monsterrat", sans-serif;
 
+  --medium-page-heading-font-size: 2rem;
+  --medium-page-heading-font-weight: 300;
+  --medium-page-heading-font-family: "HKGrotesk-Bold", sans-serif;
+
+  --medium-page-heading-2-font-size: 1.5rem;
+  --medium-page-heading-2-font-weight: 300;
+  --medium-page-heading-2-font-family: "HKGrotesk-Bold", sans-serif;
+
   --medium-page-paragraph-font-size: 1rem;
-  --medium-page-font-weight: 400;
-  --medium-page-font-family: "Monsterrat", sans-serif;
+  --medium-page-paragraph-font-weight: 400;
+  --medium-page-paragraph-font-family: "Monsterrat", sans-serif;
 }
 
 @font-face {
