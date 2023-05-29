@@ -1,8 +1,22 @@
 import Image from "next/image";
 import { Segment } from "semantic-ui-react";
 import classes from "./sizes.module.css";
+import { getPublicImage } from "../../utils/awsFunctions";
+import { useEffect, useState } from "react";
 
 const Sizes = () => {
+  const [eframeSizingGuide, setEframeSizingGuide] = useState([]);
+  const [dimensionsImg, setDimensionsImg] = useState([]);
+  useEffect(() => {
+    getPublicImage("aboutus/EFrameSizingGuide.png").then((res) => {
+      setEframeSizingGuide(res);
+    });
+
+    getPublicImage("aboutus/dimensions24x36.png").then((res) => {
+      setDimensionsImg(res);
+    });
+  }, []);
+
   return (
     <div className={classes.sizes}>
       <Segment raised className={classes.sizesSegment}>
@@ -18,20 +32,30 @@ const Sizes = () => {
 
           <Image
             className="ui fluid image"
-            src="images/eframeSizingGuide.jpg"
+            src={eframeSizingGuide}
+            // src="images/eframeSizingGuide.jpg"
             alt="Sizes"
             height="632"
             width="1124"
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
           />
         </div>
         <h1>Acrylic Dimensions</h1>
         <div>
           <Image
             className="ui fluid image"
-            src="images/dimensions24x36.png"
+            // src="images/dimensions24x36.png"
+            src={dimensionsImg}
             alt="24x36 Poster Dimensions"
             width="2304"
             height="1152"
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
           />
         </div>
       </Segment>
