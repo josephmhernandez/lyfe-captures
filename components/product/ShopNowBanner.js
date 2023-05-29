@@ -9,10 +9,16 @@ const ShopNowBanner = (props) => {
     <Link className={classes.shopNowBanner} href={props.to} legacyBehavior>
       <a>
         <Image
-          src={props.src}
-          alt={props.alt}
-          className={classes.pic}
-          layout="raw"
+          className={classes.banner}
+          alt="shop now banner"
+          src={props.src[0]}
+          width={100}
+          height={400}
+          sizes="(max-width: 768px) 100vw,(max-width: 1200px) 100vw, 100vw"
+          style={{
+            width: "100%",
+            height: "auto",
+          }}
         />
       </a>
     </Link>

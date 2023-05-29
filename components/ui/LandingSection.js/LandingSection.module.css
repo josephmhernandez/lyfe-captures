@@ -2,13 +2,15 @@
   display: flex;
   width: 70%;
   margin: 0 auto;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  /* background-color: var(--color-primary); */
 }
 
 .container h1 {
   font-size: var(--page-heading-font-size);
   font-weight: var(--page-heading-font-weight);
   font-family: var(--page-heading-font-family);
-  color: var(--color-primary);
   text-align: center;
 }
 
@@ -16,33 +18,32 @@
   font-size: var(--page-heading-2-font-size);
   font-weight: var(--page-heading-2-font-weight);
   font-family: var(--page-heading-2-font-family);
-  color: var(--color-primary);
+  margin: 0;
 }
 
 .container p {
   font-size: var(--page-paragraph-font-size);
   font-weight: var(--page-paragraph-font-weight);
   font-family: var(--page-paragraph-font-family);
-  color: var(--color-primary);
 }
 
 .column {
   flex: 1; /* Each column takes up equal space */
   margin-right: 32px; /* Gap between columns */
   text-align: justify;
+  flex-direction: column;
 }
 
 .column:last-child {
   margin-right: 0; /* Remove margin from last column */
   /* center content in div */
   display: flex;
-  flex-direction: column;
   justify-content: center;
 }
 
 .column:first-child {
   display: flex; /* Use flexbox for contents of first column */
-  justify-content: flex-end; /* Align contents to the right */
+  justify-content: center; /* Align contents to the right */
 }
 
 /* WHen the screen is less than 1200px wide */
@@ -84,6 +85,7 @@
   .column {
     margin-right: 0;
     margin-bottom: 32px;
+    width: 90%;
   }
 
   .column:last-child {
@@ -114,3 +116,11 @@
     font-family: var(--mobile-page-paragraph-font-family);
   }
 }
+
+/* .clearFormat {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  margin-top: 0;
+  margin-bottom: 0;
+} */

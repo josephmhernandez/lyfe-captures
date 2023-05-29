@@ -1,0 +1,90 @@
+.offer {
+  /* flex: 2; */
+  /* width: 70%; */
+}
+
+.offer h1 {
+  text-align: center;
+  font-size: var(--page-heading-font-size);
+  font-weight: var(--page-heading-font-weight);
+  font-family: var(--page-heading-font-family);
+  color: var(--color-primary);
+}
+
+.offer h2 {
+  font-size: var(--page-heading-2-font-size);
+  font-weight: var(--page-heading-2-font-weight);
+  font-family: var(--page-heading-2-font-family);
+  color: var(--color-primary);
+  text-align: left;
+}
+
+.offer p {
+  font-size: var(--page-paragraph-font-size);
+  font-weight: 400;
+  font-family: var(--page-paragraph-font-family);
+  color: var(--color-primary);
+
+  text-align: left;
+}
+
+.offer ul {
+  list-style-type: "\2713";
+  padding: 0;
+  margin: 0;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  color: var(--color-primary);
+  margin-top: 0;
+  margin-bottom: 0px;
+}
+
+.offer li {
+  padding: 0;
+  padding-left: 1rem;
+}
+
+/* WHen the screen is less than 1200px wide */
+@media (max-width: 1500px) {
+  .offer h1 {
+    font-size: var(--medium-page-heading-font-size);
+    font-weight: var(--medium-page-heading-font-weight);
+    font-family: var(--medium-page-heading-font-family);
+  }
+
+  .offer h2 {
+    font-size: var(--medium-page-heading-2-font-size);
+    font-weight: var(--medium-page-heading-2-font-weight);
+    font-family: var(--medium-page-heading-2-font-family);
+  }
+
+  .offer p {
+    font-size: var(--medium-page-paragraph-font-size);
+    font-weight: var(--medium-page-paragraph-font-weight);
+    font-family: var(--medium-page-paragraph-font-family);
+  }
+}
+
+/* When screen is less than 768px wide then change the flex-direction to a column */
+@media (max-width: 768px) {
+  .offer h1 {
+    font-size: var(--mobile-page-heading-font-size);
+    font-weight: var(--mobile-page-heading-font-weight);
+    font-family: var(--mobile-page-heading-font-family);
+    margin: 0;
+  }
+
+  .offer h2 {
+    font-size: var(--mobile-page-heading-2-font-size);
+    font-weight: var(--mobile-page-heading-2-font-weight);
+    font-family: var(--mobile-page-heading-2-font-family);
+    padding: 0;
+    margin: 1px;
+  }
+
+  .offer p {
+    font-size: var(--mobile-page-paragraph-font-size);
+    font-weight: var(--mobile-page-paragraph-font-weight);
+    font-family: var(--mobile-page-paragraph-font-family);
+  }
+}

@@ -3,8 +3,14 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import LandingSection from "../../components/ui/LandingSection.js/LandingSection";
 import classes from "./wedding.module.css";
+import Link from "next/link";
+import { Button } from "semantic-ui-react";
+import { useMediaQuery } from "../../hooks/useMediaQuery";
+import Offer from "../../components/ui/copyElements/Offer/Offer";
+import { useRouter } from "next/router";
+
 const getHowToVideo = async () => {
-  const file = await Storage.get("how-to-mobile.mp4", {
+  const file = await Storage.get("how-to-vid-white-bg.mp4", {
     level: "public",
   });
   return file;
@@ -24,53 +30,64 @@ const getPublicImage = async (filename) => {
   return file;
 };
 
-const getUploadedImage = async () => {
-  const file = await Storage.get("Cali-Living-room-vertical.jpg", {
-    level: "public",
-  });
-  return file;
-};
-
-const getWedImgSet1 = async () => {
-  const file = await Storage.get("long-beach-w-stock-img.png", {
-    level: "public",
-  });
-  return file;
-};
-
-const getWedImgSet2 = async () => {
-  const file = await Storage.get("long-beach-angle-wall.png", {
-    level: "public",
-  });
-  return file;
-};
-
-const getWedImgSet3 = async () => {
-  const file = await Storage.get("long-beach-living-room.png", {
-    level: "public",
-  });
-  return file;
-};
-
 const weddingSection = {
-  heading: '"The Most Customizable Wedding Gift Solution"',
+  heading: '"The Perfect Wedding or Engagement Gift"',
   text: [
     {
-      subheading: "Any Place",
-      body: "Choose any place in the world and we'll create a custom map of it for you.",
+      subheading: "Thoughtful and Unique",
+      body: "Stand out from traditional wedding gifts with something truly exceptional. Our custom maps are a thoughtful and unique way to celebrate their love. Every time they glance at it, they'll be reminded of the joyous moments they shared and the exciting adventures that lie ahead.",
     },
     {
-      subheading: "Any Moment",
-      body: "Choose any moment in time and we'll create a custom map of it for you.",
+      subheading: "A Keepsake for a Lifetime",
+      body: "Unlike many other gifts, our custom maps are timeless treasures that will never go out of style. They are not only a beautiful addition to their home but also a lasting memento of their special day. This gift will continue to hold sentimental value and serve as a cherished keepsake for years to come.",
     },
     {
-      subheading: "Any Memory",
-      body: "Choose any memory and we'll create a custom map of it for you.",
+      subheading: "Create Everlasting Memories",
+      body: "Give them a gift that will make their hearts swell with happiness. Our custom maps have the power to evoke emotions, trigger memories, and create everlasting moments. It's a truly remarkable way to commemorate their journey together and inspire them to continue creating beautiful memories.",
+    },
+  ],
+};
+
+const weddingSection2 = {
+  heading: "Customized Maps for Unforgettable Moments",
+  text: [
+    {
+      subheading: "Capture Their Love Story",
+      body: "Celebrate their special bond with a custom map that tells their unique love story. Our customizable maps allow you to choose the location where they first met, got engaged, or tied the knot. Whether it's a picturesque park, a charming café, or a dreamy destination, you have the power to create a truly personalized gift.",
+    },
+    {
+      subheading: "Cherish Meaningful Memories",
+      body: "Make their wedding or engagement gift extra special by adding personalized text to the map. Include their names, wedding date, or a heartfelt message to commemorate their milestone. Every time they look at the map, they'll be reminded of the love and joy they shared on that special day.",
+    },
+    {
+      subheading: "Mark a Place of Significance",
+      body: "Our custom maps offer the option to add a custom pin, allowing them to highlight a place of deep meaning. Whether it's the location of their proposal, their first home together, or a favorite vacation spot, this thoughtful touch will make the map a cherished keepsake that symbolizes their journey as a couple.",
+    },
+  ],
+};
+
+const weddingSection3 = {
+  heading: "Easy Design, Timeless Elegance",
+  text: [
+    {
+      subheading: "Effortless Personalization",
+      body: "Designing your custom map is a breeze with our user-friendly interface. Simply select the location, customize the text, and choose the perfect pin to mark their special place. In just a few clicks, you'll have a unique and personalized gift that captures their love story.",
+    },
+    {
+      subheading: "High-Quality Craftsmanship",
+      body: "We take pride in crafting maps of exceptional quality. Each map is meticulously printed on premium materials to ensure sharp details and vibrant colors. Our attention to detail guarantees that this gift will not only be a beautiful piece of artwork but a lasting symbol of their love.",
+    },
+    {
+      subheading: "Ready to Display",
+      body: "Our maps are designed to be effortlessly hung and admired. They come with easy-to-follow instructions and include all the necessary hardware. Whether they choose to display it in their living room, bedroom, or office, this map will instantly become a stunning focal point.",
     },
   ],
 };
 
 const WeddingLanding = () => {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  const router = useRouter();
+
   const [shopNowBanner, setShopNowBanner] = useState([]);
 
   const [cornerImgList, setCornerImgList] = useState([]);
@@ -84,23 +101,23 @@ const WeddingLanding = () => {
   const [weddingCount, setWeddingCount] = useState(0);
 
   useEffect(() => {
-    getPublicImage("transparent/aspen-wall-2-vert.png").then((file) => {
+    getPublicImage("fullTransparent/aspen-wall-2-vert.png").then((file) => {
       setVertImgList((prev) => [...prev, file]);
     });
-    getPublicImage("transparent/seattle-wall-2-vert.png").then((file) => {
+    getPublicImage("fullTransparent/seattle-wall-2-vert.png").then((file) => {
       setVertImgList((prev) => [...prev, file]);
     });
-    getPublicImage("transparent/long-beach-wall-2-vert.png").then((file) => {
+    getPublicImage("fullTransparent/sanfran-wall-2-vert.png").then((file) => {
       setVertImgList((prev) => [...prev, file]);
     });
 
-    getPublicImage("transparent/ny-wall-2.png").then((file) => {
+    getPublicImage("fullTransparent/seattle-wall-horiz.png").then((file) => {
       setHorizImgList((prev) => [...prev, file]);
     });
-    getPublicImage("transparent/hawaii-wall-2.png").then((file) => {
+    getPublicImage("fullTransparent/hawaii-wall-horiz.png").then((file) => {
       setHorizImgList((prev) => [...prev, file]);
     });
-    getPublicImage("transparent/detroit-wall-2.png").then((file) => {
+    getPublicImage("fullTransparent/detroit-wall-horiz.png").then((file) => {
       setHorizImgList((prev) => [...prev, file]);
     });
 
@@ -114,7 +131,11 @@ const WeddingLanding = () => {
       setCornerImgList((prev) => [...prev, file]);
     });
 
-    getShopNowImage().then((file) => {
+    let shopNowBannerPath = "Homepage/Larger-size-banner-wedding.png";
+    if (isMobile) {
+      shopNowBannerPath = "Homepage/mobile-banner-wedding.png";
+    }
+    getPublicImage(shopNowBannerPath).then((file) => {
       setShopNowBanner(file);
     });
 
@@ -161,8 +182,9 @@ const WeddingLanding = () => {
   };
 
   return (
-    <div className={classes.page}>
+    <div>
       <Image
+        className={classes.banner}
         alt="layout Responsive"
         src={shopNowBanner}
         width={100}
@@ -172,33 +194,67 @@ const WeddingLanding = () => {
           width: "100%",
           height: "auto",
         }}
+        onClick={() => {
+          // use router to move to /maps
+          router.push("/maps");
+        }}
       />
 
+      <div className={classes.negativeSpace}>
+        <p></p>
+      </div>
       {/* Component that has two columns when the screen is large enough but when 
       it is a smaller screen it jumps image up top and then content on the bottom. */}
       <LandingSection
         media={vertImgMedia}
         description={weddingSection}
         textFirstFlag={true}
+        darkBackground={true}
       />
 
       <LandingSection
         media={videoMedia}
-        description={weddingSection}
-        textFirstFlag={true}
+        description={weddingSection2}
+        darkBackground={false}
+        // textFirstFlag={true}
       />
 
       <LandingSection
         media={horizImgMedia}
-        description={weddingSection}
+        description={weddingSection3}
         textFirstFlag={true}
+        darkBackground={true}
       />
+
+      {/* We want the complete offer to be inputted here. */}
 
       <LandingSection
         media={cornerImgMedia}
         description={weddingSection}
-        textFirstFlag={true}
-      />
+        darkBackground={false}
+        // textFirstFlag={true}
+      >
+        <Offer />
+      </LandingSection>
+
+      <div className={classes.centerContent}>
+        <Link href="/maps" legacyBehavior>
+          <a>
+            <Button
+              style={{
+                "background-color": "var(--buy-now-btn-color)",
+                color: "white",
+                "border-radius": "100px",
+                "font-family": "var(--page-paragraph-font-family)",
+                "font-size": "var(--page-paragraph-font-size)",
+                "font-weight": "400",
+              }}
+            >
+              Create Now
+            </Button>
+          </a>
+        </Link>
+      </div>
     </div>
   );
 };

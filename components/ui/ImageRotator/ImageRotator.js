@@ -54,7 +54,7 @@ const ImageRotator = (props) => {
           height={700}
           width={700}
           alt="layout responsive"
-          sizes="(max-width: 768px) 85vw,(max-width: 1200px) 100vw, 100vw"
+          sizes="(max-width: 768px) 50vw,(max-width: 1200px) 50vw, 50vw"
           style={cssStyle}
         />
       )}
