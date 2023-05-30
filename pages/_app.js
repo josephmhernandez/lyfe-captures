@@ -1,6 +1,6 @@
 import "../styles/globals.css";
 import Layout from "../components/layout/Layout";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import { Provider } from "react-redux";
 import store from "../store/index";
@@ -18,6 +18,7 @@ import TagManager from "react-gtm-module";
 import * as gtag from "../lib/gtag";
 import { useRouter } from "next/router";
 import Script from "next/script";
+import OfferModal from "../components/ui/OfferModal";
 import { Amplify } from "aws-amplify";
 import awsconfig from "../aws-exports";
 
@@ -28,6 +29,7 @@ Amplify.configure({
 
 function MyApp({ Component, isMobileView, pageProps }) {
   const router = useRouter();
+  const [showDiscount, setShowDiscount] = useState(false);
   let firstTime = true;
 
   useEffect(() => {
@@ -38,6 +40,16 @@ function MyApp({ Component, isMobileView, pageProps }) {
       if (loader) {
         loader.style.display = "none";
       }
+    }
+
+    // Check if the user has visited the site before
+    if (localStorage.getItem("visited") === null) {
+      // And show the discount banner
+      setTimeout(() => {
+        // If not, set the visited flag to true
+        localStorage.setItem("visited", true);
+        setShowDiscount(true);
+      }, 10000); // 10 seconds
     }
 
     // Google Analytics
@@ -86,6 +98,10 @@ function MyApp({ Component, isMobileView, pageProps }) {
       />
       <Elements stripe={stripePromise}>
         <Layout>
+          <OfferModal
+            open={showDiscount}
+            onClose={() => setShowDiscount(false)}
+          />
           <Component {...pageProps} />
         </Layout>
       </Elements>
