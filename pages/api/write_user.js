@@ -34,6 +34,9 @@ export default async function writeUser(req, res) {
         current_date: {
           S: curr_date,
         },
+        acquired_from: {
+          S: req.body.acquired_from ? req.body.acquired_from : "",
+        },
       },
     };
     ddb.putItem(params, function (err, data) {
