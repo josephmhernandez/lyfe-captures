@@ -183,22 +183,26 @@ const WeddingLanding = () => {
 
   return (
     <div>
-      <Image
-        className={classes.banner}
-        alt="layout Responsive"
-        src={shopNowBanner}
-        width={100}
-        height={400}
-        sizes="(max-width: 768px) 100vw,(max-width: 1200px) 100vw, 100vw"
-        style={{
-          width: "100%",
-          height: "auto",
-        }}
-        onClick={() => {
-          // use router to move to /maps
-          router.push("/maps");
-        }}
-      />
+      <Link href={"/maps"} legacyBehavior>
+        <a>
+          <Image
+            className={classes.banner}
+            alt="layout Responsive"
+            src={shopNowBanner}
+            width={100}
+            height={400}
+            sizes="(max-width: 768px) 100vw,(max-width: 1200px) 100vw, 100vw"
+            style={{
+              width: "100%",
+              height: "auto",
+            }}
+            onClick={() => {
+              // use router to move to /maps
+              router.push("/maps");
+            }}
+          />
+        </a>
+      </Link>
 
       <div className={classes.negativeSpace}>
         <p></p>
