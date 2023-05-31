@@ -1,7 +1,5 @@
-import { ClassNames } from "@emotion/react";
-// import Image from "next/future/image";
-import Image from "next/image";
 import classes from "./DescriptionTab.module.css";
+import MediaRender from "../ui/mediaRender/MediaRender";
 
 const DescriptionTab = ({ description, img, img_first_flag }) => {
   const DescriptionConent = ({ description }) => {
@@ -16,12 +14,17 @@ const DescriptionTab = ({ description, img, img_first_flag }) => {
     );
   };
 
+  const mediaContent = {
+    type: "image",
+    src: img,
+  };
+
   if (img_first_flag === true) {
     return (
       <div className={classes.grid}>
         <div className={classes.flexChild}>
           <div className={classes.picContainer}>
-            <Image className={classes.picStyle} src={img} layout="raw" />
+            <MediaRender media={mediaContent} />
           </div>
         </div>
         <div className={classes.flexChild}>
@@ -40,7 +43,7 @@ const DescriptionTab = ({ description, img, img_first_flag }) => {
       {img != undefined ? (
         <div className={classes.flexChild}>
           <div className={classes.picContainer}>
-            <Image className={classes.picStyle} src={img} layout="raw" />
+            <MediaRender media={mediaContent} />
           </div>
         </div>
       ) : (
