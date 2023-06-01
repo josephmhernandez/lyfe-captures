@@ -2,26 +2,13 @@ import ShopNowBanner from "../ShopNowBanner";
 import Link from "next/link";
 import classes from "./MapsLandingPage.module.css";
 
-import shopNowImage from "../../../public/images/banner-large-sale.png";
 import benefitsBanner from "../../../public/images/cropped-benefits-banner.png";
-import prodPicThreeD from "../../../public/images/new-prod-pics/3-d-effect.jpg";
-import prodPicBackFrame from "../../../public/images/new-prod-pics/backframe-hanging.jpg";
-import prodPicCloseUpPinsDarkTransit from "../../../public/images/new-prod-pics/close-up-pins-dark-transit.jpg";
-import prodPicFourCorner from "../../../public/images/new-prod-pics/four-corner.jpg";
-import prodPicTextCloseUp from "../../../public/images/new-prod-pics/text-close-up.jpg";
-import prodPicTransitBlack from "../../../public/images/new-prod-pics/trans-black.png";
-import prodPicTransitWhite from "../../../public/images/new-prod-pics/corner-transit-white.jpg";
 import Offer from "../../ui/copyElements/Offer/Offer";
-// import Image from "next/future/image";
 import Image from "next/image";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
+
 import { Button } from "semantic-ui-react";
 import DescriptionTab from "../DescriptionTab";
 import React, { useState, useEffect } from "react";
-
-import one_pic from "../../../public/images/image-rotation/city-lights-2.png";
-import two_pic from "../../../public/images/image-rotation/dark-transit-3.png";
-import three_pic from "../../../public/images/image-rotation/modern-1.png";
 import LandingSection from "../../ui/LandingSection.js/LandingSection";
 import { getPublicImage } from "../../../utils/awsFunctions";
 import {
@@ -29,14 +16,11 @@ import {
   generalCopyEasyDesign,
   generalCopyPerfectGift,
 } from "../../../utils/copy_general";
-const prod_images = [one_pic, two_pic, three_pic];
 
 const heading_special = "Special Request? We can help!";
 const description_special = [
   `Want a specific color? We can help! Want a different size? We can help! Want a different style? We can help! We're here to help you create a unique and meaningful gift for your loved one. Please contact us at ${process.env.EMAIL_SPECIAL_REQUESTS}`,
 ];
-
-const title = "Meaningful Maps";
 
 const dict_special_request = {
   heading: heading_special,
@@ -99,6 +83,22 @@ const MapsLandingPage = () => {
   const [homepageBanner, setHomepageBanner] = useState([]);
   const [horizImgList, setHorizImgList] = useState([]);
   const [cornerImgList, setCornerImgList] = useState([]);
+  const [videoHowTo, setVideoHowTo] = useState([]);
+  const [descriptionImg3DEffect, setDescriptionImg3DEffect] = useState(null);
+  const [descriptionImgBackFrame, setDescriptionImgBackFrame] = useState(null);
+  const [
+    descriptionImgCloseUpPinsDarkTransit,
+    setDescriptionImgCloseUpPinsDarkTransit,
+  ] = useState(null);
+  const [descriptionImgFourCorner, setDescriptionImgFourCorner] =
+    useState(null);
+  const [descriptionImgTextCloseUp, setDescriptionImgTextCloseUp] =
+    useState(null);
+  const [descriptionImgTransitBlack, setDescriptionImgTransitBlack] =
+    useState(null);
+  const [descriptionImgTransitWhite, setDescriptionImgTransitWhite] =
+    useState(null);
+
   useEffect(() => {
     getPublicImage("fullTransparent/aspen-wall-2-vert.png").then((file) => {
       setVertImgList((prev) => [...prev, file]);
@@ -133,21 +133,62 @@ const MapsLandingPage = () => {
     getPublicImage("transparent/dallas-corner.png").then((file) => {
       setCornerImgList((prev) => [...prev, file]);
     });
-  }, []);
 
-  const vertImgMedia = {
-    type: "imageSlider",
-    src: vertImgList,
-  };
+    getPublicImage("how-to-vid-white-bg.mp4").then((file) => {
+      setVideoHowTo((prev) => [...prev, file]);
+    });
+
+    getPublicImage(
+      "Homepage/description-tab-prod-pictures/3-d-effect.jpg"
+    ).then((file) => {
+      setDescriptionImg3DEffect(file);
+    });
+
+    getPublicImage(
+      "Homepage/description-tab-prod-pictures/backframe-hanging.jpg"
+    ).then((file) => {
+      setDescriptionImgBackFrame(file);
+    });
+
+    getPublicImage(
+      "Homepage/description-tab-prod-pictures/close-up-pins-dark-transit.jpg"
+    ).then((file) => {
+      setDescriptionImgCloseUpPinsDarkTransit(file);
+    });
+
+    getPublicImage(
+      "Homepage/description-tab-prod-pictures/four-corner.jpg"
+    ).then((file) => {
+      setDescriptionImgFourCorner(file);
+    });
+
+    getPublicImage(
+      "Homepage/description-tab-prod-pictures/text-close-up.jpg"
+    ).then((file) => {
+      setDescriptionImgTextCloseUp(file);
+    });
+
+    getPublicImage(
+      "Homepage/description-tab-prod-pictures/trans-black.png"
+    ).then((file) => {
+      setDescriptionImgTransitBlack(file);
+    });
+
+    getPublicImage(
+      "Homepage/description-tab-prod-pictures/corner-transit-white.jpg"
+    ).then((file) => {
+      setDescriptionImgTransitWhite(file);
+    });
+  }, []);
 
   const landingMedia1 = {
     type: "imageSlider",
-    src: vertImgList,
+    src: horizImgList,
   };
 
   const landingMedia2 = {
-    type: "imageSlider",
-    src: horizImgList,
+    type: "video",
+    src: videoHowTo,
   };
 
   const landingMedia3 = {
@@ -156,8 +197,8 @@ const MapsLandingPage = () => {
   };
 
   const landingMedia4 = {
-    type: "image",
-    src: vertImgList[0],
+    type: "imageSlider",
+    src: vertImgList,
   };
 
   return (
@@ -231,41 +272,56 @@ const MapsLandingPage = () => {
       </div>
       <div className={classes.spacingBecauseOfImageBug}></div>
 
-      <DescriptionTab
-        img={prodPicTransitWhite}
-        description={dict_x}
-        img_first_flag={true}
-      />
-      <DescriptionTab
-        img={prodPicCloseUpPinsDarkTransit}
-        description={dict_customizable}
-        img_first_flag={false}
-      />
-      <DescriptionTab
-        img={prodPicBackFrame}
-        description={dict_hanging}
-        img_first_flag={true}
-      />
-      <DescriptionTab
-        img={prodPicTransitBlack}
-        description={dict_sizes}
-        img_first_flag={false}
-      />
-      <DescriptionTab
-        img={prodPicFourCorner}
-        description={dict_shipping}
-        img_first_flag={true}
-      />
-      <DescriptionTab
-        img={prodPicTextCloseUp}
-        description={dict_gifts}
-        img_first_flag={false}
-      />
-      <DescriptionTab
-        img={prodPicThreeD}
-        description={dict_quality}
-        img_first_flag={true}
-      />
+      {descriptionImgTransitWhite && (
+        <DescriptionTab
+          img={descriptionImgTransitWhite}
+          description={dict_x}
+          img_first_flag={true}
+        />
+      )}
+      {descriptionImg3DEffect && (
+        <DescriptionTab
+          img={descriptionImgCloseUpPinsDarkTransit}
+          description={dict_customizable}
+          img_first_flag={false}
+        />
+      )}
+      {descriptionImgBackFrame && (
+        <DescriptionTab
+          img={descriptionImgBackFrame}
+          description={dict_hanging}
+          img_first_flag={true}
+        />
+      )}
+      {descriptionImgTransitBlack && (
+        <DescriptionTab
+          img={descriptionImgTransitBlack}
+          description={dict_sizes}
+          img_first_flag={false}
+        />
+      )}
+
+      {descriptionImgFourCorner && (
+        <DescriptionTab
+          img={descriptionImgFourCorner}
+          description={dict_shipping}
+          img_first_flag={true}
+        />
+      )}
+      {descriptionImgTextCloseUp && (
+        <DescriptionTab
+          img={descriptionImgTextCloseUp}
+          description={dict_gifts}
+          img_first_flag={false}
+        />
+      )}
+      {descriptionImg3DEffect && (
+        <DescriptionTab
+          img={descriptionImg3DEffect}
+          description={dict_quality}
+          img_first_flag={true}
+        />
+      )}
       <div className={classes.specialRequest}>
         <h1>{dict_special_request.heading}</h1>
         <p>{dict_special_request.text}</p>
