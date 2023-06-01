@@ -1,23 +1,29 @@
 import classes from "./EmptyCart.module.css";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import { BuyNowButton } from "../../components/ui/CustomButtons";
 import { Button } from "semantic-ui-react";
-import prodPicTransitBlack from "../../public/images/new-prod-pics/trans-black.png";
-import Image from "next/image";
-const EmptyCart = () => {
-  const router = useRouter();
+import { getPublicImage } from "../../utils/awsFunctions";
+import { useEffect, useState } from "react";
+import MediaRender from "../ui/mediaRender/MediaRender";
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    router.push("/maps");
+const EmptyCart = () => {
+  const [videoHowTo, setVideoHowTo] = useState([]);
+
+  useEffect(() => {
+    getPublicImage("how-to-vid-white-bg.mp4").then((file) => {
+      setVideoHowTo((prev) => [...prev, file]);
+    });
+  }, []);
+
+  const mediaVid = {
+    type: "video",
+    src: videoHowTo,
   };
+
+  console.log(videoHowTo);
 
   return (
     <div className={classes.emptyPage}>
       <h1>Uh Oh! It looks like your cart is empty :/</h1>
-      <Image src={prodPicTransitBlack} width={800} height={400} />
-      <h1>How about creating a new map?</h1>
       <Link href="/maps" legacyBehavior>
         <a>
           <Button
@@ -31,6 +37,24 @@ const EmptyCart = () => {
             }}
           >
             Create a new map
+          </Button>
+        </a>
+      </Link>
+      <MediaRender media={mediaVid} />
+      <h1>How about creating a new map?</h1>
+      <Link href="/maps" legacyBehavior>
+        <a>
+          <Button
+            style={{
+              "background-color": "#23d160",
+              color: "white",
+              "border-radius": "100px",
+              "font-family": "var(--page-heading-font-family)",
+              "font-size": "var(--page-paragraph-font-size)",
+              "font-weight": "400",
+            }}
+          >
+            Get Started
           </Button>
         </a>
       </Link>
