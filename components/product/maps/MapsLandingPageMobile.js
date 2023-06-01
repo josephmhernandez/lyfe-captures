@@ -6,10 +6,6 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import DescriptionTab from "../DescriptionTab";
 import React, { useState, useEffect } from "react";
 
-import one_pic from "../../../public/images/image-rotation/city-lights-2.png";
-import two_pic from "../../../public/images/image-rotation/dark-transit-3.png";
-import three_pic from "../../../public/images/image-rotation/modern-1.png";
-
 import Link from "next/link";
 import { Button } from "semantic-ui-react";
 import LandingSection from "../../ui/LandingSection.js/LandingSection";
@@ -19,8 +15,6 @@ import {
   generalCopyEasyDesign,
   generalCopyPerfectGift,
 } from "../../../utils/copy_general";
-
-const prod_images = [one_pic, two_pic, three_pic];
 
 const DUMMY_TITLE = "what is this?";
 const DUMMY_DESCRIPTION =
@@ -248,7 +242,7 @@ const MapsLandingPageMobile = () => {
   };
 
   const landingMedia4 = {
-    type: "image",
+    type: "imageSlider",
     src: vertImgList,
   };
 
