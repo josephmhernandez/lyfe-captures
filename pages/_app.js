@@ -51,18 +51,7 @@ function MyApp({ Component, isMobileView, pageProps }) {
         setShowDiscount(true);
       }, 10000); // 10 seconds
     }
-
-    // Google Analytics
-    const handleRouteChange = (url) => {
-      gtag.pageview(url);
-    };
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-
-    // TagManager.initialize({ gtmId: process.env.GTM_ID });
-  }, [router.events]);
+  }, [router.events, pageProps]);
 
   const stripePromise = loadStripe(process.env.STRIPE_PK);
 

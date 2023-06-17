@@ -146,6 +146,17 @@ const CheckoutForm = (props) => {
         *** */
 
     setProcessing(true);
+
+    // Send to Google Analytics
+    gtag.event({
+      action: "CheckoutComplete",
+      category: "Ecommerce",
+      label: "Checkout",
+      value: props.liveObject.subtotal.raw
+        ? props.liveObject.subtotal.raw
+        : null,
+    });
+
     let final = {};
 
     // Get that extr_field key from an object in commercejs
