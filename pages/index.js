@@ -3,17 +3,17 @@ import { Fragment, useEffect } from "react";
 import Layout from "../components/layout/Layout";
 import MapsLandingPage from "../components/product/maps/MapsLandingPage";
 import MapsLandingPageMobile from "../components/product/maps/MapsLandingPageMobile";
-import { rudderInitialize } from "../utils/Analytics/rudderInitialize";
+// import { rudderInitialize } from "../utils/Analytics/rudderInitialize";
 
 export default function Home(props) {
   useEffect(() => {
-    rudderInitialize();
+    // rudderInitialize();
   }, []);
 
-  const search = () => {
-    window.rudderanalytics.page();
-    window.rudderanalytics.track("Sample Track Event");
-  };
+  // const search = () => {
+  // window.rudderanalytics.page();
+  // window.rudderanalytics.track("Track Event.");
+  // };
 
   return <div>{renderComp()}</div>;
 }
