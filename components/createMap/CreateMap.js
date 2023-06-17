@@ -150,16 +150,17 @@ const CreateMap = (props) => {
         description: description,
       })
     );
-    router.push("/cart");
-    setLoading(false);
 
-    // Google Analytics
+    // Send to google analytics
     gtag.event({
-      action: "add-to-cart",
+      action: "AddToCart",
       category: "checkout",
       label: "add-map-to-cart",
       value: productName,
     });
+
+    router.push("/cart");
+    setLoading(false);
   };
 
   const MapWithNoSSR = dynamic(import("./MapFolder/Map"), {
