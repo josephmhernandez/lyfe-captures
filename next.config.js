@@ -43,6 +43,7 @@ module.exports = {
     ],
   },
   env: {
+    BUILD_ENV: process.env.BUILD_ENV,
     GOOGLE_API_KEY: process.env.GOOGLE_API_KEY,
     CHEC_PK: process.env.CHEC_PK,
     CHEC_SK: process.env.CHEC_SK,
