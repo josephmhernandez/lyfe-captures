@@ -20,6 +20,7 @@ import {
 } from "../cart/cartFunctionality";
 import { getMapDescriptionText } from "./mapFunctionality";
 import * as gtag from "../../lib/gtag";
+import * as pintag from "../../lib/pintag";
 import { Button } from "semantic-ui-react";
 
 const commerce = new Commerce(process.env.CHEC_PK);
@@ -157,6 +158,12 @@ const CreateMap = (props) => {
       category: "checkout",
       label: "add-map-to-cart",
       value: productName,
+    });
+
+    pintag.pinTagEvent("addtocart", {
+      value: price,
+      order_quantity: 1,
+      currency: "USD",
     });
 
     router.push("/cart");
