@@ -12,6 +12,8 @@ import {
 } from "./cartFunctionality";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import * as gtag from "../../lib/gtag";
+import * as pintag from "../../lib/pintag";
+import Pin from "../createMap/StyleAccordion/Pin";
 
 const CheckoutForm = (props) => {
   // Map specifications that are passed to the extra field to be published to commercejs
@@ -154,6 +156,16 @@ const CheckoutForm = (props) => {
       label: "Checkout",
       value: props.liveObject.subtotal.raw
         ? props.liveObject.subtotal.raw
+        : null,
+    });
+
+    pintag.pinTagEvent("checkout", {
+      value: props.liveObject.subtotal.raw
+        ? props.liveObject.subtotal.raw
+        : null,
+      currency: "USD",
+      order_quantity: props.liveObject.line_items.length
+        ? props.liveObject.line_items.length
         : null,
     });
 
