@@ -16,6 +16,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import React from "react";
 import TagManager from "react-gtm-module";
 import * as gtag from "../lib/gtag";
+import * as pintag from "../lib/pintag";
 import { useRouter } from "next/router";
 import Script from "next/script";
 import OfferModal from "../components/ui/OfferModal";
@@ -41,6 +42,11 @@ function MyApp({ Component, isMobileView, pageProps }) {
         loader.style.display = "none";
       }
     }
+
+    // Pinterest Tag
+    pintag.pinTagEvent("pagevisit", {
+      page_name: router.pathname,
+    });
 
     // Check if the user has visited the site before
     if (localStorage.getItem("visited") === null) {
@@ -85,6 +91,32 @@ function MyApp({ Component, isMobileView, pageProps }) {
         `,
         }}
       />
+      <Script
+        id="pinterest-tag-manager"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{
+          __html: `
+          !function(e){if(!window.pintrk){window.pintrk = function () {
+          window.pintrk.queue.push(Array.prototype.slice.call(arguments))};var
+            n=window.pintrk;n.queue=[],n.version="3.0";var
+            t=document.createElement("script");t.async=!0,t.src=e;var
+            r=document.getElementsByTagName("script")[0];
+            r.parentNode.insertBefore(t,r)}}("https://s.pinimg.com/ct/core.js");
+          pintrk('load', '2614363147734', {em: 'joseph.hernandez@mapyourmemory.com'});
+          pintrk('page');
+          `,
+        }}
+      />
+      {/* <noscript>
+        <img
+          height="1"
+          width="1"
+          style="display:none;"
+          alt=""
+          src="https://ct.pinterest.com/v3/?event=init&tid=2614363147734&pd[em]=<hashed_email_address>&noscript=1"
+        />
+      </noscript> */}
+
       <Elements stripe={stripePromise}>
         <Layout>
           <OfferModal
