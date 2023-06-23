@@ -66,7 +66,11 @@ function MyApp({ Component, isMobileView, pageProps }) {
       <Head>
         <title>Map Your Memory</title>
         <link rel="icon" href="/pin-logo.ico" />
-
+        {/* Claim website for Pinterest */}
+        <meta
+          name="p:domain_verify"
+          content="8888a1038127b435f40ee754969a6407"
+        />
         <meta
           name="description"
           content="Design your own unique map for a special occasion, event, or place. It's the perfect customized gift for weddings, engagements, and holidays."
