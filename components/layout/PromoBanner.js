@@ -8,7 +8,6 @@ const PromoBanner = () => {
 
   const handleOpenPromoModal = () => {
     setOpen(true);
-    console.log("handleOpenPromoModal");
   };
 
   return (
