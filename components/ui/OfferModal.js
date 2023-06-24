@@ -3,7 +3,7 @@ Modal designed to display a discount offer to first time visitors.
 */
 
 import { useState } from "react";
-import { Modal, Input, Form, Grid } from "semantic-ui-react";
+import { Modal, Form, Grid } from "semantic-ui-react";
 import classes from "./OfferModal.module.css";
 import { validateEmail } from "../../utils/helper_methods";
 import { v4 as uuid } from "uuid";
