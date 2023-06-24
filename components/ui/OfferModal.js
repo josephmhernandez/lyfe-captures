@@ -109,7 +109,7 @@ const OfferModal = ({ open, onClose }) => {
           </Form.Field>
           <Form.Group>
             <Form.Button positive size="big" onClick={handleEmailSend}>
-              Get Discount
+              Enter Giveaway
             </Form.Button>
             <Form.Button color="grey" size="big" onClick={onClose}>
               Close
