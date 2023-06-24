@@ -65,7 +65,7 @@ function MyApp({ Component, isMobileView, pageProps }) {
     <Provider store={store}>
       <Head>
         <title>Map Your Memory</title>
-        <link rel="icon" href="/pin-logo.ico" />
+        <link rel="shortcut icon" href="/pin-logo-new.png" />
         {/* Claim website for Pinterest */}
         <meta
           name="p:domain_verify"
