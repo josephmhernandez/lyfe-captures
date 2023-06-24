@@ -3,10 +3,14 @@ Modal designed to display a discount offer to first time visitors.
 */
 
 import { useState } from "react";
-import { Modal, Input, Form, Grid } from "semantic-ui-react";
+import { Modal, Form, Grid } from "semantic-ui-react";
 import classes from "./OfferModal.module.css";
 import { validateEmail } from "../../utils/helper_methods";
 import { v4 as uuid } from "uuid";
+import {
+  PINTEREST_URL,
+  PINTEREST_PAGE_NAME,
+} from "../../constants/siteConstants";
 
 const OfferModal = ({ open, onClose }) => {
   const [userName, setUserName] = useState("");
@@ -52,6 +56,19 @@ const OfferModal = ({ open, onClose }) => {
       body: JSON.stringify(params),
     });
 
+    // Send stats to Pinterest and google analytics
+    pintag.pinTagEvent("lead", {
+      from: "website",
+      lead_type: "email",
+      details: "giveaway promotion",
+    });
+    gtag.event({
+      action: "lead-email",
+      category: "lead",
+      label: "giveaway promotion",
+      value: 1,
+    });
+
     // TO DO: Send the user a discount code for their email
 
     // Close the modal
@@ -59,19 +76,21 @@ const OfferModal = ({ open, onClose }) => {
   };
   return (
     <Modal open={open} onClose={onClose} className={classes.modal}>
-      <h1> Lock in 20% Discount!</h1>
-      <h2> Only chance to get this price</h2>
+      <h1>🎉 Enter our Giveaway! 🎁✨</h1>
+      <h2>We are giving away 3 maps at the end of July!</h2>
 
       <p>
-        On top of the sale, first time website visitors can lock in a 20%
-        discount. Right now, all maps are $499. With the 20% discount, you can
-        get a map for $399.20. This is the lowest price we'll ever offer. Don't
-        miss out! This is your only chance to lock in this price.
+        1️⃣ {`Follow us on Pinterest at `}
+        <a href={PINTEREST_URL} target="_blank" rel="noopener noreferrer">
+          {PINTEREST_PAGE_NAME}
+        </a>
+        {` for one entry`}
       </p>
       <p>
-        Enter your email and your price will be locked in for the rest of the
-        year!
+        2️⃣ Enter your email below for an additional entry to the giveaway AND to
+        get an exclusive 20% off coupon code for your next order!
       </p>
+
       <Grid.Column className="center aligned" textAlign="center">
         <Form>
           <Form.Field>
@@ -89,6 +108,9 @@ const OfferModal = ({ open, onClose }) => {
           <Form.Group>
             <Form.Button positive size="big" onClick={handleEmailSend}>
               Get Discount
+            </Form.Button>
+            <Form.Button color="grey" size="big" onClick={onClose}>
+              Close
             </Form.Button>
           </Form.Group>
         </Form>
