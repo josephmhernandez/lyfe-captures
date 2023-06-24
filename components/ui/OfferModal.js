@@ -11,6 +11,8 @@ import {
   PINTEREST_URL,
   PINTEREST_PAGE_NAME,
 } from "../../constants/siteConstants";
+import * as gtag from "../../lib/gtag";
+import * as pintag from "../../lib/pintag";
 
 const OfferModal = ({ open, onClose }) => {
   const [userName, setUserName] = useState("");
