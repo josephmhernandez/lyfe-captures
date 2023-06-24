@@ -1,20 +1,41 @@
 .container {
   background-color: var(--color-primary);
   width: 100%;
-  display: flex;
   font-family: var(--primary-font);
   font-weight: 400;
   color: var(--color-secondary);
-  font-size: 2rem;
+
+  display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 5px 0;
 }
 
+.container p {
+  margin-right: 20px;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.container button {
+  height: 50px;
+  padding-left: 10px;
+}
 @media screen and (max-width: 600px) {
   .container {
+    padding: 10px 0;
+  }
+
+  .container p {
     display: flex;
     font-family: var(--mobile-page-heading-font-family);
     font-weight: var(--mobile-page-heading-font-weight);
     font-size: var(--mobile-page-paragraph-font-size);
     text-align: center;
+  }
+
+  .container button {
+    height: 35px;
+    font-size: var(--mobile-page-paragraph-font-size);
   }
 }
