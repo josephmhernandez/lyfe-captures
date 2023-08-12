@@ -204,6 +204,37 @@ const MapsLandingPage = () => {
   return (
     <div className={classes.all}>
       <ShopNowBanner to="/maps" src={homepageBanner} alt="" />
+      <div className={classes.prodDescrption}>
+        {/* Product Description */}
+        <h1>Luxurious Acrylic Maps</h1>
+        <ul>
+          <li>
+            <h2>Large 24x36 in. Prints</h2>
+          </li>
+          <li>
+            <h2>Thick Quarter in. Acrylic</h2>
+          </li>
+          <li>
+            <h2>High Resolution Map Imaging</h2>
+          </li>
+          <li>
+            <h2>Customizable Text and Styles</h2>
+          </li>
+          <li>
+            <h2>No Assembly! Hang Out of the Box</h2>
+          </li>
+          <li>
+            <h2>Hanging Material Included</h2>
+          </li>
+          <li>
+            <h2>Free Shipping</h2>
+          </li>
+          <li>
+            <h2>Enter Giveaway for 20% Off</h2>
+          </li>
+        </ul>
+      </div>
+
       <div className={classes.centerContent}>
         <Link href="/maps" legacyBehavior>
           <a>
