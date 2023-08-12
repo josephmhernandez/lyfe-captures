@@ -1,4 +1,4 @@
-const DUMMY_PROMO_TEXT = "Free Summer GIVEAWAY - Enter now!";
+const DUMMY_PROMO_TEXT = "FREE August Giveaway - Enter Now!";
 import OfferModal from "../ui/OfferModal";
 import classes from "./PromoBanner.module.css";
 import { Button } from "semantic-ui-react";
