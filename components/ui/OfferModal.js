@@ -79,20 +79,15 @@ const OfferModal = ({ open, onClose }) => {
   return (
     <Modal open={open} onClose={onClose} className={classes.modal}>
       <h1>🎉 Enter our Giveaway! 🎁✨</h1>
-      <h2>We are giving away 3 maps at the end of July!</h2>
+      <h2>We are giving away 4 maps in August 2023!</h2>
 
       <p>
-        1️⃣ {`Follow us on Pinterest at `}
-        <a href={PINTEREST_URL} target="_blank" rel="noopener noreferrer">
-          {PINTEREST_PAGE_NAME}
-        </a>
-        {` for one entry`}
+        MapYourMemory is a new business, so we’re only expecting 25 or so
+        entrants!
       </p>
-      <p>
-        2️⃣ Enter your email below for an additional entry to the giveaway AND to
-        get an exclusive 20% off coupon code for your next order!
-      </p>
-
+      <p>Simply, enter your email for a chance to win!</p>
+      <p>Even if you don’t win you’ll get a 20% discount code for entering!</p>
+      <p>Winners get a free map shipped to them at no cost! Good luck!</p>
       <Grid.Column className="center aligned" textAlign="center">
         <Form>
           <Form.Field>
