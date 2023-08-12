@@ -87,7 +87,10 @@ const OfferModal = ({ open, onClose }) => {
       </p>
       <p>Simply, enter your email for a chance to win!</p>
       <p>Even if you don’t win you’ll get a 20% discount code for entering!</p>
-      <p>Winners get a free map shipped to them at no cost! Good luck!</p>
+      <p>
+        Must be in the continental United States to win! Winners get a free map
+        shipped to them at no cost! Good luck!
+      </p>
       <Grid.Column className="center aligned" textAlign="center">
         <Form>
           <Form.Field>
