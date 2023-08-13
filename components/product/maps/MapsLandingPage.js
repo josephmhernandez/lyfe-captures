@@ -98,6 +98,7 @@ const MapsLandingPage = () => {
     useState(null);
   const [descriptionImgTransitWhite, setDescriptionImgTransitWhite] =
     useState(null);
+  const [bgProdDescriptionImg, setBgProdDescriptionImg] = useState(null);
 
   useEffect(() => {
     getPublicImage("fullTransparent/aspen-wall-2-vert.png").then((file) => {
@@ -179,6 +180,10 @@ const MapsLandingPage = () => {
     ).then((file) => {
       setDescriptionImgTransitWhite(file);
     });
+
+    getPublicImage("Homepage/dark-transit-bg.png").then((file) => {
+      setBgProdDescriptionImg(file);
+    });
   }, []);
 
   const landingMedia1 = {
@@ -201,57 +206,71 @@ const MapsLandingPage = () => {
     src: vertImgList,
   };
 
+  // Background of product description as dark transit
+  const divBgStyle = {
+    backgroundImage: `url(${bgProdDescriptionImg})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundOpacity: 0.4,
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  };
+
   return (
     <div className={classes.all}>
       <ShopNowBanner to="/maps" src={homepageBanner} alt="" />
-      <div className={classes.prodDescrption}>
-        {/* Product Description */}
-        <h1>Luxurious Acrylic Maps</h1>
-        <ul>
-          <li>
-            <h2>Large 24x36 in. Prints</h2>
-          </li>
-          <li>
-            <h2>Thick Quarter in. Acrylic</h2>
-          </li>
-          <li>
-            <h2>High Resolution Map Imaging</h2>
-          </li>
-          <li>
-            <h2>Customizable Text and Styles</h2>
-          </li>
-          <li>
-            <h2>No Assembly! Hang Out of the Box</h2>
-          </li>
-          <li>
-            <h2>Hanging Material Included</h2>
-          </li>
-          <li>
-            <h2>Free Shipping</h2>
-          </li>
-          <li>
-            <h2>Enter Giveaway for 20% Off</h2>
-          </li>
-        </ul>
-      </div>
-
-      <div className={classes.centerContent}>
-        <Link href="/maps" legacyBehavior>
-          <a>
-            <Button
-              style={{
-                "background-color": "var(--buy-now-btn-color)",
-                color: "white",
-                "border-radius": "100px",
-                "font-family": "var(--page-paragraph-font-family)",
-                "font-size": "var(--page-paragraph-font-size)",
-                "font-weight": "400",
-              }}
-            >
-              Create Now
-            </Button>
-          </a>
-        </Link>
+      <div className={classes.spacingBecauseOfImageBug}></div>
+      <div className={classes.prodDescrption} style={divBgStyle}>
+        <div className={classes.prodDescrption}>
+          {/* Product Description */}
+          <h1>Luxurious Acrylic Maps</h1>
+          <ul>
+            <li>
+              <h2>Large 24x36 in. Prints</h2>
+            </li>
+            <li>
+              <h2>Thick Quarter in. Acrylic</h2>
+            </li>
+            <li>
+              <h2>High Resolution Map Imaging</h2>
+            </li>
+            <li>
+              <h2>Customizable Text and Styles</h2>
+            </li>
+            <li>
+              <h2>No Assembly! Hang Out of the Box</h2>
+            </li>
+            <li>
+              <h2>Hanging Material Included</h2>
+            </li>
+            <li>
+              <h2>Free Shipping</h2>
+            </li>
+            <li>
+              <h2>Enter Giveaway for 20% Off</h2>
+            </li>
+          </ul>
+        </div>
+        <div className={classes.centerContent}>
+          <Link href="/maps" legacyBehavior>
+            <a>
+              <Button
+                style={{
+                  "background-color": "var(--buy-now-btn-color)",
+                  color: "white",
+                  "border-radius": "100px",
+                  "font-family": "var(--page-paragraph-font-family)",
+                  "font-size": "var(--page-paragraph-font-size)",
+                  "font-weight": "400",
+                }}
+              >
+                Create Now
+              </Button>
+            </a>
+          </Link>
+        </div>
       </div>
 
       <LandingSection
