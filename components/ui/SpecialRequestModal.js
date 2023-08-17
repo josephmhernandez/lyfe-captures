@@ -36,8 +36,12 @@ const SpecialRequestModal = ({ open, onClose }) => {
   const getSpecialReq = () => {
     // Get the last item in the local storage cart_data array.
     let cartData = JSON.parse(localStorage.getItem("cart_data"));
-    let lastItem = cartData[cartData.length - 1];
-    return lastItem;
+    if (cartData) {
+      let lastItem = cartData[cartData.length - 1];
+      return lastItem;
+    }
+    console.error("cart data:", cartData);
+    return {};
   };
 
   useEffect(() => {
@@ -95,29 +99,34 @@ const SpecialRequestModal = ({ open, onClose }) => {
   let mapDescriptionText = "";
 
   // If mapDescription exists
-  if (mapDescription) {
-    let textpayload = "";
-    if (
-      mapDescription.textPrimary ||
-      mapDescription.textSecondary ||
-      mapDescription.textCoordinates
-    ) {
-      textpayload = `The map contains text: ${mapDescription.textPrimary} ${mapDescription.textSecondary} ${mapDescription.textCoordinates}.`;
-    }
+  try {
+    if (mapDescription) {
+      let textpayload = "";
+      if (
+        mapDescription.textPrimary ||
+        mapDescription.textSecondary ||
+        mapDescription.textCoordinates
+      ) {
+        textpayload = `The map contains text: ${mapDescription.textPrimary} ${mapDescription.textSecondary} ${mapDescription.textCoordinates}.`;
+      }
 
-    let numPinsText = "";
-    if (mapDescription.pinList && mapDescription.pinList.length != 0) {
-      numPinsText = `For now we're starting with a ${mapDescription.orientation} map with ${mapDescription.pinList.length} pin(s).`;
-    }
+      let numPinsText = "";
+      if (mapDescription.pinList && mapDescription.pinList.length != 0) {
+        numPinsText = `For now we're starting with a ${mapDescription.orientation} map with ${mapDescription.pinList.length} pin(s).`;
+      }
 
-    mapDescriptionText =
-      `Current Map Information:` +
-      `Sending ${
-        mapDescription.description ? mapDescription.description : ""
-      }. We'll send an email of the map with specifications you've requested. ${numPinsText} ${textpayload} The map is in the style of ${
-        mapDescription.tileLayer
-      }.`;
+      mapDescriptionText =
+        `Current Map Information:` +
+        `Sending ${
+          mapDescription.description ? mapDescription.description : ""
+        }. We'll send an email of the map with specifications you've requested. ${numPinsText} ${textpayload} The map is in the style of ${
+          mapDescription.tileLayer
+        }.`;
+    }
+  } catch (e) {
+    mapDescriptionText = "";
   }
+
   return (
     <Modal open={open} onClose={onClose}>
       <Modal.Header>
