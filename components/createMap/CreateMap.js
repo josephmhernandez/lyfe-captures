@@ -194,6 +194,12 @@ const CreateMap = (props) => {
   //   dispatch(mapActions.setZoomOffset(zoomOffset - 1));
   // };
 
+  // Used for Special Requests
+  const BUTTON_TEXT = props.buttonText ? props.buttonText : "Add to Cart";
+  const BUTTON_PUSH_HANDLER = props.buttonPushHandler
+    ? props.buttonPushHandler
+    : handleAddToCart;
+
   return (
     <Fragment>
       <div className={classes.noteContainer}>
@@ -227,7 +233,9 @@ const CreateMap = (props) => {
             {/* <BuyNowButton onClick={handleBuyNow}>
             Buy Now
           </BuyNowButton> */}
-            <BuyNowButton onClick={handleAddToCart}>Add To Cart</BuyNowButton>
+            <BuyNowButton onClick={BUTTON_PUSH_HANDLER}>
+              {`${BUTTON_TEXT}`}
+            </BuyNowButton>
           </div>
         </Paper>
       </div>
