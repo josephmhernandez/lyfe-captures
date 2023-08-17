@@ -22,6 +22,7 @@
     "@mui/material": "^5.10.4",
     "@paljs/ui": "^1.1.1",
     "@reduxjs/toolkit": "^1.8.5",
+    "@sendgrid/mail": "^7.7.0",
     "@stripe/react-stripe-js": "^1.16.4",
     "@stripe/stripe-js": "^1.46.0",
     "autosuggest-highlight": "^3.3.4",
