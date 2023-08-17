@@ -49,6 +49,8 @@ module.exports = {
     CHEC_SK: process.env.CHEC_SK,
     STRIPE_PK: process.env.STRIPE_PK,
     MAPTILER_API_KEY: process.env.MAPTILER_API_KEY,
+    SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
+
     MAX_CHARS_PRIMARY: process.env.MAX_CHARS_PRIMARY,
     MAX_CHARS_SECONDARY: process.env.MAX_CHARS_SECONDARY,
 
