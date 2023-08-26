@@ -11,7 +11,7 @@ const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async function sendSpecialReqeust(req, res) {
-  writeToSpecialRequestsTable(req.body, res);
+  const writeToTableResponse = await writeToSpecialRequestsTable(req.body, res);
 
   // Send email to special requests email.
   const textPayload =
@@ -41,10 +41,15 @@ export default async function sendSpecialReqeust(req, res) {
     .catch((error) => {
       console.log(`Error sending email to ${process.env.EMAIL_SUPPORT}.`);
       console.error(error);
+      res
+        .status(500)
+        .json({ success: false, successDbEntry: writeToTableResponse.success });
     });
 
   // Return 200 status code if successful.
-  return res.status(200).json({ success: true });
+  return res
+    .status(200)
+    .json({ success: true, successDbEntry: writeToTableResponse.success });
 }
 
 const writeToSpecialRequestsTable = async (payload, res) => {

@@ -57,6 +57,7 @@ const OfferModal = ({ open, onClose }) => {
       },
       body: JSON.stringify(params),
     });
+    console.log("lead db response:", response);
 
     // TO DO: Send the user a discount code for their email
     const giveawayEmailUrl = "/api/email/send_giveaway";

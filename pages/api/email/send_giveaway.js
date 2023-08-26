@@ -25,6 +25,7 @@ export default async function sendGiveawayEmail(req, res) {
     })
     .catch((error) => {
       console.error("Error sending email:", error);
+      return res.status(500).json({ success: false });
     });
 
   // Return 200 status code if successful.
