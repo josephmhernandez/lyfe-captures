@@ -68,6 +68,7 @@ module.exports = {
     CART_ITEM_MAX_QUANTITY: process.env.CART_ITEM_MAX_QUANTITY,
     EMAIL_SUPPORT: process.env.EMAIL_SUPPORT,
     EMAIL_SPECIAL_REQUESTS: process.env.EMAIL_SPECIAL_REQUESTS,
+    EMAIL_MARKETING_SENDER: process.env.EMAIL_MARKETING_SENDER,
 
     // Analytics
     FB_PIXEL_ID: process.env.FB_PIXEL_ID,

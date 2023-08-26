@@ -14,36 +14,37 @@ export default async function sendSpecialReqeust(req, res) {
   writeToSpecialRequestsTable(req.body, res);
 
   // Send email to special requests email.
+  const textPayload =
+    "name: " +
+    JSON.stringify(req.body.name) +
+    "\nemail: " +
+    JSON.stringify(req.body.email) +
+    "\n....\n" +
+    JSON.stringify(req.body.specifications) +
+    "\n\nMAP PAYLOAD: \n" +
+    JSON.stringify(req.body.map);
 
-  // const textPayload =
-  //   "name: " +
-  //   req.body.name +
-  //   " email: " +
-  //   req.body.email +
-  //   "...." +
-  //   req.body.specifications +
-  //   " MAP PAYLOAD: " +
-  //   req.body.map; // Get the map from the request body.
+  console.log("text payload: ", textPayload);
 
-  // const msg = {
-  //   to: process.env.EMAIL_SUPPORT,
-  //   from: "joseph.hernandez@mapyourmemory.com",
-  //   subject: req.body.subject,
-  //   text: "yo",
-  // };
+  const msg = {
+    to: process.env.EMAIL_SUPPORT,
+    from: "joseph.hernandez@mapyourmemory.com",
+    subject: req.body.subject,
+    text: textPayload,
+  };
 
-  // sgMail
-  //   .send(msg)
-  //   .then(() => {
-  //     console.log(`Email sent to ${process.env.EMAIL_SUPPORT}.`);
-  //   })
-  //   .catch((error) => {
-  //     console.log(`Error sending email to ${process.env.EMAIL_SUPPORT}.`);
-  //     console.error(error);
-  //   });
+  sgMail
+    .send(msg)
+    .then(() => {
+      console.log(`Email sent to ${process.env.EMAIL_SUPPORT}.`);
+    })
+    .catch((error) => {
+      console.log(`Error sending email to ${process.env.EMAIL_SUPPORT}.`);
+      console.error(error);
+    });
 
-  // // Return 200 status code if successful.
-  // return res.status(200).json({ success: true });
+  // Return 200 status code if successful.
+  return res.status(200).json({ success: true });
 }
 
 const writeToSpecialRequestsTable = async (payload, res) => {

@@ -58,6 +58,21 @@ const OfferModal = ({ open, onClose }) => {
       body: JSON.stringify(params),
     });
 
+    // TO DO: Send the user a discount code for their email
+    const giveawayEmailUrl = "/api/email/send_giveaway";
+    const giveawayParams = {
+      email: userEmail,
+    };
+    const giveawayEmailResponse = await fetch(giveawayEmailUrl, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(giveawayParams),
+    });
+    console.log("giveawayEmailResponse:", giveawayEmailResponse);
+
     // Send stats to Pinterest and google analytics
     pintag.pinTagEvent("lead", {
       from: "website",
@@ -70,8 +85,6 @@ const OfferModal = ({ open, onClose }) => {
       label: "giveaway promotion",
       value: 1,
     });
-
-    // TO DO: Send the user a discount code for their email
 
     // Close the modal
     onClose();
