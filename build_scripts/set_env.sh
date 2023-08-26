@@ -29,3 +29,4 @@ echo "TILE_ZOOM_OFFSET=2" >> $ENV_PATH
 echo "CART_ITEM_MAX_QUANTITY=50" >> $ENV_PATH
 echo "EMAIL_SUPPORT=help@mapyourmemory.com" >> $ENV_PATH
 echo "EMAIL_SPECIAL_REQUESTS=special_requests@mapyourmemory.com" >> $ENV_PATH
+echo "EMAIL_MARKETING_SENDER=joseph.hernandez@mapyourmemory.com" >> $ENV_PATH
