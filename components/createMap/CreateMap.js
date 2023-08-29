@@ -9,6 +9,7 @@ import {
   MapConstants,
   SIZE_OPTION,
   MATERIAL_OPTION,
+  DEFAULT_FLAG_BG_IMG_CODE,
 } from "./MapFolder/MapConstants";
 import { mapActions } from "../../store/map-slice";
 import { AddToCartButton, BuyNowButton } from "../ui/CustomButtons";
@@ -21,7 +22,6 @@ import {
 import { getMapDescriptionText } from "./mapFunctionality";
 import * as gtag from "../../lib/gtag";
 import * as pintag from "../../lib/pintag";
-import { Button } from "semantic-ui-react";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -53,22 +53,27 @@ const CreateMap = (props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    let currMapStyle = {};
     if (orientation === "portrait") {
       // Map Size.
       const optionObj = MapConstants.poster_size[SIZE_OPTION];
       const height =
         optionObj.portrait.map_height * optionObj.poster_multiplier;
       const width = optionObj.portrait.map_width * optionObj.poster_multiplier;
-      setMapStyle({
+
+      currMapStyle = {
+        ...currMapStyle,
         width: width.toString() + "px",
         height: height.toString() + "px",
-      });
+      };
+
       if (
         !addLngLat &&
         primaryText.length === 0 &&
         secondaryText.length === 0
       ) {
-        setMapStyle({
+        currMapStyle = {
+          ...currMapStyle,
           height:
             (
               (optionObj.full_height - optionObj.margin) *
@@ -79,7 +84,7 @@ const CreateMap = (props) => {
               (optionObj.full_width - optionObj.margin) *
               optionObj.poster_multiplier
             ).toString() + "px",
-        });
+        };
       }
     } else {
       //Landscape Calculate Map Size.
@@ -88,17 +93,19 @@ const CreateMap = (props) => {
         optionObj.landscape.map_height * optionObj.poster_multiplier;
       const width = optionObj.landscape.map_width * optionObj.poster_multiplier;
 
-      setMapStyle({
+      currMapStyle = {
+        ...currMapStyle,
         width: width.toString() + "px",
         height: height.toString() + "px",
-      });
+      };
 
       if (
         !addLngLat &&
         primaryText.length === 0 &&
         secondaryText.length === 0
       ) {
-        setMapStyle({
+        currMapStyle = {
+          ...currMapStyle,
           height:
             (
               (optionObj.full_width - optionObj.margin) *
@@ -109,9 +116,19 @@ const CreateMap = (props) => {
               (optionObj.full_height - optionObj.margin) *
               optionObj.poster_multiplier
             ).toString() + "px",
-        });
+        };
       }
     }
+
+    if (tileLayer === "flag-back") {
+      dispatch(mapActions.setBgImgCode(DEFAULT_FLAG_BG_IMG_CODE));
+      currMapStyle = {
+        ...currMapStyle,
+        opacity: 0.6,
+      };
+    }
+
+    setMapStyle(currMapStyle);
   }, [
     orientation,
     defaultCenter,
