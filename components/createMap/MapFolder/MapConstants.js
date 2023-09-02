@@ -276,11 +276,63 @@ export const MapStyleDict = {
       },
     },
   },
+  "flag-back": {
+    id: "flag-back",
+    iconImg: "/tan-ocean.png",
+    url: `https://api.maptiler.com/maps/b5849635-c4d4-4bb8-b7ea-78ccd9bcf89c/{z}/{x}/{y}.png?key=${process.env.MAPTILER_API_KEY}`,
+    isOverlay: true,
+    text: {
+      fontFamily: {
+        primary: "Semplicita",
+        secondary: "Semplicita",
+        coordinate: "Semplicita",
+      },
+      size: {
+        primary: "24",
+        secondary: "12",
+        coordinate: "8",
+      },
+      size_demo: {
+        primary: "8",
+        secondary: "4",
+        coordinate: "3",
+      },
+      color: {
+        background: "#000000",
+        primary: "#FFFFFF",
+        secondary: "#FFFFFF",
+        coordinate: "#FFFFFF",
+      },
+      color_transparent: {
+        background: "#0000",
+        primary: "#000000",
+        secondary: "#000000",
+        coordinate: "#000000",
+      },
+      textBlock: {
+        padding: "8px",
+        rounded: "8px",
+        spacing: "1", // Inches
+      },
+      text_block_demo: {
+        padding: "1px",
+        rounded: "3px",
+        spacing: "1",
+      },
+    },
+  },
+};
+
+export const BG_IMG_CODE_URL_MAP = {
+  usa: {
+    "2_3": "createMap/flags/usa/2_3_usa.png",
+  },
 };
 
 export const SIZE_OPTION = "_24_36";
 export const MATERIAL_OPTION = "POSTER";
 export const DEFAULT_TILE_LAYER = "dark-transit";
+export const DEFAULT_FLAG_BG_IMG_CODE = "usa";
 
 export const MOBILE_ZOOM_OFFSET = 3;
 export const WEB_ZOOM_OFFSET = 2;
