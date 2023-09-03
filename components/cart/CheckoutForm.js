@@ -151,12 +151,10 @@ const CheckoutForm = (props) => {
 
     // Send to Google Analytics
     gtag.event({
-      action: "CheckoutComplete",
+      action: "checkout-progress",
       category: "Ecommerce",
       label: "Checkout",
-      value: props.liveObject.subtotal.raw
-        ? props.liveObject.subtotal.raw
-        : null,
+      value: 1,
     });
 
     pintag.pinTagEvent("checkout", {
