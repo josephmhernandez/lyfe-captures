@@ -10,7 +10,6 @@ import {
 } from "./MapFolder/MapConstants";
 import { getPublicImage } from "../../utils/awsFunctions";
 import { getImgUrl } from "../../utils/helper_methods";
-import { map } from "leaflet";
 
 const CardOverlay = (props) => {
   const textPrimary = useSelector((state) => state.map.textPrimary);

@@ -279,7 +279,7 @@ export const MapStyleDict = {
   "flag-back": {
     id: "flag-back",
     iconImg: "/tan-ocean.png",
-    url: `https://api.maptiler.com/maps/b5849635-c4d4-4bb8-b7ea-78ccd9bcf89c/{z}/{x}/{y}.png?key=${process.env.MAPTILER_API_KEY}`,
+    url: `https://api.maptiler.com/maps/11489910-a9d8-4e58-a989-e00a490cf934/{z}/{x}/{y}.jpg?key=fLxXsh3K0MP3y21i3bJs`,
     isOverlay: true,
     text: {
       fontFamily: {
