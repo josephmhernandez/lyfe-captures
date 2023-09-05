@@ -224,34 +224,67 @@ const MapsLandingPage = () => {
       <div className={classes.spacingBecauseOfImageBug}></div>
       <div className={classes.prodDescrption} style={divBgStyle}>
         <div className={classes.prodDescrption}>
-          {/* Product Description */}
-          <h1>Luxurious Acrylic Maps</h1>
-          <ul>
-            <li>
-              <h2>Large 24x36 in. Prints</h2>
-            </li>
-            <li>
-              <h2>Thick Quarter in. Acrylic</h2>
-            </li>
-            <li>
-              <h2>High Resolution Map Imaging</h2>
-            </li>
-            <li>
-              <h2>Customizable Text and Styles</h2>
-            </li>
-            <li>
-              <h2>No Assembly! Hang Out of the Box</h2>
-            </li>
-            <li>
-              <h2>Hanging Material Included</h2>
-            </li>
-            <li>
-              <h2>Free Shipping</h2>
-            </li>
-            <li>
-              <h2>Enter Giveaway for 20% Off</h2>
-            </li>
-          </ul>
+          <div className={classes.twoColumns}>
+            {/* Product Description */}
+            <div className={classes.twoColumnFlexChild}>
+              <h1>Luxurious Acrylic Maps</h1>
+              <ul>
+                <li>
+                  <h2>Large 24x36 in. Prints</h2>
+                </li>
+                <li>
+                  <h2>Thick Quarter in. Acrylic</h2>
+                </li>
+                <li>
+                  <h2>High Resolution Map Imaging</h2>
+                </li>
+                <li>
+                  <h2>Customizable Text and Styles</h2>
+                </li>
+                <li>
+                  <h2>No Assembly! Hang Out of the Box</h2>
+                </li>
+                <li>
+                  <h2>Hanging Material Included</h2>
+                </li>
+                <li>
+                  <h2>Free Shipping</h2>
+                </li>
+                <li>
+                  <h2>Enter Giveaway for 20% Off</h2>
+                </li>
+              </ul>
+            </div>
+            {/* Why Acrylic? */}
+            <div className={classes.twoColumnFlexChild}>
+              <h1 style={{ fontStyle: "italic" }}>"Why Acrylic?"</h1>
+              <ul>
+                <li>
+                  <h2>
+                    Simply put, it helps us fulfill our promise to our customers
+                  </h2>
+                </li>
+                <li>
+                  <h2>
+                    Versatility - the premium look, shine, and 3d effect inspire
+                    creative new designs
+                  </h2>
+                </li>
+                <li>
+                  <h2>
+                    Museum gallery quality prints - We can be incredibly precise
+                    with your print
+                  </h2>
+                </li>
+                <li>
+                  <h2>
+                    {`No frame - Match any room's aesthetic without worrying about
+                    a mismatched frame`}
+                  </h2>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
         <div className={classes.centerContent}>
           <Link href="/maps" legacyBehavior>
