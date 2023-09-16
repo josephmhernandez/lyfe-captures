@@ -1,5 +1,9 @@
 import { useSelector } from "react-redux";
-import { MapConstants, MOBILE_ZOOM_OFFSET } from "../MapFolder/MapConstants";
+import {
+  DEFAULT_FLAG_BG_IMG_CODE,
+  MapConstants,
+  MOBILE_ZOOM_OFFSET,
+} from "../MapFolder/MapConstants";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import dynamic from "next/dynamic";
@@ -52,23 +56,29 @@ const DemoCreateMap = () => {
   }
 
   useEffect(() => {
+    let currMapStyle = {};
     if (orientation === "portrait") {
       // Map Size.
       const optionObj = MapConstants.poster_size["_24_36_demo"];
       const height =
         optionObj.portrait.map_height * optionObj.poster_multiplier;
       const width = optionObj.portrait.map_width * optionObj.poster_multiplier;
-      setMapStyle({
+
+      currMapStyle = {
+        ...currMapStyle,
         width: width.toString() + "px",
         height: height.toString() + "px",
-      });
+      };
+
       if (
         !addLngLat &&
         primaryText.length === 0 &&
         secondaryText.length === 0
       ) {
         setHasText(false);
-        setMapStyle({
+
+        currMapStyle = {
+          ...currMapStyle,
           height:
             (
               (optionObj.full_height - optionObj.margin) *
@@ -79,7 +89,7 @@ const DemoCreateMap = () => {
               (optionObj.full_width - optionObj.margin) *
               optionObj.poster_multiplier
             ).toString() + "px",
-        });
+        };
       } else {
         setHasText(true);
       }
@@ -90,10 +100,11 @@ const DemoCreateMap = () => {
         optionObj.landscape.map_height * optionObj.poster_multiplier;
       const width = optionObj.landscape.map_width * optionObj.poster_multiplier;
 
-      setMapStyle({
+      currMapStyle = {
+        ...currMapStyle,
         width: width.toString() + "px",
         height: height.toString() + "px",
-      });
+      };
 
       if (
         !addLngLat &&
@@ -101,7 +112,8 @@ const DemoCreateMap = () => {
         secondaryText.length === 0
       ) {
         setHasText(false);
-        setMapStyle({
+        currMapStyle = {
+          ...currMapStyle,
           height:
             (
               (optionObj.full_width - optionObj.margin) *
@@ -112,11 +124,22 @@ const DemoCreateMap = () => {
               (optionObj.full_height - optionObj.margin) *
               optionObj.poster_multiplier
             ).toString() + "px",
-        });
+        };
       } else {
         setHasText(true);
       }
     }
+
+    // Img Background.
+    if (tileLayer === "flag-back") {
+      dispatch(mapActions.setBgImgCode(DEFAULT_FLAG_BG_IMG_CODE));
+      currMapStyle = {
+        ...currMapStyle,
+        opacity: 0.6,
+      };
+    }
+
+    setMapStyle(currMapStyle);
   }, [
     orientation,
     addLngLat,
