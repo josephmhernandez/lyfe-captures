@@ -276,6 +276,138 @@ export const MapStyleDict = {
       },
     },
   },
+  eco: {
+    id: "eco",
+    iconImg: "/eco.png",
+    url: `https://api.maptiler.com/maps/c84b46cc-9714-4db6-b48e-92cb5057019d/{z}/{x}/{y}.png?key=${process.env.MAPTILER_API_KEY}`,
+    text: {
+      fontFamily: {
+        primary: "Semplicita",
+        secondary: "Semplicita",
+        coordinate: "Semplicita",
+      },
+      size: {
+        primary: "24",
+        secondary: "12",
+        coordinate: "8",
+      },
+      size_demo: {
+        primary: "8",
+        secondary: "4",
+        coordinate: "3",
+      },
+      color: {
+        background: "#A7BEB5",
+        primary: "#044E33",
+        secondary: "#044E33",
+        coordinate: "#044E33",
+      },
+      color_transparent: {
+        background: "#0000",
+        primary: "#044E33",
+        secondary: "#044E33",
+        coordinate: "#044E33",
+      },
+      textBlock: {
+        padding: "8px",
+        rounded: "8px",
+        spacing: "1", // Inches
+      },
+      text_block_demo: {
+        padding: "1px",
+        rounded: "3px",
+        spacing: "1",
+      },
+    },
+  },
+  "blue-print": {
+    id: "blue-print",
+    iconImg: "/blue-print.png",
+    url: `https://api.maptiler.com/maps/fc561f13-f2a7-4eb2-88bd-afc6f69f5c45/{z}/{x}/{y}.png?key=${process.env.MAPTILER_API_KEY}`,
+    text: {
+      fontFamily: {
+        primary: "Semplicita",
+        secondary: "Semplicita",
+        coordinate: "Semplicita",
+      },
+      size: {
+        primary: "24",
+        secondary: "12",
+        coordinate: "8",
+      },
+      size_demo: {
+        primary: "8",
+        secondary: "4",
+        coordinate: "3",
+      },
+      color: {
+        background: "#D2DAE4",
+        primary: "#5D778E",
+        secondary: "#5D778E",
+        coordinate: "#5D778E",
+      },
+      color_transparent: {
+        background: "#0000",
+        primary: "#5D778E",
+        secondary: "#5D778E",
+        coordinate: "#5D778E",
+      },
+      textBlock: {
+        padding: "8px",
+        rounded: "8px",
+        spacing: "1", // Inches
+      },
+      text_block_demo: {
+        padding: "1px",
+        rounded: "3px",
+        spacing: "1",
+      },
+    },
+  },
+  "ruby-routes": {
+    id: "ruby-routes",
+    iconImg: "/ruby-routes.png",
+    url: `https://api.maptiler.com/maps/a0ab4f04-819d-425b-9a79-f8a32d92cae1/{z}/{x}/{y}.png?key=${process.env.MAPTILER_API_KEY}`,
+    text: {
+      fontFamily: {
+        primary: "Semplicita",
+        secondary: "Semplicita",
+        coordinate: "Semplicita",
+      },
+      size: {
+        primary: "24",
+        secondary: "12",
+        coordinate: "8",
+      },
+      size_demo: {
+        primary: "8",
+        secondary: "4",
+        coordinate: "3",
+      },
+      color: {
+        background: "#FFFFFF",
+        primary: "#9C111F",
+        secondary: "#9C111F",
+        coordinate: "#9C111F",
+      },
+      color_transparent: {
+        background: "#0000",
+        primary: "#9C111F",
+        secondary: "#9C111F",
+        coordinate: "#9C111F",
+      },
+      textBlock: {
+        padding: "8px",
+        rounded: "8px",
+        spacing: "1", // Inches
+      },
+      text_block_demo: {
+        padding: "1px",
+        rounded: "3px",
+        spacing: "1",
+      },
+    },
+  },
 };
 
 export const SIZE_OPTION = "_24_36";
