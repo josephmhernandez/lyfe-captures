@@ -202,13 +202,13 @@ const CreateMap = (props) => {
 
   return (
     <Fragment>
-      <div className={classes.noteContainer}>
+      {/* <div className={classes.noteContainer}>
         <p>
           <span style={{ fontWeight: "bold" }}>Please Note:</span> Sometimes
           when using Google Chrome there are white grid lines that appear on the
           map. Be assured, those lines will not show up on your masterpiece!
         </p>
-      </div>
+      </div> */}
       <div className={classes.container}>
         <Paper elevation={24} className={classes.wrapper}>
           <CardOverlay SIZE_OPTION={"_24_36"}>
