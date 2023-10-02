@@ -1,0 +1,2 @@
+export const INTERNAL_SERVER_STATUS_CODE = 500;
+export const SUCCESS_STATUS_CODE = 200;

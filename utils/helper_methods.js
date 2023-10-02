@@ -10,3 +10,12 @@ export const validateEmail = (email) => {
   }
   return false;
 };
+
+// Check phone number is a valid phone number.
+export const isValidPhoneNumber = (phoneNumber) => {
+  // Regex for 10 or 11 digits (if someone added a 1 in front)
+  let regex1 = /^\d{10}$/;
+  let regex2 = /^\d{11}$/;
+
+  return regex1.test(phoneNumber) || regex2.test(phoneNumber);
+};

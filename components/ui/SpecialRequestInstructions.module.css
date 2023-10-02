@@ -1,0 +1,80 @@
+.centerText {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.noteContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding-top: 2.5%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.noteContainer p {
+  font-size: var(--page-paragraph-font-size);
+  font-weight: var(--page-paragraph-font-weight);
+  font-family: var(--page-paragraph-font-family);
+}
+
+.noteContainer li {
+  font-size: var(--page-paragraph-font-size);
+  font-weight: var(--page-paragraph-font-weight);
+  font-family: var(--page-paragraph-font-family);
+}
+
+.noteContainer h1 {
+  font-size: var(--page-heading-font-size);
+  font-weight: normal;
+  font-family: var(--page-heading-font-family);
+}
+
+.noteContainer button {
+  align-items: center;
+  width: 25%;
+}
+
+.listInstructions {
+  text-align: left;
+}
+
+@media (max-width: 800px) {
+  .noteContainer {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .noteContainer h1 {
+    font-size: var(--mobile-page-heading-font-size);
+    font-weight: var(--mobile-page-heading-font-weight);
+    font-family: var(--mobile-page-heading-font-family);
+  }
+
+  .noteContainer p {
+    font-size: var(--mobile-page-paragraph-font-size);
+    font-weight: var(--mobile-page-paragraph-font-weight);
+    font-family: var(--mobile-page-paragraph-font-family);
+  }
+
+  .noteContainer li {
+    font-size: var(--mobile-page-paragraph-font-size);
+    font-weight: var(--mobile-page-paragraph-font-weight);
+    font-family: var(--mobile-page-paragraph-font-family);
+  }
+
+  .noteContainer button {
+    width: 30%;
+    font-size: var(--mobile-page-paragraph-font-size) !important;
+    font-weight: var(--mobile-page-paragraph-font-weight) !important;
+    font-family: var(--mobile-page-paragraph-font-family) !important;
+  }
+}
+
+/* For Mobile */
+@media (max-width: 400px) {
+  .noteContainer button {
+    width: 50%;
+  }
+}

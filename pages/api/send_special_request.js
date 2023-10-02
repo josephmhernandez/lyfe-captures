@@ -1,5 +1,9 @@
 // TEMP AWS
 import { uuid } from "uuidv4";
+import {
+  INTERNAL_SERVER_STATUS_CODE,
+  SUCCESS_STATUS_CODE,
+} from "../../constants/ApiConstants";
 var AWS = require("aws-sdk");
 // Set the region
 AWS.config.update({ region: "us-east-2" });
@@ -22,7 +26,9 @@ export default async function sendSpecialReqeust(req, res) {
     "\n....\n" +
     JSON.stringify(req.body.specifications) +
     "\n\nMAP PAYLOAD: \n" +
-    JSON.stringify(req.body.map);
+    JSON.stringify(req.body.map) +
+    "\n\nPHONE NUMBER: \n" +
+    JSON.stringify(req.body.phoneNumber);
 
   console.log("text payload: ", textPayload);
 
@@ -41,14 +47,17 @@ export default async function sendSpecialReqeust(req, res) {
     .catch((error) => {
       console.log(`Error sending email to ${process.env.EMAIL_SUPPORT}.`);
       console.error(error);
+      return res.status(INTERNAL_SERVER_STATUS_CODE).json({ success: false });
     });
 
   // Return 200 status code if successful.
-  return res.status(200).json({ success: true });
+  return res.status(SUCCESS_STATUS_CODE).json({ success: true });
 }
 
 const writeToSpecialRequestsTable = async (payload, res) => {
   try {
+    const curr_date = new Date().toISOString();
+
     var params = {
       TableName: "maps.special-requests",
       Item: {
@@ -70,13 +79,19 @@ const writeToSpecialRequestsTable = async (payload, res) => {
         subject: {
           S: payload.subject,
         },
+        phoneNumber: {
+          S: payload.phoneNumber,
+        },
+        createAt: {
+          S: curr_date,
+        },
       },
     };
 
     ddb.putItem(params, function (err, data) {
       if (err) {
         console.log("Error", err);
-        return res.status(500).json({ success: false });
+        return res.status(INTERNAL_SERVER_STATUS_CODE).json({ success: false });
       } else {
         console.log("Success", data);
       }
@@ -84,8 +99,8 @@ const writeToSpecialRequestsTable = async (payload, res) => {
   } catch (err) {
     console.log("big error");
     console.log(err);
-    return res.status(500).json({ success: false });
+    return res.status(INTERNAL_SERVER_STATUS_CODE).json({ success: false });
   }
 
-  return res.status(200).json({ success: true });
+  return res.status(SUCCESS_STATUS_CODE).json({ success: true });
 };

@@ -3,9 +3,9 @@ Modal designed to display a discount offer to first time visitors.
 */
 
 import { useState } from "react";
-import { Modal, Form, Grid } from "semantic-ui-react";
+import { Modal, Form, Grid, Button } from "semantic-ui-react";
 import classes from "./OfferModal.module.css";
-import { validateEmail } from "../../utils/helper_methods";
+import { isValidPhoneNumber, validateEmail } from "../../utils/helper_methods";
 import { v4 as uuid } from "uuid";
 import {
   PINTEREST_URL,
@@ -13,19 +13,58 @@ import {
 } from "../../constants/siteConstants";
 import * as gtag from "../../lib/gtag";
 import * as pintag from "../../lib/pintag";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const OfferModal = ({ open, onClose }) => {
   const [userName, setUserName] = useState("");
   const [userEmail, setUserEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [errorName, setErrorName] = useState(null);
+  const [errorEmail, setErrorEmail] = useState(null);
+  const [errorPhoneNumber, setErrorPhoneNumber] = useState(null);
 
-  const handleEmailSend = async () => {
-    console.log("handleEmailSend:" + userEmail);
-    if (!userEmail) {
-      return;
+  const clearOnSubmit = () => {
+    setUserName("");
+    setUserEmail("");
+    setPhoneNumber("");
+    setErrorName(null);
+    setErrorEmail(null);
+    setErrorPhoneNumber(null);
+  };
+
+  const formHasErrors = () => {
+    let hasError = false;
+    if (userName.trim() === "") {
+      setErrorName("Name is required.");
+      hasError = true;
     }
 
-    // Verify that it is a valid email
-    if (!validateEmail(userEmail)) {
+    if (userEmail.trim() === "") {
+      setErrorEmail("Email is required.");
+      hasError = true;
+    } else {
+      if (!isValidPhoneNumber(phoneNumber)) {
+        setErrorPhoneNumber("Invalid phone number.");
+        hasError = true;
+      }
+    }
+
+    if (userEmail.trim() === "") {
+      setErrorEmail("Email is required.");
+      hasError = true;
+    } else {
+      if (!validateEmail(userEmail)) {
+        setErrorEmail("Invalid email.");
+        hasError = true;
+      }
+    }
+    return hasError;
+  };
+
+  const handleEmailSend = async () => {
+    // Check for errors
+    if (formHasErrors()) {
       return;
     }
 
@@ -45,6 +84,7 @@ const OfferModal = ({ open, onClose }) => {
       email: userEmail,
       first_name: firstName,
       last_name: lastName,
+      phone_number: phoneNumber,
       acquired_from: "website",
     };
     const url = "/api/write_user";
@@ -86,6 +126,17 @@ const OfferModal = ({ open, onClose }) => {
       value: 1,
     });
 
+    clearOnSubmit();
+
+    if (response.status === 200) {
+      toast.success("You have been entered into our giveaway!");
+    }
+    if (response.status === 500) {
+      toast.error(
+        "Please Contact Us for help. We are sorry for the inconvenience."
+      );
+    }
+
     // Close the modal
     onClose();
   };
@@ -99,30 +150,55 @@ const OfferModal = ({ open, onClose }) => {
         Must be in the continental United States to win! Winners get a free map
         shipped to them at no cost! Good luck!
       </p>
-      <Grid.Column className="center aligned" textAlign="center">
-        <Form>
-          <Form.Field>
-            <Form.Input
-              placeholder="Full Name"
-              onChange={(e) => setUserName(e.target.value)}
-            />
-          </Form.Field>
-          <Form.Field>
-            <Form.Input
-              placeholder="Email"
-              onChange={(e) => setUserEmail(e.target.value)}
-            />
-          </Form.Field>
-          <Form.Group>
-            <Form.Button positive size="big" onClick={handleEmailSend}>
-              Enter Giveaway
-            </Form.Button>
-            <Form.Button color="grey" size="big" onClick={onClose}>
-              Close
-            </Form.Button>
-          </Form.Group>
-        </Form>
-      </Grid.Column>
+      <Form>
+        <Form.Field>
+          <Form.Input
+            label="Full Name"
+            placeholder="Full Name"
+            value={userName}
+            onChange={(e) => {
+              setUserName(e.target.value);
+              setErrorName(null);
+            }}
+            required={true}
+            error={errorName}
+          />
+        </Form.Field>
+        <Form.Field>
+          <Form.Input
+            label="Phone Number"
+            placeholder="Phone Number"
+            onChange={(e) => {
+              setPhoneNumber(e.target.value);
+              setErrorPhoneNumber(null);
+            }}
+            required={true}
+            error={errorPhoneNumber}
+            value={phoneNumber}
+          />
+        </Form.Field>
+        <Form.Field>
+          <Form.Input
+            label="Email"
+            placeholder="Email"
+            onChange={(e) => {
+              setUserEmail(e.target.value);
+              setErrorEmail(null);
+            }}
+            required={true}
+            error={errorEmail}
+            value={userEmail}
+          />
+        </Form.Field>
+        <Modal.Actions>
+          <Button onClick={handleEmailSend} positive>
+            Enter Giveaway
+          </Button>
+          <Button onClick={onClose} negative>
+            Close
+          </Button>
+        </Modal.Actions>
+      </Form>
     </Modal>
   );
 };

@@ -1,5 +1,10 @@
+import { set } from "nprogress";
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { Modal, Form, TextArea, Button } from "semantic-ui-react";
+import "react-toastify/dist/ReactToastify.css";
+import classes from "./SpecialRequestModal.module.css";
+import { SPECIAL_REQUEST_MAP_STORAGE_KEY } from "../../constants/siteConstants";
 
 const SpecialRequestModal = ({ open, onClose }) => {
   const [subject, setSubject] = useState("");
@@ -7,11 +12,19 @@ const SpecialRequestModal = ({ open, onClose }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [mapDescription, setMapDescription] = useState({});
+  const [phoneNumber, setPhoneNumber] = useState("");
 
-  const [errorName, setErrorName] = useState(false);
-  const [errorEmail, setErrorEmail] = useState(false);
-  const [errorSubject, setErrorSubject] = useState(false);
-  const [errorSpecifications, setErrorSpecifications] = useState(false);
+  const [errorName, setErrorName] = useState(null);
+  const [errorEmail, setErrorEmail] = useState(null);
+  const [errorSubject, setErrorSubject] = useState(null);
+  const [errorSpecifications, setErrorSpecifications] = useState(null);
+  const [errorPhoneNumber, setErrorPhoneNumber] = useState(null);
+
+  useEffect(() => {
+    // Get map payload from store.
+    let mapPayload = getSpecialReq();
+    setMapDescription(mapPayload);
+  }, [open]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -33,39 +46,88 @@ const SpecialRequestModal = ({ open, onClose }) => {
     setErrorSpecifications(false);
   };
 
+  const handlePhoneNumberChange = (e) => {
+    setPhoneNumber(e.target.value);
+    setErrorPhoneNumber(false);
+  };
+
+  const formHasErrors = () => {
+    let hasError = false;
+    if (name.trim() === "") {
+      setErrorName("Name is required.");
+      hasError = true;
+    }
+
+    if (phoneNumber.trim() === "") {
+      setErrorPhoneNumber("Phone Number is required.");
+      hasError = true;
+    }
+
+    // Check phone number is a valid phone number.
+    let regex = /^\d{10}$/;
+    if (!regex.test(phoneNumber)) {
+      setErrorPhoneNumber("Please enter a valid phone number.");
+      hasError = true;
+    }
+
+    if (email.trim() === "") {
+      setErrorEmail("Email is required.");
+      hasError = true;
+    }
+    // Check for valid email
+    regex = /\S+@\S+\.\S+/;
+    if (!regex.test(email)) {
+      setErrorEmail("Please enter a valid email.");
+      hasError = true;
+    }
+
+    if (subject.trim() === "") {
+      setErrorSubject("Subject is required.");
+      hasError = true;
+    }
+
+    if (specifications.trim() === "") {
+      setErrorSpecifications("Specifications are required.");
+      hasError = true;
+    }
+
+    return hasError;
+  };
+
+  const clearAllFields = () => {
+    setSubject("");
+    setSpecifications("");
+    setName("");
+    setEmail("");
+    setPhoneNumber("");
+
+    setErrorName(null);
+    setErrorEmail(null);
+    setErrorSubject(null);
+    setErrorSpecifications(null);
+    setErrorPhoneNumber(null);
+  };
+
   const getSpecialReq = () => {
     // Get the last item in the local storage cart_data array.
-    let cartData = JSON.parse(localStorage.getItem("cart_data"));
-    if (cartData) {
-      let lastItem = cartData[cartData.length - 1];
+    let specialReqMap = JSON.parse(
+      localStorage.getItem(SPECIAL_REQUEST_MAP_STORAGE_KEY)
+    );
+    if (specialReqMap) {
+      let lastItem = specialReqMap[specialReqMap.length - 1];
       return lastItem;
     }
-    console.error("cart data:", cartData);
+    console.error("special request data:", specialReqMap);
     return {};
   };
 
-  useEffect(() => {
-    // Get map payload from store.
-    let mapPayload = getSpecialReq();
-    setMapDescription(mapPayload);
-  }, [open]);
-
   const handleSubmit = async () => {
-    // You can implement the logic to send the request to a representative here
+    // Send the request to a representative here
 
-    setErrorName(name.trim() === "");
-    setErrorEmail(email.trim() === "");
-    setErrorSubject(subject.trim() === "");
-    setErrorSpecifications(specifications.trim() === "");
-
-    if (
-      name.trim() === "" ||
-      email.trim() === "" ||
-      subject.trim() === "" ||
-      specifications.trim() === ""
-    ) {
+    if (formHasErrors()) {
       return;
     }
+
     // Get map payload from local storage
     let mapPayload = getSpecialReq();
 
@@ -76,6 +138,7 @@ const SpecialRequestModal = ({ open, onClose }) => {
       subject: subject,
       specifications: specifications,
       map: mapPayload,
+      phoneNumber: phoneNumber,
     };
 
     // Call the write_review API route
@@ -90,8 +153,10 @@ const SpecialRequestModal = ({ open, onClose }) => {
       body: JSON.stringify(payload),
     });
 
+    clearAllFields();
+
     // Close the modal
-    onClose();
+    onClose(response);
   };
 
   // Check if any text is there.
@@ -127,16 +192,12 @@ const SpecialRequestModal = ({ open, onClose }) => {
     mapDescriptionText = "";
   }
 
+  const requestSpecificationsPlaceHolder =
+    "Please describe your request. It's common to ask for a different color scheme for the map, our pins, or the text. We also get requests to map hiking trips and sailing adventures. We're happy to help with anything you'd like!";
+
   return (
     <Modal open={open} onClose={onClose}>
-      <Modal.Header>
-        <h1>Send Your Request</h1>
-        <h2>
-          An email will be sent to {`${process.env.EMAIL_SPECIAL_REQUESTS}`}.
-          We'll get back to you within 24 hours!
-        </h2>
-        <p>{mapDescriptionText}</p>
-      </Modal.Header>
+      <Modal.Header>Send Your Request</Modal.Header>
       <Modal.Content>
         <Form>
           <Form.Input
@@ -145,37 +206,43 @@ const SpecialRequestModal = ({ open, onClose }) => {
             value={name}
             onChange={handleNameChange}
             required={true}
+            error={errorName}
           />
-          {errorName && <div style={{ color: "red" }}>Name is required.</div>}
           <Form.Input
-            label="Email for reply"
-            placeholder="Enter your email"
+            label="Phone Number"
+            placeholder="Enter your phone number"
+            value={phoneNumber}
+            onChange={handlePhoneNumberChange}
+            required={true}
+            error={errorPhoneNumber}
+          />
+          <Form.Input
+            label="Email Address"
+            placeholder="Enter your email for reply"
             value={email}
             onChange={handleEmailChange}
             required={true}
+            error={errorEmail}
           />
-          {errorEmail && <div style={{ color: "red" }}>Email is required.</div>}
           <Form.Input
             label="Subject"
             placeholder="Enter subject"
             value={subject}
             onChange={handleSubjectChange}
             required={true}
+            error={errorSubject}
+            className={classes.semanticUiAutoCompleteStyle}
+            style={{ color: "black" }}
           />
-          {errorSubject && (
-            <div style={{ color: "red" }}>Subject is required.</div>
-          )}
           <Form.Field
             control={TextArea}
             label="Request Specifications"
-            placeholder="Enter specifications"
+            placeholder={requestSpecificationsPlaceHolder}
             value={specifications}
             onChange={handleSpecificationsChange}
             required={true}
+            error={errorSpecifications}
           />
-          {errorSpecifications && (
-            <div style={{ color: "red" }}>Specifications are required.</div>
-          )}
         </Form>
       </Modal.Content>
       <Modal.Actions>

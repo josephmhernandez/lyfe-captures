@@ -19,3 +19,23 @@
   font-weight: var(--page-paragraph-font-weight);
   font-family: var(--page-paragraph-font-family);
 }
+
+.actionButtons {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 400px) {
+  .centerObj p {
+    font-size: var(--mobile-page-paragraph-font-size);
+    font-weight: var(--mobile-page-paragraph-font-weight);
+    font-family: var(--mobile-page-paragraph-font-family);
+  }
+
+  .actionButtons {
+    font-size: var(--mobile-page-paragraph-font-family);
+  }
+}

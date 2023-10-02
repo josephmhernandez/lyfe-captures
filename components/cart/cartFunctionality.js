@@ -1,5 +1,6 @@
 // Make this the only place where we update the commerce cart.
 // Also functions to manage the map object in local storage.
+import { SPECIAL_REQUEST_MAP_STORAGE_KEY } from "../../constants/siteConstants";
 import Commerce from "@chec/commerce.js";
 
 const commerce = new Commerce(process.env.CHEC_PK);
@@ -56,6 +57,24 @@ export function addToMapObjLocalStorage(mapObj) {
     // Add the new map to the old cart data.
     const newCartData = [...oldCartData, mapObj];
     localStorage.setItem("cart_data", JSON.stringify(newCartData));
+  } else {
+    const errorMsg = "Local storage not available";
+    console.log(errorMsg);
+    console.log("map object that was not added to local storage: ", mapObj);
+    return errorMsg;
+  }
+
+  return "";
+}
+
+export function addSpecialReqMapObjLocalStorage(mapObj) {
+  // add mapObj to localStorage
+  if (typeof localStorage !== "undefined") {
+    const newCartData = [mapObj];
+    localStorage.setItem(
+      SPECIAL_REQUEST_MAP_STORAGE_KEY,
+      JSON.stringify(newCartData)
+    );
   } else {
     const errorMsg = "Local storage not available";
     console.log(errorMsg);
