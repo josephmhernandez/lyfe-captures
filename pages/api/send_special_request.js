@@ -15,7 +15,13 @@ const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async function sendSpecialReqeust(req, res) {
-  writeToSpecialRequestsTable(req.body, res);
+  const writeResponse = await writeToSpecialRequestsTable(req.body, res);
+  // Wait for writeResponse
+  console.log(
+    "[send_special_request : sendSpecialReqeust] writeResponse: ",
+    writeResponse
+  );
+  return writeResponse;
 
   // Send email to special requests email.
   const textPayload =
@@ -55,6 +61,9 @@ export default async function sendSpecialReqeust(req, res) {
 }
 
 const writeToSpecialRequestsTable = async (payload, res) => {
+  console.log("writeToSpecialRequestsTable");
+  console.log("payload", payload);
+  console.log("db", ddb);
   try {
     const curr_date = new Date().toISOString();
 
@@ -89,18 +98,29 @@ const writeToSpecialRequestsTable = async (payload, res) => {
     };
 
     ddb.putItem(params, function (err, data) {
+      console.log(
+        "[send_special_request : writeToSpecialRequestsTable] params:",
+        params
+      );
       if (err) {
-        console.log("Error", err);
+        console.log(
+          "[send_special_request : writeToSpecialRequestsTable] Error putItem",
+          err
+        );
         return res.status(INTERNAL_SERVER_STATUS_CODE).json({ success: false });
       } else {
-        console.log("Success", data);
+        console.log(
+          "[send_special_request : writeToSpecialRequestsTable] Successfully putItem",
+          data
+        );
+        return res.status(SUCCESS_STATUS_CODE).json({ success: true });
       }
     });
   } catch (err) {
-    console.log("big error");
+    console.log(
+      "[send_special_request : writeToSpecialRequestsTable] Big Error - catch block"
+    );
     console.log(err);
     return res.status(INTERNAL_SERVER_STATUS_CODE).json({ success: false });
   }
-
-  return res.status(SUCCESS_STATUS_CODE).json({ success: true });
 };
