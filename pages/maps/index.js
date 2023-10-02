@@ -1,36 +1,82 @@
 import CreateMap from "../../components/createMap/CreateMap";
+import SpecialRequestModal from "../../components/ui/SpecialRequestModal";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getMapDescriptionText } from "../../components/createMap/mapFunctionality";
+import { mapActions } from "../../store/map-slice";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import {
+  INTERNAL_SERVER_STATUS_CODE,
+  SUCCESS_STATUS_CODE,
+} from "../../constants/ApiConstants";
 import { useMediaQuery } from "@mantine/hooks";
+import { MEDIA_QUERY_MOBILE } from "../../constants/siteConstants";
 import DemoCreateMap from "../../components/createMap/MobileDemo/DemoCreateMap";
-import { useDispatch } from "react-redux";
-import mapSlice from "../../store/map-slice";
+import SpecialRequestInstructions from "../../components/ui/SpecialRequestInstructions";
+import { MAP_SPECIAL_REQUEST_PRODUCT_NAME } from "../../components/cart/ProductConstants";
 
-const MapPage = (props) => {
+const MapPage = () => {
+  const isMobile = useMediaQuery(MEDIA_QUERY_MOBILE);
+  const [openRequestModal, setOpenRequestModal] = useState(false);
+  const [mapInformation, setMapInformation] = useState({}); // Map Information
+  const defaultCenter = useSelector((state) => state.map.lngLat);
+  const primaryText = useSelector((state) => state.map.textPrimary);
+  const secondaryText = useSelector((state) => state.map.textSecondary);
+
   const dispatch = useDispatch();
 
-  const isMobile = useMediaQuery("(max-width: 600px)");
+  const handleSpecialRequest = async () => {
+    // Display Modal with form.
+    let productName = MAP_SPECIAL_REQUEST_PRODUCT_NAME;
 
-  if (typeof window !== "undefined") {
-    if (props.isMobileView || isMobile) {
-      dispatch(mapSlice.actions.setZoomOffset(3));
-      // Send to mobile create now Demo
-      return <DemoCreateMap />;
-    }
-  }
+    let description = await getMapDescriptionText(
+      primaryText,
+      secondaryText,
+      defaultCenter
+    );
 
-  return <CreateMap />;
-};
+    dispatch(
+      mapActions.addMapToSpecialRequest({
+        name: productName,
+        description: description,
+      })
+    );
 
-// Need this here to get the current device that the user is on.
-// Can't have getInitialProps in the component itself. It must be on the page component.
-MapPage.getInitialProps = async (ctx) => {
-  let isMobileView = (
-    ctx.req ? ctx.req.headers["user-agent"] : navigator.userAgent
-  ).match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i);
-
-  //Returning the isMobileView as a prop to the component for further use.
-  return {
-    isMobileView: Boolean(isMobileView),
+    setOpenRequestModal(true);
   };
+
+  return (
+    <div>
+      <SpecialRequestInstructions />
+
+      <SpecialRequestModal
+        mapInformation={mapInformation}
+        open={openRequestModal}
+        onClose={(resp) => {
+          setOpenRequestModal(false);
+          if (resp.status === SUCCESS_STATUS_CODE) {
+            toast.success("Success! We'll get back to you within 24 hours");
+          }
+          console.log("resp", resp);
+          if (resp.status === INTERNAL_SERVER_STATUS_CODE) {
+            toast.error(
+              `There was an error sending your request. Please email ${process.env.EMAIL_SUPPORT}`
+            );
+          }
+        }}
+      />
+      {/* Create Map Component */}
+      {isMobile ? (
+        <DemoCreateMap specialReqPushHandler={handleSpecialRequest} />
+      ) : (
+        <CreateMap
+          buttonText="Send Tailored Request"
+          buttonPushHandler={handleSpecialRequest}
+        />
+      )}
+    </div>
+  );
 };
 
 export default MapPage;

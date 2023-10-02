@@ -28,6 +28,9 @@ export default async function writeUser(req, res) {
         email: {
           S: req.body.email,
         },
+        phone_number: {
+          S: req.body.phone_number ? req.body.phone_number : "",
+        },
         has_bought: {
           BOOL: false,
         },
