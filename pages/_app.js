@@ -23,7 +23,6 @@ import OfferModal from "../components/ui/OfferModal";
 import { Amplify } from "aws-amplify";
 import awsconfig from "../aws-exports";
 import { ToastContainer } from "react-toastify";
-import { toast } from "react-toastify";
 
 Amplify.configure({
   ...awsconfig,
