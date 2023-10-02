@@ -15,7 +15,7 @@ const sgMail = require("@sendgrid/mail");
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async function sendSpecialReqeust(req, res) {
-  const writeResponse = writeToSpecialRequestsTable(req.body, res);
+  const writeResponse = await writeToSpecialRequestsTable(req.body, res);
   console.log(
     "[send_special_request : sendSpecialReqeust] writeResponse: ",
     writeResponse
