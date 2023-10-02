@@ -9,6 +9,7 @@ var ddb = new AWS.DynamoDB({ apiVersion: "2012-08-10" });
 
 export default async function writeUser(req, res) {
   try {
+    console.log("[write_user : writeUser] req.body: ", req.body);
     const user_id = req.body.user_id;
     // Get current date UTC.
     const curr_date = new Date().toISOString();
@@ -49,12 +50,11 @@ export default async function writeUser(req, res) {
       } else {
         console.log("Success", data);
       }
+      return res.status(200).json({ success: true });
     });
   } catch (err) {
     console.log("big error");
     console.log(err);
     return res.status(500).json({ success: false });
   }
-
-  return res.status(200).json({ success: true });
 }
