@@ -303,7 +303,7 @@ const MapsLandingPageMobile = () => {
                   <h2>Free Shipping</h2>
                 </li>
                 <li>
-                  <h2>Enter Giveaway for 20% Off</h2>
+                  <h2>Enter Giveaway for 10% Off</h2>
                 </li>
               </ul>
             </div>

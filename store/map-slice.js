@@ -7,7 +7,10 @@ import {
   DEFAULT_TILE_LAYER,
 } from "../components/createMap/MapFolder/MapConstants";
 
-import { addToMapObjLocalStorage } from "../components/cart/cartFunctionality";
+import {
+  addToMapObjLocalStorage,
+  addSpecialReqMapObjLocalStorage,
+} from "../components/cart/cartFunctionality";
 
 const mapSlice = createSlice({
   name: "map",
@@ -226,6 +229,81 @@ const mapSlice = createSlice({
 
       state.pinList = pinList;
     },
+    addMapToSpecialRequest: (state, action) => {
+      let mapObj = {};
+      mapObj.pinList = state.pinList;
+      mapObj.location = state.location;
+      mapObj.center = state.lngLat;
+      mapObj.zoom = state.zoom;
+      mapObj.orientation = state.orientation;
+      mapObj.textPrimary = state.textPrimary;
+      mapObj.textSecondary = state.textSecondary;
+      mapObj.textCoordinates = state.textCoordinates;
+      mapObj.styling = state.styling;
+      mapObj.size = state.size;
+      mapObj.tileLayer = state.tileLayer;
+      mapObj.bbox = state.bbox;
+      mapObj.tileZoomOffset = state.tileZoomOffset;
+      mapObj.quantity = 1;
+      mapObj.description = "";
+      mapObj.id = uuid();
+
+      mapObj.name = action.payload.name; // This is the official name of the product
+
+      mapObj.isTransparentTextBlock = state.transparentTextBlock;
+      // Make sure if coordinates are added that we recaclulate them
+      if (mapObj.textCoordinates !== "") {
+        if (mapContains(mapObj.bbox, mapObj.pinList[0]?.position)) {
+          const new_text_coordinates =
+            convertToDms(mapObj.pinList[0].position.lat, false) +
+            " " +
+            convertToDms(mapObj.pinList[0].position.lng, true);
+          mapObj.textCoordinates = new_text_coordinates;
+        } else {
+          const [lat, lng] = mapObj.center;
+          const new_text_coordinates =
+            convertToDms(lat, false) + " " + convertToDms(lng, true);
+          mapObj.textCoordinates = new_text_coordinates;
+        }
+      }
+
+      mapObj.text_styling_specs = MapStyleDict[mapObj.tileLayer];
+      if (
+        mapObj.textPrimary != "" ||
+        mapObj.textSecondary != "" ||
+        mapObj.textCoordinates != ""
+      ) {
+        // has text
+        mapObj.mapDimensionsIn = {
+          ...MapConstants["poster_size"][mapObj.size][state.orientation],
+          map_pixel_multiplier:
+            MapConstants["poster_size"][mapObj.size]["poster_multiplier"],
+        };
+      } else {
+        if (mapObj.orientation === "landscape") {
+          mapObj.mapDimensionsIn = {
+            map_width: MapConstants["poster_size"][mapObj.size].full_height - 1,
+            map_height: MapConstants["poster_size"][mapObj.size].full_width - 1,
+            map_pixel_multiplier:
+              MapConstants["poster_size"][mapObj.size]["poster_multiplier"],
+          };
+        } else {
+          mapObj.mapDimensionsIn = {
+            map_width: MapConstants["poster_size"][mapObj.size].full_width - 1,
+            map_height:
+              MapConstants["poster_size"][mapObj.size].full_height - 1,
+            map_pixel_multiplier:
+              MapConstants["poster_size"][mapObj.size]["poster_multiplier"],
+          };
+        }
+      }
+
+      mapObj.description = action.payload.description;
+
+      // call local storage to update special request storage location
+      addSpecialReqMapObjLocalStorage(mapObj);
+    },
+
     addMapToCart: (state, action) => {
       // only function in redux slice that calls cartFunctionality.
       let mapObj = {};

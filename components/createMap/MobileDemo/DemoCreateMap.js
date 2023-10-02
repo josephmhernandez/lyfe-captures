@@ -18,7 +18,7 @@ import {
 import { getMapDescriptionText } from "../mapFunctionality";
 import DemoEnlargedTextDisplay from "./DemoEnlargedTextDisplay";
 import { useRouter } from "next/router";
-const DemoCreateMap = () => {
+const DemoCreateMap = (props) => {
   const router = useRouter();
   const [hasText, setHasText] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -207,19 +207,34 @@ const DemoCreateMap = () => {
       <div className={classes.centerObj}>
         <DemoAccordion />
 
-        <Button
-          style={{
-            "background-color": "#23d160",
-            color: "white",
-            "border-radius": "100px",
-            "font-family": "var(--page-heading-font-family)",
-            "font-size": "var(--page-paragraph-font-size)",
-            "font-weight": "400",
-          }}
-          onClick={handleBuyNow}
-        >
-          Buy Now
-        </Button>
+        <div className={classes.actionButtons}>
+          <Button
+            style={{
+              "background-color": "var(--color-primary)",
+              color: "white",
+              "border-radius": "100px",
+              "font-family": "var(--mobile-page-paragraph-font-family)",
+              "font-size": "var(--mobile-page-paragraph-font-size)",
+              "font-weight": "400",
+            }}
+            onClick={props.specialReqPushHandler}
+          >
+            Send Tailored Request
+          </Button>
+          <Button
+            style={{
+              "background-color": "#23d160",
+              color: "white",
+              "border-radius": "100px",
+              "font-family": "var(--mobile-page-paragraph-font-family)",
+              "font-size": "var(--mobile-page-paragraph-font-size)",
+              "font-weight": "400",
+            }}
+            onClick={handleBuyNow}
+          >
+            Add To Cart
+          </Button>
+        </div>
       </div>
     </div>
   );

@@ -9,7 +9,9 @@ import {
   MapConstants,
   SIZE_OPTION,
   MATERIAL_OPTION,
+  WEB_ZOOM_OFFSET,
 } from "./MapFolder/MapConstants";
+import { BTN_STYLE } from "../../constants/siteConstants";
 import { mapActions } from "../../store/map-slice";
 import { AddToCartButton, BuyNowButton } from "../ui/CustomButtons";
 import { useRouter } from "next/router";
@@ -51,6 +53,9 @@ const CreateMap = (props) => {
   const bbox = useSelector((state) => state.map.bbox);
 
   const dispatch = useDispatch();
+  if (zoomOffset != WEB_ZOOM_OFFSET) {
+    dispatch(mapActions.setZoomOffset(WEB_ZOOM_OFFSET));
+  }
 
   useEffect(() => {
     if (orientation === "portrait") {
@@ -202,13 +207,13 @@ const CreateMap = (props) => {
 
   return (
     <Fragment>
-      <div className={classes.noteContainer}>
+      {/* <div className={classes.noteContainer}>
         <p>
           <span style={{ fontWeight: "bold" }}>Please Note:</span> Sometimes
           when using Google Chrome there are white grid lines that appear on the
           map. Be assured, those lines will not show up on your masterpiece!
         </p>
-      </div>
+      </div> */}
       <div className={classes.container}>
         <Paper elevation={24} className={classes.wrapper}>
           <CardOverlay SIZE_OPTION={"_24_36"}>
@@ -230,12 +235,20 @@ const CreateMap = (props) => {
         <Paper elevation={24} className={classes.accordionBox}>
           <CustomizedAccordions />
           <div className={classes.actionBtns}>
-            {/* <BuyNowButton onClick={handleBuyNow}>
-            Buy Now
-          </BuyNowButton> */}
-            <BuyNowButton onClick={BUTTON_PUSH_HANDLER}>
+            <BuyNowButton
+              style={{
+                background: "var(--color-primary)",
+                borderColor: "var(--color-primary)",
+                "&:hover": {
+                  background: "var(--color-primary)",
+                  borderColor: "var(--color-primary)",
+                },
+              }}
+              onClick={BUTTON_PUSH_HANDLER}
+            >
               {`${BUTTON_TEXT}`}
             </BuyNowButton>
+            <BuyNowButton onClick={handleAddToCart}>Buy Now</BuyNowButton>
           </div>
         </Paper>
       </div>

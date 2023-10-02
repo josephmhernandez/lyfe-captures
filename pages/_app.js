@@ -22,6 +22,7 @@ import Script from "next/script";
 import OfferModal from "../components/ui/OfferModal";
 import { Amplify } from "aws-amplify";
 import awsconfig from "../aws-exports";
+import { ToastContainer } from "react-toastify";
 
 Amplify.configure({
   ...awsconfig,
@@ -123,6 +124,7 @@ function MyApp({ Component, isMobileView, pageProps }) {
 
       <Elements stripe={stripePromise}>
         <Layout>
+          <ToastContainer />
           <OfferModal
             open={showDiscount}
             onClose={() => setShowDiscount(false)}
