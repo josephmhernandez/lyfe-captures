@@ -16,10 +16,13 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 export default async function sendSpecialReqeust(req, res) {
   const writeResponse = await writeToSpecialRequestsTable(req.body, res);
+  // Wait for writeResponse
   console.log(
     "[send_special_request : sendSpecialReqeust] writeResponse: ",
     writeResponse
   );
+  return writeResponse;
+
   // Send email to special requests email.
   const textPayload =
     "name: " +
