@@ -3,7 +3,13 @@ import classes from "./CreateMap.module.css";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import { MapConstants, MapStyleDict } from "./MapFolder/MapConstants";
+import {
+  DEFAULT_FLAG_BG_IMG_CODE,
+  MapConstants,
+  MapStyleDict,
+} from "./MapFolder/MapConstants";
+import { getPublicImage } from "../../utils/awsFunctions";
+import { getImgUrl } from "../../utils/helper_methods";
 
 const CardOverlay = (props) => {
   const textPrimary = useSelector((state) => state.map.textPrimary);
@@ -11,6 +17,8 @@ const CardOverlay = (props) => {
   const textCoordinates = useSelector((state) => state.map.textCoordinates);
   const orientation = useSelector((state) => state.map.orientation);
   const tileLayer = useSelector((state) => state.map.tileLayer);
+  const bgImgCode = useSelector((state) => state.map.bgImgCode);
+
   const transparentFlag = useSelector(
     (state) => state.map.transparentTextBlock
   );
@@ -23,6 +31,10 @@ const CardOverlay = (props) => {
   });
   const [textBlockStyle, setTextBlockStyle] = useState({});
   const [mapSizeOption, setMapSizeOption] = useState(props.SIZE_OPTION);
+  const [prevBgImgCode, setPrevBgImgCode] = useState(bgImgCode);
+  const [urlImgBg, setUrlImgBg] = useState(null);
+  const [loadingBgImg, setLoadingBgImg] = useState(false);
+  const [bgImgStyle, setBgImgStyle] = useState({});
 
   const color_text_for_dict = transparentFlag ? "color_transparent" : "color";
 
@@ -47,28 +59,46 @@ const CardOverlay = (props) => {
     color: MapStyleDict[tileLayer]["text"][color_text_for_dict]["coordinate"],
   };
 
+  const loadBgImg = async () => {
+    if (bgImgCode != prevBgImgCode && loadingBgImg == false) {
+      setLoadingBgImg(true);
+      setPrevBgImgCode(bgImgCode);
+      const imgUrl = await getPublicImage(getImgUrl(bgImgCode));
+      setUrlImgBg(imgUrl);
+      setLoadingBgImg(false);
+    }
+  };
+
   useEffect(() => {
+    let paperStyle = {};
+    let bgImgStyle = {
+      position: "absolute",
+      opacity: 1,
+      zIndex: "0",
+      overflow: "hidden",
+    };
+
     if (orientation === "portrait") {
       // Calculate Paper size. Portrait.
       const optionObj = MapConstants.poster_size[mapSizeOption];
       const height = optionObj.full_height * optionObj.poster_multiplier;
       const width = optionObj.full_width * optionObj.poster_multiplier;
-      const style = {
+      paperStyle = {
+        ...paperStyle,
         height: height.toString() + "px",
         width: width.toString() + "px",
       };
-      setPaperStyle(style);
     } else {
       // Calculate the size of the landscape Paper.
       const optionObj = MapConstants.poster_size[mapSizeOption];
       const height = optionObj.full_height * optionObj.poster_multiplier;
       const width = optionObj.full_width * optionObj.poster_multiplier;
       // Flip the width and height for landscape.
-      const style = {
+      paperStyle = {
+        ...paperStyle,
         height: width.toString() + "px",
         width: height.toString() + "px",
       };
-      setPaperStyle(style);
     }
 
     if (textPrimary) {
@@ -136,6 +166,51 @@ const CardOverlay = (props) => {
           MapStyleDict[tileLayer]["text"][text_block_path]["rounded"],
       });
     }
+
+    // Set the background the flag code if we have one.
+    if (bgImgCode) {
+      loadBgImg();
+
+      // Set Image Background Style as the URL
+      bgImgStyle = {
+        ...bgImgStyle,
+        backgroundImage: `url(${urlImgBg})`,
+        backgroundSize: "cover",
+        width: paperStyle.width,
+        height: paperStyle.height,
+      };
+
+      // If portrait we want to rotate the background image.
+      if (orientation === "portrait") {
+        const optionObj = MapConstants.poster_size[mapSizeOption];
+        const height = optionObj.full_height * optionObj.poster_multiplier;
+        const width = optionObj.full_width * optionObj.poster_multiplier;
+        const topSlide = (height - width) / 2;
+        const rightSlide = (height - width) / -2 + "px";
+
+        bgImgStyle = {
+          ...bgImgStyle,
+
+          width: paperStyle.height,
+          height: paperStyle.width,
+          top: topSlide,
+          right: rightSlide,
+          transform: "rotate(90deg)",
+        };
+      }
+    } else {
+      console.log("NO BG IMG CODE");
+      bgImgStyle = {
+        ...bgImgStyle,
+        backgroundColor: null,
+        backgroundImage: null,
+        background: null,
+      };
+      setPrevBgImgCode("");
+    }
+
+    setPaperStyle(paperStyle);
+    setBgImgStyle(bgImgStyle);
   }, [
     textPrimary,
     textSecondary,
@@ -143,11 +218,21 @@ const CardOverlay = (props) => {
     orientation,
     tileLayer,
     transparentFlag,
+    bgImgCode,
+    urlImgBg,
   ]);
 
   return (
-    <Paper style={paperStyle} className={classes.paper} elevation={24}>
-      <div style={{ zIndex: 1 }}>{props.children}</div>
+    <Paper
+      style={{ ...paperStyle, zIndex: 1 }}
+      className={classes.paper}
+      elevation={24}
+    >
+      <div style={{ position: "relative", zIndex: 1 }}>
+        <div id="bgImg" style={bgImgStyle}></div>
+        <div style={{ zIndex: 1 }}>{props.children}</div>
+      </div>
+
       <div style={textBlockStyle} className={classes.textMap}>
         {showTextPrimary && (
           <Typography style={styleTextPrimary}>{textPrimary}</Typography>
@@ -161,6 +246,7 @@ const CardOverlay = (props) => {
           </Typography>
         )}
       </div>
+      {/* </div> */}
     </Paper>
   );
 };

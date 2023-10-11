@@ -1,5 +1,5 @@
 import { Button } from "semantic-ui-react";
-import { BTN_STYLE } from "../../constants/siteConstants";
+import { BTN_STYLE } from "../../constants/UiConstants";
 import classes from "./SpecialRequestInstructions.module.css";
 import { useState } from "react";
 

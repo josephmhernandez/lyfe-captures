@@ -1,5 +1,9 @@
 import { useSelector } from "react-redux";
-import { MapConstants, MOBILE_ZOOM_OFFSET } from "../MapFolder/MapConstants";
+import {
+  DEFAULT_FLAG_BG_IMG_CODE,
+  MapConstants,
+  MOBILE_ZOOM_OFFSET,
+} from "../MapFolder/MapConstants";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import dynamic from "next/dynamic";
@@ -30,6 +34,7 @@ const DemoCreateMap = (props) => {
   const addLngLat = useSelector((state) => state.map.addLngLat);
   const tileLayer = useSelector((state) => state.map.tileLayer);
   const orientation = useSelector((state) => state.map.orientation);
+  const bgImgCode = useSelector((state) => state.map.bgImgCode);
 
   // Map Size.
   const optionObj = MapConstants.poster_size["_24_36_demo"];
@@ -52,23 +57,29 @@ const DemoCreateMap = (props) => {
   }
 
   useEffect(() => {
+    let currMapStyle = {};
     if (orientation === "portrait") {
       // Map Size.
       const optionObj = MapConstants.poster_size["_24_36_demo"];
       const height =
         optionObj.portrait.map_height * optionObj.poster_multiplier;
       const width = optionObj.portrait.map_width * optionObj.poster_multiplier;
-      setMapStyle({
+
+      currMapStyle = {
+        ...currMapStyle,
         width: width.toString() + "px",
         height: height.toString() + "px",
-      });
+      };
+
       if (
         !addLngLat &&
         primaryText.length === 0 &&
         secondaryText.length === 0
       ) {
         setHasText(false);
-        setMapStyle({
+
+        currMapStyle = {
+          ...currMapStyle,
           height:
             (
               (optionObj.full_height - optionObj.margin) *
@@ -79,7 +90,7 @@ const DemoCreateMap = (props) => {
               (optionObj.full_width - optionObj.margin) *
               optionObj.poster_multiplier
             ).toString() + "px",
-        });
+        };
       } else {
         setHasText(true);
       }
@@ -90,10 +101,11 @@ const DemoCreateMap = (props) => {
         optionObj.landscape.map_height * optionObj.poster_multiplier;
       const width = optionObj.landscape.map_width * optionObj.poster_multiplier;
 
-      setMapStyle({
+      currMapStyle = {
+        ...currMapStyle,
         width: width.toString() + "px",
         height: height.toString() + "px",
-      });
+      };
 
       if (
         !addLngLat &&
@@ -101,7 +113,8 @@ const DemoCreateMap = (props) => {
         secondaryText.length === 0
       ) {
         setHasText(false);
-        setMapStyle({
+        currMapStyle = {
+          ...currMapStyle,
           height:
             (
               (optionObj.full_width - optionObj.margin) *
@@ -112,11 +125,21 @@ const DemoCreateMap = (props) => {
               (optionObj.full_height - optionObj.margin) *
               optionObj.poster_multiplier
             ).toString() + "px",
-        });
+        };
       } else {
         setHasText(true);
       }
     }
+
+    // Img Background.
+    if (bgImgCode != "") {
+      currMapStyle = {
+        ...currMapStyle,
+        opacity: 0.65,
+      };
+    }
+
+    setMapStyle(currMapStyle);
   }, [
     orientation,
     addLngLat,
@@ -124,6 +147,7 @@ const DemoCreateMap = (props) => {
     secondaryText,
     tileLayer,
     defaultCenter,
+    bgImgCode,
   ]);
 
   const handleBuyNow = async (event) => {
@@ -152,7 +176,7 @@ const DemoCreateMap = (props) => {
         description: description,
       })
     );
-    router.push("/cart");
+    // router.push("/cart");
     setLoading(false);
   };
 

@@ -1,3 +1,6 @@
+import { BG_IMG_CODE_URL_MAP } from "../components/createMap/MapFolder/MapConstants";
+import { BG_IMG_FOLDER_PATH, BG_IMG_MAP } from "../constants/BgImgConstants";
+
 export const validateEmail = (email) => {
   if (
     String(email)
@@ -18,4 +21,11 @@ export const isValidPhoneNumber = (phoneNumber) => {
   let regex2 = /^\d{11}$/;
 
   return regex1.test(phoneNumber) || regex2.test(phoneNumber);
+};
+
+export const getImgUrl = (imgCode, mapRatio = "2_3") => {
+  // if we can find flagCode in BG_IMG_MAP, return the url
+  // else return null
+  console.log("getting img url for", imgCode, mapRatio);
+  return BG_IMG_FOLDER_PATH + BG_IMG_MAP[imgCode][mapRatio].url;
 };

@@ -10,7 +10,7 @@ import { v4 as uuid } from "uuid";
 import {
   PINTEREST_URL,
   PINTEREST_PAGE_NAME,
-} from "../../constants/siteConstants";
+} from "../../constants/UiConstants";
 import * as gtag from "../../lib/gtag";
 import * as pintag from "../../lib/pintag";
 import { toast } from "react-toastify";
