@@ -3,12 +3,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-bottom: 2%;
-  padding: 3%;
+  font-family: var(--primary-font);
+  font-size: 1rem;
 }
 
 .container a {
   margin-bottom: 2%;
+  font-family: var(--page-paragraph-font-family);
+  font-size: 1rem;
+  margin-bottom: 4%;
 }
 
 .container a:hover {
@@ -16,6 +19,12 @@
   cursor: pointer;
 }
 
-.spacing {
-  margin-top: 3%;
+@media (max-width: 600px) {
+  .container {
+    padding-bottom: 2%;
+    padding: 3%;
+  }
+  .spacing {
+    margin-top: 3%;
+  }
 }

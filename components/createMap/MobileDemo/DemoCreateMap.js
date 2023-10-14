@@ -1,9 +1,5 @@
 import { useSelector } from "react-redux";
-import {
-  DEFAULT_FLAG_BG_IMG_CODE,
-  MapConstants,
-  MOBILE_ZOOM_OFFSET,
-} from "../MapFolder/MapConstants";
+import { MapConstants, MOBILE_ZOOM_OFFSET } from "../MapFolder/MapConstants";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import dynamic from "next/dynamic";

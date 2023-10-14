@@ -10,7 +10,6 @@ import {
   SIZE_OPTION,
   MATERIAL_OPTION,
   WEB_ZOOM_OFFSET,
-  DEFAULT_FLAG_BG_IMG_CODE,
 } from "./MapFolder/MapConstants";
 import { BTN_STYLE } from "../../constants/UiConstants";
 import { mapActions } from "../../store/map-slice";
@@ -126,7 +125,6 @@ const CreateMap = (props) => {
     }
 
     if (tileLayer === "img-bg-black") {
-      dispatch(mapActions.setBgImgCode(DEFAULT_FLAG_BG_IMG_CODE));
       currMapStyle = {
         ...currMapStyle,
         opacity: 0.6,

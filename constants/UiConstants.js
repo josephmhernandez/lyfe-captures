@@ -23,6 +23,17 @@ export const getButtonStyle = (isMobile) => {
   };
 };
 
+export const getAccordionButtonStyle = (isMobile) => {
+  return {
+    ...ACCORDION_BTN_STYLE,
+
+    ...(isMobile && {
+      fontFamily: "var(--mobile-page-paragraph-font-family)",
+      fontSize: "var(--mobile-page-paragraph-font-size)",
+    }),
+  };
+};
+
 export const BTN_STYLE = {
   "background-color": "var(--color-primary)",
   color: "white",
@@ -31,3 +42,16 @@ export const BTN_STYLE = {
   "font-size": "var(--page-paragraph-font-size)",
   "font-weight": "400",
 };
+
+export const ACCORDION_BTN_STYLE = {
+  "background-color": "var(--color-primary)",
+  color: "white",
+  "border-radius": "100px",
+  "font-family": "var(--page-paragraph-font-family)",
+  "font-size": "var(--accordion-small-font-size)",
+  "font-weight": "400",
+  padding: "0.5rem 1rem",
+  margin: "0.75rem 0",
+};
+
+export const IMG_URL_BLUR_DISPLAY_MAP_BG_IMG = "/images/blur/Hawaii-blur.png";
