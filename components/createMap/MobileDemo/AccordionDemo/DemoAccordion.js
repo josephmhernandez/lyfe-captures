@@ -8,6 +8,7 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 
 import { Accordion, Icon } from "semantic-ui-react";
+import Background from "./Background";
 
 const DemoAccordion = () => {
   const textPrimary = useSelector((state) => state.map.textPrimary);
@@ -46,6 +47,20 @@ const DemoAccordion = () => {
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 2}>
           <Colors />
+        </Accordion.Content>
+        <Accordion.Title
+          active={activeIndex === 5}
+          index={5}
+          onClick={handleClick}
+        >
+          <span>
+            <Icon name="dropdown" />
+            Background
+            <span className={classes.newTag}>{"New"}</span>
+          </span>
+        </Accordion.Title>
+        <Accordion.Content active={activeIndex === 5}>
+          <Background />
         </Accordion.Content>
         <Accordion.Title
           active={activeIndex === 3}

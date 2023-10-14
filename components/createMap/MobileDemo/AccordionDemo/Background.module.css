@@ -1,0 +1,30 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--primary-font);
+  font-size: 1rem;
+}
+
+.container a {
+  margin-bottom: 2%;
+  font-family: var(--page-paragraph-font-family);
+  font-size: 1rem;
+  margin-bottom: 4%;
+}
+
+.container a:hover {
+  background-color: var(--color-secondary);
+  cursor: pointer;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding-bottom: 2%;
+    padding: 3%;
+  }
+  .spacing {
+    margin-top: 3%;
+  }
+}
