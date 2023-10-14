@@ -5,6 +5,7 @@ import {
   MapStyleDict,
   WEB_ZOOM_OFFSET,
   DEFAULT_TILE_LAYER,
+  DEFAULT_TILE_LAYER_W_IMG_BG,
 } from "../components/createMap/MapFolder/MapConstants";
 
 import {
@@ -30,6 +31,7 @@ const mapSlice = createSlice({
     zoom: process.env.MAP_ZOOM,
     tileZoomOffset: WEB_ZOOM_OFFSET,
     transparentTextBlock: false,
+    bgImgCode: "",
     // cart: [],
     bbox: [],
   },
@@ -100,9 +102,22 @@ const mapSlice = createSlice({
     },
     setTileLayer: (state, action) => {
       let tileLayer = action.payload.tileLayer;
+
+      let bgImgCode = "";
+      // look up tileLayer in MapStyleDict for isOverlay flag
+
+      if (MapStyleDict[tileLayer].isOverlay) {
+        // if isOverlay, don't clear bgImgCode
+        return {
+          ...state,
+          tileLayer: tileLayer,
+        };
+      }
+
       return {
         ...state,
         tileLayer: tileLayer,
+        bgImgCode: "",
       };
     },
     setTextPrimary: (state, action) => {
@@ -320,6 +335,7 @@ const mapSlice = createSlice({
       mapObj.tileLayer = state.tileLayer;
       mapObj.bbox = state.bbox;
       mapObj.tileZoomOffset = state.tileZoomOffset;
+      mapObj.bgImgCode = state.bgImgCode;
       mapObj.quantity = 1;
       mapObj.description = "";
       mapObj.id = uuid();
@@ -398,6 +414,13 @@ const mapSlice = createSlice({
     },
     setSizeOption: (state, action) => {
       state.size = action.payload;
+    },
+    setBgImgCode: (state, action) => {
+      state.bgImgCode = action.payload;
+      if (action.payload != "") {
+        // Set Tile Layer to bg tile layer
+        state.tileLayer = DEFAULT_TILE_LAYER_W_IMG_BG;
+      }
     },
   },
 });

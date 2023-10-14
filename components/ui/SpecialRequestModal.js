@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import { Modal, Form, TextArea, Button } from "semantic-ui-react";
 import "react-toastify/dist/ReactToastify.css";
 import classes from "./SpecialRequestModal.module.css";
-import { SPECIAL_REQUEST_MAP_STORAGE_KEY } from "../../constants/siteConstants";
+import { SPECIAL_REQUEST_MAP_STORAGE_KEY } from "../../constants/UiConstants";
 
 const SpecialRequestModal = ({ open, onClose }) => {
   const [subject, setSubject] = useState("");

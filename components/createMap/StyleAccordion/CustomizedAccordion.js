@@ -1,12 +1,7 @@
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
-import MuiAccordion from "@mui/material/Accordion";
-import MuiAccordionSummary from "@mui/material/AccordionSummary";
-import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import Typography from "@mui/material/Typography";
 import Orientation from "./Orientation";
 import Colors from "./Colors";
+import Background from "../MobileDemo/AccordionDemo/Background";
 import Pin from "./Pin";
 import Text from "./Text";
 import Search from "./Search";
@@ -18,7 +13,6 @@ import { Accordion, Icon } from "semantic-ui-react";
 const CustomizedAccordions = () => {
   const textPrimary = useSelector((state) => state.map.textPrimary);
   const textSecondary = useSelector((state) => state.map.textSecondary);
-  const [expanded, setExpanded] = React.useState("panel1");
   const [activeIndex, setActiveIndex] = React.useState(0);
 
   const handleClick = (e, titleProps) => {
@@ -65,6 +59,20 @@ const CustomizedAccordions = () => {
         </Accordion.Title>
         <Accordion.Content active={activeIndex === 2}>
           <Colors />
+        </Accordion.Content>
+        <Accordion.Title
+          active={activeIndex === 5}
+          index={5}
+          onClick={handleClick}
+        >
+          <span>
+            <Icon name="dropdown" />
+            Background
+            <span className={classes.newTag}>{"New"}</span>
+          </span>
+        </Accordion.Title>
+        <Accordion.Content active={activeIndex === 5}>
+          <Background />
         </Accordion.Content>
         <Accordion.Title
           active={activeIndex === 3}

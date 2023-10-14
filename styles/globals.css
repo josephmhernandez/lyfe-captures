@@ -84,6 +84,8 @@ a {
   --medium-page-paragraph-font-size: 1rem;
   --medium-page-paragraph-font-weight: 400;
   --medium-page-paragraph-font-family: "Monsterrat", sans-serif;
+
+  --accordion-small-font-size: 1rem;
 }
 
 @font-face {

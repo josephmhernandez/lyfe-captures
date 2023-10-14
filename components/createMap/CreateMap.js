@@ -11,7 +11,7 @@ import {
   MATERIAL_OPTION,
   WEB_ZOOM_OFFSET,
 } from "./MapFolder/MapConstants";
-import { BTN_STYLE } from "../../constants/siteConstants";
+import { BTN_STYLE } from "../../constants/UiConstants";
 import { mapActions } from "../../store/map-slice";
 import { AddToCartButton, BuyNowButton } from "../ui/CustomButtons";
 import { useRouter } from "next/router";
@@ -23,7 +23,6 @@ import {
 import { getMapDescriptionText } from "./mapFunctionality";
 import * as gtag from "../../lib/gtag";
 import * as pintag from "../../lib/pintag";
-import { Button } from "semantic-ui-react";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -58,22 +57,27 @@ const CreateMap = (props) => {
   }
 
   useEffect(() => {
+    let currMapStyle = {};
     if (orientation === "portrait") {
       // Map Size.
       const optionObj = MapConstants.poster_size[SIZE_OPTION];
       const height =
         optionObj.portrait.map_height * optionObj.poster_multiplier;
       const width = optionObj.portrait.map_width * optionObj.poster_multiplier;
-      setMapStyle({
+
+      currMapStyle = {
+        ...currMapStyle,
         width: width.toString() + "px",
         height: height.toString() + "px",
-      });
+      };
+
       if (
         !addLngLat &&
         primaryText.length === 0 &&
         secondaryText.length === 0
       ) {
-        setMapStyle({
+        currMapStyle = {
+          ...currMapStyle,
           height:
             (
               (optionObj.full_height - optionObj.margin) *
@@ -84,7 +88,7 @@ const CreateMap = (props) => {
               (optionObj.full_width - optionObj.margin) *
               optionObj.poster_multiplier
             ).toString() + "px",
-        });
+        };
       }
     } else {
       //Landscape Calculate Map Size.
@@ -93,17 +97,19 @@ const CreateMap = (props) => {
         optionObj.landscape.map_height * optionObj.poster_multiplier;
       const width = optionObj.landscape.map_width * optionObj.poster_multiplier;
 
-      setMapStyle({
+      currMapStyle = {
+        ...currMapStyle,
         width: width.toString() + "px",
         height: height.toString() + "px",
-      });
+      };
 
       if (
         !addLngLat &&
         primaryText.length === 0 &&
         secondaryText.length === 0
       ) {
-        setMapStyle({
+        currMapStyle = {
+          ...currMapStyle,
           height:
             (
               (optionObj.full_width - optionObj.margin) *
@@ -114,9 +120,18 @@ const CreateMap = (props) => {
               (optionObj.full_height - optionObj.margin) *
               optionObj.poster_multiplier
             ).toString() + "px",
-        });
+        };
       }
     }
+
+    if (tileLayer === "img-bg-black") {
+      currMapStyle = {
+        ...currMapStyle,
+        opacity: 0.6,
+      };
+    }
+
+    setMapStyle(currMapStyle);
   }, [
     orientation,
     defaultCenter,

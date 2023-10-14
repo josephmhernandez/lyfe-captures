@@ -1,6 +1,6 @@
 // Make this the only place where we update the commerce cart.
 // Also functions to manage the map object in local storage.
-import { SPECIAL_REQUEST_MAP_STORAGE_KEY } from "../../constants/siteConstants";
+import { SPECIAL_REQUEST_MAP_STORAGE_KEY } from "../../constants/UiConstants";
 import Commerce from "@chec/commerce.js";
 
 const commerce = new Commerce(process.env.CHEC_PK);

@@ -4,6 +4,7 @@ import classes from "./Colors.module.css";
 import { MapStyleDict } from "../../MapFolder/MapConstants";
 import { useDispatch } from "react-redux";
 import { mapActions } from "../../../../store/map-slice";
+import _ from "lodash";
 
 const Colors = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,9 @@ const Colors = () => {
 
   let MapStyleList = [];
   for (var key in MapStyleDict) {
-    MapStyleList.push(MapStyleDict[key]);
+    if (!_.get(MapStyleDict, `${key}.isOverlay`, false)) {
+      MapStyleList.push(MapStyleDict[key]);
+    }
   }
   return (
     <div className={classes.container}>

@@ -11,7 +11,7 @@ import {
   SUCCESS_STATUS_CODE,
 } from "../../constants/ApiConstants";
 import { useMediaQuery } from "@mantine/hooks";
-import { MEDIA_QUERY_MOBILE } from "../../constants/siteConstants";
+import { MEDIA_QUERY_MOBILE } from "../../constants/UiConstants";
 import DemoCreateMap from "../../components/createMap/MobileDemo/DemoCreateMap";
 import SpecialRequestInstructions from "../../components/ui/SpecialRequestInstructions";
 import { MAP_SPECIAL_REQUEST_PRODUCT_NAME } from "../../components/cart/ProductConstants";
