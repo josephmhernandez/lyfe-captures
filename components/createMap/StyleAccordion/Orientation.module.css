@@ -4,7 +4,12 @@
   flex-wrap: wrap;
   justify-content: center;
 
-  font-family: var(--primary-font);
-  font-weight: var(--accordion-font-weight);
-  font-size: var(--accordion-font-size);
+  font-size: var(--accordion-small-font-size);
+  font-weight: 300;
+  font-family: var(--page-heading-font-family);
+}
+
+.radioGroup {
+  font-family: var(--page-heading-font-family);
+  font-weight: var(--page-heading-font-weight);
 }

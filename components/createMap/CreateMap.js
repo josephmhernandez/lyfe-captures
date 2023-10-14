@@ -38,6 +38,8 @@ const CreateMap = (props) => {
   const [loading, setLoading] = useState(false);
   const sizeOption = SIZE_OPTION;
 
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const optionObj = MapConstants.poster_size[SIZE_OPTION];
   const height = optionObj.portrait.map_height * optionObj.poster_multiplier;
   const width = optionObj.portrait.map_width * optionObj.poster_multiplier;
@@ -231,7 +233,7 @@ const CreateMap = (props) => {
       </div> */}
       <div className={classes.container}>
         <Paper elevation={24} className={classes.wrapper}>
-          <CardOverlay SIZE_OPTION={"_24_36"}>
+          <CardOverlay setActiveIndex={setActiveIndex} SIZE_OPTION={"_24_36"}>
             <MapWithNoSSR center={defaultCenter} zoom={zoom} style={mapStyle}>
               {/* {({ TileLayer, Marker, Popup }) => (
               <>
@@ -248,7 +250,10 @@ const CreateMap = (props) => {
           </CardOverlay>
         </Paper>
         <Paper elevation={24} className={classes.accordionBox}>
-          <CustomizedAccordions />
+          <CustomizedAccordions
+            activeIndex={activeIndex}
+            setActiveIndex={setActiveIndex}
+          />
           <div className={classes.actionBtns}>
             <BuyNowButton
               style={{

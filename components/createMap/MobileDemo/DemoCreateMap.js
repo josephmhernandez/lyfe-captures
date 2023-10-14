@@ -22,6 +22,7 @@ const DemoCreateMap = (props) => {
   const router = useRouter();
   const [hasText, setHasText] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const defaultCenter = useSelector((state) => state.map.lngLat);
   const zoom = useSelector((state) => state.map.zoom);
@@ -211,7 +212,10 @@ const DemoCreateMap = (props) => {
       </div>
       {/* CardOverlay is the only thing that isn't a new compnonent in demo */}
       <div className={classes.wrapper}>
-        <CardOverlay SIZE_OPTION={"_24_36_demo"}>
+        <CardOverlay
+          setActiveIndex={setActiveIndex}
+          SIZE_OPTION={"_24_36_demo"}
+        >
           <MapWithNoSSR
             center={defaultCenter}
             zoom={zoom}
@@ -219,13 +223,21 @@ const DemoCreateMap = (props) => {
           ></MapWithNoSSR>
         </CardOverlay>
       </div>
-      <div className={classes.centerObj}>
+      <div
+        onClick={() => {
+          setActiveIndex(4);
+        }}
+        className={classes.centerObj}
+      >
         {/* Text Block Display Example on map  */}
         {hasText && <p>Text Block Enlarged:</p>}
         {hasText && <DemoEnlargedTextDisplay />}
       </div>
       <div className={classes.centerObj}>
-        <DemoAccordion />
+        <DemoAccordion
+          activeIndex={activeIndex}
+          setActiveIndex={setActiveIndex}
+        />
 
         <div className={classes.actionButtons}>
           <Button

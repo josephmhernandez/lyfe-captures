@@ -456,6 +456,13 @@ export const MapStyleDict = {
 };
 
 export const SIZE_OPTION = "_24_36";
+export const SIZE_DROPDOWN_OPTIONS = [
+  {
+    key: "24x36",
+    text: "24x36 in. (Only size available)",
+    value: SIZE_OPTION,
+  },
+];
 export const MATERIAL_OPTION = "POSTER";
 export const DEFAULT_TILE_LAYER = "dark-transit";
 export const DEFAULT_FLAG_BG_IMG_CODE = "usa-flag";
