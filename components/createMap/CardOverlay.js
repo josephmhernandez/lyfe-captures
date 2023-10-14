@@ -3,11 +3,7 @@ import classes from "./CreateMap.module.css";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-import {
-  DEFAULT_FLAG_BG_IMG_CODE,
-  MapConstants,
-  MapStyleDict,
-} from "./MapFolder/MapConstants";
+import { MapConstants, MapStyleDict } from "./MapFolder/MapConstants";
 import { getPublicImage } from "../../utils/awsFunctions";
 import { getImgUrl } from "../../utils/helper_methods";
 
@@ -199,7 +195,6 @@ const CardOverlay = (props) => {
         };
       }
     } else {
-      console.log("NO BG IMG CODE");
       bgImgStyle = {
         ...bgImgStyle,
         backgroundColor: null,
@@ -246,7 +241,6 @@ const CardOverlay = (props) => {
           </Typography>
         )}
       </div>
-      {/* </div> */}
     </Paper>
   );
 };

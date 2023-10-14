@@ -1,4 +1,3 @@
-import { BG_IMG_CODE_URL_MAP } from "../components/createMap/MapFolder/MapConstants";
 import { BG_IMG_FOLDER_PATH, BG_IMG_MAP } from "../constants/BgImgConstants";
 
 export const validateEmail = (email) => {
@@ -26,6 +25,7 @@ export const isValidPhoneNumber = (phoneNumber) => {
 export const getImgUrl = (imgCode, mapRatio = "2_3") => {
   // if we can find flagCode in BG_IMG_MAP, return the url
   // else return null
-  console.log("getting img url for", imgCode, mapRatio);
+  // console.log("getting img url for", imgCode, mapRatio);
+  // Should be replaced by lodash in the future.
   return BG_IMG_FOLDER_PATH + BG_IMG_MAP[imgCode][mapRatio].url;
 };

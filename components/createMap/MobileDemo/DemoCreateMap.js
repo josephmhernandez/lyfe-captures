@@ -172,7 +172,7 @@ const DemoCreateMap = (props) => {
         description: description,
       })
     );
-    // router.push("/cart");
+    router.push("/cart");
     setLoading(false);
   };
 

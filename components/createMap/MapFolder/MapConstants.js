@@ -455,12 +455,6 @@ export const MapStyleDict = {
   },
 };
 
-// export const BG_IMG_CODE_URL_MAP = {
-//   usa: {
-//     "2_3": "createMap/flags/usa/2_3_usa.png",
-//   },
-// };
-
 export const SIZE_OPTION = "_24_36";
 export const MATERIAL_OPTION = "POSTER";
 export const DEFAULT_TILE_LAYER = "dark-transit";
