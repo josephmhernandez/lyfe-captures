@@ -217,6 +217,11 @@ const CardOverlay = (props) => {
     urlImgBg,
   ]);
 
+  const handleTextClick = (e) => {
+    e.preventDefault();
+    props.setActiveIndex(4);
+  };
+
   return (
     <Paper
       style={{ ...paperStyle, zIndex: 1 }}
@@ -228,7 +233,11 @@ const CardOverlay = (props) => {
         <div style={{ zIndex: 1 }}>{props.children}</div>
       </div>
 
-      <div style={textBlockStyle} className={classes.textMap}>
+      <div
+        onClick={handleTextClick}
+        style={textBlockStyle}
+        className={classes.textMap}
+      >
         {showTextPrimary && (
           <Typography style={styleTextPrimary}>{textPrimary}</Typography>
         )}

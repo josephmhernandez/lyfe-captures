@@ -16,12 +16,14 @@ import {
 } from "../MapFolder/MapConstants";
 import { useDispatch, useSelector } from "react-redux";
 import MapPins from "./MapPins";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { mapActions } from "../../../store/map-slice";
+import { toast } from "react-toastify";
 
 const MapFunctionality = () => {
   const dispatch = useDispatch();
   const bbox = useSelector((state) => state.map.bbox);
+  const [zoomList, setZoomList] = useState([]);
   const map = useMapEvents({
     moveend: () => {
       const bbox_new = JSON.stringify(map.getBounds());
@@ -32,6 +34,14 @@ const MapFunctionality = () => {
         bbox: bbox_new,
       };
       dispatch(mapActions.changeMapCenter(payload));
+    },
+    zoomend: () => {
+      const z = map.getZoom();
+      if (z == process.env.MIN_MAP_ZOOM) {
+        toast.warn(
+          "Max zoom level reached. If you want to zoom out further please send a tailored request"
+        );
+      }
     },
   });
 

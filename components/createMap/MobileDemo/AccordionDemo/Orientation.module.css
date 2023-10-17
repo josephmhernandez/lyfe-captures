@@ -1,10 +1,24 @@
+/* ONLY FOR MOBILE COMPONENT  */
+
 .container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 
-  font-size: var(--accordion-font-size);
+  font-size: var(--accordion-small-font-size);
   font-weight: 300;
   font-family: var(--page-heading-font-family);
+}
+
+.radioGroup {
+  font-family: var(--page-heading-font-family);
+}
+
+/* Media */
+@media (max-width: 600px) {
+  .container {
+    font-family: var(--page-paragraph-font-family);
+    font-size: 1rem;
+  }
 }
