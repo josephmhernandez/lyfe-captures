@@ -336,6 +336,7 @@ const mapSlice = createSlice({
       mapObj.bbox = state.bbox;
       mapObj.tileZoomOffset = state.tileZoomOffset;
       mapObj.bgImgCode = state.bgImgCode;
+
       mapObj.quantity = 1;
       mapObj.description = "";
       mapObj.id = uuid();
@@ -421,6 +422,90 @@ const mapSlice = createSlice({
         // Set Tile Layer to bg tile layer
         state.tileLayer = DEFAULT_TILE_LAYER_W_IMG_BG;
       }
+    },
+    loadMap: (state, action) => {
+      state.pinList = action.payload.pinList;
+      state.location = action.payload.location;
+      state.lngLat = action.payload.center;
+      state.zoom = action.payload.zoom;
+      state.orientation = action.payload.orientation;
+      state.textPrimary = action.payload.textPrimary;
+      state.textSecondary = action.payload.textSecondary;
+      state.textCoordinates = action.payload.textCoordinates;
+      state.styling = action.payload.styling;
+      state.size = action.payload.size;
+      state.tileLayer = action.payload.tileLayer;
+      // state.bbox = action.payload.bbox;
+      state.tileZoomOffset = action.payload.tileZoomOffset;
+      state.transparentTextBlock = action.payload.transparentTextBlock;
+      state.bgImgCode = action.payload.bgImgCode;
+    },
+    addMapToCartFromGallery: (state, action) => {
+      let mapObj = action.payload.map_payload;
+      let ecommerceObj = action.payload.ecommerce_props;
+
+      mapObj.isPresetMap = true;
+      mapObj.presetMapId = mapObj.id;
+
+      mapObj.quantity = 1;
+      mapObj.description = "";
+      mapObj.id = uuid();
+      mapObj.name = ecommerceObj.name; // This is the official name of the product
+      mapObj.unitPrice = ecommerceObj.unitPrice;
+      mapObj.lineItemId = ecommerceObj.lineItemId;
+
+      // Make sure if coordinates are added that we recaclulate them
+      if (mapObj.textCoordinates !== "") {
+        if (mapContains(mapObj.bbox, mapObj.pinList[0]?.position)) {
+          const new_text_coordinates =
+            convertToDms(mapObj.pinList[0].position.lat, false) +
+            " " +
+            convertToDms(mapObj.pinList[0].position.lng, true);
+          mapObj.textCoordinates = new_text_coordinates;
+        } else {
+          const [lat, lng] = mapObj.center;
+          const new_text_coordinates =
+            convertToDms(lat, false) + " " + convertToDms(lng, true);
+          mapObj.textCoordinates = new_text_coordinates;
+        }
+      }
+
+      mapObj.text_styling_specs = MapStyleDict[mapObj.tileLayer];
+      // TO DO: Test this :)
+      if (
+        mapObj.textPrimary != "" ||
+        mapObj.textSecondary != "" ||
+        mapObj.textCoordinates != ""
+      ) {
+        // has text
+        mapObj.mapDimensionsIn = {
+          ...MapConstants["poster_size"][mapObj.size][state.orientation],
+          map_pixel_multiplier:
+            MapConstants["poster_size"][mapObj.size]["poster_multiplier"],
+        };
+      } else {
+        if (mapObj.orientation === "landscape") {
+          mapObj.mapDimensionsIn = {
+            map_width: MapConstants["poster_size"][mapObj.size].full_height - 1,
+            map_height: MapConstants["poster_size"][mapObj.size].full_width - 1,
+            map_pixel_multiplier:
+              MapConstants["poster_size"][mapObj.size]["poster_multiplier"],
+          };
+        } else {
+          mapObj.mapDimensionsIn = {
+            map_width: MapConstants["poster_size"][mapObj.size].full_width - 1,
+            map_height:
+              MapConstants["poster_size"][mapObj.size].full_height - 1,
+            map_pixel_multiplier:
+              MapConstants["poster_size"][mapObj.size]["poster_multiplier"],
+          };
+        }
+      }
+
+      mapObj.description = ecommerceObj.description;
+
+      // call local storage to update cart.
+      addToMapObjLocalStorage(mapObj);
     },
   },
 });
