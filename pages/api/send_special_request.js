@@ -61,9 +61,6 @@ export default async function sendSpecialReqeust(req, res) {
 }
 
 const writeToSpecialRequestsTable = async (payload, res) => {
-  console.log("writeToSpecialRequestsTable");
-  console.log("payload", payload);
-  console.log("db", ddb);
   try {
     const curr_date = new Date().toISOString();
 

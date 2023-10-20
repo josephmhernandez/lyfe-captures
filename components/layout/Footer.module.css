@@ -6,6 +6,7 @@
   color: white;
   font-size: 1.5rem;
   padding-top: 2%;
+  z-index: 10;
 }
 
 .grid {
