@@ -1,4 +1,3 @@
-import { getAccordionActionsUtilityClass } from "@mui/material";
 import { Card, Button } from "semantic-ui-react";
 import {
   getAccordionButtonStyle,
@@ -21,9 +20,9 @@ import {
   addToCartEcommerceJs,
   getPriceEcommerceJs,
 } from "../cart/cartFunctionality";
+import { toast } from "react-toastify";
 
 import classes from "./GalleryCard.module.css";
-import { toast } from "react-toastify";
 
 const GalleryCard = (props) => {
   const isMobile = useMediaQuery("(max-width: 800px)");
@@ -33,7 +32,6 @@ const GalleryCard = (props) => {
 
   useEffect(() => {
     const getGalleryImages = async () => {
-      console.log(props.src);
       const file = await getPublicImage(props.src);
       setUrl(file);
     };
@@ -41,7 +39,6 @@ const GalleryCard = (props) => {
   });
 
   const handleCustomize = () => {
-    console.log("Customize");
     // Use the id to get the map_payload then call dispatch loadMap to set the state store correctly
     // get the map_payload in Gallery Constants
 

@@ -38,7 +38,6 @@ const CardOverlay = (props) => {
   const size_path = is_mobile ? "size_demo" : "size";
   const text_block_path = is_mobile ? "text_block_demo" : "textBlock";
 
-  console.log("tileLayer", tileLayer);
   const styleTextPrimary = {
     fontFamily: MapStyleDict[tileLayer]["text"]["fontFamily"]["primary"],
     fontSize: MapStyleDict[tileLayer]["text"][size_path]["primary"] + "px",
@@ -57,7 +56,6 @@ const CardOverlay = (props) => {
   };
 
   const loadBgImg = async () => {
-    console.log("should be loading...");
     if (bgImgCode != prevBgImgCode && loadingBgImg == false) {
       setLoadingBgImg(true);
       setPrevBgImgCode(bgImgCode);
