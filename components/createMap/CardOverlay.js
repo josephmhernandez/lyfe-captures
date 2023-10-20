@@ -27,7 +27,7 @@ const CardOverlay = (props) => {
   });
   const [textBlockStyle, setTextBlockStyle] = useState({});
   const [mapSizeOption, setMapSizeOption] = useState(props.SIZE_OPTION);
-  const [prevBgImgCode, setPrevBgImgCode] = useState(bgImgCode);
+  const [prevBgImgCode, setPrevBgImgCode] = useState("");
   const [urlImgBg, setUrlImgBg] = useState(null);
   const [loadingBgImg, setLoadingBgImg] = useState(false);
   const [bgImgStyle, setBgImgStyle] = useState({});

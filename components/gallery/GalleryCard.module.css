@@ -1,0 +1,17 @@
+.buttonContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
+}
+
+/* Media */
+@media (max-width: 600px) {
+  /* center buttons */
+  .buttonContent {
+    justify-content: center;
+  }
+}

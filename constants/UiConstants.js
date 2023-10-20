@@ -23,9 +23,42 @@ export const getButtonStyle = (isMobile) => {
   };
 };
 
+export const getActionButtonStyle = (
+  isMobile,
+  color = "var(--color-primary)"
+) => {
+  return {
+    ...ACCORDION_BTN_STYLE,
+
+    backgroundColor: color,
+
+    width: "70%",
+    textAlign: "center",
+    margin: "0 auto",
+    ...(isMobile && {
+      width: "100px",
+      fontFamily: "var(--mobile-page-paragraph-font-family)",
+      fontSize: "var(--mobile-page-paragraph-font-size)",
+    }),
+  };
+};
+
 export const getAccordionButtonStyle = (isMobile) => {
   return {
     ...ACCORDION_BTN_STYLE,
+
+    ...(isMobile && {
+      fontFamily: "var(--mobile-page-paragraph-font-family)",
+      fontSize: "var(--mobile-page-paragraph-font-size)",
+    }),
+  };
+};
+
+export const getAccordionActionButtonStyle = (isMobile) => {
+  return {
+    ...ACCORDION_BTN_STYLE,
+
+    backgroundColor: "var(--buy-now-btn-color)",
 
     ...(isMobile && {
       fontFamily: "var(--mobile-page-paragraph-font-family)",
