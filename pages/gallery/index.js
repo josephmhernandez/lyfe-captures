@@ -1,15 +1,20 @@
-import ActionPanel from "../../components/gallery/ActionPanel";
 import GalleryCard from "../../components/gallery/GalleryCard";
 import { GALLERY_IMG_LIST } from "../../constants/GalleryConstants";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
-import { useEffect, useState } from "react";
-import { getPublicImage } from "../../utils/awsFunctions";
+import dynamic from "next/dynamic";
 
 import classes from "./GalleryBrowseAll.module.css";
 
 const GalleryBrowseAll = () => {
   const isMobile = useMediaQuery("(max-width: 800px)");
   let galleryCards = GALLERY_IMG_LIST;
+
+  const ActionPanel = dynamic(
+    () => import("../../components/gallery/ActionPanel"),
+    {
+      ssr: false,
+    }
+  );
 
   return (
     <div>

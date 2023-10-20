@@ -62,6 +62,9 @@ const SideBar = ({ animation, direction, visible, setVisible }) => {
           <Image width={25} height={25} src={cartPic} alt="CART" />
         </Link>
       </Menu.Item>
+      <Menu.Item name="Gallery" as="a" onClick={handleSelect}>
+        <Link href="/gallery">Get Inspired</Link>
+      </Menu.Item>
       <Menu.Item name="Maps" as="a" onClick={handleSelect}>
         <Link href="/maps">Create Now</Link>
       </Menu.Item>
