@@ -16,14 +16,17 @@ const NavigationBar = (props) => {
               <Link href="/aboutus">About Us</Link>
             </li>
             <li>
-              <Link href="/maps"> Create Now </Link>
+              <Link href="/gallery">Get Inspired</Link>
+            </li>
+            <li>
+              <Link href="/maps"> Create Now</Link>
             </li>
             <li>
               <Link href="/sizes">Sizes</Link>
             </li>
-            <li>
+            {/* <li>
               <Link href="/faqs">FAQs</Link>
-            </li>
+            </li> */}
             <li>
               <Link href="/contactus">Contact Us</Link>
             </li>

@@ -8,12 +8,13 @@ import {
 } from "../../constants/UiConstants";
 import { Button } from "semantic-ui-react";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
-import classes from "./ActionPanel.module.css";
 import SpecialRequestModal from "../ui/SpecialRequestModal";
 import { toast } from "react-toastify";
 import { useState } from "react";
 
-const ActionPanel = (props) => {
+import classes from "./ActionPanel.module.css";
+
+const ActionPanel = () => {
   const [openSpecialRequestModal, setOpenSpecialRequestModal] = useState(false);
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 800px)");
@@ -45,7 +46,27 @@ const ActionPanel = (props) => {
       />
 
       <div>
-        {isMobile && (
+        {!isMobile ? (
+          <div className={classes.ActionPanel}>
+            <h2>Start Your Design</h2>
+            <Button
+              style={getAccordionActionButtonStyle(isMobile)}
+              onClick={() => router.push("/maps")}
+            >
+              Create Now
+            </Button>
+            <h2>
+              Not sure if we can make it? Send us your thoughts and our design
+              team will send you free mock-ups of your design the same day
+            </h2>
+            <Button
+              style={getActionButtonStyle(isMobile)}
+              onClick={handleSendRequest}
+            >
+              Send Request
+            </Button>
+          </div>
+        ) : (
           <div className={classes.mobilePanel}>
             <h2>Want a custom design?</h2>
             <div className={classes.btnRow}>
@@ -62,28 +83,6 @@ const ActionPanel = (props) => {
                 Send Request
               </Button>
             </div>
-          </div>
-        )}
-
-        {!isMobile && (
-          <div className={classes.ActionPanel}>
-            <h2>Start Your Design</h2>
-            <Button
-              style={getActionButtonStyle(isMobile, "var(--buy-now-btn-color)")}
-              onClick={() => router.push("/maps")}
-            >
-              Create Now
-            </Button>
-            <h2>
-              Not sure if we can make it? Send us your thoughts and our design
-              team will send you free mock-ups of your design the same day
-            </h2>
-            <Button
-              style={getActionButtonStyle(isMobile)}
-              onClick={handleSendRequest}
-            >
-              Send Request
-            </Button>
           </div>
         )}
       </div>
