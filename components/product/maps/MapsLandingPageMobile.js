@@ -302,9 +302,9 @@ const MapsLandingPageMobile = () => {
                 <li>
                   <h2>Free Shipping</h2>
                 </li>
-                <li>
+                {/* <li>
                   <h2>Enter Giveaway for 10% Off</h2>
-                </li>
+                </li> */}
               </ul>
             </div>
             {/* Why Acrylic? */}
