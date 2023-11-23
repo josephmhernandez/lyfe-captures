@@ -142,10 +142,10 @@ const OfferModal = ({ open, onClose }) => {
   };
   return (
     <Modal open={open} onClose={onClose} className={classes.modal}>
-      <h1>🎉 Enter our October Giveaway! 🎁</h1>
-      <h2>We are giving away a free map in October 2023!</h2>
+      <h1>🎉 Enter our Giveaway! 🎁</h1>
+      <h2>We are giving away a free map in January 2024!</h2>
       <p>Simply, enter your email for a chance to win!</p>
-      <p>Even if you don’t win you’ll get a 10% discount code for entering!</p>
+      {/* <p>Even if you don’t win you’ll get a 10% discount code for entering!</p> */}
       <p>
         Must be in the continental United States to win! Winners get a free map
         shipped to them at no cost! Good luck!
