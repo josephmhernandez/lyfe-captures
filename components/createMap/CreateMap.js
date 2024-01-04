@@ -254,6 +254,23 @@ const CreateMap = (props) => {
             activeIndex={activeIndex}
             setActiveIndex={setActiveIndex}
           />
+          <BuyNowButton
+            style={{
+              margin: "2px",
+              background: "var(--color-primary)",
+              borderColor: "var(--color-primary)",
+              "&:hover": {
+                background: "var(--color-primary)",
+                borderColor: "var(--color-primary)",
+              },
+            }}
+            onClick={props.digitalPrintReq}
+          >
+            <span>
+              Digital Print{""}
+              <span className={classes.newTag}>{"Free"}</span>
+            </span>
+          </BuyNowButton>
           <div className={classes.actionBtns}>
             <BuyNowButton
               style={{

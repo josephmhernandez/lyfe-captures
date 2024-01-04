@@ -238,7 +238,24 @@ const DemoCreateMap = (props) => {
           activeIndex={activeIndex}
           setActiveIndex={setActiveIndex}
         />
-
+        <div className={classes.actionButtons}>
+          <Button
+            style={{
+              "background-color": "var(--color-primary)",
+              color: "white",
+              "border-radius": "100px",
+              "font-family": "var(--mobile-page-paragraph-font-family)",
+              "font-size": "var(--mobile-page-paragraph-font-size)",
+              "font-weight": "400",
+            }}
+            onClick={props.digitalPrintReq}
+          >
+            <span>
+              Digital Print{""}
+              <span className={classes.newTag}>{"Free"}</span>
+            </span>
+          </Button>
+        </div>
         <div className={classes.actionButtons}>
           <Button
             style={{
