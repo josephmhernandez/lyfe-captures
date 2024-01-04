@@ -1,5 +1,5 @@
 import { BG_IMG_FOLDER_PATH, BG_IMG_MAP } from "../constants/BgImgConstants";
-
+import { SPECIAL_REQUEST_MAP_STORAGE_KEY } from "../constants/UiConstants";
 export const validateEmail = (email) => {
   if (
     String(email)
@@ -28,4 +28,17 @@ export const getImgUrl = (imgCode, mapRatio = "2_3") => {
   // console.log("getting img url for", imgCode, mapRatio);
   // Should be replaced by lodash in the future.
   return BG_IMG_FOLDER_PATH + BG_IMG_MAP[imgCode][mapRatio].url;
+};
+
+export const getSpecialReq = () => {
+  // Get the last item in the local storage cart_data array.
+  let specialReqMap = JSON.parse(
+    localStorage.getItem(SPECIAL_REQUEST_MAP_STORAGE_KEY)
+  );
+  if (specialReqMap) {
+    let lastItem = specialReqMap[specialReqMap.length - 1];
+    return lastItem;
+  }
+  console.error("special request data:", specialReqMap);
+  return {};
 };
