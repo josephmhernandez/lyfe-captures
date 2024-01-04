@@ -262,6 +262,7 @@ const mapSlice = createSlice({
       mapObj.quantity = 1;
       mapObj.description = "";
       mapObj.id = uuid();
+      mapObj.bgImgCode = state.bgImgCode;
 
       mapObj.name = action.payload.name; // This is the official name of the product
 
