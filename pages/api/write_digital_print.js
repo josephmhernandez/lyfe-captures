@@ -12,10 +12,10 @@ export default async function writeDigitalPrint(payload, res) {
   let body = payload.body;
   try {
     const curr_date = new Date().toISOString();
-    console.log("all payload: ", body);
-    console.log("requestId: ", uuid);
-    console.log("mapInput: ", body.mapInput);
-    console.log("typeof mapIN put", typeof body.mapInput);
+    // console.log("all payload: ", body);
+    // console.log("requestId: ", uuid);
+    // console.log("mapInput: ", body.mapInput);
+    // console.log("typeof mapIN put", typeof body.mapInput);
     var params = {
       TableName: "ecommerce.digital-prints",
       Item: {

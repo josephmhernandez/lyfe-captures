@@ -15,9 +15,6 @@ const DigitalPrintModal = ({ open, onClose }) => {
   const handleDigitalPrint = async () => {
     // Send email to user with digital print.
     let mapPayload = getSpecialReq();
-    console.log("mapPayload", mapPayload);
-    // write type of mapPayload
-    console.log("typeof mapPayload", typeof mapPayload);
 
     const url = "/api/write_digital_print";
 
