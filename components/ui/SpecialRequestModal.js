@@ -5,7 +5,7 @@ import { Modal, Form, TextArea, Button } from "semantic-ui-react";
 import "react-toastify/dist/ReactToastify.css";
 import classes from "./SpecialRequestModal.module.css";
 import { SPECIAL_REQUEST_MAP_STORAGE_KEY } from "../../constants/UiConstants";
-
+import { getSpecialReq } from "../../utils/helper_methods";
 const SpecialRequestModal = ({ open, onClose }) => {
   const [subject, setSubject] = useState("");
   const [specifications, setSpecifications] = useState("");
@@ -106,19 +106,6 @@ const SpecialRequestModal = ({ open, onClose }) => {
     setErrorSubject(null);
     setErrorSpecifications(null);
     setErrorPhoneNumber(null);
-  };
-
-  const getSpecialReq = () => {
-    // Get the last item in the local storage cart_data array.
-    let specialReqMap = JSON.parse(
-      localStorage.getItem(SPECIAL_REQUEST_MAP_STORAGE_KEY)
-    );
-    if (specialReqMap) {
-      let lastItem = specialReqMap[specialReqMap.length - 1];
-      return lastItem;
-    }
-    console.error("special request data:", specialReqMap);
-    return {};
   };
 
   const handleSubmit = async () => {

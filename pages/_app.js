@@ -124,7 +124,7 @@ function MyApp({ Component, isMobileView, pageProps }) {
 
       <Elements stripe={stripePromise}>
         <Layout>
-          <ToastContainer />
+          <ToastContainer autoClose={false} />
           <OfferModal
             open={showDiscount}
             onClose={() => setShowDiscount(false)}

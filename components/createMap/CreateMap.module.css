@@ -99,3 +99,15 @@
   font-weight: 100;
   font-style: normal;
 }
+
+.newTag {
+  font-family: var(--primary-font);
+  font-size: 12px;
+  background-color: white;
+  color: var(--color-primary);
+  padding: 2px;
+  border-radius: 5px;
+  margin-left: 10px;
+  position: relative;
+  top: -2px;
+}
