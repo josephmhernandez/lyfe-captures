@@ -1,0 +1,12 @@
+.mylottie {
+  opacity: 0; /* Initially hidden */
+  transition: opacity 5s ease-in-out; /* Smooth fade-in */
+}
+
+.mylottie.show {
+  opacity: 1; /* Revealed state */
+}
+
+div.myclickable-div:hover {
+  cursor: pointer;
+}

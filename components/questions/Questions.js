@@ -88,10 +88,10 @@ const Questions = () => {
       <h1>{page_title}</h1>
       <p className={classes.headingP}>{title_description}</p>
       <p>Contact us for support {`${process.env.EMAIL_SUPPORT}`}</p>
-      <p>
+      {/* <p>
         Contact us for special requests{" "}
         {`${process.env.EMAIL_SPECIAL_REQUESTS}`}
-      </p>
+      </p> */}
       {question_content.map((question) => {
         return (
           <div key={question.id} className={classes.questionAccordion}>

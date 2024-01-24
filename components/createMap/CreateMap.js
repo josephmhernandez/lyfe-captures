@@ -23,6 +23,7 @@ import {
 import { getMapDescriptionText } from "./mapFunctionality";
 import * as gtag from "../../lib/gtag";
 import * as pintag from "../../lib/pintag";
+import { Button } from "flowbite-react";
 
 const commerce = new Commerce(process.env.CHEC_PK);
 
@@ -254,38 +255,36 @@ const CreateMap = (props) => {
             activeIndex={activeIndex}
             setActiveIndex={setActiveIndex}
           />
-          <BuyNowButton
-            style={{
-              margin: "2px",
-              background: "var(--color-primary)",
-              borderColor: "var(--color-primary)",
-              "&:hover": {
-                background: "var(--color-primary)",
-                borderColor: "var(--color-primary)",
-              },
-            }}
+          <Button
+            size={"xl"}
+            gradientDuoTone="purpleToBlue"
             onClick={props.digitalPrintReq}
+            className="m-[.5vh]"
           >
             <span>
               Digital Print{""}
               <span className={classes.newTag}>{"Free"}</span>
             </span>
-          </BuyNowButton>
+          </Button>
           <div className={classes.actionBtns}>
-            <BuyNowButton
-              style={{
-                background: "var(--color-primary)",
-                borderColor: "var(--color-primary)",
-                "&:hover": {
-                  background: "var(--color-primary)",
-                  borderColor: "var(--color-primary)",
-                },
-              }}
+            <Button
+              size={"xl"}
+              gradientDuoTone="purpleToBlue"
               onClick={BUTTON_PUSH_HANDLER}
+              className="m-[.5vh]"
             >
               {`${BUTTON_TEXT}`}
-            </BuyNowButton>
-            <BuyNowButton onClick={handleAddToCart}>Buy Now</BuyNowButton>
+            </Button>
+
+            <Button
+              size={"xl"}
+              gradientMonochrome="success"
+              onClick={handleAddToCart}
+              className="m-[.5vh]"
+            >
+              Buy Now
+            </Button>
+            {/* <BuyNowButton onClick={handleAddToCart}>Buy Now</BuyNowButton> */}
           </div>
         </Paper>
       </div>
