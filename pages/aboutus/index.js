@@ -5,8 +5,16 @@ const AboutUs = () => {
   return (
     <div className="container mx-auto p-[3vh] px-[10vh]">
       <h1 className="font-bold text-center pt-[3vh] pb-[1vh] text-1xl md:text-2xl lg:text-3xl">
-        Thanks for your interest!
+        Thanks for your Interest!
       </h1>
+      <p className="py-3 text-base leading-relaxed sm:text-lg md:text-xl">
+        {`I'm a programmer who wanted to give unqiue maps as Christmas gifts. I
+          never quite found the right mix of quality, price, and customization. So I
+          decided to make my own. These maps make excellent gifts and decor. I
+          hope you enjoy them as much as I do.
+          I've partnered with local suppliers and expert printers to ensure
+          first-hand that the quality is sublime.`}
+      </p>
       <p className="py-3 text-base leading-relaxed sm:text-lg md:text-xl">
         {`Welcome to MapYourMemory! We're passionate about creating unique,
         high-quality maps that help you celebrate your special moments and
@@ -15,7 +23,7 @@ const AboutUs = () => {
         to you.`}
       </p>
       <p className="py-3 text-base leading-relaxed sm:text-lg md:text-xl">
-        {`Our team of experienced designers and print technicians work together to
+        {`Our team of engineers and print technicians work together to
         create maps with exceptional resolution and sharp detailing. Our maps
         are customizable, allowing you to choose the colors, styles, and even
         add text or pins to create a truly personalized piece of wall art. We're

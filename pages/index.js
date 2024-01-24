@@ -51,13 +51,20 @@ export default function Home(props) {
       {homepageBanner && (
         <ShopNowBanner to="/maps" src={homepageBanner} alt="" />
       )}
-      <div className="text-center p-[2vh]">
-        <h1 className=" opacity-80 text-base text-3xl md:text-3xl lg:text-3xl">
-          Stunning decor at an affordable price
+      {/* <div className="text-center p-[2vh]"></div> */}
+      <div className="lg:w-3/5 md:w-3/5 sm:w-10/12  mx-auto p-[3vh] pb-[2vh]">
+        <h1 className="font-bold text-base font-bold text-3xl md:text-3xl lg:text-3xl py-[1vh]">
+          Stunning Decor at an Affordable Price
         </h1>
-      </div>
-      <div className="lg:w-3/5 md:w-3/5 sm:w-10/12  mx-auto pb-[5vh]">
-        <div className="px-[1vh]  relative flex flex-col items-center justify-center">
+        <p className="opacity-80 sm:text-lg md:text-xl">
+          {`I'm a programmer who wanted to give unqiue maps as Christmas gifts. I
+          never quite found the right mix of quality, price, and customization. So I
+          decided to make my own. These maps make excellent gifts and decor. I
+          hope you enjoy them as much as I do.
+          I've partnered with local suppliers and expert printers to ensure
+          first-hand that the quality is sublime.`}
+        </p>
+        <div className="px-[0vh]  relative flex flex-col items-center justify-center">
           <Image
             className=""
             src="/images/design.svg"
@@ -69,7 +76,7 @@ export default function Home(props) {
 
         {/* Lottie file animation  */}
         {/* <div className="h-screen h-1/2 min-h-25vh"> */}
-        <div className="p-[5vh] ">
+        <div className="px-[5vh] pb-[5vh]">
           <ClickThroughPhotos />
         </div>
         {/* </div> */}
@@ -288,7 +295,7 @@ export default function Home(props) {
           </h1>
           <p className="sm:text-lg md:text-xl">
             {`Your request will be handled by a real person. We're not a 
-            faceless corporation. We're a small team of people who are passionate 
+            faceless corporation. We're a small team who are passionate 
             about delivering unique and meaningful art. We're here to help you 
             tell your story. On top of our 100% satisfaction guarantee, we offer 
             free shipping and have worked with local suppliers to ensure that we 
@@ -321,39 +328,3 @@ export default function Home(props) {
     </div>
   );
 }
-
-// Home.Layout = Layout;
-
-// Need this here to get the current device that the user is on.
-// Can't have getInitialProps in the component itself. It must be on the page component.
-// Home.getInitialProps = async (ctx) => {
-//   let isMobileView = await (ctx.req
-//     ? ctx.req.headers["user-agent"]
-//     : navigator.userAgent
-//   ).match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i);
-
-//   //Returning the isMobileView as a prop to the component for further use.
-//   return {
-//     isMobileView: Boolean(isMobileView),
-//   };
-// };
-
-// export default MapPage;
-
-// function renderComp() {
-//   const isMobile = useMediaQuery("(max-width: 600px)");
-
-//   if (isMobile) {
-//     return (
-//       <Fragment>
-//         <MapsLandingPageMobile />
-//       </Fragment>
-//     );
-//   }
-
-//   return (
-//     <Fragment>
-//       <MapsLandingPage />
-//     </Fragment>
-//   );
-// }
