@@ -96,58 +96,94 @@ const Gallery = () => {
   }, []);
 
   return (
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-      <div class="grid gap-4">
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src={imgDetroit} alt="" />
-        </div>
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src={vertAspen} alt="" />
-        </div>
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src={imgSeattle} alt="" />
-        </div>
-      </div>
-      <div class="grid gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid gap-4">
         <div>
           <img
-            class="h-auto max-w-full rounded-lg"
+            className="h-auto max-w-full rounded-lg"
+            src={imgDetroit}
+            alt=""
+          />
+        </div>
+        <div>
+          <img
+            className="h-auto max-w-full rounded-lg"
+            src={vertAspen}
+            alt=""
+          />
+        </div>
+        <div>
+          <img
+            className="h-auto max-w-full rounded-lg"
+            src={imgSeattle}
+            alt=""
+          />
+        </div>
+      </div>
+      <div className="grid gap-4">
+        <div>
+          <img
+            className="h-auto max-w-full rounded-lg"
             src={closeUpPinsImg}
             alt=""
           />
         </div>
         <div>
-          <img class="h-auto max-w-full rounded-lg" src={imgHawaii} alt="" />
-        </div>
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src={backframeImg} alt="" />
-        </div>
-      </div>
-      <div class="grid gap-4">
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src={cornerDallas} alt="" />
-        </div>
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src={vertSeattle} alt="" />
-        </div>
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src={sideImg3D} alt="" />
-        </div>
-      </div>
-      <div class="grid gap-4">
-        <div>
-          <img class="h-auto max-w-full rounded-lg" src={vertSanFran} alt="" />
+          <img
+            className="h-auto max-w-full rounded-lg"
+            src={imgHawaii}
+            alt=""
+          />
         </div>
         <div>
           <img
-            class="h-auto max-w-full rounded-lg"
+            className="h-auto max-w-full rounded-lg"
+            src={backframeImg}
+            alt=""
+          />
+        </div>
+      </div>
+      <div className="grid gap-4">
+        <div>
+          <img
+            className="h-auto max-w-full rounded-lg"
+            src={cornerDallas}
+            alt=""
+          />
+        </div>
+        <div>
+          <img
+            className="h-auto max-w-full rounded-lg"
+            src={vertSeattle}
+            alt=""
+          />
+        </div>
+        <div>
+          <img
+            className="h-auto max-w-full rounded-lg"
+            src={sideImg3D}
+            alt=""
+          />
+        </div>
+      </div>
+      <div className="grid gap-4">
+        <div>
+          <img
+            className="h-auto max-w-full rounded-lg"
+            src={vertSanFran}
+            alt=""
+          />
+        </div>
+        <div>
+          <img
+            className="h-auto max-w-full rounded-lg"
             src={closeUpWhiteTransit}
             alt=""
           />
         </div>
         <div>
           <img
-            class="h-auto max-w-full rounded-lg"
+            className="h-auto max-w-full rounded-lg"
             src={cornerImgHawaii}
             alt=""
           />

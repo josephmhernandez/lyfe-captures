@@ -120,9 +120,9 @@ export default function Home(props) {
           </h1>
           {/* list of perks */}
           <ul className="text-center sm:text-lg md:text-xl">
-            <li class="flex items-center space-x-3 rtl:space-x-reverse">
+            <li className="flex items-center space-x-3 rtl:space-x-reverse">
               <svg
-                class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
+                className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -130,17 +130,17 @@ export default function Home(props) {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M1 5.917 5.724 10.5 15 1.5"
                 />
               </svg>
               <span>32" 24" Vibrant Acrylic Print 🌇</span>
             </li>
-            <li class="flex items-center space-x-3 rtl:space-x-reverse">
+            <li className="flex items-center space-x-3 rtl:space-x-reverse">
               <svg
-                class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
+                className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -148,17 +148,17 @@ export default function Home(props) {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M1 5.917 5.724 10.5 15 1.5"
                 />
               </svg>
               <span>Free Floating rame (attached) 🖼️ </span>
             </li>
-            <li class="flex items-center space-x-3 rtl:space-x-reverse">
+            <li className="flex items-center space-x-3 rtl:space-x-reverse">
               <svg
-                class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
+                className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -166,18 +166,18 @@ export default function Home(props) {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M1 5.917 5.724 10.5 15 1.5"
                 />
               </svg>
               <span>Free Hanging Kit 🛠️ </span>
             </li>
             <ul className="list-disc">
-              <li class="flex items-center space-x-3 rtl:space-x-reverse pl-8">
+              <li className="flex items-center space-x-3 rtl:space-x-reverse pl-8">
                 <svg
-                  class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400 "
+                  className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400 "
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -185,17 +185,17 @@ export default function Home(props) {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M1 5.917 5.724 10.5 15 1.5"
                   />
                 </svg>
                 <span>Gloves (no finger prints) 🙂</span>
               </li>
-              <li class="flex items-center space-x-3 rtl:space-x-reverse pl-8">
+              <li className="flex items-center space-x-3 rtl:space-x-reverse pl-8">
                 <svg
-                  class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
+                  className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -203,17 +203,17 @@ export default function Home(props) {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M1 5.917 5.724 10.5 15 1.5"
                   />
                 </svg>
                 <span>French Cleat</span>
               </li>
-              <li class="flex items-center space-x-3 rtl:space-x-reverse pl-8">
+              <li className="flex items-center space-x-3 rtl:space-x-reverse pl-8">
                 <svg
-                  class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
+                  className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -221,18 +221,18 @@ export default function Home(props) {
                 >
                   <path
                     stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M1 5.917 5.724 10.5 15 1.5"
                   />
                 </svg>
                 <span>Screws</span>
               </li>
             </ul>
-            <li class="flex items-center space-x-3 rtl:space-x-reverse">
+            <li className="flex items-center space-x-3 rtl:space-x-reverse">
               <svg
-                class="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
+                className="flex-shrink-0 w-3.5 h-3.5 text-green-500 dark:text-green-400"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -240,9 +240,9 @@ export default function Home(props) {
               >
                 <path
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="M1 5.917 5.724 10.5 15 1.5"
                 />
               </svg>

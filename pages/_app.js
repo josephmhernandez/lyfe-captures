@@ -31,7 +31,7 @@ Amplify.configure({
   ssr: true,
 });
 
-function MyApp({ Component, isMobileView, pageProps }) {
+function MyApp({ Component }) {
   const router = useRouter();
   const [showDiscount, setShowDiscount] = useState(false);
   let firstTime = true;
@@ -60,7 +60,7 @@ function MyApp({ Component, isMobileView, pageProps }) {
         setShowDiscount(true);
       }, 10000); // 10 seconds
     }
-  }, [router.events, pageProps]);
+  }, [router.events]);
 
   const stripePromise = loadStripe(process.env.STRIPE_PK);
 
@@ -132,7 +132,7 @@ function MyApp({ Component, isMobileView, pageProps }) {
             open={showDiscount}
             onClose={() => setShowDiscount(false)}
           />
-          <Component {...pageProps} />
+          <Component />
         </LayoutNavBar>
         {/* </Layout> */}
       </Elements>
@@ -141,23 +141,23 @@ function MyApp({ Component, isMobileView, pageProps }) {
 }
 
 // Need this so that the pageProps are passed to the page component. This checks to see if there is an "getInitialProps" function in the page component and if so, it runs it and passes the result to the page component.
-MyApp.getInitialProps = async ({ Component, ctx }) => {
-  let pageProps = {};
-  if (Component.getInitialProps) {
-    pageProps = await Component.getInitialProps(ctx);
-  }
+// MyApp.getInitialProps = async ({ Component, ctx }) => {
+//   let pageProps = {};
+//   if (Component.getInitialProps) {
+//     pageProps = await Component.getInitialProps(ctx);
+//   }
 
-  let isMobileView = await (ctx.req
-    ? ctx.req.headers["user-agent"]
-    : navigator.userAgent
-  ).match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i);
+//   let isMobileView = await (ctx.req
+//     ? ctx.req.headers["user-agent"]
+//     : navigator.userAgent
+//   ).match(/Android|BlackBerry|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i);
 
-  //Returning the isMobileView as a prop to the component for further use.
-  return {
-    isMobileView: Boolean(isMobileView),
-    pageProps,
-  };
-};
+//   //Returning the isMobileView as a prop to the component for further use.
+//   return {
+//     isMobileView: Boolean(isMobileView),
+//     pageProps,
+//   };
+// };
 
 function FacebookPixel() {
   React.useEffect(() => {

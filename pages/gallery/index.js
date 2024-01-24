@@ -1,7 +1,6 @@
 import GalleryCard from "../../components/gallery/GalleryCard";
 import { GALLERY_IMG_LIST } from "../../constants/GalleryConstants";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
-import dynamic from "next/dynamic";
 
 import classes from "./GalleryBrowseAll.module.css";
 import { Button } from "flowbite-react";
@@ -14,19 +13,13 @@ const GalleryBrowseAll = () => {
   let galleryCards = GALLERY_IMG_LIST;
 
   const router = useRouter();
-  // const ActionPanel = dynamic(
-  //   () => import("../../components/gallery/ActionPanel"),
-  //   {
-  //     ssr: false,
-  //   }
-  // );
 
   const [openSpecialRequestModal, setOpenSpecialRequestModal] = useState(false);
 
   const handleSpecialRequestClose = (response) => {
     // Response if the response from the api to send special request
     if (response.status === 200) {
-      toast.success("Your request has been sent");
+      toast.success("Time us! We'll get to you in under 24 hours");
     }
 
     if (response.status === 500) {
