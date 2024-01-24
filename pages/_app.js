@@ -8,6 +8,7 @@ import nProgress from "nprogress";
 import Router from "next/router";
 import "../styles/nprogress.css";
 import "../styles/overrides.css";
+import "../styles/animation.css";
 Router.events.on("routeChangeStart", nProgress.start);
 Router.events.on("routeChangeError", nProgress.done);
 Router.events.on("routeChangeComplete", nProgress.done);
@@ -23,6 +24,7 @@ import OfferModal from "../components/ui/OfferModal";
 import { Amplify } from "aws-amplify";
 import awsconfig from "../aws-exports";
 import { ToastContainer } from "react-toastify";
+import LayoutNavBar from "../components/LayoutNavBar/LayoutNavBar";
 
 Amplify.configure({
   ...awsconfig,
@@ -123,14 +125,16 @@ function MyApp({ Component, isMobileView, pageProps }) {
       </noscript> */}
 
       <Elements stripe={stripePromise}>
-        <Layout>
+        {/* <Layout> */}
+        <LayoutNavBar>
           <ToastContainer autoClose={false} />
           <OfferModal
             open={showDiscount}
             onClose={() => setShowDiscount(false)}
           />
           <Component {...pageProps} />
-        </Layout>
+        </LayoutNavBar>
+        {/* </Layout> */}
       </Elements>
     </Provider>
   );

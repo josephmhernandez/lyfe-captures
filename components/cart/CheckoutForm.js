@@ -514,6 +514,7 @@ const CheckoutForm = (props) => {
           name="gateway"
           type="radio"
           value="stripe"
+          initialvalue="stripe"
           checked={getValues("gateway") === "stripe"}
           {...register("gateway", { required: "Please select Payment Type" })}
           onChange={(e) => {
