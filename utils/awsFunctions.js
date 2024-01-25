@@ -6,3 +6,10 @@ export const getPublicImage = async (filename) => {
   });
   return file;
 };
+
+export const getBlurPublicImage = (filename) => {
+  const file = Storage.get(filename, {
+    level: "public",
+  });
+  return file;
+};
