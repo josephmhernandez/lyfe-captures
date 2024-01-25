@@ -112,3 +112,8 @@ a {
   /* font-weight: 300; */
   /* font-style: normal; */
 }
+
+@font-face {
+  font-family: "Great Vibes";
+  src: url("../public/fonts/GreatVibes-Regular.ttf");
+}

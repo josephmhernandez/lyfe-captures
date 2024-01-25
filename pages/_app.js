@@ -20,7 +20,7 @@ import * as gtag from "../lib/gtag";
 import * as pintag from "../lib/pintag";
 import { useRouter } from "next/router";
 import Script from "next/script";
-import OfferModal from "../components/ui/OfferModal";
+// import OfferModal from "../components/ui/OfferModal";
 import { Amplify } from "aws-amplify";
 import awsconfig from "../aws-exports";
 import { ToastContainer } from "react-toastify";
@@ -128,10 +128,10 @@ function MyApp({ Component }) {
         {/* <Layout> */}
         <LayoutNavBar>
           <ToastContainer autoClose={false} />
-          <OfferModal
+          {/* <OfferModal
             open={showDiscount}
             onClose={() => setShowDiscount(false)}
-          />
+          /> */}
           <Component />
         </LayoutNavBar>
         {/* </Layout> */}
