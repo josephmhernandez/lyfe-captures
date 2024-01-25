@@ -19,6 +19,16 @@ module.exports = {
       fontFamily: {
         "great-vibes": ['"Great Vibes"', "sans-serif"], // Enclose font name in quotes for spaces
       },
+      typography: (theme) => ({
+        DEFAULT: {
+          css: {
+            // Apply font-display: swap for smoother transitions
+            "@font-face": {
+              fontDisplay: "swap",
+            },
+          },
+        },
+      }),
     },
   },
   plugins: [require("flowbite/plugin")],
