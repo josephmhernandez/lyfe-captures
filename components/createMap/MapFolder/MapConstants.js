@@ -453,6 +453,51 @@ export const MapStyleDict = {
       },
     },
   },
+  satellite: {
+    id: "satellite",
+    isOverlay: false,
+    iconImg: "/satellite.png",
+    url: "https://api.maptiler.com/maps/b6d4da2f-3657-4cce-8d8c-735db34b1c65/{z}/{x}/{y}.jpg?key=fLxXsh3K0MP3y21i3bJs",
+    text: {
+      fontFamily: {
+        primary: "Semplicita",
+        secondary: "Semplicita",
+        coordinate: "Semplicita",
+      },
+      size: {
+        primary: "24",
+        secondary: "12",
+        coordinate: "8",
+      },
+      size_demo: {
+        primary: "8",
+        secondary: "4",
+        coordinate: "3",
+      },
+      color: {
+        background: "#000000",
+        primary: "#FFFFFF",
+        secondary: "#FFFFFF",
+        coordinate: "#FFFFFF",
+      },
+      color_transparent: {
+        background: "#0000",
+        primary: "#000000",
+        secondary: "#000000",
+        coordinate: "#000000",
+      },
+      textBlock: {
+        padding: "8px",
+        rounded: "8px",
+        spacing: "1", // Inches
+      },
+      text_block_demo: {
+        padding: "1px",
+        rounded: "3px",
+        spacing: "1",
+      },
+    },
+  },
 };
 
 export const SIZE_OPTION = "_24_36";
